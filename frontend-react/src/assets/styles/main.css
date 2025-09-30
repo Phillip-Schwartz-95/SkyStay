@@ -19,10 +19,10 @@
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
 
-@import "cmps/car/CarIndex";
-@import "cmps/car/CarList";
-@import "cmps/car/CarPreview";
-@import "cmps/car/CarFilter";
+@import "cmps/stay/StayIndex";
+@import "cmps/stay/StayList";
+@import "cmps/stay/StayPreview";
+@import "cmps/stay/StayFilter";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";

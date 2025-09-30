@@ -4,16 +4,16 @@ export const uploadService = {
 
 async function uploadImg(ev) {
 	const CLOUD_NAME = 'dy972hmba'
-	const UPLOAD_PRESET = 'car_preset'
+	const UPLOAD_PRESET = 'stay_preset'
 	const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
 
 	const formData = new FormData()
-	
-    // Building the request body
+
+	// Building the request body
 	formData.append('file', ev.target.files[0])
 	formData.append('upload_preset', UPLOAD_PRESET)
-	
-    // Sending a post method request to Cloudinary API
+
+	// Sending a post method request to Cloudinary API
 	try {
 		const res = await fetch(UPLOAD_URL, { method: 'POST', body: formData })
 		const imgData = await res.json()

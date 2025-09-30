@@ -1,68 +1,68 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import { loadCars, addCar, updateCar, removeCar, addCarMsg } from '../store/actions/car.actions'
-
+import { loadStays, addStay, updateStay, removeStay } from '../store/actions/stay.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
-import { carService } from '../services/car'
+import { stayService } from '../services/stay'
 import { userService } from '../services/user'
 
-import { CarList } from '../cmps/CarList'
-import { CarFilter } from '../cmps/CarFilter'
+import { StayList } from '../cmps/StayList'
+import { StayFilter } from '../cmps/StayFilter'
 
 export function StayIndex() {
-
-    const [ filterBy, setFilterBy ] = useState(carService.getDefaultFilter())
-    const cars = useSelector(storeState => storeState.carModule.cars)
+    const [filterBy, setFilterBy] = useState(stayService.getDefaultFilter())
+    const stays = useSelector(storeState => storeState.stayModule.stays)
 
     useEffect(() => {
-        loadCars(filterBy)
+        loadStays(filterBy)
     }, [filterBy])
 
-    async function onRemoveCar(carId) {
+    async function onRemoveStay(stayId) {
         try {
-            await removeCar(carId)
-            showSuccessMsg('Car removed')            
+            await removeStay(stayId)
+            showSuccessMsg('Stay removed')
         } catch (err) {
-            showErrorMsg('Cannot remove car')
+            showErrorMsg('Cannot remove stay')
         }
     }
 
-    async function onAddCar() {
-        const car = carService.getEmptyCar()
-        car.vendor = prompt('Vendor?', 'Some Vendor')
+    async function onAddStay() {
+        const stay = stayService.getEmptyStay()
+        stay.title = prompt('Title?', 'Cozy studio') || ''
         try {
-            const savedCar = await addCar(car)
-            showSuccessMsg(`Car added (id: ${savedCar._id})`)
+            const savedStay = await addStay(stay)
+            showSuccessMsg(`Stay added (id: ${savedStay._id})`)
         } catch (err) {
-            showErrorMsg('Cannot add car')
-        }        
+            showErrorMsg('Cannot add stay')
+        }
     }
 
-    async function onUpdateCar(car) {
-        const speed = +prompt('New speed?', car.speed) || 0
-        if(speed === 0 || speed === car.speed) return
-
-        const carToSave = { ...car, speed }
+    async function onUpdateStay(stay) {
+        const price = +prompt('New price per night?', stay.price) || stay.price
+        if (price === stay.price) return
+        const stayToSave = { ...stay, price }
         try {
-            const savedCar = await updateCar(carToSave)
-            showSuccessMsg(`Car updated, new speed: ${savedCar.speed}`)
+            const savedStay = await updateStay(stayToSave)
+            showSuccessMsg(`Stay updated, new price: ${savedStay.price}`)
         } catch (err) {
-            showErrorMsg('Cannot update car')
-        }        
+            showErrorMsg('Cannot update stay')
+        }
     }
 
     return (
         <section className="stay-index">
             <header>
                 <h2>Popular homes in Tel Aviv-Yafo</h2>
-                {userService.getLoggedinUser() && <button onClick={onAddCar}>Add a Stay</button>}
+                {userService.getLoggedinUser() && <button onClick={onAddStay}>Add a Stay</button>}
             </header>
-            <CarFilter filterBy={filterBy} setFilterBy={setFilterBy} />
-            <CarList 
-                cars={cars}
-                onRemoveCar={onRemoveCar} 
-                onUpdateCar={onUpdateCar}/>
+
+            <StayFilter filterBy={filterBy} setFilterBy={setFilterBy} />
+
+            <StayList
+                stays={stays}
+                onRemoveStay={onRemoveStay}
+                onUpdateStay={onUpdateStay}
+            />
         </section>
     )
 }
