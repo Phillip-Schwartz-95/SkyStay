@@ -1,0 +1,14 @@
+.review-list {
+    --min-column-size: 220px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-column-size), 1fr));
+    gap: .5em;
+
+    .actions {
+        & button {
+            padding: .3em .5em;
+            float: right;
+        }
+    }
+}
