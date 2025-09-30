@@ -1,86 +1,142 @@
-# Coding Academy E2E Starter
+# Coding Academy React Frontend
 
-A full-stack web application starter template used for teaching at CodingAcademy. This project demonstrates core concepts of modern web development including React frontend, Node.js backend, and best practices for both.
+Modern React application built with Vite, featuring a complete frontend infrastructure for teaching full-stack development.
 
 ## 🚀 Quick Start
 
-- Install dependencies for both frontend and backend:
+1. Install dependencies:
 ```bash
-cd frontend-react && npm install
-cd ../backend && npm install
+npm install
 ```
-- Start the development servers:
-```bash
-# Terminal 1 - Frontend
-cd frontend-react
-npm run dev
 
-# Terminal 2 - Backend 
-cd backend
+2. Start development server:
+```bash
 npm run dev
 ```
 
-## 📦 Project Structure
+## 🏗️ Project Structure
 
 ```
-frontend-react/     # React frontend application
-├── src/
-│   ├── assets/    # Static assets (styles, images)
-│   ├── cmps/      # React components
-│   ├── pages/     # Page components
-│   ├── services/  # API and utility services
-│   └── store/     # Redux store setup
-│
-backend/           # Node.js backend server
-├── api/          # API routes and controllers
-├── services/     # Business logic and utilities
-└── public/       # Static files
+src/
+├── assets/
+│   └── styles/        # SCSS modules
+│       ├── basics/    # Core styles
+│       ├── cmps/      # Component styles
+│       ├── pages/     # Page styles
+│       └── setup/     # SCSS variables & mixins
+├── cmps/              # Reusable components
+├── pages/             # Route components
+├── services/          # API and utility services
+└── store/            # Redux state management
+    ├── actions/      # Action creators
+    └── reducers/     # State reducers
 ```
 
-## 🛠️ Key Features
+## 🎨 Components
 
-- **Modern Stack**: React with Vite, Node.js backend
-- **State Management**: Redux implementation
-- **Routing**: React Router with nested routes
-- **API Integration**: REST API examples with full CRUD
-- **Real-time Updates**: WebSocket integration
-- **Authentication**: User management system
-- **Styling**: SCSS with modern practices
+### Core Components
+- `AppHeader` - Navigation and user menu
+- `AppFooter` - Footer with service status
+- `UserMsg` - Toast notifications
+- `CarList` - Grid display of cars with actions
+- `CarFilter` - Search and filter interface
+- `ReviewList` - User reviews with CRUD
 
-## 🎯 Learning Objectives
+### Pages
+- `CarIndex` - Main car management
+- `ReviewIndex` - Review system
+- `UserDetails` - User profile
+- `AboutUs` - Static content with nested routes
+- `Chat` - Real-time messaging
 
-- Component-based architecture
-- State management patterns
-- API integration and async operations
-- Authentication flows
-- Real-time data handling
-- Modern CSS/SCSS practices
-- Form handling and validation
-- Error handling patterns
+## 🔄 State Management
 
-## 📝 Development Guidelines
+Using Redux with the following modules:
+- `carModule` - Car CRUD operations
+- `userModule` - Authentication and user data
+- `reviewModule` - Review system
+- `systemModule` - App-wide settings
 
-- Use consistent naming conventions
-- Follow component composition patterns
-- Implement proper error handling
-- Write maintainable and documented code
-- Follow REST API best practices
-- Use async/await for promises
+### Example Usage
+```jsx
+// In component:
+const cars = useSelector(state => state.carModule.cars)
+const dispatch = useDispatch()
 
-## 🔑 Available Services
+// Action dispatch:
+dispatch(loadCars())
+```
 
-- User Authentication
-- Car Management CRUD
-- Reviews System
-- Real-time Chat
-- File Upload
+## 🎯 Services
 
-## 🤝 Contributing
+### REST API Services
+- `car.service` - Car CRUD operations
+- `user.service` - Authentication & user management
+- `review.service` - Review system
+- `upload.service` - File uploads
 
-This is a teaching resource for CodingAcademy. Please contact the school for any modifications or suggestions.
+### Utility Services
+- `event-bus.service` - Pub/sub messaging
+- `socket.service` - WebSocket connection
+- `storage.service` - Local storage wrapper
+- `util.service` - Common helpers
+
+## 🎨 Styling
+
+Using SCSS modules with:
+- CSS Grid for layouts
+- Flexbox for component alignment
+- CSS Variables for theming
+- Responsive breakpoints
+- Utility classes
+
+### Example Usage
+```scss
+.car-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: .5em;
+}
+```
+
+## 🚦 Development Guidelines
+
+1. Component Structure
+```jsx
+export function MyComponent({ prop1, prop2 }) {
+    const [state, setState] = useState(null)
+    
+    useEffect(() => {
+        // Side effects here
+    }, [])
+
+    return <section className="my-component">
+        {/* JSX */}
+    </section>
+}
+```
+
+2. State Updates
+```jsx
+// Correct:
+setData(prevData => [...prevData, newItem])
+
+// Avoid:
+setData([...data, newItem])
+```
+
+## 📝 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Production build
+- `npm run preview` - Preview production build
+- `npm run test` - Run tests
+
 
 ## 📄 License
 MIT
 
 ---
 Coding Academy - Built with ❤️ for teaching modern fullstack development
+
+
