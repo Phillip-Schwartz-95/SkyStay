@@ -1,106 +1,55 @@
 import { useState, useEffect } from 'react'
 
 export function StayFilter({ filterBy, setFilterBy }) {
-    const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
+    const [draft, setDraft] = useState(structuredClone(filterBy || {}))
 
     useEffect(() => {
-        setFilterBy(filterToEdit)
-    }, [filterToEdit])
+        setFilterBy?.(draft)
+    }, [draft])
 
-    function handleChange(ev) {
-        const type = ev.target.type
-        const field = ev.target.name
-        let value
-
-        switch (type) {
-            case 'text':
-            case 'radio':
-                value = field === 'sortDir' ? +ev.target.value : ev.target.value
-                if (!filterToEdit.sortDir) filterToEdit.sortDir = 1
-                break
-            case 'number':
-                value = +ev.target.value || ''
-                break
-        }
-        setFilterToEdit({ ...filterToEdit, [field]: value })
-    }
-
-    function clearFilter() {
-        setFilterToEdit({ ...filterToEdit, txt: '', minPrice: '' })
-    }
-
-    function clearSort() {
-        setFilterToEdit({ ...filterToEdit, sortField: '', sortDir: '' })
+    function onChange(field, value) {
+        setDraft(prev => ({ ...prev, [field]: value }))
     }
 
     return (
-        <section className="stay-filter">
-            <h3>Filter:</h3>
-            <input
-                type="text"
-                name="txt"
-                value={filterToEdit.txt}
-                placeholder="Search by title or location"
-                onChange={handleChange}
-                required
-            />
-            <input
-                type="number"
-                min="0"
-                name="minPrice"
-                value={filterToEdit.minPrice}
-                placeholder="min. price"
-                onChange={handleChange}
-                required
-            />
-            <button className="btn-clear" onClick={clearFilter}>Clear</button>
+        <section className="search-pill">
+            <div className="pill-section where">
+                <label className="label">Where</label>
+                <input
+                    className="placeholder-input"
+                    type="text"
+                    placeholder="Search destinations"
+                    value={draft.txt || ''}
+                    onChange={ev => onChange('txt', ev.target.value)}
+                />
+            </div>
 
-            <h3>Sort:</h3>
-            <div className="sort-field">
-                <label>
-                    <span>Price</span>
-                    <input
-                        type="radio"
-                        name="sortField"
-                        value="price"
-                        checked={filterToEdit.sortField === 'price'}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    <span>Title</span>
-                    <input
-                        type="radio"
-                        name="sortField"
-                        value="title"
-                        checked={filterToEdit.sortField === 'title'}
-                        onChange={handleChange}
-                    />
-                </label>
+            <div className="pill-divider" />
+
+            <div className="pill-section checkin">
+                <label className="label">Check in</label>
+                <button className="placeholder-btn" type="button">Add dates</button>
             </div>
-            <div className="sort-dir">
-                <label>
-                    <span>Asce</span>
-                    <input
-                        type="radio"
-                        name="sortDir"
-                        value="1"
-                        checked={filterToEdit.sortDir === 1}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    <span>Desc</span>
-                    <input
-                        type="radio"
-                        name="sortDir"
-                        value="-1"
-                        checked={filterToEdit.sortDir === -1}
-                        onChange={handleChange}
-                    />
-                </label>
+
+            <div className="pill-divider" />
+
+            <div className="pill-section checkout">
+                <label className="label">Check out</label>
+                <button className="placeholder-btn" type="button">Add dates</button>
             </div>
-            <button className="btn-clear" onClick={clearSort}>Clear</button>
+
+            <div className="pill-divider" />
+
+            <div className="pill-section who">
+                <label className="label">Who</label>
+                <button className="placeholder-btn" type="button">Add guests</button>
+            </div>
+
+            <button className="search-btn" aria-label="Search">
+                <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M10.5 3a7.5 7.5 0 1 1 0 15c-1.83 0-3.51-.64-4.82-1.71l-3.49 3.49a1 1 0 1 1-1.41-1.41l3.49-3.49A7.46 7.46 0 0 1 3 10.5 7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11Z" />
+                </svg>
+            </button>
         </section>
     )
 }
