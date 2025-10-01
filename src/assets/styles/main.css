@@ -23,6 +23,7 @@
 @import "cmps/stay/StayList";
 @import "cmps/stay/StayPreview";
 @import "cmps/stay/StayFilter";
+@import "cmps/stay/StayDetails";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";

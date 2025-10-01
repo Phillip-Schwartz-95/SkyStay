@@ -1,35 +1,46 @@
 import { storageService } from '../async-storage.service'
 import { userService } from '../user'
+import { stayService } from '../stay'
+
+const STORAGE_KEY = 'review'
 
 export const reviewService = {
-	add,
-	query,
-	remove,
+  query,
+  add,
+  remove,
 }
 
-function query(filterBy) {
-	return storageService.query('review')
+async function query() {
+  return storageService.query(STORAGE_KEY)
 }
 
 async function remove(reviewId) {
-	await storageService.remove('review', reviewId)
+  await storageService.remove(STORAGE_KEY, reviewId)
 }
 
-async function add({ txt, aboutUserId }) {
-	const aboutUser = await userService.getById(aboutUserId)
-	const reviewToAdd = {
-		txt,
-		byUser: userService.getLoggedinUser(),
-		aboutUser: {
-			_id: aboutUser._id,
-			fullname: aboutUser.fullname,
-			imgUrl: aboutUser.imgUrl,
-		},
-	}
+async function add({ txt, aboutStayId }) {
+  const loggedInUser = userService.getLoggedinUser()
+  if (!loggedInUser) throw new Error('Must be logged in to add a review')
 
-	reviewToAdd.byUser.score += 10
-	await userService.update(reviewToAdd.byUser)
+  const stay = await stayService.getById(aboutStayId)
+  if (!stay) throw new Error('Stay not found')
 
-	const addedReview = await storageService.post('review', reviewToAdd)
-	return addedReview
+  const reviewToAdd = {
+    txt,
+    byUser: {
+      _id: loggedInUser._id,
+      fullname: loggedInUser.fullname,
+      imgUrl: loggedInUser.imgUrl,
+    },
+    aboutStay: {
+      _id: stay._id,
+      title: stay.title,
+    },
+  }
+
+  // bump score for review writer
+  loggedInUser.score += 10
+  await userService.update(loggedInUser)
+
+  return storageService.post(STORAGE_KEY, reviewToAdd)
 }

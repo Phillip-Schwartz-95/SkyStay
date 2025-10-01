@@ -1,0 +1,26 @@
+[
+  {
+    "username": "phil",
+    "password": "123",
+    "fullname": "Phil",
+    "imgUrl": "https://randomuser.me/api/portraits/men/32.jpg",
+    "score": 120,
+    "isAdmin": false
+  },
+  {
+    "username": "maya",
+    "password": "123",
+    "fullname": "Maya",
+    "imgUrl": "https://randomuser.me/api/portraits/women/44.jpg",
+    "score": 200,
+    "isAdmin": false
+  },
+  {
+    "username": "admin",
+    "password": "admin",
+    "fullname": "System Admin",
+    "imgUrl": "https://randomuser.me/api/portraits/lego/1.jpg",
+    "score": 9999,
+    "isAdmin": true
+  }
+]

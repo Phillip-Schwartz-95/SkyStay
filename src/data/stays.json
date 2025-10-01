@@ -1,0 +1,60 @@
+[
+    {
+        "title": "Cozy Cabin",
+        "price": 120,
+        "loc": {
+            "country": "USA",
+            "city": "Denver"
+        },
+        "imgs": [
+            "https://example.com/cabin.jpg"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Free parking"
+        ],
+        "host": {
+            "fullname": "Olivia",
+            "imgUrl": "/img/olivia.jpg",
+            "role": "Chef and conducting workshops",
+            "favoritesong": "Hotel California",
+            "bio": "I love to chat about health, well-being, and personal development. I learned herbal medicine this year and enjoy sharing knowledge. Humor, sleep, movement, and good food are my recipe for healing.",
+            "isSuperhost": true,
+            "monthsHosting": 7,
+            "reviews": 63,
+            "rating": 4.84,
+            "responseRate": 100,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "title": "Beach Bungalow",
+        "price": 200,
+        "loc": {
+            "country": "Israel",
+            "city": "Tel Aviv"
+        },
+        "imgs": [
+            "https://example.com/beach.jpg"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Pool"
+        ],
+        "host": {
+            "fullname": "Maya",
+            "imgUrl": "/img/maya.jpg",
+            "role": "Photographer and travel enthusiast",
+            "favoritesong": "Clair du Lune",
+            "bio": "Traveling is my passion, and I love capturing moments through my lens. When I'm not behind the camera, you can find me exploring new cultures and cuisines.",
+            "isSuperhost": false,
+            "monthsHosting": 12,
+            "reviews": 45,
+            "rating": 4.67,
+            "responseRate": 95,
+            "responseTime": "within a few hours"
+        }
+    }
+]

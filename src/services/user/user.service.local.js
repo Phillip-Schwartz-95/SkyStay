@@ -1,4 +1,5 @@
 import { storageService } from '../async-storage.service'
+import usersJson from '../../data/users.json'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
@@ -15,11 +16,18 @@ export const userService = {
 }
 
 async function getUsers() {
-    const users = await storageService.query('user')
-    return users.map(user => {
-        delete user.password
-        return user
-    })
+    let users = await storageService.query('user')
+
+  // 👇 seed if empty
+  if (!users.length) {
+    for (const user of usersJson) {
+      await storageService.post('user', user) // assigns random _id
+    }
+    users = await storageService.query('user')
+  }
+
+  // Strip password before returning
+  return users.map(({ password, ...user }) => ({ ...user }))
 }
 
 async function getById(userId) {
