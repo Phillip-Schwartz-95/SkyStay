@@ -1,4 +1,3 @@
 .main-container > main {
-    min-height: calc(100vh - 9rem);
-    padding-inline: 350px;
+  padding-inline: 1rem;
 }

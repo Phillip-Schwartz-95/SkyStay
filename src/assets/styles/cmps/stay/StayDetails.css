@@ -1,4 +1,10 @@
 /* Container */
+.stay-details-wrapper {
+  padding-inline: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .stay-details {
   display: grid;
   grid-template-columns: 2fr 1fr;
