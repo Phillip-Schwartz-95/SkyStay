@@ -1,60 +1,122 @@
 [
-    {
-        "title": "Cozy Cabin",
-        "price": 120,
-        "loc": {
-            "country": "USA",
-            "city": "Denver"
-        },
-        "imgs": [
-            "https://example.com/cabin.jpg"
-        ],
-        "amenities": [
-            "WiFi",
-            "Kitchen",
-            "Free parking"
-        ],
-        "host": {
-            "fullname": "Olivia",
-            "imgUrl": "/img/olivia.jpg",
-            "role": "Chef and conducting workshops",
-            "favoritesong": "Hotel California",
-            "bio": "I love to chat about health, well-being, and personal development. I learned herbal medicine this year and enjoy sharing knowledge. Humor, sleep, movement, and good food are my recipe for healing.",
-            "isSuperhost": true,
-            "monthsHosting": 7,
-            "reviews": 63,
-            "rating": 4.84,
-            "responseRate": 100,
-            "responseTime": "within an hour"
-        }
+  {
+    "_id": "s101",
+    "title": "Cozy Cabin",
+    "price": 120,
+    "loc": {
+      "country": "USA",
+      "city": "Denver"
     },
-    {
-        "title": "Beach Bungalow",
-        "price": 200,
-        "loc": {
-            "country": "Israel",
-            "city": "Tel Aviv"
-        },
-        "imgs": [
-            "https://example.com/beach.jpg"
-        ],
-        "amenities": [
-            "WiFi",
-            "Air conditioning",
-            "Pool"
-        ],
-        "host": {
-            "fullname": "Maya",
-            "imgUrl": "/img/maya.jpg",
-            "role": "Photographer and travel enthusiast",
-            "favoritesong": "Clair du Lune",
-            "bio": "Traveling is my passion, and I love capturing moments through my lens. When I'm not behind the camera, you can find me exploring new cultures and cuisines.",
-            "isSuperhost": false,
-            "monthsHosting": 12,
-            "reviews": 45,
-            "rating": 4.67,
-            "responseRate": 95,
-            "responseTime": "within a few hours"
-        }
+    "imgs": [
+      "https://example.com/cabin.jpg"
+    ],
+    "summary": "A warm wooden cabin perfect for mountain getaways. Includes fireplace, balcony, and beautiful forest views.",
+    "highlights": [
+      "Exceptional check-in experience",
+      "Walkable area",
+      "Free cancellation before Dec 4"
+    ],
+    "amenities": [
+      "WiFi",
+      "Kitchen",
+      "Free parking"
+    ],
+    "ratings": {
+      "overall": 5.0,
+      "categories": {
+        "cleanliness": 4.6,
+        "accuracy": 4.8,
+        "checkIn": 5.0,
+        "communication": 4.8,
+        "location": 5.0,
+        "value": 5.0
+      }
+    },
+    "houseRules": [
+      "Check-in after 3:00 PM",
+      "Checkout before 11:00 AM",
+      "2 guests maximum"
+    ],
+    "safety": [
+      "Carbon monoxide alarm not reported",
+      "Smoke alarm not reported"
+    ],
+    "cancellationPolicy": [
+      "Free cancellation before Oct 13",
+      "Non-refundable after that"
+    ],
+    "host": {
+      "fullname": "Olivia",
+      "imgUrl": "/img/olivia.jpg",
+      "role": "Chef and conducting workshops",
+      "favoritesong": "Hotel California",
+      "bio": "I love to chat about health, well-being, and personal development. I learned herbal medicine this year and enjoy sharing knowledge.",
+      "isSuperhost": true,
+      "monthsHosting": 7,
+      "reviews": 63,
+      "rating": 4.84,
+      "responseRate": 100,
+      "responseTime": "within an hour"
     }
+  },
+  {
+    "_id": "s102",
+    "title": "Beach Bungalow",
+    "price": 200,
+    "loc": {
+      "country": "Israel",
+      "city": "Tel Aviv"
+    },
+    "imgs": [
+      "https://example.com/beach.jpg"
+    ],
+    "summary": "A bright seaside bungalow just steps from the Mediterranean. Perfect for sun lovers and nightlife explorers.",
+    "highlights": [
+      "Beachfront access",
+      "Private pool",
+      "Great nightlife nearby"
+    ],
+    "amenities": [
+      "WiFi",
+      "Air conditioning",
+      "Pool"
+    ],
+    "ratings": {
+      "overall": 4.9,
+      "categories": {
+        "cleanliness": 4.7,
+        "accuracy": 4.9,
+        "checkIn": 4.9,
+        "communication": 4.8,
+        "location": 5.0,
+        "value": 4.9
+      }
+    },
+    "houseRules": [
+      "Check-in after 2:00 PM",
+      "Checkout before 10:00 AM",
+      "No parties or events"
+    ],
+    "safety": [
+      "Smoke alarm installed",
+      "Fire extinguisher available"
+    ],
+    "cancellationPolicy": [
+      "Free cancellation before Nov 1",
+      "Non-refundable after that"
+    ],
+    "host": {
+      "fullname": "Maya",
+      "imgUrl": "/img/maya.jpg",
+      "role": "Photographer and travel enthusiast",
+      "favoritesong": "Clair de Lune",
+      "bio": "Traveling is my passion, and I love capturing moments through my lens. When I'm not behind the camera, you can find me exploring new cultures and cuisines.",
+      "isSuperhost": false,
+      "monthsHosting": 12,
+      "reviews": 45,
+      "rating": 4.67,
+      "responseRate": 95,
+      "responseTime": "within a few hours"
+    }
+  }
 ]
