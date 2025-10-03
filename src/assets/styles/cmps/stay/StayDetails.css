@@ -1,113 +1,113 @@
 /* Container */
 .stay-details-wrapper {
-  padding-inline: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
+    padding-inline: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .stay-details {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-left: 80px;
-  padding: 2rem;
-  font-family: 'Airbnb Cereal VF', Circular, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
-  color: #222;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-left: 80px;
+    padding: 2rem;
+    font-family: 'Airbnb Cereal VF', Circular, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+    color: #222;
 }
 
 /* Header and Gallery span full width */
-.stay-details > header,
-.stay-details > .photo-gallery,
-.stay-details > section:not(.details-layout) {
-  grid-column: 1 / -1;
+.stay-details>header,
+.stay-details>.photo-gallery,
+.stay-details>section:not(.details-layout) {
+    grid-column: 1 / -1;
 }
 
 /* Header */
 .stay-header {
-  margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .stay-title {
-  font-size: 26px;
-  line-height: 30px;
-  font-weight: 400;
-  letter-spacing: normal;
-  color: #222222;
-  margin-bottom: 0.3rem;
-  margin-top: 22px;
+    font-size: 26px;
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: #222222;
+    margin-bottom: 0.3rem;
+    margin-top: 22px;
 }
 
 /* Location */
 .stay-location {
-  font-size: 22px;
-  line-height: 26px;
-  color: #222222;
+    font-size: 22px;
+    line-height: 26px;
+    color: #222222;
 }
 
 /* Gallery */
 .photo-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 2rem;
 }
 
 .photo-gallery img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
 /* Two-column layout */
 .details-layout {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 2rem;
-  grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    grid-column: 1 / -1;
 }
 
 .details-left {
-  grid-column: 1;
+    grid-column: 1;
 }
 
 .details-right {
-  grid-column: 2;
-  position: sticky;
-  top: 2rem;
-  align-self: flex-start;
-  background-color: #f7f7f7;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    grid-column: 2;
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+    background-color: #f7f7f7;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Host Info */
 .host-info {
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
 }
 
 /* Highlights */
 .listing-highlights {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 2rem;
-  font-size: 14px;
-  line-height: 20px;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .listing-highlights li {
-  margin-bottom: 0.5rem;
-  font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 /* Sections */
 .room-description {
-  font-size: 16px;
-  line-height: 22px;
+    font-size: 16px;
+    line-height: 22px;
 }
 
 .stay-mission,
@@ -117,7 +117,7 @@
 .cancellation-policy,
 .stay-location-map,
 .meet-your-host {
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 
 .room-description h2,
@@ -128,198 +128,249 @@
 .cancellation-policy h2,
 .stay-location-map h2,
 .meet-your-host h2 {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Google Maps */
+.map-search-box {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+}
+
+.map-search-input {
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 250px;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.custom-zoom-controls {
+    position: absolute;
+    right: 10px;
+    bottom: 100px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.custom-zoom-controls button {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    /* force circle */
+    background-color: #fff;
+    color: #4f4e4e;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.custom-zoom-controls button:hover {
+    background-color: #f5f5f5;
 }
 
 /* Lists */
 .stay-amenities ul,
 .stay-rules ul,
 .stay-reviews ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .stay-amenities li,
 .stay-rules li,
 .stay-reviews li {
-  margin-bottom: 0.3rem;
+    margin-bottom: 0.3rem;
 }
 
 /* Review Form */
 .stay-reviews form {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
 }
 
 .stay-reviews input {
-  flex: 1;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
 .stay-reviews button {
-  padding: 0.5rem 1rem;
-  background-color: #ff385c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+    padding: 0.5rem 1rem;
+    background-color: #ff385c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 /* Booking Card */
 .booking-card .price-summary {
-  display: none;
+    display: none;
 }
 
 .booking-card .note {
-  display: none;
+    display: none;
 }
 
 .booking-card .booking-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .booking-card input,
 .booking-card select {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
 .reserve-btn {
-  padding: 0.75rem;
-  background-color: #ff385c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
+    padding: 0.75rem;
+    background-color: #ff385c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 /* Map */
 #map {
-  width: 100%;
-  height: 300px;
-  background-color: #ddd;
-  border-radius: 8px;
+    width: 100%;
+    height: 300px;
+    background-color: #ddd;
+    border-radius: 8px;
 }
 
 /* Meet Your Host */
 .host-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  background-color: #f7f7f7;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    background-color: #f7f7f7;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
 }
 
 .host-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
 }
 
 .host-photo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
 }
 
 .host-role {
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
 }
 
 .host-fact {
-  font-style: italic;
-  color: #555;
-  margin-bottom: 0.5rem;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 0.5rem;
 }
 
 .host-bio {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  max-width: 300px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    max-width: 300px;
 }
 
 .host-right {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .host-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .host-header h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .superhost-badge {
-  color: #ff385c;
-  font-weight: bold;
-  font-size: 0.95rem;
+    color: #ff385c;
+    font-weight: bold;
+    font-size: 0.95rem;
 }
 
 .message-host-btn {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #ff385c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  align-self: start;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #ff385c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: start;
 }
 
 .things-to-know {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #ddd;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ddd;
 }
 
 .things-to-know h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
 }
 
 .info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
 }
 
 .info-block h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.75rem;
-  color: #222;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    color: #222;
 }
 
 .info-block ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .info-block li {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
-  color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    color: #555;
 }
