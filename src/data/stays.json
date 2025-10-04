@@ -122,5 +122,317 @@
             "responseRate": 95,
             "responseTime": "within a few hours"
         }
+    },
+    {
+        "_id": "s103",
+        "title": "Shinjuku Sky Loft",
+        "price": 165,
+        "loc": {
+            "country": "Japan",
+            "city": "Tokyo",
+            "lat": 35.6762,
+            "lng": 139.6503
+        },
+        "imgs": [
+            "https://example.com/tokyo-loft.jpg"
+        ],
+        "summary": "Minimalist high-rise loft with city views, steps from restaurants and transit.",
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Washer"
+        ],
+        "ratings": {
+            "overall": 4.85,
+            "categories": {
+                "cleanliness": 4.8,
+                "accuracy": 4.7,
+                "checkIn": 4.9,
+                "communication": 4.8,
+                "location": 5.0,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 20",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Aiko",
+            "imgUrl": "/img/aiko.jpg",
+            "role": "UX designer and café hunter",
+            "favoritesong": "Plastic Love",
+            "bio": "Born and raised in Tokyo, I love sharing local tips for food and hidden parks.",
+            "isSuperhost": true,
+            "monthsHosting": 18,
+            "reviews": 112,
+            "rating": 4.88,
+            "responseRate": 99,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s104",
+        "title": "Kyoto Garden Townhouse",
+        "price": 140,
+        "loc": {
+            "country": "Japan",
+            "city": "Kyoto",
+            "lat": 35.0116,
+            "lng": 135.7681
+        },
+        "imgs": [
+            "https://example.com/kyoto-townhouse.jpg"
+        ],
+        "summary": "Traditional machiya with inner garden, tatami rooms, and tea corner near Gion.",
+        "highlights": [
+            "Historic neighborhood",
+            "Quiet street",
+            "Tea set included"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Heating"
+        ],
+        "ratings": {
+            "overall": 4.93,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.9,
+                "checkIn": 4.8,
+                "communication": 4.9,
+                "location": 4.9,
+                "value": 4.8
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "Shoes off inside"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 10",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Kei",
+            "imgUrl": "/img/kei.jpg",
+            "role": "Tea ceremony guide",
+            "favoritesong": "River Flows in You",
+            "bio": "I host culture walks and love recommending scenic routes and local sweets.",
+            "isSuperhost": false,
+            "monthsHosting": 9,
+            "reviews": 38,
+            "rating": 4.82,
+            "responseRate": 96,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s105",
+        "title": "Tuscan Stone Villa",
+        "price": 250,
+        "loc": {
+            "country": "Italy",
+            "city": "Florence",
+            "lat": 43.7696,
+            "lng": 11.2558
+        },
+        "imgs": [
+            "https://example.com/tuscany-villa.jpg"
+        ],
+        "summary": "Rustic hillside villa with olive grove views, terrace dining, and easy access to the Duomo.",
+        "highlights": [
+            "Panoramic terrace",
+            "Free parking",
+            "Great for families"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.91,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.9,
+                "checkIn": 4.9,
+                "communication": 5.0,
+                "location": 4.8,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "First aid kit available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 5",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Giulia",
+            "imgUrl": "/img/giulia.jpg",
+            "role": "Food tour host",
+            "favoritesong": "Vivo per lei",
+            "bio": "I adore Tuscan cuisine and can point you to the best trattorie and wineries.",
+            "isSuperhost": true,
+            "monthsHosting": 22,
+            "reviews": 154,
+            "rating": 4.94,
+            "responseRate": 98,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s106",
+        "title": "Sea Cliff Apartment",
+        "price": 175,
+        "loc": {
+            "country": "Israel",
+            "city": "Haifa",
+            "lat": 32.7940,
+            "lng": 34.9896
+        },
+        "imgs": [
+            "https://example.com/haifa-seacliff.jpg"
+        ],
+        "summary": "Modern apartment above the bay with balcony sunsets and quick access to the gardens.",
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.76,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 4.8,
+                "checkIn": 4.8,
+                "communication": 4.7,
+                "location": 4.9,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 28",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Noa",
+            "imgUrl": "/img/noa.jpg",
+            "role": "Marine biologist",
+            "favoritesong": "Space Oddity",
+            "bio": "I love the sea and sharing my favorite coastal walks and cafés.",
+            "isSuperhost": false,
+            "monthsHosting": 14,
+            "reviews": 57,
+            "rating": 4.76,
+            "responseRate": 97,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s107",
+        "title": "Brooklyn Brownstone Suite",
+        "price": 210,
+        "loc": {
+            "country": "USA",
+            "city": "New York",
+            "lat": 40.6782,
+            "lng": -73.9442
+        },
+        "imgs": [
+            "https://example.com/brooklyn-brownstone.jpg"
+        ],
+        "summary": "Sunny parlor-floor suite in a classic brownstone with easy subway access.",
+        "highlights": [
+            "Great location",
+            "Exceptional check-in",
+            "Work-friendly space"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Heating",
+            "Smart TV"
+        ],
+        "ratings": {
+            "overall": 4.83,
+            "categories": {
+                "cleanliness": 4.8,
+                "accuracy": 4.8,
+                "checkIn": 4.9,
+                "communication": 4.9,
+                "location": 4.9,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No pets"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 3",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Jamal",
+            "imgUrl": "/img/jamal.jpg",
+            "role": "Music producer",
+            "favoritesong": "Empire State of Mind",
+            "bio": "I love recommending live music spots and neighborhood coffee shops.",
+            "isSuperhost": true,
+            "monthsHosting": 16,
+            "reviews": 89,
+            "rating": 4.9,
+            "responseRate": 100,
+            "responseTime": "within an hour"
+        }
     }
 ]

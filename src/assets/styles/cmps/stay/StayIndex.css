@@ -18,4 +18,11 @@
     & button {
         margin-inline-end: 0;
     }
+
+    .row-header h2::after {
+        content: ' ❯';
+        font-weight: 600;
+        margin-left: 4px;
+    }
+
 }
