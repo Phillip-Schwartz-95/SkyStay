@@ -1,8 +1,12 @@
 import { stayService } from '../../services/stay'
 import { store } from '../store'
-import { ADD_STAY, REMOVE_STAY, SET_STAYS, SET_STAY, UPDATE_STAY, ADD_STAY_MSG } from '../reducers/stay.reducer'
+import { ADD_STAY, REMOVE_STAY, SET_STAYS, SET_STAY, UPDATE_STAY, ADD_STAY_MSG, SET_FILTER } from '../reducers/stay.reducer'
 
 export async function loadStays(filterBy) {
+    if (!filterBy) {
+        filterBy = store.getState().stayModule.filterBy
+    }
+
     try {
         const stays = await stayService.query(filterBy)
         store.dispatch(getCmdSetStays(stays))
@@ -65,6 +69,11 @@ export async function addStayMsg(stayId, txt) {
     }
 }
 
+export function setFilter(filterBy) {
+    store.dispatch(getCmdSetFilter(filterBy))
+    return loadStays(filterBy)
+}
+
 // Command Creators:
 function getCmdSetStays(stays) {
     return {
@@ -100,6 +109,12 @@ function getCmdAddStayMsg(msg) {
     return {
         type: ADD_STAY_MSG,
         msg
+    }
+}
+function getCmdSetFilter(filterBy) {
+    return {
+        type: SET_FILTER,
+        filterBy
     }
 }
 
