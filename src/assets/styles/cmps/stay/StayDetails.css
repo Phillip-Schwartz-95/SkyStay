@@ -11,7 +11,6 @@
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    margin-left: 80px;
     padding: 2rem;
     font-family: 'Airbnb Cereal VF', Circular, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
     color: #222;
@@ -76,12 +75,8 @@
 .details-right {
     grid-column: 2;
     position: sticky;
-    top: 2rem;
+    top: 125px;
     align-self: flex-start;
-    background-color: #f7f7f7;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Host Info */
@@ -221,35 +216,132 @@
 }
 
 /* Booking Card */
-.booking-card .price-summary {
-    display: none;
+.booking-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+    max-width: 372.325px;
+    max-height: 310.8px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.08);
+
 }
 
-.booking-card .note {
-    display: none;
+.booking-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
 }
 
-.booking-card .booking-form {
+.nights {
+    font-size: 16px;
+    line-height: 20px;
+    color: #6A6A6A;
+    font-weight: 400;
+}
+
+.booking-header .price {
+    font-size: 24px;
+}
+
+.date-inputs {
+    display: flex;
+    gap: 0;
+    /* remove gap so they hug each other */
+}
+
+.date-box {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    border: 1px solid grey;
+    padding: 6px 10px;
+    font-size: 14px;
 }
 
-.booking-card input,
-.booking-card select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+.date-box:first-child {
+    border-top-left-radius: 8px;
+    border-right: none;
+    /* prevent double border */
+}
+
+.date-box:last-child {
+    border-top-right-radius: 8px;
+}
+
+.date-box label {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+/* Style the DatePicker input inside */
+.date-box .react-datepicker-wrapper {
+    width: 100%;
+}
+
+.date-box .react-datepicker-wrapper input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 4px 0;
+    width: 100%;
+}
+
+.guests-box {
+    border: 1px solid grey;
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 6px 10px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.guests-box label {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.guests-box select {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 4px 0;
 }
 
 .reserve-btn {
-    padding: 0.75rem;
-    background-color: #ff385c;
+    background: linear-gradient(to right, #e61e4d, #d70466);
     color: white;
     border: none;
     border-radius: 8px;
+    padding: 14px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.reserve-btn:hover {
+    background: linear-gradient(to right, #d70466, #e61e4d);
+}
+
+.charge-note {
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    margin-top: 6px;
+    color: #555;
+}
+
+.booking-summary {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
 }
 
 /* Map */

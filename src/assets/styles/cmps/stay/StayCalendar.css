@@ -1,0 +1,83 @@
+/* Calendar section */
+.airbnb-calendar {
+    border: none;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Show months side by side */
+.airbnb-calendar .react-datepicker__month-container {
+    float: left;
+    width: 300px;
+    margin-right: 20px;
+}
+
+/* Header (month name & weekdays) */
+.airbnb-calendar .react-datepicker__header {
+    background: #fff;
+    border: none;
+    padding: 16px;
+    font-weight: bold;
+}
+
+/* Day cells */
+.airbnb-calendar .react-datepicker__day,
+.airbnb-calendar .react-datepicker__day-name {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    border-radius: 50%;
+    /*circles */
+    background: #fff;
+    color: #000;
+    border: 2px solid transparent;
+    transition: border .2s ease, background .2s ease, color .2s ease;
+    box-sizing: border-box;
+}
+
+/* Remove the default blue keyboard selection */
+.airbnb-calendar .react-datepicker__day.react-datepicker__day--selected,
+.airbnb-calendar .react-datepicker__day.react-datepicker__day--range-start,
+.airbnb-calendar .react-datepicker__day.react-datepicker__day--range-end {
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+
+/* Disabled dates */
+.airbnb-calendar .react-datepicker__day--disabled {
+    color: #ccc;
+    text-decoration: line-through;
+    pointer-events: none;
+}
+
+/* Selected dates (start, end, single) */
+.airbnb-calendar .react-datepicker__day--selected,
+.airbnb-calendar .react-datepicker__day--range-start,
+.airbnb-calendar .react-datepicker__day--range-end {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    border-radius: 50%;
+}
+
+/* Dates in range (between start and end) stay white */
+.airbnb-calendar .react-datepicker__day--in-range,
+.airbnb-calendar .react-datepicker__day--in-selecting-range {
+    background: #fff;
+    color: #000;
+    border-color: transparent;
+}
+
+/* Hover effect = black ring only */
+.airbnb-calendar .react-datepicker__day:hover {
+    border-color: #000;
+    background: #fff;
+    color: #000;
+    font-weight: bold;
+    border-radius: 50%;
+}

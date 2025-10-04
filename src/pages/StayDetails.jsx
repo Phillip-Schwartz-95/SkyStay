@@ -8,7 +8,13 @@ import { loadStay, addStayMsg } from '../store/actions/stay.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { reviewService } from '../services/review'
 import { ReviewBreakdown } from '../cmps/ReviewBreakdown'
+import { BookingCard } from '../cmps/BookingCard'
+import { StayCalendar } from '../cmps/StayCalendar'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
+import "../assets/styles/cmps/stay/StayCalendar.css"
 
+const libraries = ['places']
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -17,10 +23,14 @@ export function StayDetails() {
   const [reviews, setReviews] = useState([])
   const mapRef = useRef(null)
   const searchBoxRef = useRef(null)
+  const [center, setCenter] = useState({ lat: 0, lng: 0 })
+  const [checkIn, setCheckIn] = useState(null)
+  const [checkOut, setCheckOut] = useState(null)
+  const [reservedDates, setReservedDates] = useState([])
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-    libraries: ['places'],
+    libraries,
   })
   console.log('API KEY:', import.meta.env.VITE_GOOGLE_MAPS_API_KEY)
 
@@ -28,6 +38,12 @@ export function StayDetails() {
     loadStay(stayId)
     loadReviews()
   }, [stayId])
+
+  useEffect(() => {
+    if (stay?.loc?.lat && stay?.loc?.lng) {
+      setCenter({ lat: stay.loc.lat, lng: stay.loc.lng })
+    }
+  }, [stay?.loc?.lat, stay?.loc?.lng])
 
   async function loadReviews() {
     try {
@@ -80,7 +96,7 @@ export function StayDetails() {
   if (!stay) return <div>Loading...</div>
 
   return (
-    <section className='stay-details-wrapper'>
+    <section className="stay-details-wrapper">
       <section className="stay-details">
         {/* Title */}
         <header className="stay-header">
@@ -126,22 +142,38 @@ export function StayDetails() {
             </section>
 
             <section className="stay-calendar">
-              <h2>Insert Calendar</h2>
+              <h2>Select Dates</h2>
+              <DatePicker
+                selectsRange
+                startDate={checkIn}
+                endDate={checkOut}
+                onChange={(dates) => {
+                  const [start, end] = dates
+                  setCheckIn(start)
+                  setCheckOut(end)
+                }}
+                monthsShown={2}
+                inline
+                excludeDates={reservedDates.map(d => new Date(d))}
+                minDate={new Date()}
+                calendarClassName="airbnb-calendar" 
+              />
             </section>
           </div>
 
-          {/* Right Column */}
-          <aside className="details-right booking-card">
-            <div className="booking-form">
-              <input type="date" />
-              <input type="date" />
-              <select>
-                <option>1 guest</option>
-                <option>2 guests</option>
-              </select>
-              <button className="reserve-btn">Reserve</button>
-            </div>
-          </aside>
+          <div className="details-right">
+            {/* Right Column (Booking) */}
+            <BookingCard
+              stayId={stay._id}
+              userId={'u101'} // change to logged-in user later
+              pricePerNight={stay.price}
+              maxGuests={4}
+              checkIn={checkIn}
+              checkOut={checkOut}
+              setCheckIn={setCheckIn}
+              setCheckOut={setCheckOut}
+            />
+          </div>
         </div>
 
         {/* Reviews Section */}
@@ -170,19 +202,22 @@ export function StayDetails() {
                   />
                   <div className="review-meta">
                     <strong>{review.byUser.fullname}</strong>
-                    <p className="review-tenure">{review.byUser.tenure || 'Airbnb guest'}</p>
-
+                    <p className="review-tenure">
+                      {review.byUser.tenure || 'Airbnb guest'}
+                    </p>
                   </div>
                 </div>
 
                 <div className="review-info-row">
                   <span className="review-stars">
-                    {'★'.repeat(Number(review.rating)) + '☆'.repeat(5 - Number(review.rating))}
+                    {'★'.repeat(Number(review.rating || 5)) +
+                      '☆'.repeat(5 - Number(review.rating || 5))}
                   </span>
-                  <span className="review-date">Some time ago {review.date || 'Stayed recently'}</span>
+                  <span className="review-date">
+                    Some time ago {review.date || 'Stayed recently'}
+                  </span>
                 </div>
                 <p className="review-text">{review.txt}</p>
-
               </li>
             ))}
           </ul>
@@ -198,15 +233,15 @@ export function StayDetails() {
           {isLoaded && stay.loc?.lat && stay.loc?.lng && (
             <div style={{ position: 'relative', width: '100%', height: '500px' }}>
               <GoogleMap
-                center={{ lat: stay.loc.lat, lng: stay.loc.lng }}
+                center={center}
                 zoom={13}
                 onLoad={(map) => (mapRef.current = map)}
                 options={{
-                  disableDefaultUI: true,      // remove all defaults
-                  mapTypeControl: false,       // keep map type hidden
-                  fullscreenControl: true,     // show fullscreen
-                  streetViewControl: true,     // show pegman
-                  zoomControl: false,          // disable default zoom (we add custom)
+                  disableDefaultUI: true,     // remove all defaults
+                  mapTypeControl: false,
+                  fullscreenControl: true,    // show fullscreen
+                  streetViewControl: true,    // show pegman
+                  zoomControl: false,         // custom zoom buttons below
                 }}
                 mapContainerStyle={{
                   width: '100%',
@@ -215,22 +250,22 @@ export function StayDetails() {
                   overflow: 'hidden',
                 }}
               >
-                {/* Custom Marker (black circle + white house) */}
+                {/* Marker: black circle + white house */}
                 <Marker
                   position={{ lat: stay.loc.lat, lng: stay.loc.lng }}
                   icon={{
                     url: `data:image/svg+xml;utf-8,
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
-              <circle cx="20" cy="20" r="20" fill="black"/>
-              <path d="M10 22 L20 12 L30 22 V32 H22 V24 H18 V32 H10 Z" fill="white"/>
-            </svg>`,
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <circle cx="20" cy="20" r="20" fill="black"/>
+  <path d="M10 22 L20 12 L30 22 V32 H22 V24 H18 V32 H10 Z" fill="white"/>
+</svg>`,
                     scaledSize: new window.google.maps.Size(40, 40),
                     anchor: new window.google.maps.Point(20, 20),
                   }}
                 />
               </GoogleMap>
 
-              {/* Floating Search Box (top-left) */}
+              {/* Search box (top-left) */}
               <div className="map-search-box">
                 <StandaloneSearchBox
                   onLoad={ref => (searchBoxRef.current = ref)}
@@ -246,77 +281,77 @@ export function StayDetails() {
 
               {/* Custom Zoom Controls (bottom-right) */}
               <div className="custom-zoom-controls">
-                <button onClick={() => mapRef.current.setZoom(mapRef.current.getZoom() + 1)}>+</button>
-                <button onClick={() => mapRef.current.setZoom(mapRef.current.getZoom() - 1)}>−</button>
+                <button onClick={() => mapRef.current?.setZoom(mapRef.current.getZoom() + 1)}>+</button>
+                <button onClick={() => mapRef.current?.setZoom(mapRef.current.getZoom() - 1)}>−</button>
               </div>
             </div>
           )}
+        </section>
 
-          {/* Host */}
-          <section className="meet-your-host">
-            <h2>Meet your host</h2>
-            <div className="host-card">
-              <div className="host-left">
-                <img
-                  src={stay.host?.imgUrl}
-                  alt={stay.host?.fullname}
-                  className="host-photo"
-                />
-                <p className="host-role">{stay.host?.role}</p>
-                <p className="host-fact">🎶 {stay.host?.favoritesong}</p>
-                <p className="host-bio">{stay.host?.bio}</p>
-              </div>
-
-              <div className="host-right">
-                <div className="host-header">
-                  <h3>{stay.host?.fullname}</h3>
-                  {stay.host?.isSuperhost && (
-                    <span className="superhost-badge">🌟 Superhost</span>
-                  )}
-                </div>
-                <p>{stay.host?.monthsHosting} months hosting</p>
-                <p>
-                  {stay.host?.reviews} reviews · {stay.host?.rating} average rating
-                </p>
-                <p>Response rate: {stay.host?.responseRate}%</p>
-                <p> Responds within: {stay.host?.responseTime}</p>
-                <button className="message-host-btn">Message Host</button>
-              </div>
+        {/* Host */}
+        <section className="meet-your-host">
+          <h2>Meet your host</h2>
+          <div className="host-card">
+            <div className="host-left">
+              <img
+                src={stay.host?.imgUrl}
+                alt={stay.host?.fullname}
+                className="host-photo"
+              />
+              <p className="host-role">{stay.host?.role}</p>
+              <p className="host-fact">🎶 {stay.host?.favoritesong}</p>
+              <p className="host-bio">{stay.host?.bio}</p>
             </div>
-          </section>
 
-          {/* House Rules, Safety, Cancellation */}
-          <section className="things-to-know">
-            <h2>Things to know</h2>
-            <div className="info-grid">
-              <div className="info-block">
-                <h3>House Rules</h3>
-                <ul>
-                  {stay.houseRules?.map((rule, idx) => (
-                    <li key={idx}>{rule}</li>
-                  ))}
-                </ul>
+            <div className="host-right">
+              <div className="host-header">
+                <h3>{stay.host?.fullname}</h3>
+                {stay.host?.isSuperhost && (
+                  <span className="superhost-badge">🌟 Superhost</span>
+                )}
               </div>
-
-              <div className="info-block">
-                <h3>Safety & Property</h3>
-                <ul>
-                  {stay.safety?.map((s, idx) => (
-                    <li key={idx}>{s}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="info-block">
-                <h3>Cancellation Policy</h3>
-                <ul>
-                  {stay.cancellationPolicy?.map((c, idx) => (
-                    <li key={idx}>{c}</li>
-                  ))}
-                </ul>
-              </div>
+              <p>{stay.host?.monthsHosting} months hosting</p>
+              <p>
+                {stay.host?.reviews} reviews · {stay.host?.rating} average rating
+              </p>
+              <p>Response rate: {stay.host?.responseRate}%</p>
+              <p>Responds within: {stay.host?.responseTime}</p>
+              <button className="message-host-btn">Message Host</button>
             </div>
-          </section>
+          </div>
+        </section>
+
+        {/* House Rules, Safety, Cancellation */}
+        <section className="things-to-know">
+          <h2>Things to know</h2>
+          <div className="info-grid">
+            <div className="info-block">
+              <h3>House Rules</h3>
+              <ul>
+                {stay.houseRules?.map((rule, idx) => (
+                  <li key={idx}>{rule}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="info-block">
+              <h3>Safety & Property</h3>
+              <ul>
+                {stay.safety?.map((s, idx) => (
+                  <li key={idx}>{s}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="info-block">
+              <h3>Cancellation Policy</h3>
+              <ul>
+                {stay.cancellationPolicy?.map((c, idx) => (
+                  <li key={idx}>{c}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </section>
       </section>
     </section>
