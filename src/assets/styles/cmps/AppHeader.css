@@ -51,7 +51,6 @@
 
 .header-center {
     justify-self: center;
-    align-self: end;
     width: 100%;
     max-width: 1050px;
 }
