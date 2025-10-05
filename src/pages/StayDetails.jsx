@@ -172,6 +172,8 @@ export function StayDetails() {
               checkOut={checkOut}
               setCheckIn={setCheckIn}
               setCheckOut={setCheckOut}
+               reservedDates={reservedDates}          // share to both calendar and booking card
+              setReservedDates={setReservedDates}
             />
           </div>
         </div>

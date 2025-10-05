@@ -5,10 +5,10 @@ import { reservationService } from '../services/reservations/reservation.service
 
 export function BookingCard({
     stayId, userId, pricePerNight, maxGuests,
-    checkIn, setCheckIn, checkOut, setCheckOut
+    checkIn, setCheckIn, checkOut, setCheckOut,
+    reservedDates, setReservedDates
 }) {
     const [guests, setGuests] = useState(1)
-    const [reservedDates, setReservedDates] = useState([])
     const [confirmationMsg, setConfirmationMsg] = useState('')
 
     // load reservations for this stay
@@ -24,11 +24,13 @@ export function BookingCard({
                 let current = new Date(r.checkIn)
                 const end = new Date(r.checkOut)
                 while (current <= end) {
-                    dates.push(current.toISOString().split('T')[0]) // store just YYYY-MM-DD
+                    const formatted = current.toISOString().split("T")[0]  // store as string
+                    dates.push(formatted)
                     current.setDate(current.getDate() + 1)
                 }
             })
             setReservedDates(dates)
+            console.log("Reserved dates:", dates)
         } catch (err) {
             console.error('Failed to load reservations', err)
         }
@@ -76,12 +78,14 @@ export function BookingCard({
                 totalPrice: calcTotalPrice(),
             })
             setConfirmationMsg("Your stay has been booked!")
+            setTimeout(() => setConfirmationMsg(""), 2000)
             setCheckIn(null)
             setCheckOut(null)
             setGuests(1)
             loadReservations()
         } catch (err) {
             setConfirmationMsg("Failed to book stay")
+            setTimeout(() => setConfirmationMsg(""), 2000)
         }
     }
 

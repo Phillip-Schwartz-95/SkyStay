@@ -10,24 +10,19 @@ export function StayCalendar({ stay, reservedDates, checkIn, setCheckIn, checkOu
       </h2>
 
       <DatePicker
-        selected={checkIn}
-        onChange={(date) => setCheckIn(date)}
+        selectsRange
         startDate={checkIn}
         endDate={checkOut}
-        selectsStart
+        onChange={(dates) => {
+          const [start, end] = dates
+          setCheckIn(start)
+          setCheckOut(end)
+        }}
+        monthsShown={2}
         inline
-        excludeDates={reservedDates.map(d => new Date(d))}
-      />
-
-      <DatePicker
-        selected={checkOut}
-        onChange={(date) => setCheckOut(date)}
-        startDate={checkIn}
-        endDate={checkOut}
-        selectsEnd
-        inline
-        excludeDates={reservedDates.map(d => new Date(d))}
-        minDate={checkIn}
+        excludeDates={reservedDates.map(d => new Date(d))}   // shared
+        minDate={new Date()}
+        calendarClassName="airbnb-calendar"
       />
     </div>
   )
