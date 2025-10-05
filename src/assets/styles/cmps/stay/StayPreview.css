@@ -29,10 +29,10 @@
     display: block;
 }
 
-.stay-title {
+.stay-card .stay-title {
     margin: 0;
-    font-size: 1.2em;
-    color: var(--gray1);
+    font-size: 0.9rem;
+    color: black;
     font-weight: 600;
     line-height: 1.3;
 }
