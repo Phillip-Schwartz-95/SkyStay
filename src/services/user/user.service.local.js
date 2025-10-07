@@ -9,6 +9,7 @@ export const userService = {
     signup,
     getUsers,
     getById,
+    getByFullname,
     remove,
     update,
     getLoggedinUser,
@@ -32,6 +33,11 @@ async function getUsers() {
 
 async function getById(userId) {
     return await storageService.get('user', userId)
+}
+
+async function getByFullname(fullname) {
+  const users = await getUsers()
+  return users.find(u => u.fullname === fullname) || null
 }
 
 function remove(userId) {

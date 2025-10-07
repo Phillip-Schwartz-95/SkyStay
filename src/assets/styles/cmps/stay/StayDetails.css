@@ -1,18 +1,17 @@
 /* Container */
 .stay-details-wrapper {
-    padding-inline: 1rem;
-    max-width: 1200px;
+    max-width: 1120px;
     margin: 0 auto;
 }
 
 .stay-details {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 2rem;
+    grid-template-rows: auto auto 1fr;
+    row-gap: 12px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
-    font-family: 'Airbnb Cereal VF', Circular, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+    font-family: var(--bnb-text);
     color: #222;
 }
 
@@ -23,25 +22,17 @@
     grid-column: 1 / -1;
 }
 
-/* Header */
-.stay-header {
-    margin-bottom: 1.5rem;
+.stay-details {
+    margin-left: 30px;
 }
+
+/* Header */
 
 .stay-title {
     font-size: 26px;
     line-height: 30px;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: normal;
-    color: #222222;
-    margin-bottom: 0.3rem;
-    margin-top: 22px;
-}
-
-/* Location */
-.stay-location {
-    font-size: 22px;
-    line-height: 26px;
     color: #222222;
 }
 
@@ -49,8 +40,8 @@
 .photo-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.5rem;
-    margin-bottom: 2rem;
+    gap: 8px;
+    margin: 5px;
 }
 
 .photo-gallery img {
@@ -72,6 +63,14 @@
     grid-column: 1;
 }
 
+.details-left .stay-location {
+    font-size: 22px;
+    font-weight: 500;
+    font-family: var(--bnb-text);
+    color: #222;
+    margin: 0;
+}
+
 .details-right {
     grid-column: 2;
     position: sticky;
@@ -79,30 +78,163 @@
     align-self: flex-start;
 }
 
+/* Location and basic details */
+.stay-location {
+    font-size: 22px;
+    line-height: 26px;
+    color: #222222;
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.basic-details p {
+    font-size: 16px;
+    color: #717171;
+    margin: 0;
+    margin-bottom: 2px;
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 20px;
+}
+
+.rating-row .star {
+    color: #222;
+    font-size: 16px;
+    margin-right: 4px;
+}
+
+.rating-row .rating {
+    font-weight: 600;
+}
+
+.rating-row .reviews-link {
+    color: #222;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
 /* Host Info */
 .host-info {
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #bababa;
 }
+
+.host-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+.host-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.hosted-by {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222;
+    margin: 0;
+}
+
+.host-time {
+    font-size: 14px;
+    color: #717171;
+    margin: 2px 0 0;
+}
+
 
 /* Highlights */
 .listing-highlights {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 2rem;
-    font-size: 14px;
-    line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 20px;
+    border-bottom: 1px solid #bababa;
 }
 
-.listing-highlights li {
-    margin-bottom: 0.5rem;
+.highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.highlight-icon {
+    font-size: 20px;
+    color: #222;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.highlight-title {
     font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+    color: #222;
+}
+
+.highlight-desc {
+    font-size: 14px;
+    color: #717171;
+    margin: 2px 0 0;
 }
 
 /* Sections */
 .room-description {
     font-size: 16px;
     line-height: 22px;
+    margin-top: 40px;
+}
+
+/* amenities grid */
+.stay-amenities {
+    margin: 40px 0;
+    padding-top: 45px;
+    border-top: 1px solid #e4e4e4;
+}
+
+.stay-amenities h2 {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px 24px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+.amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 16px;
+    color: #222;
+    margin-bottom: 25px;
+}
+
+.amenity-icon {
+    font-size: 24px;
+    color: #222;
+    flex-shrink: 0;
 }
 
 .stay-mission,
@@ -219,11 +351,11 @@
 .booking-card {
     border: 1px solid #ddd;
     border-radius: 12px;
-    padding: 16px;
-    font-family: Arial, sans-serif;
+    padding: 24px;
+    font-family: var(--bnb-text);
     max-width: 372.325px;
     max-height: 310.8px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
 
 }
 
@@ -313,20 +445,21 @@
 }
 
 .reserve-btn {
-    background: linear-gradient(to right, #e61e4d, #d70466);
-    color: white;
+    background: #FF385C;
+    color: #fff;
     border: none;
     border-radius: 8px;
     padding: 14px;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
     width: 100%;
     margin-top: 8px;
+    transition: background .2s ease;
 }
 
 .reserve-btn:hover {
-    background: linear-gradient(to right, #d70466, #e61e4d);
+    background: #E31C5F;
 }
 
 .charge-note {
@@ -354,11 +487,12 @@
 
 /* Meet Your Host */
 .host-card {
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 24px;
     background-color: #f7f7f7;
-    padding: 2rem;
+    padding: 24px 0;
+    border-top: 1px solid #DDDDDD;
     border-radius: 12px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
 }
@@ -371,8 +505,8 @@
 }
 
 .host-photo {
-    width: 120px;
-    height: 120px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 1rem;

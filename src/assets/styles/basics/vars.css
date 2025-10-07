@@ -1,0 +1,25 @@
+:root {
+    --bnb-text: 'Airbnb Cereal VF', Circular, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+
+    --clr-text: #222222;
+    --clr-muted: #717171;
+    --clr-border: #dddddd;
+    --clr-primary: #ff385c;
+
+    /* Fonts */
+    --font-base: 16px;
+    --font-small: 14px;
+    --font-large: 22px;
+    --font-xl: 26px;
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 48px;
+
+    /* Components */
+    --radius-md: 12px;
+    --shadow-md: 0 6px 16px rgba(0, 0, 0, .12);
+}

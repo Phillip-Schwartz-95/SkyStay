@@ -13,8 +13,27 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 0 0.6em;
 }
 
-p {
-    margin: 0 0 1em;
+h1, .stay-title {
+  font-size: 26px;
+  font-weight: 400;
+  color: #222;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+p, li {
+  font-size: 16px;
+  color: #222;
+  line-height: 1.5;
+}
+
+.muted {
+  color: #717171;
+  font-size: 14px;
 }
 
 a {

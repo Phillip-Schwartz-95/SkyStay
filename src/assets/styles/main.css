@@ -5,6 +5,7 @@
 @import "basics/layout";
 @import "basics/base";
 @import "basics/forms";
+@import "basics/vars.css";
 
 @import "RootCmp";
 

@@ -13,6 +13,9 @@
             "https://example.com/cabin.jpg"
         ],
         "summary": "A warm wooden cabin perfect for mountain getaways. Includes fireplace, balcony, and beautiful forest views.",
+        "maxGuests": 2,
+        "bedRooms": 2,
+        "baths": 2,
         "highlights": [
             "Exceptional check-in experience",
             "Walkable area",
@@ -75,10 +78,25 @@
             "https://example.com/beach.jpg"
         ],
         "summary": "A bright seaside bungalow just steps from the Mediterranean. Perfect for sun lovers and nightlife explorers.",
+        "maxGuests": 3,
+        "bedRooms": 3,
+        "baths": 2,
         "highlights": [
-            "Beachfront access",
-            "Private pool",
-            "Great nightlife nearby"
+            {
+                "icon": "key",
+                "title": "Exceptional check-in experience",
+                "desc": "Recent guests gave the check-in process a 5-star rating."
+            },
+            {
+                "icon": "map",
+                "title": "Walkable area",
+                "desc": "Guests say this area is easy to get around."
+            },
+            {
+                "icon": "calendar",
+                "title": "Free cancellation before Nov 30",
+                "desc": "Get a full refund if you change your mind."
+            }
         ],
         "amenities": [
             "WiFi",

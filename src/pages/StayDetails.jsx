@@ -3,10 +3,14 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 import { StandaloneSearchBox } from '@react-google-maps/api'
+import { FiKey, FiMapPin, FiCalendar } from 'react-icons/fi'
+import { FaWifi, FaSnowflake, FaSwimmingPool, FaTv } from "react-icons/fa"
+import { MdKitchen, MdLocalLaundryService } from "react-icons/md"
 
 import { loadStay, addStayMsg } from '../store/actions/stay.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { reviewService } from '../services/review'
+import { userService } from '../services/user'
 import { ReviewBreakdown } from '../cmps/ReviewBreakdown'
 import { BookingCard } from '../cmps/BookingCard'
 import { StayCalendar } from '../cmps/StayCalendar'
@@ -27,12 +31,27 @@ export function StayDetails() {
   const [checkIn, setCheckIn] = useState(null)
   const [checkOut, setCheckOut] = useState(null)
   const [reservedDates, setReservedDates] = useState([])
+  const [hostUser, setHostUser] = useState(null)
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries,
   })
-  console.log('API KEY:', import.meta.env.VITE_GOOGLE_MAPS_API_KEY)
+
+  const iconMap = {
+    key: FiKey,
+    map: FiMapPin,
+    calendar: FiCalendar,
+  }
+
+  const amenityIcons = {
+    WiFi: FaWifi,
+    "Air conditioning": FaSnowflake,
+    Pool: FaSwimmingPool,
+    Kitchen: MdKitchen,
+    TV: FaTv,
+    "Laundry": MdLocalLaundryService,
+  }
 
   useEffect(() => {
     loadStay(stayId)
@@ -44,6 +63,12 @@ export function StayDetails() {
       setCenter({ lat: stay.loc.lat, lng: stay.loc.lng })
     }
   }, [stay?.loc?.lat, stay?.loc?.lng])
+
+  useEffect(() => {
+    if (stay?.host?.fullname) {
+      userService.getByFullname(stay.host.fullname).then(setHostUser).catch(() => setHostUser(null))
+    }
+  }, [stay?.host?.fullname])
 
   async function loadReviews() {
     try {
@@ -114,18 +139,56 @@ export function StayDetails() {
         <div className="details-layout">
           {/* Left Column */}
           <div className="details-left">
-            <p className="stay-location">Room in {stay.loc?.city}</p>
-            <div className="host-info">
-              <span>Hosted by {stay.host?.fullname}</span>
-              <p>
-                {stay.host?.reviews} reviews · {stay.host?.rating} average
+
+            <div className='stay-block'>
+              <p className="stay-location">{stay.title}</p>
+
+              <div className='basic-details'>
+                <p>
+                  {stay.maxGuests} guests · {stay.bedRooms} bedroom · {stay.baths} baths
+                </p>
+              </div>
+
+              <p className="rating-row">
+                <span className="star">★</span>
+                <span className="rating">{Number(stay.host?.rating).toFixed(2)}</span>
+                <span> · </span>
+                <span className="reviews-link">{stay.host?.reviews} reviews</span>
               </p>
             </div>
 
+            <div className="host-info">
+              <img
+                src={stay.host?.imgUrl}
+                alt={stay.host?.fullname}
+                className="host-avatar"
+              />
+              <div className="host-meta">
+                <p className="hosted-by">Hosted by {stay.host?.fullname}</p>
+                <p className="host-time">
+                  {hostUser?.timeAsUser ??
+                    (typeof stay.host?.monthsHosting === 'number'
+                      ? (stay.host.monthsHosting >= 12
+                        ? `${Math.floor(stay.host.monthsHosting / 12)} years hosting`
+                        : `${stay.host.monthsHosting} months hosting`)
+                      : '')}
+                </p>
+              </div>
+            </div>
+
             <ul className="listing-highlights">
-              {stay.highlights?.map((highlight, idx) => (
-                <li key={idx}>{highlight}</li>
-              ))}
+              {stay.highlights?.map((h, idx) => {
+                const Icon = iconMap[h.icon] || FiKey
+                return (
+                  <li key={idx} className="highlight-item">
+                    <Icon className="highlight-icon" />
+                    <div>
+                      <p className="highlight-title">{h.title}</p>
+                      <p className="highlight-desc">{h.desc}</p>
+                    </div>
+                  </li>
+                )
+              })}
             </ul>
 
             <section className="room-description">
@@ -134,15 +197,27 @@ export function StayDetails() {
 
             <section className="stay-amenities">
               <h2>What this place offers</h2>
-              <ul>
-                {stay.amenities?.map((a, idx) => (
-                  <li key={idx}>✔ {a}</li>
-                ))}
+              <ul className="amenities-grid">
+                {stay.amenities?.map((a, idx) => {
+                  const Icon = amenityIcons[a] || FaUtensils // fallback
+                  return (
+                    <li key={idx} className="amenity-item">
+                      <Icon className="amenity-icon" />
+                      <span>{a}</span>
+                    </li>
+                  )
+                })}
               </ul>
             </section>
 
             <section className="stay-calendar">
-              <h2>Select Dates</h2>
+              <h2>
+                {checkIn && checkOut
+                  ? `${Math.ceil(
+                    (new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24)
+                  )} nights in ${stay.loc?.city}`
+                  : "Select your stay dates"}
+              </h2>
               <DatePicker
                 selectsRange
                 startDate={checkIn}
@@ -156,7 +231,7 @@ export function StayDetails() {
                 inline
                 excludeDates={reservedDates.map(d => new Date(d))}
                 minDate={new Date()}
-                calendarClassName="airbnb-calendar" 
+                calendarClassName="airbnb-calendar"
               />
             </section>
           </div>
@@ -165,14 +240,14 @@ export function StayDetails() {
             {/* Right Column (Booking) */}
             <BookingCard
               stayId={stay._id}
-              userId={'u101'} // change to logged-in user later
+              userId={'u101'}  //change to logged-in user later
               pricePerNight={stay.price}
               maxGuests={4}
               checkIn={checkIn}
               checkOut={checkOut}
               setCheckIn={setCheckIn}
               setCheckOut={setCheckOut}
-               reservedDates={reservedDates}          // share to both calendar and booking card
+              reservedDates={reservedDates} //share to both calendar and booking card
               setReservedDates={setReservedDates}
             />
           </div>
