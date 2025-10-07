@@ -11,7 +11,7 @@
 
 .stay-img-wrap {
     width: 100%;
-    height: clamp(180px, 22vw, 260px);
+    height: clamp(150px, 16vw, 200px);
     overflow: hidden;
     border-radius: 12px;
     background: #fff;
@@ -25,21 +25,21 @@
 }
 
 .stay-info {
-    margin-top: 8px;
+    margin-top: 6px;
     display: block;
 }
 
 .stay-card .stay-title {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: black;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.22;
 }
 
 .stay-info p {
-    margin-block: 0 .1rem;
-    font-size: .9em;
+    margin-block: 0 .08rem;
+    font-size: .82em;
 }
 
 .stay-dates {
@@ -49,15 +49,15 @@
 .stay-meta {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-top: 4px;
+    gap: 6px;
+    margin-top: 3px;
 }
 
 .stay-price {
     margin: 0;
-    font-size: .95em;
+    font-size: .88em;
     color: var(--gray2);
-    line-height: 1.3;
+    line-height: 1.25;
 }
 
 .stay-price .price {
@@ -69,9 +69,9 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-size: .95em;
+    font-size: .88em;
     color: var(--gray2);
-    line-height: 1.3;
+    line-height: 1.25;
 }
 
 .stay-rating svg {

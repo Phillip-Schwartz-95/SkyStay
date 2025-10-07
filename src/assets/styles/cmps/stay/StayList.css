@@ -1,14 +1,15 @@
 .stay-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 192px);
+    grid-template-columns: repeat(auto-fill, 250px);
     gap: 10px;
     justify-content: center;
     list-style: none;
     padding: 0;
     margin: 0;
     align-items: start;
+    margin-left: -15px;
 }
 
 .stay-list>li {
-    width: 192px;
+    width: 250px;
 }
