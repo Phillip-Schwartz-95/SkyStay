@@ -2,6 +2,7 @@ import staysJson from '../../data/stays.json'
 import { storageService } from '../async-storage.service'
 import { makeId } from '../util.service'
 import { userService } from '../user'
+import { reservationService } from '../reservations/reservation.service.local'
 
 const STORAGE_KEY = 'stay'
 let seedPrms = null
@@ -31,7 +32,7 @@ async function ensureSeeded() {
     return seedPrms
 }
 
-function applyFilter(items, f) {
+async function applyFilter(items, f) {
     if (!Array.isArray(items)) return []
     if (!f) return items
     let res = items
@@ -52,6 +53,19 @@ function applyFilter(items, f) {
     if (Array.isArray(f.amenities) && f.amenities.length) {
         res = res.filter(s => Array.isArray(s.amenities) && f.amenities.every(a => s.amenities.includes(a)))
     }
+
+    const startDate = f.startDate ? new Date(f.startDate).getTime() : null
+    const endDate = f.endDate ? new Date(f.endDate).getTime() : null
+    if (startDate && endDate) {
+        const allReservations = await reservationService.query()
+        const bookedStayIds = allReservations.filter(res => {
+            const resStart = new Date(res.checkIn).getTime()
+            const resEnd = new Date(res.checkOut).getTime()
+            const isOverlap = resStart < endDate && resEnd > startDate
+            return isOverlap
+        }).map(res => res.stayId)
+        res = res.filter(stay => !bookedStayIds.includes(stay._id))
+    }
     return res
 }
 
@@ -67,9 +81,9 @@ function applySort(items, sortField, sortDir) {
     return arr
 }
 
-async function query(filterBy = { txt: '', sortField: '', sortDir: '' }) {
+async function query(filterBy = { txt: '', sortField: '', sortDir: '', startDate: null, endDate: null }) {
     const all = await ensureSeeded()
-    const filtered = applyFilter(all, filterBy)
+    const filtered = await applyFilter(all, filterBy)
     return applySort(filtered, filterBy.sortField, filterBy.sortDir)
 }
 
