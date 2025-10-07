@@ -10,7 +10,11 @@ export function StayFilter() {
     const [draft, setDraft] = useState({ ...filterBy })
 
     useEffect(() => {
-        setDraft(filterBy)
+        setDraft({
+            ...filterBy,
+            startDate: filterBy.startDate ? formatDateForInput(filterBy.startDate) : '',
+            endDate: filterBy.endDate ? formatDateForInput(filterBy.endDate) : '',
+        })
     }, [filterBy])
 
     function onChange(field, value) {
@@ -19,8 +23,22 @@ export function StayFilter() {
 
     function onSearch(ev) {
         ev.preventDefault()
-        setFilter(draft)
-        console.log('Filter set globally:', draft.txt)
+        const finalFilter = {
+            ...draft,
+            startDate: draft.startDate || null,
+            endDate: draft.endDate || null,
+        }
+        setFilter(finalFilter)
+        console.log('Filter set globally:', finalFilter)
+    }
+
+    function formatDateForInput(dateValue) {
+        if (!dateValue) return ''
+        const date = new Date(dateValue)
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        return `${year}-${month}-${day}`
     }
 
     return (
@@ -40,14 +58,24 @@ export function StayFilter() {
 
             <div className="pill-section checkin">
                 <label className="label">Check in</label>
-                <button className="placeholder-btn" type="button">Add dates</button>
+                <input
+                    className="date-input"
+                    type="date"
+                    value={draft.startDate || ''}
+                    onChange={ev => onChange('startDate', ev.target.value)}
+                />
             </div>
 
             <div className="pill-divider" />
 
             <div className="pill-section checkout">
                 <label className="label">Check out</label>
-                <button className="placeholder-btn" type="button">Add dates</button>
+                <input
+                    className="date-input"
+                    type="date"
+                    value={draft.endDate || ''}
+                    onChange={ev => onChange('endDate', ev.target.value)}
+                />
             </div>
 
             <div className="pill-divider" />
