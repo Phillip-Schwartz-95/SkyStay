@@ -10,7 +10,7 @@
             "lng": -104.9903
         },
         "imgs": [
-            "https://example.com/cabin.jpg"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Case_Mountain_Cabin_Exterior_Side_and_Porch_November_2024.jpg/1280px-Case_Mountain_Cabin_Exterior_Side_and_Porch_November_2024.jpg"
         ],
         "summary": "A warm wooden cabin perfect for mountain getaways. Includes fireplace, balcony, and beautiful forest views.",
         "maxGuests": 2,
@@ -75,7 +75,7 @@
             "lng": 34.7818
         },
         "imgs": [
-            "https://example.com/beach.jpg"
+            "https://upload.wikimedia.org/wikipedia/commons/f/f3/Tel_Aviv_-_Beach_001.jpg"
         ],
         "summary": "A bright seaside bungalow just steps from the Mediterranean. Perfect for sun lovers and nightlife explorers.",
         "maxGuests": 3,
@@ -152,7 +152,7 @@
             "lng": 139.6503
         },
         "imgs": [
-            "https://example.com/tokyo-loft.jpg"
+            "https://upload.wikimedia.org/wikipedia/commons/5/52/Shinjuku_night_skyline.jpg"
         ],
         "summary": "Minimalist high-rise loft with city views, steps from restaurants and transit.",
         "highlights": [
@@ -214,7 +214,7 @@
             "lng": 135.7681
         },
         "imgs": [
-            "https://example.com/kyoto-townhouse.jpg"
+            "https://images.pexels.com/photos/593710/pexels-photo-593710.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=1"
         ],
         "summary": "Traditional machiya with inner garden, tatami rooms, and tea corner near Gion.",
         "highlights": [
@@ -276,7 +276,7 @@
             "lng": 11.2558
         },
         "imgs": [
-            "https://example.com/tuscany-villa.jpg"
+            "https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=1"
         ],
         "summary": "Rustic hillside villa with olive grove views, terrace dining, and easy access to the Duomo.",
         "highlights": [
@@ -335,11 +335,11 @@
         "loc": {
             "country": "Israel",
             "city": "Haifa",
-            "lat": 32.7940,
+            "lat": 32.794,
             "lng": 34.9896
         },
         "imgs": [
-            "https://example.com/haifa-seacliff.jpg"
+            "https://images.pexels.com/photos/460376/pexels-photo-460376.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=1"
         ],
         "summary": "Modern apartment above the bay with balcony sunsets and quick access to the gardens.",
         "highlights": [
@@ -401,7 +401,7 @@
             "lng": -73.9442
         },
         "imgs": [
-            "https://example.com/brooklyn-brownstone.jpg"
+            ""
         ],
         "summary": "Sunny parlor-floor suite in a classic brownstone with easy subway access.",
         "highlights": [
