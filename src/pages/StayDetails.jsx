@@ -1,11 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
-import { StandaloneSearchBox } from '@react-google-maps/api'
+import { GoogleMap, Marker, useJsApiLoader, StandaloneSearchBox } from '@react-google-maps/api'
 import { FiKey, FiMapPin, FiCalendar } from 'react-icons/fi'
-import { FaWifi, FaSnowflake, FaSwimmingPool, FaTv } from "react-icons/fa"
-import { MdKitchen, MdLocalLaundryService } from "react-icons/md"
+import { FaWifi, FaSnowflake, FaSwimmingPool, FaTv } from 'react-icons/fa'
+import { MdKitchen, MdLocalLaundryService } from 'react-icons/md'
 
 import { loadStay, addStayMsg } from '../store/actions/stay.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
@@ -15,8 +14,8 @@ import { ReviewBreakdown } from '../cmps/ReviewBreakdown'
 import { BookingCard } from '../cmps/BookingCard'
 import { StayCalendar } from '../cmps/StayCalendar'
 import DatePicker from 'react-datepicker'
-import "react-datepicker/dist/react-datepicker.css"
-import "../assets/styles/cmps/stay/StayCalendar.css"
+import 'react-datepicker/dist/react-datepicker.css'
+import '../assets/styles/cmps/stay/StayCalendar.css'
 
 const libraries = ['places']
 
@@ -45,12 +44,17 @@ export function StayDetails() {
   }
 
   const amenityIcons = {
-    WiFi: FaWifi,
-    "Air conditioning": FaSnowflake,
-    Pool: FaSwimmingPool,
-    Kitchen: MdKitchen,
-    TV: FaTv,
-    "Laundry": MdLocalLaundryService,
+    wifi: FaWifi,
+    'air conditioning': FaSnowflake,
+    pool: FaSwimmingPool,
+    kitchen: MdKitchen,
+    tv: FaTv,
+    laundry: MdLocalLaundryService,
+    // Add more mappings as needed:
+    // 'free parking': FiKey,
+    // washer: MdLocalLaundryService,
+    // heating: FiKey,
+    // elevator: FiKey,
   }
 
   useEffect(() => {
@@ -83,11 +87,10 @@ export function StayDetails() {
     const places = searchBoxRef.current.getPlaces()
     if (places.length > 0) {
       const location = places[0].geometry.location
-      setCenter({ lat: location.lat(), lng: location.lng() }) // update map center
+      setCenter({ lat: location.lat(), lng: location.lng() })
     }
   }
 
-  //calculate ratings from reviews
   const starCounts = reviews.reduce((acc, review) => {
     const stars = review.rating || 5
     acc[stars] = (acc[stars] || 0) + 1
@@ -123,27 +126,22 @@ export function StayDetails() {
   return (
     <section className="stay-details-wrapper">
       <section className="stay-details">
-        {/* Title */}
         <header className="stay-header">
           <h1 className="stay-title">{stay.title}</h1>
         </header>
 
-        {/* Photo Gallery */}
         <div className="photo-gallery">
           {stay.imgs?.map((img, idx) => (
             <img key={idx} src={img} alt={`Stay image ${idx + 1}`} />
           ))}
         </div>
 
-        {/* Details Layout */}
         <div className="details-layout">
-          {/* Left Column */}
           <div className="details-left">
-
-            <div className='stay-block'>
+            <div className="stay-block">
               <p className="stay-location">{stay.title}</p>
 
-              <div className='basic-details'>
+              <div className="basic-details">
                 <p>
                   {stay.maxGuests} guests · {stay.bedRooms} bedroom · {stay.baths} baths
                 </p>
@@ -178,13 +176,24 @@ export function StayDetails() {
 
             <ul className="listing-highlights">
               {stay.highlights?.map((h, idx) => {
-                const Icon = iconMap[h.icon] || FiKey
+                if (typeof h === 'string') {
+                  const Icon = FiKey
+                  return (
+                    <li key={idx} className="highlight-item">
+                      <Icon className="highlight-icon" />
+                      <div>
+                        <p className="highlight-title">{h}</p>
+                      </div>
+                    </li>
+                  )
+                }
+                const Icon = iconMap[h?.icon] || FiKey
                 return (
                   <li key={idx} className="highlight-item">
                     <Icon className="highlight-icon" />
                     <div>
-                      <p className="highlight-title">{h.title}</p>
-                      <p className="highlight-desc">{h.desc}</p>
+                      <p className="highlight-title">{h?.title || ''}</p>
+                      <p className="highlight-desc">{h?.desc || ''}</p>
                     </div>
                   </li>
                 )
@@ -199,7 +208,8 @@ export function StayDetails() {
               <h2>What this place offers</h2>
               <ul className="amenities-grid">
                 {stay.amenities?.map((a, idx) => {
-                  const Icon = amenityIcons[a] || FaUtensils // fallback
+                  const key = (a || '').toString().toLowerCase()
+                  const Icon = amenityIcons[key] || FiKey
                   return (
                     <li key={idx} className="amenity-item">
                       <Icon className="amenity-icon" />
@@ -216,7 +226,7 @@ export function StayDetails() {
                   ? `${Math.ceil(
                     (new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24)
                   )} nights in ${stay.loc?.city}`
-                  : "Select your stay dates"}
+                  : 'Select your stay dates'}
               </h2>
               <DatePicker
                 selectsRange
@@ -237,23 +247,21 @@ export function StayDetails() {
           </div>
 
           <div className="details-right">
-            {/* Right Column (Booking) */}
             <BookingCard
               stayId={stay._id}
-              userId={'u101'}  //change to logged-in user later
+              userId={'u101'}
               pricePerNight={stay.price}
               maxGuests={4}
               checkIn={checkIn}
               checkOut={checkOut}
               setCheckIn={setCheckIn}
               setCheckOut={setCheckOut}
-              reservedDates={reservedDates} //share to both calendar and booking card
+              reservedDates={reservedDates}
               setReservedDates={setReservedDates}
             />
           </div>
         </div>
 
-        {/* Reviews Section */}
         <section className="stay-reviews">
           <h2 className="reviews-header">
             <span className="star">★</span>
@@ -300,7 +308,6 @@ export function StayDetails() {
           </ul>
         </section>
 
-        {/* Google Maps Section */}
         <section className="stay-location-map">
           <h2>Where you'll be</h2>
           <p className="map-location">
@@ -314,11 +321,11 @@ export function StayDetails() {
                 zoom={13}
                 onLoad={(map) => (mapRef.current = map)}
                 options={{
-                  disableDefaultUI: true,     // remove all defaults
+                  disableDefaultUI: true,
                   mapTypeControl: false,
-                  fullscreenControl: true,    // show fullscreen
-                  streetViewControl: true,    // show pegman
-                  zoomControl: false,         // custom zoom buttons below
+                  fullscreenControl: true,
+                  streetViewControl: true,
+                  zoomControl: false,
                 }}
                 mapContainerStyle={{
                   width: '100%',
@@ -327,7 +334,6 @@ export function StayDetails() {
                   overflow: 'hidden',
                 }}
               >
-                {/* Marker: black circle + white house */}
                 <Marker
                   position={{ lat: stay.loc.lat, lng: stay.loc.lng }}
                   icon={{
@@ -342,7 +348,6 @@ export function StayDetails() {
                 />
               </GoogleMap>
 
-              {/* Search box (top-left) */}
               <div className="map-search-box">
                 <StandaloneSearchBox
                   onLoad={ref => (searchBoxRef.current = ref)}
@@ -356,7 +361,6 @@ export function StayDetails() {
                 </StandaloneSearchBox>
               </div>
 
-              {/* Custom Zoom Controls (bottom-right) */}
               <div className="custom-zoom-controls">
                 <button onClick={() => mapRef.current?.setZoom(mapRef.current.getZoom() + 1)}>+</button>
                 <button onClick={() => mapRef.current?.setZoom(mapRef.current.getZoom() - 1)}>−</button>
@@ -365,7 +369,6 @@ export function StayDetails() {
           )}
         </section>
 
-        {/* Host */}
         <section className="meet-your-host">
           <h2>Meet your host</h2>
           <div className="host-card">
@@ -398,7 +401,6 @@ export function StayDetails() {
           </div>
         </section>
 
-        {/* House Rules, Safety, Cancellation */}
         <section className="things-to-know">
           <h2>Things to know</h2>
           <div className="info-grid">
