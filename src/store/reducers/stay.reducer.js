@@ -11,6 +11,8 @@ const initialFilter = {
     minPrice: '',
     sortField: '',
     sortDir: '',
+    startDate: null,
+    endDate: null,
 }
 
 const initialState = {
