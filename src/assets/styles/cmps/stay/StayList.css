@@ -13,3 +13,7 @@
 .stay-list>li {
     width: 250px;
 }
+
+.stay-index .recommendation-rows>.recommendation-row:nth-of-type(n+10) {
+    display: none !important;
+}
