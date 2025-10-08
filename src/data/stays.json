@@ -452,5 +452,3656 @@
             "responseRate": 100,
             "responseTime": "within an hour"
         }
+    },
+    {
+        "_id": "s108",
+        "title": "Eilat Boutique Apartment",
+        "price": 107,
+        "loc": {
+            "country": "Israel",
+            "city": "Eilat",
+            "lat": 29.5577,
+            "lng": 34.9519
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/9/9e/Eilat_Beach.jpg"
+        ],
+        "summary": "Quiet spot in Eilat close to transit and cafes.",
+        "maxGuests": 5,
+        "bedRooms": 2,
+        "baths": 1,
+        "highlights": [
+            "Exceptional check-in experience",
+            "Walkable area",
+            "Free cancellation"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.82,
+            "categories": {
+                "cleanliness": 4.5,
+                "accuracy": 4.8,
+                "checkIn": 5.0,
+                "communication": 4.9,
+                "location": 5.0,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 30",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Emma Suzuki",
+            "imgUrl": "/img/emma.jpg",
+            "role": "Designer",
+            "favoritesong": "Hotel California",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": false,
+            "monthsHosting": 24,
+            "reviews": 174,
+            "rating": 4.75,
+            "responseRate": 96,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s109",
+        "title": "Tiberias Boutique Apartment",
+        "price": 222,
+        "loc": {
+            "country": "Israel",
+            "city": "Tiberias",
+            "lat": 32.7922,
+            "lng": 35.5312
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/4/45/Tiberias_panorama.jpg"
+        ],
+        "summary": "Bright space in Tiberias, ideal for food and culture lovers.",
+        "maxGuests": 4,
+        "bedRooms": 2,
+        "baths": 1,
+        "highlights": [
+            "Exceptional check-in experience",
+            "Walkable area",
+            "Free cancellation"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.72,
+            "categories": {
+                "cleanliness": 4.6,
+                "accuracy": 4.6,
+                "checkIn": 4.9,
+                "communication": 4.7,
+                "location": 4.8,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 19",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Kenji Levi",
+            "imgUrl": "/img/kenji.jpg",
+            "role": "Barista",
+            "favoritesong": "Imagine",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 24,
+            "reviews": 178,
+            "rating": 4.77,
+            "responseRate": 95,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s110",
+        "title": "Eilat Stone Cottage",
+        "price": 254,
+        "loc": {
+            "country": "Israel",
+            "city": "Eilat",
+            "lat": 29.5577,
+            "lng": 34.9519
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/9/9e/Eilat_Beach.jpg"
+        ],
+        "summary": "Quiet spot in Eilat close to transit and cafes.",
+        "maxGuests": 5,
+        "bedRooms": 3,
+        "baths": 2,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Free parking"
+        ],
+        "ratings": {
+            "overall": 4.73,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.6,
+                "checkIn": 4.7,
+                "communication": 4.9,
+                "location": 4.6,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 4",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Daniel Cohen",
+            "imgUrl": "/img/daniel.jpg",
+            "role": "Musician",
+            "favoritesong": "Hotel California",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": true,
+            "monthsHosting": 11,
+            "reviews": 155,
+            "rating": 4.63,
+            "responseRate": 98,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s111",
+        "title": "Tiberias City Pad",
+        "price": 162,
+        "loc": {
+            "country": "Israel",
+            "city": "Tiberias",
+            "lat": 32.7922,
+            "lng": 35.5312
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/4/45/Tiberias_panorama.jpg"
+        ],
+        "summary": "Stylish base in Tiberias for exploring Israel.",
+        "maxGuests": 4,
+        "bedRooms": 1,
+        "baths": 2,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Washer",
+            "Dryer"
+        ],
+        "ratings": {
+            "overall": 4.7,
+            "categories": {
+                "cleanliness": 4.5,
+                "accuracy": 4.8,
+                "checkIn": 4.9,
+                "communication": 4.8,
+                "location": 4.5,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 3",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Liam Garcia",
+            "imgUrl": "/img/liam.jpg",
+            "role": "Artist",
+            "favoritesong": "River Flows in You",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": true,
+            "monthsHosting": 6,
+            "reviews": 148,
+            "rating": 4.62,
+            "responseRate": 95,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s112",
+        "title": "Zikhron Ya’akov Loft",
+        "price": 155,
+        "loc": {
+            "country": "Israel",
+            "city": "Zikhron Ya’akov",
+            "lat": 32.5733,
+            "lng": 34.9523
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/1/15/Zichron_Ya%27akov_main_street.jpg"
+        ],
+        "summary": "Bright space in Zikhron Ya’akov, ideal for food and culture lovers.",
+        "maxGuests": 4,
+        "bedRooms": 2,
+        "baths": 2,
+        "highlights": [
+            "Historic neighborhood",
+            "Quiet street",
+            "Tea set included"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.73,
+            "categories": {
+                "cleanliness": 5.0,
+                "accuracy": 4.5,
+                "checkIn": 4.6,
+                "communication": 4.7,
+                "location": 4.6,
+                "value": 5.0
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 28",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Ava Williams",
+            "imgUrl": "/img/ava.jpg",
+            "role": "Designer",
+            "favoritesong": "Hotel California",
+            "bio": "Here to make your stay smooth and memorable.",
+            "isSuperhost": false,
+            "monthsHosting": 20,
+            "reviews": 22,
+            "rating": 4.86,
+            "responseRate": 98,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s113",
+        "title": "Santorini Harbor View",
+        "price": 101,
+        "loc": {
+            "country": "Greece",
+            "city": "Santorini",
+            "lat": 36.3932,
+            "lng": 25.4615
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/1/1a/Santorini_Thira.jpg"
+        ],
+        "summary": "Stylish base in Santorini for exploring Greece.",
+        "maxGuests": 3,
+        "bedRooms": 1,
+        "baths": 1,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.83,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 4.6,
+                "checkIn": 5.0,
+                "communication": 4.9,
+                "location": 4.9,
+                "value": 4.9
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 15",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Yonatan Katz",
+            "imgUrl": "/img/yonatan.jpg",
+            "role": "Host",
+            "favoritesong": "Shape of You",
+            "bio": "Here to make your stay smooth and memorable.",
+            "isSuperhost": true,
+            "monthsHosting": 30,
+            "reviews": 38,
+            "rating": 4.98,
+            "responseRate": 96,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s114",
+        "title": "Chicago Skyline Suite",
+        "price": 244,
+        "loc": {
+            "country": "USA",
+            "city": "Chicago",
+            "lat": 41.8781,
+            "lng": -87.6298
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/0/0e/Chicago_Skyline_2020.jpg"
+        ],
+        "summary": "Comfortable stay in Chicago with easy access to main sights.",
+        "maxGuests": 4,
+        "bedRooms": 4,
+        "baths": 3,
+        "highlights": [
+            "Exceptional check-in experience",
+            "Walkable area",
+            "Free cancellation"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.67,
+            "categories": {
+                "cleanliness": 4.8,
+                "accuracy": 4.7,
+                "checkIn": 4.6,
+                "communication": 4.6,
+                "location": 4.6,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 19",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Daniel Rossi",
+            "imgUrl": "/img/daniel.jpg",
+            "role": "Guide",
+            "favoritesong": "Yellow",
+            "bio": "Here to make your stay smooth and memorable.",
+            "isSuperhost": true,
+            "monthsHosting": 13,
+            "reviews": 162,
+            "rating": 4.86,
+            "responseRate": 98,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s115",
+        "title": "Barcelona Boutique Apartment",
+        "price": 248,
+        "loc": {
+            "country": "Spain",
+            "city": "Barcelona",
+            "lat": 41.3851,
+            "lng": 2.1734
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/5/56/1_barcelona_panorama_2014.jpg"
+        ],
+        "summary": "Comfortable stay in Barcelona with easy access to main sights.",
+        "maxGuests": 2,
+        "bedRooms": 2,
+        "baths": 2,
+        "highlights": [
+            "Historic neighborhood",
+            "Quiet street",
+            "Tea set included"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.72,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.7,
+                "checkIn": 4.8,
+                "communication": 4.8,
+                "location": 4.5,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 28",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Lea Cohen",
+            "imgUrl": "/img/lea.jpg",
+            "role": "Photographer",
+            "favoritesong": "Shape of You",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": true,
+            "monthsHosting": 27,
+            "reviews": 46,
+            "rating": 4.96,
+            "responseRate": 97,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s116",
+        "title": "Cape Town Townhouse",
+        "price": 253,
+        "loc": {
+            "country": "South Africa",
+            "city": "Cape Town",
+            "lat": -33.9249,
+            "lng": 18.4241
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/a/a3/Cape_Town_panorama_2015.jpg"
+        ],
+        "summary": "Quiet spot in Cape Town close to transit and cafes.",
+        "maxGuests": 6,
+        "bedRooms": 4,
+        "baths": 3,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.75,
+            "categories": {
+                "cleanliness": 4.5,
+                "accuracy": 4.7,
+                "checkIn": 5.0,
+                "communication": 4.5,
+                "location": 4.9,
+                "value": 4.9
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 27",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Omer Suzuki",
+            "imgUrl": "/img/omer.jpg",
+            "role": "Barista",
+            "favoritesong": "River Flows in You",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 15,
+            "reviews": 71,
+            "rating": 4.62,
+            "responseRate": 95,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s117",
+        "title": "Zurich Loft",
+        "price": 288,
+        "loc": {
+            "country": "Switzerland",
+            "city": "Zurich",
+            "lat": 47.3769,
+            "lng": 8.5417
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/5/57/Z%C3%BCrich_-_Grossmuenster_und_Limmat.jpg"
+        ],
+        "summary": "Quiet spot in Zurich close to transit and cafes.",
+        "maxGuests": 4,
+        "bedRooms": 4,
+        "baths": 2,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.65,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 4.7,
+                "checkIn": 4.7,
+                "communication": 4.7,
+                "location": 4.6,
+                "value": 4.5
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 14",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Akira Ivanov",
+            "imgUrl": "/img/akira.jpg",
+            "role": "Barista",
+            "favoritesong": "Clair de Lune",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": true,
+            "monthsHosting": 19,
+            "reviews": 90,
+            "rating": 4.8,
+            "responseRate": 97,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s118",
+        "title": "Rome Rooftop Loft",
+        "price": 235,
+        "loc": {
+            "country": "Italy",
+            "city": "Rome",
+            "lat": 41.9028,
+            "lng": 12.4964
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/5/5c/Colosseo_2020.jpg"
+        ],
+        "summary": "Stylish base in Rome for exploring Italy.",
+        "maxGuests": 5,
+        "bedRooms": 2,
+        "baths": 1,
+        "highlights": [
+            "Historic neighborhood",
+            "Quiet street",
+            "Tea set included"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.63,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 4.5,
+                "checkIn": 4.7,
+                "communication": 4.5,
+                "location": 4.9,
+                "value": 4.5
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 26",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Yonatan Johnson",
+            "imgUrl": "/img/yonatan.jpg",
+            "role": "Host",
+            "favoritesong": "Space Oddity",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": true,
+            "monthsHosting": 17,
+            "reviews": 108,
+            "rating": 4.92,
+            "responseRate": 99,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s119",
+        "title": "Sapporo Skyline Suite",
+        "price": 218,
+        "loc": {
+            "country": "Japan",
+            "city": "Sapporo",
+            "lat": 43.0618,
+            "lng": 141.3545
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/7/77/Sapporo_TV_Tower_2018.jpg"
+        ],
+        "summary": "Modern hideaway in Sapporo with great walkability.",
+        "maxGuests": 4,
+        "bedRooms": 1,
+        "baths": 3,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Pool"
+        ],
+        "ratings": {
+            "overall": 4.83,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.8,
+                "checkIn": 4.9,
+                "communication": 4.9,
+                "location": 4.5,
+                "value": 5.0
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 8",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Amir Singh",
+            "imgUrl": "/img/amir.jpg",
+            "role": "Chef",
+            "favoritesong": "Clair de Lune",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": true,
+            "monthsHosting": 24,
+            "reviews": 127,
+            "rating": 4.93,
+            "responseRate": 98,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s120",
+        "title": "Vienna Rooftop Loft",
+        "price": 280,
+        "loc": {
+            "country": "Austria",
+            "city": "Vienna",
+            "lat": 48.2082,
+            "lng": 16.3738
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/0/0d/Wien_-_Sch%C3%B6nbrunn_-_Gloriette_%282%29.JPG"
+        ],
+        "summary": "Stylish base in Vienna for exploring Austria.",
+        "maxGuests": 5,
+        "bedRooms": 2,
+        "baths": 3,
+        "highlights": [
+            "Exceptional check-in experience",
+            "Walkable area",
+            "Free cancellation"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Pool"
+        ],
+        "ratings": {
+            "overall": 4.75,
+            "categories": {
+                "cleanliness": 4.5,
+                "accuracy": 4.9,
+                "checkIn": 4.8,
+                "communication": 4.8,
+                "location": 4.8,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 5",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Akira Ivanov",
+            "imgUrl": "/img/akira.jpg",
+            "role": "Barista",
+            "favoritesong": "Imagine",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 11,
+            "reviews": 116,
+            "rating": 4.78,
+            "responseRate": 96,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s121",
+        "title": "Cape Town Retreat",
+        "price": 168,
+        "loc": {
+            "country": "South Africa",
+            "city": "Cape Town",
+            "lat": -33.9249,
+            "lng": 18.4241
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/a/a3/Cape_Town_panorama_2015.jpg"
+        ],
+        "summary": "Modern hideaway in Cape Town with great walkability.",
+        "maxGuests": 4,
+        "bedRooms": 4,
+        "baths": 1,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Free parking"
+        ],
+        "ratings": {
+            "overall": 4.85,
+            "categories": {
+                "cleanliness": 4.6,
+                "accuracy": 4.8,
+                "checkIn": 4.7,
+                "communication": 5.0,
+                "location": 5.0,
+                "value": 5.0
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 21",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Emma Williams",
+            "imgUrl": "/img/emma.jpg",
+            "role": "Chef",
+            "favoritesong": "Clair de Lune",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": true,
+            "monthsHosting": 8,
+            "reviews": 66,
+            "rating": 4.79,
+            "responseRate": 99,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s122",
+        "title": "Queenstown City Pad",
+        "price": 228,
+        "loc": {
+            "country": "New Zealand",
+            "city": "Queenstown",
+            "lat": -45.0312,
+            "lng": 168.6626
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/e/ef/Queenstown%2C_New_Zealand.jpg"
+        ],
+        "summary": "Bright space in Queenstown, ideal for food and culture lovers.",
+        "maxGuests": 3,
+        "bedRooms": 4,
+        "baths": 1,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.83,
+            "categories": {
+                "cleanliness": 4.8,
+                "accuracy": 5.0,
+                "checkIn": 4.9,
+                "communication": 5.0,
+                "location": 4.7,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 16",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Rina Chen",
+            "imgUrl": "/img/rina.jpg",
+            "role": "Guide",
+            "favoritesong": "Space Oddity",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": true,
+            "monthsHosting": 15,
+            "reviews": 146,
+            "rating": 4.63,
+            "responseRate": 98,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s123",
+        "title": "Los Angeles Townhouse",
+        "price": 282,
+        "loc": {
+            "country": "USA",
+            "city": "Los Angeles",
+            "lat": 34.0522,
+            "lng": -118.2437
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/8/89/Los_Angeles_skyline_at_night.jpg"
+        ],
+        "summary": "Comfortable stay in Los Angeles with easy access to main sights.",
+        "maxGuests": 6,
+        "bedRooms": 2,
+        "baths": 2,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Heating",
+            "Smart TV"
+        ],
+        "ratings": {
+            "overall": 4.75,
+            "categories": {
+                "cleanliness": 4.8,
+                "accuracy": 4.5,
+                "checkIn": 4.7,
+                "communication": 4.9,
+                "location": 4.6,
+                "value": 5.0
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 30",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Amir Katz",
+            "imgUrl": "/img/amir.jpg",
+            "role": "Guide",
+            "favoritesong": "Yellow",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": false,
+            "monthsHosting": 14,
+            "reviews": 145,
+            "rating": 4.64,
+            "responseRate": 97,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s124",
+        "title": "Paris Lake House",
+        "price": 160,
+        "loc": {
+            "country": "France",
+            "city": "Paris",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg"
+        ],
+        "summary": "Quiet spot in Paris close to transit and cafes.",
+        "maxGuests": 4,
+        "bedRooms": 3,
+        "baths": 1,
+        "highlights": [
+            "Historic neighborhood",
+            "Quiet street",
+            "Tea set included"
+        ],
+        "amenities": [
+            "WiFi",
+            "Heating",
+            "Smart TV"
+        ],
+        "ratings": {
+            "overall": 4.73,
+            "categories": {
+                "cleanliness": 4.8,
+                "accuracy": 4.6,
+                "checkIn": 4.7,
+                "communication": 4.8,
+                "location": 4.5,
+                "value": 5.0
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 19",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Lea Levi",
+            "imgUrl": "/img/lea.jpg",
+            "role": "Chef",
+            "favoritesong": "Plastic Love",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": false,
+            "monthsHosting": 13,
+            "reviews": 107,
+            "rating": 4.69,
+            "responseRate": 100,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s125",
+        "title": "Vienna City Pad",
+        "price": 248,
+        "loc": {
+            "country": "Austria",
+            "city": "Vienna",
+            "lat": 48.2082,
+            "lng": 16.3738
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/0/0d/Wien_-_Sch%C3%B6nbrunn_-_Gloriette_%282%29.JPG"
+        ],
+        "summary": "Quiet spot in Vienna close to transit and cafes.",
+        "maxGuests": 2,
+        "bedRooms": 3,
+        "baths": 2,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.8,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.5,
+                "checkIn": 4.8,
+                "communication": 5.0,
+                "location": 4.8,
+                "value": 4.8
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 26",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Daniel Cohen",
+            "imgUrl": "/img/daniel.jpg",
+            "role": "Barista",
+            "favoritesong": "Space Oddity",
+            "bio": "Here to make your stay smooth and memorable.",
+            "isSuperhost": true,
+            "monthsHosting": 26,
+            "reviews": 76,
+            "rating": 4.62,
+            "responseRate": 100,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s126",
+        "title": "Buenos Aires Retreat",
+        "price": 149,
+        "loc": {
+            "country": "Argentina",
+            "city": "Buenos Aires",
+            "lat": -34.6037,
+            "lng": -58.3816
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/9/9f/Buenos_Aires_montage.jpg"
+        ],
+        "summary": "Comfortable stay in Buenos Aires with easy access to main sights.",
+        "maxGuests": 4,
+        "bedRooms": 4,
+        "baths": 2,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Heating",
+            "Smart TV"
+        ],
+        "ratings": {
+            "overall": 4.72,
+            "categories": {
+                "cleanliness": 4.8,
+                "accuracy": 4.5,
+                "checkIn": 4.8,
+                "communication": 4.8,
+                "location": 4.7,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 27",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Hannah Romero",
+            "imgUrl": "/img/hannah.jpg",
+            "role": "Designer",
+            "favoritesong": "River Flows in You",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": false,
+            "monthsHosting": 16,
+            "reviews": 165,
+            "rating": 4.72,
+            "responseRate": 99,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s127",
+        "title": "Rome Rooftop Loft",
+        "price": 90,
+        "loc": {
+            "country": "Italy",
+            "city": "Rome",
+            "lat": 41.9028,
+            "lng": 12.4964
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/5/5c/Colosseo_2020.jpg"
+        ],
+        "summary": "Comfortable stay in Rome with easy access to main sights.",
+        "maxGuests": 5,
+        "bedRooms": 3,
+        "baths": 2,
+        "highlights": [
+            "Historic neighborhood",
+            "Quiet street",
+            "Tea set included"
+        ],
+        "amenities": [
+            "WiFi",
+            "Heating",
+            "Smart TV"
+        ],
+        "ratings": {
+            "overall": 4.75,
+            "categories": {
+                "cleanliness": 4.8,
+                "accuracy": 4.9,
+                "checkIn": 4.6,
+                "communication": 4.7,
+                "location": 4.7,
+                "value": 4.8
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 10",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Alina Chen",
+            "imgUrl": "/img/alina.jpg",
+            "role": "Photographer",
+            "favoritesong": "Shape of You",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": true,
+            "monthsHosting": 7,
+            "reviews": 94,
+            "rating": 4.66,
+            "responseRate": 97,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s128",
+        "title": "Vienna Skyline Suite",
+        "price": 144,
+        "loc": {
+            "country": "Austria",
+            "city": "Vienna",
+            "lat": 48.2082,
+            "lng": 16.3738
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/0/0d/Wien_-_Sch%C3%B6nbrunn_-_Gloriette_%282%29.JPG"
+        ],
+        "summary": "Comfortable stay in Vienna with easy access to main sights.",
+        "maxGuests": 3,
+        "bedRooms": 2,
+        "baths": 1,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.75,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 4.8,
+                "checkIn": 4.5,
+                "communication": 4.9,
+                "location": 4.9,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 9",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Yael Chen",
+            "imgUrl": "/img/yael.jpg",
+            "role": "Designer",
+            "favoritesong": "Space Oddity",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": true,
+            "monthsHosting": 18,
+            "reviews": 176,
+            "rating": 4.8,
+            "responseRate": 99,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s129",
+        "title": "Cape Town Townhouse",
+        "price": 176,
+        "loc": {
+            "country": "South Africa",
+            "city": "Cape Town",
+            "lat": -33.9249,
+            "lng": 18.4241
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/a/a3/Cape_Town_panorama_2015.jpg"
+        ],
+        "summary": "Quiet spot in Cape Town close to transit and cafes.",
+        "maxGuests": 6,
+        "bedRooms": 3,
+        "baths": 3,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.75,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 5.0,
+                "checkIn": 4.7,
+                "communication": 4.7,
+                "location": 4.7,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 5",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Rina Mizrahi",
+            "imgUrl": "/img/rina.jpg",
+            "role": "Musician",
+            "favoritesong": "Space Oddity",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 30,
+            "reviews": 26,
+            "rating": 4.78,
+            "responseRate": 97,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s130",
+        "title": "Chicago Loft",
+        "price": 156,
+        "loc": {
+            "country": "USA",
+            "city": "Chicago",
+            "lat": 41.8781,
+            "lng": -87.6298
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/0/0e/Chicago_Skyline_2020.jpg"
+        ],
+        "summary": "Stylish base in Chicago for exploring USA.",
+        "maxGuests": 6,
+        "bedRooms": 2,
+        "baths": 3,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Heating",
+            "Smart TV"
+        ],
+        "ratings": {
+            "overall": 4.77,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 5.0,
+                "checkIn": 4.9,
+                "communication": 4.6,
+                "location": 4.7,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 5",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Yusuf Williams",
+            "imgUrl": "/img/yusuf.jpg",
+            "role": "Barista",
+            "favoritesong": "Clair de Lune",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": true,
+            "monthsHosting": 21,
+            "reviews": 76,
+            "rating": 4.84,
+            "responseRate": 97,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s131",
+        "title": "Marrakesh Boutique Apartment",
+        "price": 244,
+        "loc": {
+            "country": "Morocco",
+            "city": "Marrakesh",
+            "lat": 31.6295,
+            "lng": -7.9811
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/1/15/Marrakesh_Medina.jpg"
+        ],
+        "summary": "Quiet spot in Marrakesh close to transit and cafes.",
+        "maxGuests": 3,
+        "bedRooms": 2,
+        "baths": 3,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Washer",
+            "Dryer"
+        ],
+        "ratings": {
+            "overall": 4.7,
+            "categories": {
+                "cleanliness": 4.6,
+                "accuracy": 4.7,
+                "checkIn": 4.7,
+                "communication": 4.6,
+                "location": 5.0,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 26",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Rina Brown",
+            "imgUrl": "/img/rina.jpg",
+            "role": "Chef",
+            "favoritesong": "Plastic Love",
+            "bio": "Here to make your stay smooth and memorable.",
+            "isSuperhost": false,
+            "monthsHosting": 25,
+            "reviews": 151,
+            "rating": 4.68,
+            "responseRate": 96,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s132",
+        "title": "Vienna Lake House",
+        "price": 221,
+        "loc": {
+            "country": "Austria",
+            "city": "Vienna",
+            "lat": 48.2082,
+            "lng": 16.3738
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/0/0d/Wien_-_Sch%C3%B6nbrunn_-_Gloriette_%282%29.JPG"
+        ],
+        "summary": "Modern hideaway in Vienna with great walkability.",
+        "maxGuests": 5,
+        "bedRooms": 4,
+        "baths": 1,
+        "highlights": [
+            "Historic neighborhood",
+            "Quiet street",
+            "Tea set included"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.7,
+            "categories": {
+                "cleanliness": 4.6,
+                "accuracy": 4.7,
+                "checkIn": 4.8,
+                "communication": 4.7,
+                "location": 4.9,
+                "value": 4.5
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 2",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Nora Brown",
+            "imgUrl": "/img/nora.jpg",
+            "role": "Host",
+            "favoritesong": "River Flows in You",
+            "bio": "Here to make your stay smooth and memorable.",
+            "isSuperhost": false,
+            "monthsHosting": 11,
+            "reviews": 174,
+            "rating": 4.9,
+            "responseRate": 96,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s133",
+        "title": "Reykjavik Harbor View",
+        "price": 290,
+        "loc": {
+            "country": "Iceland",
+            "city": "Reykjavik",
+            "lat": 64.1466,
+            "lng": -21.9426
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/8/84/Reykjavik_panorama.jpg"
+        ],
+        "summary": "Stylish base in Reykjavik for exploring Iceland.",
+        "maxGuests": 2,
+        "bedRooms": 4,
+        "baths": 1,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Washer",
+            "Dryer"
+        ],
+        "ratings": {
+            "overall": 4.68,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 4.5,
+                "checkIn": 4.7,
+                "communication": 4.6,
+                "location": 4.8,
+                "value": 4.8
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 18",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Lea Singh",
+            "imgUrl": "/img/lea.jpg",
+            "role": "Engineer",
+            "favoritesong": "Shape of You",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": true,
+            "monthsHosting": 10,
+            "reviews": 21,
+            "rating": 4.88,
+            "responseRate": 99,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s134",
+        "title": "Lisbon Boutique Apartment",
+        "price": 184,
+        "loc": {
+            "country": "Portugal",
+            "city": "Lisbon",
+            "lat": 38.7223,
+            "lng": -9.1393
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/c/c1/Lisbon_Montage_2016.jpg"
+        ],
+        "summary": "Bright space in Lisbon, ideal for food and culture lovers.",
+        "maxGuests": 2,
+        "bedRooms": 2,
+        "baths": 1,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Pool"
+        ],
+        "ratings": {
+            "overall": 4.75,
+            "categories": {
+                "cleanliness": 4.6,
+                "accuracy": 4.7,
+                "checkIn": 4.7,
+                "communication": 4.7,
+                "location": 5.0,
+                "value": 4.8
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 17",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Noa Johnson",
+            "imgUrl": "/img/noa.jpg",
+            "role": "Chef",
+            "favoritesong": "Clair de Lune",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": false,
+            "monthsHosting": 7,
+            "reviews": 153,
+            "rating": 4.85,
+            "responseRate": 100,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s135",
+        "title": "Chiang Mai Townhouse",
+        "price": 101,
+        "loc": {
+            "country": "Thailand",
+            "city": "Chiang Mai",
+            "lat": 18.7883,
+            "lng": 98.9853
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/4/47/ChiangMai_old_city.jpg"
+        ],
+        "summary": "Modern hideaway in Chiang Mai with great walkability.",
+        "maxGuests": 4,
+        "bedRooms": 4,
+        "baths": 3,
+        "highlights": [
+            "Exceptional check-in experience",
+            "Walkable area",
+            "Free cancellation"
+        ],
+        "amenities": [
+            "WiFi",
+            "Washer",
+            "Dryer"
+        ],
+        "ratings": {
+            "overall": 4.75,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 4.7,
+                "checkIn": 4.8,
+                "communication": 5.0,
+                "location": 4.5,
+                "value": 4.8
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 30",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Rina Suzuki",
+            "imgUrl": "/img/rina.jpg",
+            "role": "Designer",
+            "favoritesong": "River Flows in You",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": false,
+            "monthsHosting": 19,
+            "reviews": 47,
+            "rating": 4.68,
+            "responseRate": 97,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s136",
+        "title": "Nara Old Town Home",
+        "price": 116,
+        "loc": {
+            "country": "Japan",
+            "city": "Nara",
+            "lat": 34.6851,
+            "lng": 135.8048
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/1/1e/Nara_Park_deer.jpg"
+        ],
+        "summary": "Stylish base in Nara for exploring Japan.",
+        "maxGuests": 5,
+        "bedRooms": 1,
+        "baths": 2,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Heating",
+            "Smart TV"
+        ],
+        "ratings": {
+            "overall": 4.85,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.7,
+                "checkIn": 4.7,
+                "communication": 4.9,
+                "location": 4.9,
+                "value": 5.0
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 1",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Nora Romero",
+            "imgUrl": "/img/nora.jpg",
+            "role": "Artist",
+            "favoritesong": "Shape of You",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 11,
+            "reviews": 152,
+            "rating": 4.9,
+            "responseRate": 96,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s137",
+        "title": "Venice Retreat",
+        "price": 145,
+        "loc": {
+            "country": "Italy",
+            "city": "Venice",
+            "lat": 45.4408,
+            "lng": 12.3155
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/f/f6/Venice_grand_canal_2017.jpg"
+        ],
+        "summary": "Quiet spot in Venice close to transit and cafes.",
+        "maxGuests": 3,
+        "bedRooms": 1,
+        "baths": 3,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Pool"
+        ],
+        "ratings": {
+            "overall": 4.77,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 5.0,
+                "checkIn": 4.9,
+                "communication": 4.5,
+                "location": 4.7,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 14",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Rina Cohen",
+            "imgUrl": "/img/rina.jpg",
+            "role": "Guide",
+            "favoritesong": "Shape of You",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 11,
+            "reviews": 56,
+            "rating": 4.82,
+            "responseRate": 98,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s138",
+        "title": "Paris City Pad",
+        "price": 287,
+        "loc": {
+            "country": "France",
+            "city": "Paris",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg"
+        ],
+        "summary": "Stylish base in Paris for exploring France.",
+        "maxGuests": 5,
+        "bedRooms": 4,
+        "baths": 1,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Washer",
+            "Dryer"
+        ],
+        "ratings": {
+            "overall": 4.75,
+            "categories": {
+                "cleanliness": 4.5,
+                "accuracy": 4.8,
+                "checkIn": 4.8,
+                "communication": 4.6,
+                "location": 4.9,
+                "value": 4.9
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 16",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Chiara Singh",
+            "imgUrl": "/img/chiara.jpg",
+            "role": "Guide",
+            "favoritesong": "Space Oddity",
+            "bio": "Here to make your stay smooth and memorable.",
+            "isSuperhost": true,
+            "monthsHosting": 23,
+            "reviews": 92,
+            "rating": 4.8,
+            "responseRate": 95,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s139",
+        "title": "Lisbon Loft",
+        "price": 297,
+        "loc": {
+            "country": "Portugal",
+            "city": "Lisbon",
+            "lat": 38.7223,
+            "lng": -9.1393
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/c/c1/Lisbon_Montage_2016.jpg"
+        ],
+        "summary": "Comfortable stay in Lisbon with easy access to main sights.",
+        "maxGuests": 4,
+        "bedRooms": 4,
+        "baths": 3,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Free parking"
+        ],
+        "ratings": {
+            "overall": 4.7,
+            "categories": {
+                "cleanliness": 4.6,
+                "accuracy": 4.7,
+                "checkIn": 4.6,
+                "communication": 4.5,
+                "location": 4.8,
+                "value": 5.0
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 7",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Mia Ivanov",
+            "imgUrl": "/img/mia.jpg",
+            "role": "Designer",
+            "favoritesong": "Shape of You",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 15,
+            "reviews": 113,
+            "rating": 4.67,
+            "responseRate": 96,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s140",
+        "title": "Marrakesh Townhouse",
+        "price": 159,
+        "loc": {
+            "country": "Morocco",
+            "city": "Marrakesh",
+            "lat": 31.6295,
+            "lng": -7.9811
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/1/15/Marrakesh_Medina.jpg"
+        ],
+        "summary": "Bright space in Marrakesh, ideal for food and culture lovers.",
+        "maxGuests": 6,
+        "bedRooms": 1,
+        "baths": 1,
+        "highlights": [
+            "Historic neighborhood",
+            "Quiet street",
+            "Tea set included"
+        ],
+        "amenities": [
+            "WiFi",
+            "Washer",
+            "Dryer"
+        ],
+        "ratings": {
+            "overall": 4.6,
+            "categories": {
+                "cleanliness": 4.5,
+                "accuracy": 4.6,
+                "checkIn": 4.6,
+                "communication": 4.7,
+                "location": 4.6,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 18",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Alina Johnson",
+            "imgUrl": "/img/alina.jpg",
+            "role": "Barista",
+            "favoritesong": "Shape of You",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": true,
+            "monthsHosting": 6,
+            "reviews": 97,
+            "rating": 4.69,
+            "responseRate": 95,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s141",
+        "title": "Vienna City Pad",
+        "price": 231,
+        "loc": {
+            "country": "Austria",
+            "city": "Vienna",
+            "lat": 48.2082,
+            "lng": 16.3738
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/0/0d/Wien_-_Sch%C3%B6nbrunn_-_Gloriette_%282%29.JPG"
+        ],
+        "summary": "Stylish base in Vienna for exploring Austria.",
+        "maxGuests": 2,
+        "bedRooms": 3,
+        "baths": 2,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Washer",
+            "Dryer"
+        ],
+        "ratings": {
+            "overall": 4.68,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.7,
+                "checkIn": 4.6,
+                "communication": 4.6,
+                "location": 4.7,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 6",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Jon Ivanov",
+            "imgUrl": "/img/jon.jpg",
+            "role": "Engineer",
+            "favoritesong": "Plastic Love",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": true,
+            "monthsHosting": 28,
+            "reviews": 144,
+            "rating": 4.82,
+            "responseRate": 97,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s142",
+        "title": "Istanbul Old Town Home",
+        "price": 96,
+        "loc": {
+            "country": "Turkey",
+            "city": "Istanbul",
+            "lat": 41.0082,
+            "lng": 28.9784
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/b/b8/Hagia_Sophia_Mars_2013.jpg"
+        ],
+        "summary": "Quiet spot in Istanbul close to transit and cafes.",
+        "maxGuests": 5,
+        "bedRooms": 2,
+        "baths": 3,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.68,
+            "categories": {
+                "cleanliness": 4.6,
+                "accuracy": 4.9,
+                "checkIn": 4.5,
+                "communication": 4.7,
+                "location": 4.7,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 17",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Omer Tanaka",
+            "imgUrl": "/img/omer.jpg",
+            "role": "Musician",
+            "favoritesong": "Space Oddity",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": true,
+            "monthsHosting": 21,
+            "reviews": 153,
+            "rating": 4.89,
+            "responseRate": 97,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s143",
+        "title": "Istanbul Coastal Nook",
+        "price": 267,
+        "loc": {
+            "country": "Turkey",
+            "city": "Istanbul",
+            "lat": 41.0082,
+            "lng": 28.9784
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/b/b8/Hagia_Sophia_Mars_2013.jpg"
+        ],
+        "summary": "Quiet spot in Istanbul close to transit and cafes.",
+        "maxGuests": 4,
+        "bedRooms": 3,
+        "baths": 2,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Washer",
+            "Dryer"
+        ],
+        "ratings": {
+            "overall": 4.68,
+            "categories": {
+                "cleanliness": 4.5,
+                "accuracy": 4.5,
+                "checkIn": 4.7,
+                "communication": 4.9,
+                "location": 4.7,
+                "value": 4.8
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 5",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Nora Singh",
+            "imgUrl": "/img/nora.jpg",
+            "role": "Guide",
+            "favoritesong": "Imagine",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": true,
+            "monthsHosting": 22,
+            "reviews": 104,
+            "rating": 4.69,
+            "responseRate": 99,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s144",
+        "title": "San Francisco Coastal Nook",
+        "price": 210,
+        "loc": {
+            "country": "USA",
+            "city": "San Francisco",
+            "lat": 37.7749,
+            "lng": -122.4194
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/a/af/Golden_Gate_Bridge_and_san_francisco_from_battery_spencer.jpg"
+        ],
+        "summary": "Comfortable stay in San Francisco with easy access to main sights.",
+        "maxGuests": 6,
+        "bedRooms": 3,
+        "baths": 3,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.7,
+            "categories": {
+                "cleanliness": 4.6,
+                "accuracy": 4.7,
+                "checkIn": 4.6,
+                "communication": 4.7,
+                "location": 4.9,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 19",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Yusuf Smith",
+            "imgUrl": "/img/yusuf.jpg",
+            "role": "Designer",
+            "favoritesong": "River Flows in You",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": false,
+            "monthsHosting": 12,
+            "reviews": 159,
+            "rating": 4.89,
+            "responseRate": 99,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s145",
+        "title": "Reykjavik Loft",
+        "price": 232,
+        "loc": {
+            "country": "Iceland",
+            "city": "Reykjavik",
+            "lat": 64.1466,
+            "lng": -21.9426
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/8/84/Reykjavik_panorama.jpg"
+        ],
+        "summary": "Modern hideaway in Reykjavik with great walkability.",
+        "maxGuests": 2,
+        "bedRooms": 2,
+        "baths": 3,
+        "highlights": [
+            "Exceptional check-in experience",
+            "Walkable area",
+            "Free cancellation"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.83,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.8,
+                "checkIn": 5.0,
+                "communication": 4.9,
+                "location": 4.8,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 15",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Marco Ivanov",
+            "imgUrl": "/img/marco.jpg",
+            "role": "Barista",
+            "favoritesong": "Space Oddity",
+            "bio": "Here to make your stay smooth and memorable.",
+            "isSuperhost": false,
+            "monthsHosting": 20,
+            "reviews": 31,
+            "rating": 4.69,
+            "responseRate": 100,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s146",
+        "title": "San Francisco Lake House",
+        "price": 100,
+        "loc": {
+            "country": "USA",
+            "city": "San Francisco",
+            "lat": 37.7749,
+            "lng": -122.4194
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/a/af/Golden_Gate_Bridge_and_san_francisco_from_battery_spencer.jpg"
+        ],
+        "summary": "Comfortable stay in San Francisco with easy access to main sights.",
+        "maxGuests": 3,
+        "bedRooms": 4,
+        "baths": 1,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Free parking"
+        ],
+        "ratings": {
+            "overall": 4.78,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 4.8,
+                "checkIn": 4.9,
+                "communication": 5.0,
+                "location": 4.7,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 9",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Alina Garcia",
+            "imgUrl": "/img/alina.jpg",
+            "role": "Musician",
+            "favoritesong": "Plastic Love",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": true,
+            "monthsHosting": 19,
+            "reviews": 69,
+            "rating": 4.7,
+            "responseRate": 100,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s147",
+        "title": "Rio de Janeiro Harbor View",
+        "price": 125,
+        "loc": {
+            "country": "Brazil",
+            "city": "Rio de Janeiro",
+            "lat": -22.9068,
+            "lng": -43.1729
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/4/4f/Rio_de_Janeiro_Montage_2017.png"
+        ],
+        "summary": "Bright space in Rio de Janeiro, ideal for food and culture lovers.",
+        "maxGuests": 2,
+        "bedRooms": 4,
+        "baths": 1,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Pool"
+        ],
+        "ratings": {
+            "overall": 4.75,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.9,
+                "checkIn": 4.8,
+                "communication": 4.6,
+                "location": 4.7,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 21",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Yonatan Smith",
+            "imgUrl": "/img/yonatan.jpg",
+            "role": "Guide",
+            "favoritesong": "Yellow",
+            "bio": "Here to make your stay smooth and memorable.",
+            "isSuperhost": false,
+            "monthsHosting": 17,
+            "reviews": 68,
+            "rating": 4.6,
+            "responseRate": 98,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s148",
+        "title": "Sapporo Coastal Nook",
+        "price": 229,
+        "loc": {
+            "country": "Japan",
+            "city": "Sapporo",
+            "lat": 43.0618,
+            "lng": 141.3545
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/7/77/Sapporo_TV_Tower_2018.jpg"
+        ],
+        "summary": "Bright space in Sapporo, ideal for food and culture lovers.",
+        "maxGuests": 4,
+        "bedRooms": 4,
+        "baths": 1,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Free parking"
+        ],
+        "ratings": {
+            "overall": 4.78,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.7,
+                "checkIn": 4.9,
+                "communication": 4.6,
+                "location": 4.9,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 15",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Kenji Tanaka",
+            "imgUrl": "/img/kenji.jpg",
+            "role": "Engineer",
+            "favoritesong": "Plastic Love",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 6,
+            "reviews": 144,
+            "rating": 4.73,
+            "responseRate": 95,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s149",
+        "title": "Paris Coastal Nook",
+        "price": 166,
+        "loc": {
+            "country": "France",
+            "city": "Paris",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg"
+        ],
+        "summary": "Modern hideaway in Paris with great walkability.",
+        "maxGuests": 2,
+        "bedRooms": 3,
+        "baths": 2,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.8,
+            "categories": {
+                "cleanliness": 5.0,
+                "accuracy": 4.7,
+                "checkIn": 4.9,
+                "communication": 4.6,
+                "location": 4.8,
+                "value": 4.8
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 4",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Akira Suzuki",
+            "imgUrl": "/img/akira.jpg",
+            "role": "Teacher",
+            "favoritesong": "Yellow",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": false,
+            "monthsHosting": 28,
+            "reviews": 176,
+            "rating": 4.89,
+            "responseRate": 99,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s150",
+        "title": "Rome Stone Cottage",
+        "price": 258,
+        "loc": {
+            "country": "Italy",
+            "city": "Rome",
+            "lat": 41.9028,
+            "lng": 12.4964
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/5/5c/Colosseo_2020.jpg"
+        ],
+        "summary": "Quiet spot in Rome close to transit and cafes.",
+        "maxGuests": 5,
+        "bedRooms": 2,
+        "baths": 1,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.9,
+            "categories": {
+                "cleanliness": 4.8,
+                "accuracy": 4.7,
+                "checkIn": 4.9,
+                "communication": 5.0,
+                "location": 5.0,
+                "value": 5.0
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 14",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Akira Mizrahi",
+            "imgUrl": "/img/akira.jpg",
+            "role": "Chef",
+            "favoritesong": "Clair de Lune",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": true,
+            "monthsHosting": 23,
+            "reviews": 104,
+            "rating": 4.69,
+            "responseRate": 99,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s151",
+        "title": "Zurich Skyline Suite",
+        "price": 211,
+        "loc": {
+            "country": "Switzerland",
+            "city": "Zurich",
+            "lat": 47.3769,
+            "lng": 8.5417
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/5/57/Z%C3%BCrich_-_Grossmuenster_und_Limmat.jpg"
+        ],
+        "summary": "Stylish base in Zurich for exploring Switzerland.",
+        "maxGuests": 6,
+        "bedRooms": 4,
+        "baths": 2,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Pool"
+        ],
+        "ratings": {
+            "overall": 4.85,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 5.0,
+                "checkIn": 4.8,
+                "communication": 4.7,
+                "location": 4.8,
+                "value": 4.9
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 21",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Noa Cohen",
+            "imgUrl": "/img/noa.jpg",
+            "role": "Host",
+            "favoritesong": "Clair de Lune",
+            "bio": "Here to make your stay smooth and memorable.",
+            "isSuperhost": false,
+            "monthsHosting": 23,
+            "reviews": 102,
+            "rating": 4.96,
+            "responseRate": 98,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s152",
+        "title": "Barcelona Garden Flat",
+        "price": 231,
+        "loc": {
+            "country": "Spain",
+            "city": "Barcelona",
+            "lat": 41.3851,
+            "lng": 2.1734
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/5/56/1_barcelona_panorama_2014.jpg"
+        ],
+        "summary": "Comfortable stay in Barcelona with easy access to main sights.",
+        "maxGuests": 2,
+        "bedRooms": 3,
+        "baths": 1,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.7,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 4.6,
+                "checkIn": 4.6,
+                "communication": 4.6,
+                "location": 4.9,
+                "value": 4.8
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 30",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Amir Suzuki",
+            "imgUrl": "/img/amir.jpg",
+            "role": "Artist",
+            "favoritesong": "Space Oddity",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 16,
+            "reviews": 179,
+            "rating": 4.68,
+            "responseRate": 97,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s153",
+        "title": "Miami Skyline Suite",
+        "price": 121,
+        "loc": {
+            "country": "USA",
+            "city": "Miami",
+            "lat": 25.7617,
+            "lng": -80.1918
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/e/eb/Miami_Skyline_2020.jpg"
+        ],
+        "summary": "Stylish base in Miami for exploring USA.",
+        "maxGuests": 2,
+        "bedRooms": 3,
+        "baths": 1,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Heating",
+            "Smart TV"
+        ],
+        "ratings": {
+            "overall": 4.82,
+            "categories": {
+                "cleanliness": 4.5,
+                "accuracy": 4.9,
+                "checkIn": 4.9,
+                "communication": 4.8,
+                "location": 4.8,
+                "value": 5.0
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 7",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Yael Rossi",
+            "imgUrl": "/img/yael.jpg",
+            "role": "Guide",
+            "favoritesong": "Clair de Lune",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": true,
+            "monthsHosting": 25,
+            "reviews": 146,
+            "rating": 4.79,
+            "responseRate": 98,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s154",
+        "title": "Marrakesh Skyline Suite",
+        "price": 140,
+        "loc": {
+            "country": "Morocco",
+            "city": "Marrakesh",
+            "lat": 31.6295,
+            "lng": -7.9811
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/1/15/Marrakesh_Medina.jpg"
+        ],
+        "summary": "Quiet spot in Marrakesh close to transit and cafes.",
+        "maxGuests": 6,
+        "bedRooms": 4,
+        "baths": 1,
+        "highlights": [
+            "Historic neighborhood",
+            "Quiet street",
+            "Tea set included"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.63,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.6,
+                "checkIn": 4.5,
+                "communication": 4.5,
+                "location": 4.7,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 5",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Emma Rossi",
+            "imgUrl": "/img/emma.jpg",
+            "role": "Engineer",
+            "favoritesong": "Clair de Lune",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": true,
+            "monthsHosting": 6,
+            "reviews": 137,
+            "rating": 4.78,
+            "responseRate": 96,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s155",
+        "title": "San Francisco Retreat",
+        "price": 156,
+        "loc": {
+            "country": "USA",
+            "city": "San Francisco",
+            "lat": 37.7749,
+            "lng": -122.4194
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/a/af/Golden_Gate_Bridge_and_san_francisco_from_battery_spencer.jpg"
+        ],
+        "summary": "Comfortable stay in San Francisco with easy access to main sights.",
+        "maxGuests": 5,
+        "bedRooms": 2,
+        "baths": 2,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Pool"
+        ],
+        "ratings": {
+            "overall": 4.83,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.8,
+                "checkIn": 5.0,
+                "communication": 4.8,
+                "location": 4.8,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 13",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Akira Levi",
+            "imgUrl": "/img/akira.jpg",
+            "role": "Engineer",
+            "favoritesong": "Plastic Love",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 22,
+            "reviews": 61,
+            "rating": 4.81,
+            "responseRate": 99,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s156",
+        "title": "Santorini Retreat",
+        "price": 121,
+        "loc": {
+            "country": "Greece",
+            "city": "Santorini",
+            "lat": 36.3932,
+            "lng": 25.4615
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/1/1a/Santorini_Thira.jpg"
+        ],
+        "summary": "Modern hideaway in Santorini with great walkability.",
+        "maxGuests": 2,
+        "bedRooms": 4,
+        "baths": 1,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Washer",
+            "Air conditioning"
+        ],
+        "ratings": {
+            "overall": 4.73,
+            "categories": {
+                "cleanliness": 4.7,
+                "accuracy": 4.8,
+                "checkIn": 4.9,
+                "communication": 4.6,
+                "location": 4.9,
+                "value": 4.5
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 13",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Marco Romero",
+            "imgUrl": "/img/marco.jpg",
+            "role": "Musician",
+            "favoritesong": "Shape of You",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": true,
+            "monthsHosting": 22,
+            "reviews": 24,
+            "rating": 4.87,
+            "responseRate": 96,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s157",
+        "title": "Berlin Coastal Nook",
+        "price": 212,
+        "loc": {
+            "country": "Germany",
+            "city": "Berlin",
+            "lat": 52.52,
+            "lng": 13.405
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/d/d9/Berlin_Skyline_Fernsehturm_2015.jpg"
+        ],
+        "summary": "Bright space in Berlin, ideal for food and culture lovers.",
+        "maxGuests": 4,
+        "bedRooms": 3,
+        "baths": 1,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Free parking"
+        ],
+        "ratings": {
+            "overall": 4.8,
+            "categories": {
+                "cleanliness": 4.8,
+                "accuracy": 4.9,
+                "checkIn": 4.9,
+                "communication": 4.5,
+                "location": 5.0,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 5",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Jon Brown",
+            "imgUrl": "/img/jon.jpg",
+            "role": "Designer",
+            "favoritesong": "Yellow",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 20,
+            "reviews": 33,
+            "rating": 4.83,
+            "responseRate": 100,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s158",
+        "title": "London Skyline Suite",
+        "price": 226,
+        "loc": {
+            "country": "UK",
+            "city": "London",
+            "lat": 51.5072,
+            "lng": -0.1276
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/c/cd/London_Montage_L.jpg"
+        ],
+        "summary": "Bright space in London, ideal for food and culture lovers.",
+        "maxGuests": 4,
+        "bedRooms": 4,
+        "baths": 2,
+        "highlights": [
+            "Self check-in",
+            "Near subway",
+            "Great city views"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchen",
+            "Free parking"
+        ],
+        "ratings": {
+            "overall": 4.8,
+            "categories": {
+                "cleanliness": 4.8,
+                "accuracy": 4.9,
+                "checkIn": 4.7,
+                "communication": 4.9,
+                "location": 4.9,
+                "value": 4.6
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Nov 10",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Alina Tanaka",
+            "imgUrl": "/img/alina.jpg",
+            "role": "Host",
+            "favoritesong": "Clair de Lune",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": true,
+            "monthsHosting": 10,
+            "reviews": 47,
+            "rating": 4.89,
+            "responseRate": 95,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s159",
+        "title": "Sydney Rooftop Loft",
+        "price": 284,
+        "loc": {
+            "country": "Australia",
+            "city": "Sydney",
+            "lat": -33.8688,
+            "lng": 151.2093
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/b/b6/Sydney_skyline_from_the_north_aerial_2010.jpg"
+        ],
+        "summary": "Stylish base in Sydney for exploring Australia.",
+        "maxGuests": 2,
+        "bedRooms": 2,
+        "baths": 2,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.75,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.5,
+                "checkIn": 4.7,
+                "communication": 4.7,
+                "location": 4.8,
+                "value": 4.9
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 16",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Ethan Tanaka",
+            "imgUrl": "/img/ethan.jpg",
+            "role": "Artist",
+            "favoritesong": "Hotel California",
+            "bio": "Ask me about food spots and scenic walks.",
+            "isSuperhost": false,
+            "monthsHosting": 24,
+            "reviews": 25,
+            "rating": 4.75,
+            "responseRate": 97,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s160",
+        "title": "Cape Town Townhouse",
+        "price": 259,
+        "loc": {
+            "country": "South Africa",
+            "city": "Cape Town",
+            "lat": -33.9249,
+            "lng": 18.4241
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/a/a3/Cape_Town_panorama_2015.jpg"
+        ],
+        "summary": "Bright space in Cape Town, ideal for food and culture lovers.",
+        "maxGuests": 2,
+        "bedRooms": 2,
+        "baths": 3,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Pool"
+        ],
+        "ratings": {
+            "overall": 4.77,
+            "categories": {
+                "cleanliness": 4.6,
+                "accuracy": 4.7,
+                "checkIn": 4.8,
+                "communication": 4.6,
+                "location": 4.9,
+                "value": 5.0
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Fire extinguisher available"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 13",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Yusuf Brown",
+            "imgUrl": "/img/yusuf.jpg",
+            "role": "Host",
+            "favoritesong": "Imagine",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": true,
+            "monthsHosting": 13,
+            "reviews": 39,
+            "rating": 4.84,
+            "responseRate": 95,
+            "responseTime": "within a few hours"
+        }
+    },
+    {
+        "_id": "s161",
+        "title": "Amsterdam Harbor View",
+        "price": 182,
+        "loc": {
+            "country": "Netherlands",
+            "city": "Amsterdam",
+            "lat": 52.3676,
+            "lng": 4.9041
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/9/9e/Amsterdam_canal_palaces_2018.jpg"
+        ],
+        "summary": "Modern hideaway in Amsterdam with great walkability.",
+        "maxGuests": 3,
+        "bedRooms": 4,
+        "baths": 3,
+        "highlights": [
+            "Historic neighborhood",
+            "Quiet street",
+            "Tea set included"
+        ],
+        "amenities": [
+            "WiFi",
+            "Heating",
+            "Smart TV"
+        ],
+        "ratings": {
+            "overall": 4.78,
+            "categories": {
+                "cleanliness": 4.9,
+                "accuracy": 4.5,
+                "checkIn": 5.0,
+                "communication": 4.7,
+                "location": 4.9,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 2:00 PM",
+            "Checkout before 10:00 AM",
+            "No parties or events"
+        ],
+        "safety": [
+            "First aid kit available",
+            "Emergency contact card provided"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 22",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Kenji Smith",
+            "imgUrl": "/img/kenji.jpg",
+            "role": "Guide",
+            "favoritesong": "Hotel California",
+            "bio": "Hosting is my passion and I love meeting new people.",
+            "isSuperhost": true,
+            "monthsHosting": 17,
+            "reviews": 54,
+            "rating": 4.8,
+            "responseRate": 100,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s162",
+        "title": "Dubai Harbor View",
+        "price": 135,
+        "loc": {
+            "country": "UAE",
+            "city": "Dubai",
+            "lat": 25.2048,
+            "lng": 55.2708
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/7/7b/Dubai_Montage_2014.jpg"
+        ],
+        "summary": "Stylish base in Dubai for exploring UAE.",
+        "maxGuests": 5,
+        "bedRooms": 1,
+        "baths": 1,
+        "highlights": [
+            "Great location",
+            "Work-friendly space",
+            "Lively area"
+        ],
+        "amenities": [
+            "WiFi",
+            "Kitchenette",
+            "Elevator"
+        ],
+        "ratings": {
+            "overall": 4.73,
+            "categories": {
+                "cleanliness": 4.6,
+                "accuracy": 4.8,
+                "checkIn": 4.8,
+                "communication": 4.9,
+                "location": 4.6,
+                "value": 4.7
+            }
+        },
+        "houseRules": [
+            "Check-in after 3:00 PM",
+            "Checkout before 11:00 AM",
+            "No smoking"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Dec 21",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Chiara Garcia",
+            "imgUrl": "/img/chiara.jpg",
+            "role": "Engineer",
+            "favoritesong": "River Flows in You",
+            "bio": "I enjoy sharing local tips and hidden gems.",
+            "isSuperhost": false,
+            "monthsHosting": 24,
+            "reviews": 103,
+            "rating": 4.95,
+            "responseRate": 95,
+            "responseTime": "within an hour"
+        }
+    },
+    {
+        "_id": "s163",
+        "title": "Bergen Old Town Home",
+        "price": 171,
+        "loc": {
+            "country": "Norway",
+            "city": "Bergen",
+            "lat": 60.3913,
+            "lng": 5.3221
+        },
+        "imgs": [
+            "https://upload.wikimedia.org/wikipedia/commons/1/16/Bryggen_Bergen_panorama.jpg"
+        ],
+        "summary": "Stylish base in Bergen for exploring Norway.",
+        "maxGuests": 5,
+        "bedRooms": 1,
+        "baths": 1,
+        "highlights": [
+            "Bay view balcony",
+            "Walkable area",
+            "Underground parking"
+        ],
+        "amenities": [
+            "WiFi",
+            "Air conditioning",
+            "Pool"
+        ],
+        "ratings": {
+            "overall": 4.72,
+            "categories": {
+                "cleanliness": 4.6,
+                "accuracy": 4.8,
+                "checkIn": 4.8,
+                "communication": 4.5,
+                "location": 4.7,
+                "value": 4.9
+            }
+        },
+        "houseRules": [
+            "Check-in after 4:00 PM",
+            "Checkout before 11:00 AM",
+            "Quiet hours after 10 PM"
+        ],
+        "safety": [
+            "Smoke alarm installed",
+            "Carbon monoxide alarm installed"
+        ],
+        "cancellationPolicy": [
+            "Free cancellation before Jan 20",
+            "Non-refundable after that"
+        ],
+        "host": {
+            "fullname": "Daniel Dubois",
+            "imgUrl": "/img/daniel.jpg",
+            "role": "Host",
+            "favoritesong": "River Flows in You",
+            "bio": "Here to make your stay smooth and memorable.",
+            "isSuperhost": true,
+            "monthsHosting": 15,
+            "reviews": 159,
+            "rating": 4.61,
+            "responseRate": 97,
+            "responseTime": "within a few hours"
+        }
     }
 ]
