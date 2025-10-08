@@ -16,13 +16,9 @@ export function AppHeader() {
 			await logout()
 			navigate('/')
 			showSuccessMsg('Bye now')
-		} catch (err) {
+		} catch {
 			showErrorMsg('Cannot logout')
 		}
-	}
-
-	function toggleMenu() {
-		setIsMenuOpen(prev => !prev)
 	}
 
 	useEffect(() => {
@@ -37,17 +33,28 @@ export function AppHeader() {
 	return (
 		<header className="app-header">
 			<nav className="header-nav container">
-				<Link to="/" className="logo">
-					<img
-						className="brand-icon"
-						src="https://www.vectorlogo.zone/logos/airbnb/airbnb-icon.svg"
-						alt="icon"
-					/>
-					<span className="logo-text">SkyStay</span>
-				</Link>
+				<div className="header-left">
+					<Link to="/" className="logo">
+						<img
+							className="brand-icon"
+							src="https://www.vectorlogo.zone/logos/airbnb/airbnb-icon.svg"
+							alt="icon"
+						/>
+						<span className="logo-text">SkyStay</span>
+					</Link>
+				</div>
 
-				<div className="header-center">
-					<StayFilter />
+				<div className="header-top-center">
+					<Link to="/" className="nav-pill homes">
+						<img
+							src="https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-search-bar-icons/original/4aae4ed7-5939-4e76-b100-e69440ebeae4.png?im_w=240"
+							alt=""
+							width="22"
+							height="22"
+							loading="eager"
+						/>
+						<span>Homes</span>
+					</Link>
 				</div>
 
 				<div className="header-right">
@@ -56,7 +63,7 @@ export function AppHeader() {
 						<i className="fi fi-bs-globe"></i>
 					</button>
 					<div className="profile-menu" ref={menuRef}>
-						<button className="profile-btn" onClick={toggleMenu} aria-label="Menu">
+						<button className="profile-btn" onClick={() => setIsMenuOpen(p => !p)} aria-label="Menu">
 							<span className="menu-icon">☰</span>
 						</button>
 						{isMenuOpen && (
@@ -78,7 +85,13 @@ export function AppHeader() {
 						)}
 					</div>
 				</div>
+
+				<div className="header-center">
+					<StayFilter />
+				</div>
 			</nav>
 		</header>
 	)
 }
+
+export default AppHeader
