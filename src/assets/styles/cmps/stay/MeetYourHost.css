@@ -1,0 +1,152 @@
+/* Meet Your Host */
+.meet-your-host {
+    margin: 2rem 0;
+    border-top: 1px solid #ddd;
+    padding-top: 2rem;
+}
+
+.host-layout {
+    display: grid;
+    grid-template-columns: minmax(400px, 440px) 1fr;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+/* LEFT SIDE */
+.host-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
+    min-height: 260px;
+    min-width: 395px;
+}
+
+.host-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 40px;
+}
+
+.host-photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.75rem;
+}
+
+.superhost-shield {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #ff385c;
+    color: #fff;
+    border-radius: 50%;
+    padding: 6px;
+    font-size: 0.9rem;
+}
+
+.host-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.host-role {
+    font-size: 0.9rem;
+    color: #717171;
+}
+
+/* STATS */
+.host-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+    min-width: 120px;
+}
+
+.stat {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.stat-value {
+    display: block;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+}
+
+.stat-label {
+    font-size: 10px;
+    color: #080808;
+    margin: 0;
+}
+
+/* UNDER CARD */
+.host-extra {
+    margin-top: 1.5rem;
+    font-size: 18px;
+}
+
+.host-fact {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.host-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+    color: #222;
+}
+
+/* RIGHT SIDE */
+.host-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    border-top: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.info-heading {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.info-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    
+}
+
+.message-host-btn {
+    margin-top: 1rem;
+    padding: 0.75rem 1.25rem;
+    color:#222;
+    background: #f2f2f2;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.message-host-btn:hover {
+    background: #e9e9e9;
+    transition: 0.3s;
+}

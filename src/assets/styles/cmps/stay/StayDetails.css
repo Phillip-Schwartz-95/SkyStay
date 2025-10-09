@@ -237,28 +237,6 @@
     flex-shrink: 0;
 }
 
-.stay-mission,
-.stay-amenities,
-.stay-reviews,
-.stay-rules,
-.cancellation-policy,
-.stay-location-map,
-.meet-your-host {
-    margin-bottom: 2rem;
-}
-
-.room-description h2,
-.stay-mission h2,
-.stay-amenities h2,
-.stay-reviews h2,
-.stay-rules h2,
-.cancellation-policy h2,
-.stay-location-map h2,
-.meet-your-host h2 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-}
-
 /* Google Maps */
 .map-search-box {
     position: absolute;
@@ -325,7 +303,17 @@
 }
 
 /* Review Form */
-.stay-reviews form {
+.stay-reviews {
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.reviews-header {
+    margin-bottom: 0;
+    font-size: 24px;
+}
+
+/* .stay-reviews form {
     display: flex;
     gap: 0.5rem;
     margin-top: 1rem;
@@ -345,7 +333,7 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-}
+} */
 
 /* Booking Card */
 .booking-card {
@@ -485,86 +473,7 @@
     border-radius: 8px;
 }
 
-/* Meet Your Host */
-.host-card {
-    display: flex;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    background-color: #f7f7f7;
-    padding: 24px 0;
-    border-top: 1px solid #DDDDDD;
-    border-radius: 12px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-}
-
-.host-left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-}
-
-.host-photo {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1rem;
-}
-
-.host-role {
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-}
-
-.host-fact {
-    font-style: italic;
-    color: #555;
-    margin-bottom: 0.5rem;
-}
-
-.host-bio {
-    font-size: 0.95rem;
-    line-height: 1.4;
-    max-width: 300px;
-}
-
-.host-right {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.host-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.host-header h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.superhost-badge {
-    color: #ff385c;
-    font-weight: bold;
-    font-size: 0.95rem;
-}
-
-.message-host-btn {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: #ff385c;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    align-self: start;
-}
-
+/* things to know */
 .things-to-know {
     margin-top: 3rem;
     padding-top: 2rem;

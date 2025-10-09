@@ -1,3 +1,5 @@
+import { SvgIcon } from './SvgIcon'
+
 export function ReviewBreakdown({ ratings, reviewCount, starCounts = {} }) {
   const safeCounts = {
     5: starCounts[5] || 0,
@@ -8,19 +10,18 @@ export function ReviewBreakdown({ ratings, reviewCount, starCounts = {} }) {
   }
 
   const categories = [
-    { label: 'Cleanliness', value: ratings.categories.cleanliness, icon: '🧼' },
-    { label: 'Accuracy', value: ratings.categories.accuracy, icon: '📏' },
-    { label: 'Check-in', value: ratings.categories.checkIn, icon: '🗝️' },
-    { label: 'Communication', value: ratings.categories.communication, icon: '💬' },
-    { label: 'Location', value: ratings.categories.location, icon: '📍' },
-    { label: 'Value', value: ratings.categories.value, icon: '💰' }
+    { label: 'Cleanliness', value: ratings.categories.cleanliness, icon: 'cleanliness' },
+    { label: 'Accuracy', value: ratings.categories.accuracy, icon: 'accuracy' },
+    { label: 'Check-in', value: ratings.categories.checkIn, icon: 'checkin' },
+    { label: 'Communication', value: ratings.categories.communication, icon: 'communication' },
+    { label: 'Location', value: ratings.categories.location, icon: 'location' },
+    { label: 'Value', value: ratings.categories.value, icon: 'value' }
   ]
 
   return (
     <section className="review-breakdown">
       <div className="breakdown-left">
         <div className="overall-score">
-          <span className="score-number">{ratings.overall.toFixed(1)}</span>
           <span className="score-label">Overall rating</span>
         </div>
         <ul className="star-distribution">
@@ -35,7 +36,7 @@ export function ReviewBreakdown({ ratings, reviewCount, starCounts = {} }) {
                   }}
                 ></div>
               </div>
-              <span>{safeCounts[star]}</span>
+
             </li>
           ))}
         </ul>
@@ -44,9 +45,9 @@ export function ReviewBreakdown({ ratings, reviewCount, starCounts = {} }) {
       <div className="breakdown-right">
         {categories.map((cat, idx) => (
           <div key={idx} className="category-box">
-            <span className="category-score">{cat.value.toFixed(1)}</span>
-            <span className="category-icon">{cat.icon}</span>
             <span className="category-label">{cat.label}</span>
+            <span className="category-score">{cat.value.toFixed(1)}</span>
+            <SvgIcon iconName={cat.icon} className="category-icon" />
           </div>
         ))}
       </div>

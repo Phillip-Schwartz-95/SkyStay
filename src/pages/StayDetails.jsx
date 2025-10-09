@@ -5,6 +5,7 @@ import { GoogleMap, Marker, useJsApiLoader, StandaloneSearchBox } from '@react-g
 import { FiKey, FiMapPin, FiCalendar } from 'react-icons/fi'
 import { FaWifi, FaSnowflake, FaSwimmingPool, FaTv } from 'react-icons/fa'
 import { MdKitchen, MdLocalLaundryService } from 'react-icons/md'
+import { SvgIcon } from '../cmps/SvgIcon'
 
 import { loadStay, addStayMsg } from '../store/actions/stay.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
@@ -12,6 +13,7 @@ import { reviewService } from '../services/review'
 import { userService } from '../services/user'
 import { ReviewBreakdown } from '../cmps/ReviewBreakdown'
 import { BookingCard } from '../cmps/BookingCard'
+import { MeetYourHost } from './cmps/MeetYourHost'
 import { StayCalendar } from '../cmps/StayCalendar'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -269,11 +271,13 @@ export function StayDetails() {
           </h2>
 
           {stay.ratings && (
-            <ReviewBreakdown
-              ratings={stay.ratings}
-              reviewCount={reviews.length}
-              starCounts={starCounts}
-            />
+            <div className="review-breakdown">
+              <ReviewBreakdown
+                ratings={stay.ratings}
+                reviewCount={reviews.length}
+                starCounts={starCounts}
+              />
+            </div>
           )}
 
           <ul className="review-list">
@@ -288,24 +292,37 @@ export function StayDetails() {
                   <div className="review-meta">
                     <strong>{review.byUser.fullname}</strong>
                     <p className="review-tenure">
-                      {review.byUser.tenure || 'Airbnb guest'}
+                      {review.byUser.tenure || review.byUser.location || 'Airbnb guest'}
                     </p>
                   </div>
                 </div>
 
                 <div className="review-info-row">
                   <span className="review-stars">
-                    {'★'.repeat(Number(review.rating || 5)) +
-                      '☆'.repeat(5 - Number(review.rating || 5))}
+                    {'★'.repeat(Number(review.rating || 5))}
                   </span>
+                  <span className="dot">·</span>
                   <span className="review-date">
-                    Some time ago {review.date || 'Stayed recently'}
+                    {review.date || 'August 2025'}
+                  </span>
+                  <span className="dot">·</span>
+                  <span className="review-stay">
+                    {review.stayLength || 'Stayed one night'}
                   </span>
                 </div>
-                <p className="review-text">{review.txt}</p>
+
+                <p className="review-text">
+                  {review.txt.length > 120
+                    ? review.txt.slice(0, 120) + '...'
+                    : review.txt}
+                </p>
+                {review.txt.length > 120 && (
+                  <button className="review-show-more">Show more</button>
+                )}
               </li>
             ))}
           </ul>
+
         </section>
 
         <section className="stay-location-map">
@@ -369,38 +386,9 @@ export function StayDetails() {
           )}
         </section>
 
-        <section className="meet-your-host">
-          <h2>Meet your host</h2>
-          <div className="host-card">
-            <div className="host-left">
-              <img
-                src={stay.host?.imgUrl}
-                alt={stay.host?.fullname}
-                className="host-photo"
-              />
-              <p className="host-role">{stay.host?.role}</p>
-              <p className="host-fact">🎶 {stay.host?.favoritesong}</p>
-              <p className="host-bio">{stay.host?.bio}</p>
-            </div>
+        <MeetYourHost stay={stay} />
 
-            <div className="host-right">
-              <div className="host-header">
-                <h3>{stay.host?.fullname}</h3>
-                {stay.host?.isSuperhost && (
-                  <span className="superhost-badge">🌟 Superhost</span>
-                )}
-              </div>
-              <p>{stay.host?.monthsHosting} months hosting</p>
-              <p>
-                {stay.host?.reviews} reviews · {stay.host?.rating} average rating
-              </p>
-              <p>Response rate: {stay.host?.responseRate}%</p>
-              <p>Responds within: {stay.host?.responseTime}</p>
-              <button className="message-host-btn">Message Host</button>
-            </div>
-          </div>
-        </section>
-
+        {/* Things to know */}
         <section className="things-to-know">
           <h2>Things to know</h2>
           <div className="info-grid">
