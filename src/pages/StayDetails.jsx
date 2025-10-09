@@ -13,7 +13,7 @@ import { reviewService } from '../services/review'
 import { userService } from '../services/user'
 import { ReviewBreakdown } from '../cmps/ReviewBreakdown'
 import { BookingCard } from '../cmps/BookingCard'
-import { MeetYourHost } from './cmps/MeetYourHost'
+import { MeetYourHost } from '../cmps/MeetYourHost'
 import { StayCalendar } from '../cmps/StayCalendar'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -133,9 +133,14 @@ export function StayDetails() {
         </header>
 
         <div className="photo-gallery">
-          {stay.imgs?.map((img, idx) => (
-            <img key={idx} src={img} alt={`Stay image ${idx + 1}`} />
-          ))}
+          <div className="main-photo">
+            <img src={stay.imgs?.[0]} alt="Main stay image" />
+          </div>
+          <div className="side-photos">
+            {stay.imgs?.slice(1, 5).map((img, idx) => (
+              <img key={idx} src={img} alt={`Stay side ${idx + 1}`} />
+            ))}
+          </div>
         </div>
 
         <div className="details-layout">
@@ -261,8 +266,8 @@ export function StayDetails() {
               reservedDates={reservedDates}
               setReservedDates={setReservedDates}
             />
+            </div>
           </div>
-        </div>
 
         <section className="stay-reviews">
           <h2 className="reviews-header">

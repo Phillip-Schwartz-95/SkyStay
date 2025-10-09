@@ -73,9 +73,9 @@
 
 .details-right {
     grid-column: 2;
-    position: sticky;
-    top: 125px;
     align-self: flex-start;
+    position: sticky;
+    top: 180px;
 }
 
 /* Location and basic details */

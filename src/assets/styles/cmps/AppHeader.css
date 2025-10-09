@@ -52,7 +52,7 @@
     grid-area: center;
     justify-self: center;
     width: 100%;
-    max-width: 1050px;
+    max-width: 850px;
 }
 
 .logo {
@@ -225,3 +225,4 @@
     transform: translateX(-3px) scaleX(-1);
     transform-origin: center;
 }
+

@@ -7,7 +7,7 @@
     border-radius: 32px;
     padding: 0 8px;
     width: 100%;
-    max-width: 1050px;
+    max-width: 750px;
     box-shadow:
         0 1px 2px rgba(0, 0, 0, .06),
         0 4px 12px rgba(0, 0, 0, .05);
@@ -38,12 +38,17 @@
 }
 
 .pill-section.who {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding-right: 64px;
+    flex: 1;
     position: relative;
+    padding-right: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding-top: 20px;
+}
+
+.pill-section.who:hover:has(.search-btn:hover) {
+    background-color: transparent;
 }
 
 .pill-divider {
@@ -86,9 +91,9 @@
 
 .search-btn {
     position: absolute;
-    right: 12px;
+    right: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-63%);
     margin-left: 0;
     width: 48px;
     height: 48px;
@@ -104,8 +109,12 @@
     cursor: pointer;
 }
 
+.search-btn:hover {
+    background: #e40b33d2;
+}
+
 .pill-section.where {
-    width: 38%;
+    width: 29%;
 }
 
 .pill-section.checkin,
@@ -119,6 +128,14 @@
 
 .search-btn svg {
     display: block;
+}
+
+.search-pill,
+.pill-section,
+.placeholder-input,
+.placeholder-btn {
+    font-family: var(--bnb-text);
+    font-weight: 100;
 }
 
 @media (max-width: 950px) {
