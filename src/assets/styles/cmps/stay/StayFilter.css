@@ -37,21 +37,13 @@
     background-color: #ebebeb;
 }
 
-/* .pill-section.pill-section.who {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 20%;
-    padding-right: 12px;
-} */
-
 .pill-section.who {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     padding-right: 64px;
     position: relative;
+    padding-top: 20px;
 }
 
 .pill-divider {
@@ -97,7 +89,6 @@
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-
     margin-left: 0;
     width: 48px;
     height: 48px;
@@ -171,4 +162,9 @@
 .placeholder-input,
 .placeholder-btn {
     font-size: 15px;
+}
+
+.pill-section.who .placeholder-btn {
+    font-size: 14px;
+    margin-top: 6px;
 }
