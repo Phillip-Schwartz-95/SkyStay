@@ -1,0 +1,104 @@
+/* Main container */
+.stay-gallery-page {
+    background: #fff;
+    padding: 40px 60px;
+    min-height: 100vh;
+    font-family: "Airbnb Cereal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #222;
+}
+
+/* Back button */
+.back-btn {
+    position: fixed;
+    top: 7px;
+    left: 7px;
+    color: #222;
+    background: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 100;
+}
+
+.back-btn:hover {
+    background: #f7f7f7;
+    transform: scale(1.05);
+}
+
+/* Title */
+.photo-tour-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+/* Each category section */
+.stay-gallery-page section {
+    margin-bottom: 60px;
+}
+
+.stay-gallery-page h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-transform: capitalize;
+}
+
+/* Grid of images */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive tweaks */
+@media (max-width: 1000px) {
+    .stay-gallery-page {
+        padding: 30px 24px;
+    }
+
+    .gallery-grid img {
+        height: 220px;
+    }
+}
+
+@media (max-width: 600px) {
+    .photo-tour-title {
+        font-size: 22px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid img {
+        height: 200px;
+    }
+
+    .back-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+}

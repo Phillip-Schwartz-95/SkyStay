@@ -160,6 +160,13 @@ function _getIcon(iconName) {
             </svg>
         ),
         music: (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                aria-hidden="true" role="presentation" focusable="false"
+                style={{ display: 'block', height: '32px', width: '32px', fill: 'currentColor' }}>
+                <path d="M26 4v18.09a5.5 5.5 0 1 1-2-4.24V10H12v12.09a5.5 5.5 0 1 1-2-4.24V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2Z"></path>
+            </svg>
+        ),
+        backArrow: (
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"
@@ -168,12 +175,15 @@ function _getIcon(iconName) {
                 focusable="false"
                 style={{
                     display: 'block',
-                    height: '32px',
-                    width: '32px',
-                    fill: 'currentColor',
+                    fill: 'none',
+                    height: '16px',
+                    width: '16px',
+                    stroke: 'currentcolor',
+                    strokeWidth: '4',
+                    overflow: 'visible'
                 }}
             >
-                <path d="m28 2.12-.22.01-16 1.78A2 2 0 0 0 10 5.89v15.14A4.95 4.95 0 0 0 7 20a5 5 0 1 0 5 5V11.9l16-1.78v8.9A4.95 4.95 0 0 0 25 18a5 5 0 1 0 5 5V4.12a2 2 0 0 0-2-2zM7 28a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm5-18.12V5.9l16-1.77V8.1L12 9.88zM25 26a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"></path>
+                <path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path>
             </svg>
         ),
     }

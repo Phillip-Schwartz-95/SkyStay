@@ -75,7 +75,11 @@
             "lng": 34.7818
         },
         "imgs": [
-            "https://upload.wikimedia.org/wikipedia/commons/f/f3/Tel_Aviv_-_Beach_001.jpg"
+            "https://upload.wikimedia.org/wikipedia/commons/f/f3/Tel_Aviv_-_Beach_001.jpg", 
+            "https://upload.wikimedia.org/wikipedia/commons/5/5f/Tel_Aviv_Beach_Morning_by_David_Shankbone.jpg", 
+            "https://upload.wikimedia.org/wikipedia/commons/0/0b/Tel_Aviv_Skyline_(cropped).jpg", 
+            "https://upload.wikimedia.org/wikipedia/commons/9/9d/Israel-Tel_Aviv_beach_001.jpg", 
+            "https://upload.wikimedia.org/wikipedia/commons/c/c7/Tel_Aviv_beach_panorama.jpg" 
         ],
         "summary": "A bright seaside bungalow just steps from the Mediterranean. Perfect for sun lovers and nightlife explorers.",
         "maxGuests": 3,

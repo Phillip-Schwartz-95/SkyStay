@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
+import { useNavigate } from "react-router-dom"
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { GoogleMap, Marker, useJsApiLoader, StandaloneSearchBox } from '@react-google-maps/api'
@@ -9,6 +10,7 @@ import { SvgIcon } from '../cmps/SvgIcon'
 
 import { loadStay, addStayMsg } from '../store/actions/stay.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
+import stayphotos from '../data/stayphotos.json'
 import { reviewService } from '../services/review'
 import { userService } from '../services/user'
 import { ReviewBreakdown } from '../cmps/ReviewBreakdown'
@@ -24,6 +26,8 @@ const libraries = ['places']
 export function StayDetails() {
   const { stayId } = useParams()
   const stay = useSelector(storeState => storeState.stayModule.stay)
+  const photo = stayphotos[stayId]
+  const navigate = useNavigate()
   const [msgTxt, setMsgTxt] = useState('')
   const [reviews, setReviews] = useState([])
   const mapRef = useRef(null)
@@ -136,11 +140,32 @@ export function StayDetails() {
           <div className="main-photo">
             <img src={stay.imgs?.[0]} alt="Main stay image" />
           </div>
+
           <div className="side-photos">
             {stay.imgs?.slice(1, 5).map((img, idx) => (
               <img key={idx} src={img} alt={`Stay side ${idx + 1}`} />
             ))}
           </div>
+
+          {stay.imgs?.length > 5 && (
+            <button className="show-all-btn" onClick={() => navigate(`/stay/${stay._id}/photos`)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                className="show-all-icon"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3 11.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"
+                />
+              </svg>
+              Show all photos
+            </button>
+          )}
+
         </div>
 
         <div className="details-layout">
@@ -266,8 +291,8 @@ export function StayDetails() {
               reservedDates={reservedDates}
               setReservedDates={setReservedDates}
             />
-            </div>
           </div>
+        </div>
 
         <section className="stay-reviews">
           <h2 className="reviews-header">

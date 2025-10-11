@@ -26,6 +26,8 @@
 @import "cmps/stay/StayDetails";
 @import "cmps/stay/MeetYourHost";
 @import "cmps/stay/PhotoGalleryDetails.css";
+@import "cmps/stay/BookingCard.css";
+@import "cmps/stay/ImagePage.css";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";

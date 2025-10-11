@@ -34,6 +34,7 @@
     font-weight: 500;
     letter-spacing: normal;
     color: #222222;
+    margin-bottom: 0;
 }
 
 /* Gallery */
@@ -334,136 +335,6 @@
     border-radius: 8px;
     cursor: pointer;
 } */
-
-/* Booking Card */
-.booking-card {
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 24px;
-    font-family: var(--bnb-text);
-    max-width: 372.325px;
-    max-height: 310.8px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
-
-}
-
-.booking-header {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 12px;
-}
-
-.nights {
-    font-size: 16px;
-    line-height: 20px;
-    color: #6A6A6A;
-    font-weight: 400;
-}
-
-.booking-header .price {
-    font-size: 24px;
-}
-
-.date-inputs {
-    display: flex;
-    gap: 0;
-    /* remove gap so they hug each other */
-}
-
-.date-box {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid grey;
-    padding: 6px 10px;
-    font-size: 14px;
-}
-
-.date-box:first-child {
-    border-top-left-radius: 8px;
-    border-right: none;
-    /* prevent double border */
-}
-
-.date-box:last-child {
-    border-top-right-radius: 8px;
-}
-
-.date-box label {
-    font-size: 10px;
-    font-weight: bold;
-    margin-bottom: 2px;
-}
-
-/* Style the DatePicker input inside */
-.date-box .react-datepicker-wrapper {
-    width: 100%;
-}
-
-.date-box .react-datepicker-wrapper input {
-    border: none;
-    outline: none;
-    font-size: 14px;
-    padding: 4px 0;
-    width: 100%;
-}
-
-.guests-box {
-    border: 1px solid grey;
-    border-top: none;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    padding: 6px 10px;
-    margin-bottom: 12px;
-    display: flex;
-    flex-direction: column;
-}
-
-.guests-box label {
-    font-size: 10px;
-    font-weight: bold;
-    margin-bottom: 2px;
-}
-
-.guests-box select {
-    border: none;
-    outline: none;
-    font-size: 14px;
-    padding: 4px 0;
-}
-
-.reserve-btn {
-    background: #FF385C;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 8px;
-    transition: background .2s ease;
-}
-
-.reserve-btn:hover {
-    background: #E31C5F;
-}
-
-.charge-note {
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-    margin-top: 6px;
-    color: #555;
-}
-
-.booking-summary {
-    margin-top: 12px;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-}
 
 /* Map */
 #map {
