@@ -7,6 +7,7 @@ export function StayFilter() {
 
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
 
+    const [activeMenu, setActiveMenu] = useState(null)
     const [draft, setDraft] = useState({ ...filterBy, capacity: filterBy.capacity || 0 })
 
     useEffect(() => {
@@ -35,6 +36,13 @@ export function StayFilter() {
 
         setFilter(finalFilter)
         console.log('Filter set globally:', finalFilter)
+
+        setActiveMenu(null)
+    }
+
+    function onPillClick(menuName, ev) {
+        if (ev) ev.preventDefault()
+        setActiveMenu(activeMenu === menuName ? null : menuName)
     }
 
     function formatDateForInput(dateValue) {
@@ -47,61 +55,100 @@ export function StayFilter() {
     }
 
     return (
-        <form onSubmit={onSearch} className="search-pill">
-            <div className="pill-section where">
-                <label className="label">Where</label>
-                <input
-                    className="placeholder-input"
-                    type="text"
-                    placeholder="Search destinations"
-                    value={draft.txt || ''}
-                    onChange={ev => onChange('txt', ev.target.value)}
-                />
-            </div>
+        <div className="filter-wrapper">
+            <form onSubmit={onSearch} className="search-pill">
+                <div
+                    className={`pill-section where ${activeMenu === 'where' ? 'active' : ''}`}
+                    onClick={(ev) => onPillClick('where', ev)}
+                >
+                    <label className="label">Where</label>
+                    <input
+                        className="placeholder-input"
+                        type="text"
+                        placeholder="Search destinations"
+                        readOnly={activeMenu !== 'where'}
+                        value={draft.txt || ''}
+                        onChange={ev => onChange('txt', ev.target.value)}
+                    />
+                </div>
 
-            <div className="pill-divider" />
+                <div className="pill-divider" />
 
-            <div className="pill-section checkin">
-                <label className="label">Check in</label>
-                <input
-                    className="date-input"
-                    type="date"
-                    value={draft.startDate || ''}
-                    onChange={ev => onChange('startDate', ev.target.value)}
-                />
-            </div>
+                <div
+                    className={`pill-section checkin ${activeMenu === 'checkin' ? 'active' : ''}`}
+                    onClick={(ev) => onPillClick('checkin', ev)}
+                >
+                    <label className="label">Check in</label>
+                    {activeMenu === 'checkin' ? (
+                        <input
+                            className="date-input"
+                            type="date"
+                            value={draft.startDate || ''}
+                            onChange={ev => onChange('startDate', ev.target.value)}
+                        />
+                    ) : (
+                        <span className="placeholder-btn">Add dates</span>
+                    )}
+                </div>
 
-            <div className="pill-divider" />
+                <div className="pill-divider" />
 
-            <div className="pill-section checkout">
-                <label className="label">Check out</label>
-                <input
-                    className="date-input"
-                    type="date"
-                    value={draft.endDate || ''}
-                    onChange={ev => onChange('endDate', ev.target.value)}
-                />
-            </div>
+                <div
+                    className={`pill-section checkout ${activeMenu === 'checkout' ? 'active' : ''}`}
+                    onClick={(ev) => onPillClick('checkout', ev)}
+                >
+                    <label className="label">Check out</label>
+                    {activeMenu === 'checkout' ? (
+                        <input
+                            className="date-input"
+                            type="date"
+                            value={draft.endDate || ''}
+                            onChange={ev => onChange('endDate', ev.target.value)}
+                        />
+                    ) : (
+                        <span className="placeholder-btn">Add dates</span>
+                    )}
+                </div>
 
-            <div className="pill-divider" />
+                <div className="pill-divider" />
 
-            <div className="pill-section who">
-                <label className="label">Who</label>
-                <input
-                    className="capacity-input"
-                    type="number"
-                    placeholder="Add guests"
-                    value={draft.capacity === 0 ? '' : draft.capacity}
-                    min="0"
-                    onChange={ev => onChange('capacity', ev.target.value)}
-                />
+                <div
+                    className={`pill-section who ${activeMenu === 'who' ? 'active' : ''}`}
+                    onClick={(ev) => onPillClick('who', ev)}
+                >
+                    <label className="label">Who</label>
+                    {activeMenu === 'who' ? (
+                        <input
+                            className="capacity-input"
+                            type="number"
+                            placeholder="Add guests"
+                            value={draft.capacity === 0 ? '' : draft.capacity}
+                            min="0"
+                            onChange={ev => onChange('capacity', ev.target.value)}
+                        />
+                    ) : (
+                        <span className="placeholder-btn">
+                            {draft.capacity > 0 ? `${draft.capacity} guests` : 'Add guests'}
+                        </span>
+                    )}
 
-                <button className="search-btn" type="submit" aria-label="Search">
-                    <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill="currentColor" d="M10.5 3a7.5 7.5 0 1 1 0 15c-1.83 0-3.51-.64-4.82-1.71l-3.49 3.49a1 1 0 1 1-1.41-1.41l3.49-3.49A7.46 7.46 0 0 1 3 10.5 7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11Z" />
-                    </svg>
-                </button>
-            </div>
-        </form>
+                    <button className="search-btn" type="submit" aria-label="Search">
+                        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M10.5 3a7.5 7.5 0 1 1 0 15c-1.83 0-3.51-.64-4.82-1.71l-3.49 3.49a1 1 0 1 1-1.41-1.41l3.49-3.49A7.46 7.46 0 0 1 3 10.5 7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11Z" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+
+            {activeMenu && (
+                <div className="search-dropdown-overlay">
+                    {activeMenu === 'where' && (
+                        <div className="where-menu">
+                            <h3>Search by Region</h3>
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
     )
 }

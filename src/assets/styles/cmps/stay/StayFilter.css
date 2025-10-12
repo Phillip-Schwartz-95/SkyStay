@@ -33,6 +33,23 @@
     transition: background-color 0.2s ease;
 }
 
+.pill-section.active {
+    background-color: #fff;
+    border: 1px solid #222;
+    padding: 12px 24px;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, .15),
+        0 1px 2px rgba(0, 0, 0, .06);
+}
+
+.pill-section.active:hover {
+    background-color: #fff;
+}
+
+.search-pill.has-active-menu {
+    box-shadow: none;
+}
+
 .pill-section:hover {
     background-color: #ebebeb;
 }
@@ -184,4 +201,35 @@
 .pill-section.who .placeholder-btn {
     font-size: 14px;
     margin-top: 6px;
+}
+
+.filter-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.search-dropdown-overlay {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border-radius: 32px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    padding: 30px;
+    width: 850px;
+    z-index: 99;
+}
+
+.where-menu h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 20px
+}
+
+.pill-section.active .placeholder-input {
+    color: #222;
+    font-weight: 500;
 }
