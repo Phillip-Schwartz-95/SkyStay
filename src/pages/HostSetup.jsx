@@ -2,25 +2,25 @@ import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { userService } from '../services/user'
-import { showSuccessMsg } from '../services/event-bus.service'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
+import { becomeHost } from '../store/actions/user.actions'
 
 export function HostSetup() {
     const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
-
-    useEffect(() => {
-    if (!user) {
-      showErrorMsg('Please log in to become a host')
-      navigate('/auth/login')
-    }
-  }, [user])
-
     const [form, setForm] = useState({
         placeType: '',
         location: '',
         guests: 1,
-        agree: false
+        agree: false,
     })
+
+    useEffect(() => {
+        if (!user) {
+            showErrorMsg('Please log in to become a host')
+            navigate('/auth/login')
+        }
+    }, [user])
 
     function handleChange(ev) {
         const { name, value, type, checked } = ev.target
@@ -31,10 +31,7 @@ export function HostSetup() {
         ev.preventDefault()
         if (!form.placeType || !form.location || !form.agree) return
 
-        const updatedUser = { ...user, isHost: true, hostInfo: form }
-        await userService.update(updatedUser)
-        userService.saveLoggedinUser(updatedUser)
-
+        await becomeHost(user, form)
         showSuccessMsg('You are now a host!')
         navigate('/host/new')
     }

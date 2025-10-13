@@ -80,3 +80,28 @@ export async function loadUser(userId) {
         console.log('Cannot load user', err)
     }
 }
+
+export async function becomeHost(user, hostInfo) {
+    try {
+        // update locally
+        const updatedUser = { ...user, isHost: true, hostInfo }
+
+        // update to local storage
+        await userService.update(updatedUser)
+
+        // save updated user in sessionStorage
+        userService.saveLoggedinUser(updatedUser)
+
+        // update redux
+        store.dispatch({
+            type: SET_USER,
+            user: updatedUser
+        })
+
+        return updatedUser
+    } catch (err) {
+        console.log('Error in becomeHost:', err)
+        throw err
+    }
+}
+

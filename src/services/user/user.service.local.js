@@ -19,49 +19,57 @@ export const userService = {
 async function getUsers() {
     let users = await storageService.query('user')
 
-  // 👇 seed if empty
-  if (!users.length) {
-    for (const user of usersJson) {
-      await storageService.post('user', user) // assigns random _id
+    // seed if empty
+    if (!users.length) {
+        for (const user of usersJson) {
+            // use post, but keep the same _id
+            const newUser = { ...user, _id: user._id } // keep ID
+            await storageService.post('user', newUser)
+        }
+        users = await storageService.query('user')
     }
-    users = await storageService.query('user')
-  }
 
-  // Strip password before returning
-  return users.map(({ password, ...user }) => ({ ...user }))
+    // temporarily without password field
+    return users.map(({ password, ...user }) => ({ ...user }))
 }
+
 
 async function getById(userId) {
     return await storageService.get('user', userId)
 }
 
 async function getByFullname(fullname) {
-  const users = await getUsers()
-  return users.find(u => u.fullname === fullname) || null
+    const users = await getUsers()
+    return users.find(u => u.fullname === fullname) || null
 }
 
 function remove(userId) {
     return storageService.remove('user', userId)
 }
 
-async function update({ _id, score }) {
-    const user = await storageService.get('user', _id)
-    user.score = score
-    await storageService.put('user', user)
+async function update(userToUpdate) {
+    const existingUser = await storageService.get('user', userToUpdate._id)
+    const updatedUser = { ...existingUser, ...userToUpdate }
 
-	// When admin updates other user's details, do not update loggedinUser
+    await storageService.put('user', updatedUser)
+
     const loggedinUser = getLoggedinUser()
-    if (loggedinUser._id === user._id) saveLoggedinUser(user)
+    if (loggedinUser && loggedinUser._id === updatedUser._id) {
+        saveLoggedinUser(updatedUser)
+    }
 
+    return updatedUser
+}
+
+async function login({ username }) {
+    const users = await storageService.query('user')
+    const user = users.find(u => u.username === username)
+    if (!user) throw new Error('User not found')
+
+    saveLoggedinUser(user) // don’t make new ID, just save existing one
     return user
 }
 
-async function login(userCred) {
-    const users = await storageService.query('user')
-    const user = users.find(user => user.username === userCred.username)
-
-    if (user) return saveLoggedinUser(user)
-}
 
 async function signup(userCred) {
     if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
@@ -80,15 +88,15 @@ function getLoggedinUser() {
 }
 
 function saveLoggedinUser(user) {
-	user = { 
-        _id: user._id, 
-        fullname: user.fullname, 
-        imgUrl: user.imgUrl, 
-        score: user.score, 
-        isAdmin: user.isAdmin 
+    user = {
+        _id: user._id,
+        fullname: user.fullname,
+        imgUrl: user.imgUrl,
+        score: user.score,
+        isAdmin: user.isAdmin
     }
-	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
-	return user
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    return user
 }
 
 // To quickly create an admin user, uncomment the next line

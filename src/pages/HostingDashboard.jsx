@@ -28,8 +28,7 @@ export function HostingDashboard() {
 
     return (
         <section className="hosting-dashboard container">
-            <h2>Welcome back, {user.fullname} 👋</h2>
-            <p>Here are your current listings:</p>
+            <h2>Here are your current listings {user.fullname}</h2>
 
             {!myStays.length ? (
                 <div>
