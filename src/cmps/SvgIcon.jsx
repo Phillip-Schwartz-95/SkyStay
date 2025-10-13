@@ -186,6 +186,29 @@ function _getIcon(iconName) {
                 <path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path>
             </svg>
         ),
+        share: (
+            <svg
+                viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    fill: 'none',
+                    height: '16px',
+                    width: '16px',
+                    stroke: 'currentColor',
+                    strokeWidth: '2',
+                    overflow: 'visible',
+                }}
+            >
+                <path
+                    d="m27 18v9c0 1.1046-.8954 2-2 2h-18c-1.10457 0-2-.8954-2-2v-9m11-15v21m-10-11 9.2929-9.29289c.3905-.39053 1.0237-.39053 1.4142 0l9.2929 9.29289"
+                    fill="none"
+                />
+            </svg>
+        ),
     }
     return icons[iconName]
 }
