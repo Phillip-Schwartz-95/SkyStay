@@ -7,6 +7,10 @@ import { UserProfile } from './pages/UserProfile.jsx'
 import { LoginSignup, Login, Signup } from './pages/LoginSignup.jsx'
 import { ImagePage } from './pages/ImagePage.jsx'
 
+import { HostSetup } from './pages/HostSetup.jsx'
+import { HostingDashboard } from './pages/HostingDashboard.jsx'
+import { HostStayForm } from './pages/HostStayForm.jsx'
+
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
@@ -31,6 +35,10 @@ export function RootCmp() {
                         <Route path="login" element={<Login />} />
                         <Route path="signup" element={<Signup />} />
                     </Route>
+
+                    <Route path="host/start" element={<HostSetup />} />
+                    <Route path="hosting" element={<HostingDashboard />} />
+                    <Route path="host/new" element={<HostStayForm />} />
 
                     {/* Future routes (currently disabled) */}
                     {/* <Route path="about" element={<AboutUs />}>

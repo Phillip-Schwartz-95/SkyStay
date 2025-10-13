@@ -95,9 +95,32 @@
 .host-link:focus,
 .host-link:active {
     color: #222;
-    background: transparent;
     box-shadow: none;
     text-decoration: none;
+}
+
+.app-header .switch-mode-btn,
+.app-header .host-link {
+    background-color: transparent;
+    color: #222;
+    margin: 0;
+    padding: 8px 14px;
+    border-radius: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.app-header .switch-mode-btn:hover,
+.app-header .host-link:hover,
+.app-header .switch-mode-btn:focus,
+.app-header .host-link:focus {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.app-header .switch-mode-btn:active,
+.app-header .host-link:active {
+    background-color: rgba(0, 0, 0, 0.08);
 }
 
 .lang-btn {
@@ -225,4 +248,3 @@
     transform: translateX(-3px) scaleX(-1);
     transform-origin: center;
 }
-
