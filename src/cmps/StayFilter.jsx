@@ -40,9 +40,12 @@ export function StayFilter() {
         setActiveMenu(null)
     }
 
-    function onPillClick(menuName, ev) {
-        if (ev) ev.preventDefault()
+    function onPillClick(menuName) {
         setActiveMenu(activeMenu === menuName ? null : menuName)
+    }
+
+    function onChildClick(ev) {
+        ev.stopPropagation()
     }
 
     function formatDateForInput(dateValue) {
@@ -54,12 +57,15 @@ export function StayFilter() {
         return `${year}-${month}-${day}`
     }
 
+    const searchPillClasses = `search-pill ${activeMenu ? 'has-active-menu' : ''}`
+
     return (
         <div className="filter-wrapper">
-            <form onSubmit={onSearch} className="search-pill">
+            <form onSubmit={onSearch} className={searchPillClasses}>
+
                 <div
                     className={`pill-section where ${activeMenu === 'where' ? 'active' : ''}`}
-                    onClick={(ev) => onPillClick('where', ev)}
+                    onClick={() => onPillClick('where')}
                 >
                     <label className="label">Where</label>
                     <input
@@ -69,6 +75,7 @@ export function StayFilter() {
                         readOnly={activeMenu !== 'where'}
                         value={draft.txt || ''}
                         onChange={ev => onChange('txt', ev.target.value)}
+                        onClick={onChildClick}
                     />
                 </div>
 
@@ -76,7 +83,7 @@ export function StayFilter() {
 
                 <div
                     className={`pill-section checkin ${activeMenu === 'checkin' ? 'active' : ''}`}
-                    onClick={(ev) => onPillClick('checkin', ev)}
+                    onClick={() => onPillClick('checkin')}
                 >
                     <label className="label">Check in</label>
                     {activeMenu === 'checkin' ? (
@@ -85,6 +92,7 @@ export function StayFilter() {
                             type="date"
                             value={draft.startDate || ''}
                             onChange={ev => onChange('startDate', ev.target.value)}
+                            onClick={onChildClick}
                         />
                     ) : (
                         <span className="placeholder-btn">Add dates</span>
@@ -95,7 +103,7 @@ export function StayFilter() {
 
                 <div
                     className={`pill-section checkout ${activeMenu === 'checkout' ? 'active' : ''}`}
-                    onClick={(ev) => onPillClick('checkout', ev)}
+                    onClick={() => onPillClick('checkout')}
                 >
                     <label className="label">Check out</label>
                     {activeMenu === 'checkout' ? (
@@ -104,6 +112,7 @@ export function StayFilter() {
                             type="date"
                             value={draft.endDate || ''}
                             onChange={ev => onChange('endDate', ev.target.value)}
+                            onClick={onChildClick}
                         />
                     ) : (
                         <span className="placeholder-btn">Add dates</span>
@@ -114,7 +123,7 @@ export function StayFilter() {
 
                 <div
                     className={`pill-section who ${activeMenu === 'who' ? 'active' : ''}`}
-                    onClick={(ev) => onPillClick('who', ev)}
+                    onClick={() => onPillClick('who')}
                 >
                     <label className="label">Who</label>
                     {activeMenu === 'who' ? (
@@ -125,6 +134,7 @@ export function StayFilter() {
                             value={draft.capacity === 0 ? '' : draft.capacity}
                             min="0"
                             onChange={ev => onChange('capacity', ev.target.value)}
+                            onClick={onChildClick}
                         />
                     ) : (
                         <span className="placeholder-btn">
@@ -141,10 +151,54 @@ export function StayFilter() {
             </form>
 
             {activeMenu && (
-                <div className="search-dropdown-overlay">
+                <div className={`search-dropdown-overlay ${activeMenu}-overlay`}>
+
                     {activeMenu === 'where' && (
                         <div className="where-menu">
-                            <h3>Search by Region</h3>
+
+                            <div className="recent-searchs">
+                                <h4 className="menu-header">Recent searches</h4>
+                                <button className="recent-item" onClick={onChildClick}>
+                                    <div className="item-icon">
+                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: '20px', width: '20px', fill: 'currentcolor' }}><path d="M16 3C8.83 3 3 8.83 3 16s5.83 13 13 13 13-5.83 13-13S23.17 3 16 3zm0 2c6.08 0 11 4.92 11 11s-4.92 11-11 11S5 22.08 5 16 9.92 5 16 5zm0 1.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm0 5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm0 5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" fillRule="evenodd"></path></svg>
+                                    </div>
+                                    <div className="item-details">
+                                        <p className="item-title">Rome</p>
+                                        <span className="item-subtitle">Weekend in Oct</span>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div className="suggested-destinations">
+                                <h4 className="menu-header">Suggested destinations</h4>
+
+                                <button className="suggestion-item" onClick={onChildClick}>
+                                    <div className="item-icon">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{display: 'block', height: '24px', width: '24px', fill: 'currentcolor'}}><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM12 6a6 6 0 1 0 0 12 6 6 0 0 0 0-12zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z" fillRule="evenodd"></path></svg>
+                                    </div>
+                                    <div className="item-details">
+                                        <p className="item-title">Nearby</p>
+                                        <span className="item-subtitle">Find what's around you</span>
+                                    </div>
+                                </button>
+
+                                <button className="suggestion-item" onClick={onChildClick}>
+                                    <div className="item-icon">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{display: 'block', height: '24px', width: '24px', fill: 'currentcolor'}}><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fillRule="evenodd"></path></svg>
+                                    </div>
+                                    <div className="item-details">
+                                        <p className="item-title">Tel Aviv-Yafo</p>
+                                        <span className="item-subtitle">Popular beach destination</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {activeMenu === 'who' && (
+                        <div className="who-menu">
+                            <h3>Who is coming?</h3>
+                            <p>Guest selection counter (Adults, Children, Infants, Pets).</p>
                         </div>
                     )}
                 </div>
