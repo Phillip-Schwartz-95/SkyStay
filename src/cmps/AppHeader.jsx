@@ -10,6 +10,7 @@ export function AppHeader() {
 	const navigate = useNavigate()
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const menuRef = useRef(null)
+	const [isHostingView, setIsHostingView] = useState(false)
 
 	async function onLogout() {
 		try {
@@ -45,20 +46,63 @@ export function AppHeader() {
 				</div>
 
 				<div className="header-top-center">
-					<Link to="/" className="nav-pill homes">
-						<img
-							src="https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-search-bar-icons/original/4aae4ed7-5939-4e76-b100-e69440ebeae4.png?im_w=240"
-							alt=""
-							width="22"
-							height="22"
-							loading="eager"
-						/>
-						<span>Homes</span>
-					</Link>
+
+					{/* switch from viewing available listings to MY LISTINGS when in hosting mode */}
+					{isHostingView ? (
+						<Link to="/hosting" className="nav-pill hosting">
+							<img
+								src="https://cdn-icons-png.flaticon.com/512/4715/4715693.png"
+								alt=""
+								width="22"
+								height="22"
+							/>
+							<span>My Listings</span>
+						</Link>
+					) : (
+						<Link to="/" className="nav-pill homes">
+							<img
+								src="https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-search-bar-icons/original/4aae4ed7-5939-4e76-b100-e69440ebeae4.png?im_w=240"
+								alt=""
+								width="22"
+								height="22"
+								loading="eager"
+							/>
+							<span>Homes</span>
+						</Link>
+					)}
 				</div>
 
 				<div className="header-right">
-					<Link to="/host" className="host-link">Become a host</Link>
+
+					{/* host/traveling switch button */}
+					{user && user.isHost ? (
+						<>
+							<button
+								className="switch-mode-btn"
+								onClick={() => {
+									setIsHostingView(prev => !prev)
+									navigate(isHostingView ? '/' : '/hosting')
+								}}
+							>
+								{isHostingView ? 'Switch to traveling' : 'Switch to hosting'}
+							</button>
+						</>
+					) : (
+						<button
+							className="host-link"
+							onClick={() => {
+								if (!user) {
+									showErrorMsg('Please log in first!')
+									navigate('/auth/login')
+									return
+								}
+								navigate('/host/start')
+							}}
+						>
+							Become a host
+						</button>
+					)}
+
 					<button className="lang-btn" aria-label="Language">
 						<i className="fi fi-bs-globe"></i>
 					</button>
@@ -86,9 +130,12 @@ export function AppHeader() {
 					</div>
 				</div>
 
-				<div className="header-center">
-					<StayFilter />
-				</div>
+				{/* hide filter when in hosting mode */}
+				{!isHostingView && (
+					<div className="header-center">
+						<StayFilter />
+					</div>
+				)}
 			</nav>
 		</header>
 	)

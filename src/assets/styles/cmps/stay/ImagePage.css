@@ -1,78 +1,151 @@
-/* Main container */
 .stay-gallery-page {
     background: #fff;
-    padding: 40px 60px;
+    padding: 0px 198px 40px;
     min-height: 100vh;
-    font-family: "Airbnb Cereal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: var(--bnb-text);
     color: #222;
+    scroll-behavior: smooth;
 }
 
-/* Back button */
-.back-btn {
-    position: fixed;
-    top: 7px;
-    left: 7px;
-    color: #222;
-    background: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease, transform 0.2s ease;
-    z-index: 100;
+.gallery-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  height: 54px;
+  padding: 0 6px;            /* closer to screen edges */
+
+  /* Escape .stay-gallery-page padding */
+  margin-left: -198px;        /* negate page padding */
+  margin-right: -198px;       /* negate on both sides */
 }
 
-.back-btn:hover {
+.header-btn {
+  display: flex;
+  color: #222;
+  font-size: 14px;
+  font-weight: 550;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border-radius: 25%;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.header-btn:hover {
     background: #f7f7f7;
-    transform: scale(1.05);
 }
 
-/* Title */
+.header-btn svg {
+  width: 18px;
+  height: 18px;
+  color: #222;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
 .photo-tour-title {
-    text-align: center;
-    font-size: 28px;
-    font-weight: 600;
+    text-align: left;
+    font-size: 22px;
+    font-weight: 550;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.photo-category {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
 }
 
-/* Each category section */
-.stay-gallery-page section {
-    margin-bottom: 60px;
-}
-
-.stay-gallery-page h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 16px;
+.photo-category-title {
+    font-size: 22px;
+    font-weight: 500;
+    width: 350px; 
+    margin-bottom: 20px;
     text-transform: capitalize;
+    text-align: left;
+    padding-bottom: 10px;
 }
 
-/* Grid of images */
+.photo-category-nav {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 6px 0 12px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    /* hide scrollbar on Firefox */
+}
+
+.photo-category-nav::-webkit-scrollbar {
+    display: none;
+    /* hide scrollbar on Chrome/Safari */
+}
+
+.category-preview {
+    padding: 6px;
+    margin: 0;
+    flex: 0 0 auto;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: transform 0.2s ease;
+}
+
+.category-preview img {
+    width: 146.275px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.category-preview span {
+    font-size: 14px;
+    color: #333;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px;
+    flex: 1;
 }
 
 .gallery-grid img {
     width: 100%;
     height: 250px;
     object-fit: cover;
-    border-radius: 12px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-grid img:hover {
     transform: scale(1.02);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive tweaks */
+.no-photos {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 40px;
+    color: #717171;
+}
+
 @media (max-width: 1000px) {
     .stay-gallery-page {
         padding: 30px 24px;
@@ -85,7 +158,12 @@
 
 @media (max-width: 600px) {
     .photo-tour-title {
-        font-size: 22px;
+        font-size: 24px;
+        margin-top: 60px;
+    }
+
+    .photo-category-title {
+        font-size: 18px;
     }
 
     .gallery-grid {
@@ -99,6 +177,5 @@
     .back-btn {
         width: 36px;
         height: 36px;
-        font-size: 18px;
     }
 }
