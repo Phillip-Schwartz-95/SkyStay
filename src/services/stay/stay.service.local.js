@@ -269,11 +269,11 @@ function _createstays() {
             ],
             "host": {
                 "fullname": "Maya",
-                "imgUrl": "/img/maya.jpg",
+                "imgUrl": "https://randomuser.me/api/portraits/women/44.jpg",
                 "role": "Photographer and travel enthusiast",
                 "favoritesong": "Clair de Lune",
                 "bio": "Traveling is my passion, and I love capturing moments through my lens. When I'm not behind the camera, you can find me exploring new cultures and cuisines.",
-                "isSuperhost": false,
+                "isSuperhost": true,
                 "monthsHosting": 12,
                 "reviews": 45,
                 "rating": 4.67,

@@ -18,12 +18,25 @@ export function MeetYourHost({ stay }) {
                                     alt={stay.host?.fullname}
                                     className="host-photo"
                                 />
+
                                 {stay.host?.isSuperhost && (
-                                    <span className="superhost-shield">★</span>
+                                    <div className="superhost-badge">
+                                        <SvgIcon iconName="superhostBadge" />
+                                    </div>
                                 )}
+
                             </div>
                             <h3 className="host-name">{stay.host?.fullname}</h3>
-                            <p className="host-role">Superhost</p>
+                            <p className="host-role">
+                                {stay.host?.isSuperhost ? (
+                                    <>
+                                        <SvgIcon iconName="profileLink" className="host-role-icon" />
+                                        <span className='profile-link-text'>Superhost</span>
+                                    </>
+                                ) : (
+                                    'Host'
+                                )}
+                            </p>
                         </div>
 
                         <div className="host-stats">
@@ -33,7 +46,7 @@ export function MeetYourHost({ stay }) {
                             </div>
                             <div className="stat">
                                 <span className="stat-value">
-                                    {stay.host?.rating?.toFixed(2)} ★
+                                    {stay.host?.rating?.toFixed(2)} <span>★</span>
                                 </span>
                                 <span className="stat-label">Rating</span>
                             </div>
