@@ -1,4 +1,4 @@
-const FALLBACK = '/img/sunflowers.jpg'
+const FALLBACK = '/img/questionmark.jpg'
 
 export function StayPreviewImage({ stay, alt }) {
     const src =
