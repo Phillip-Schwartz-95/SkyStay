@@ -17,3 +17,78 @@
 .stay-index .recommendation-rows>.recommendation-row:nth-of-type(n+10) {
     display: none !important;
 }
+
+.recommendation-rows {
+    --card: 250px;
+    --gap: 10px;
+    --visible: 7;
+}
+
+.recommendation-rows .recommendation-row {
+    position: relative;
+}
+
+.recommendation-rows .row-arrows {
+    position: absolute;
+    top: -10px;
+    right: 8px;
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+}
+
+.recommendation-rows .row-arrow {
+    appearance: none;
+    border: none;
+    background: none;
+    color: #000;
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+.recommendation-rows .row-arrow:hover {
+    background: none;
+}
+
+.recommendation-rows .row-arrow:active {
+    transform: scale(0.96);
+}
+
+.recommendation-rows .stay-track {
+    width: min(100%, calc((var(--card) + var(--gap)) * var(--visible) - var(--gap)));
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 36px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.recommendation-rows .stay-track::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.recommendation-rows .row-list {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: var(--gap);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 0;
+}
+
+.recommendation-rows .row-list>li,
+.recommendation-rows .row-list>.stay-item {
+    flex: 0 0 var(--card);
+    width: var(--card);
+}
