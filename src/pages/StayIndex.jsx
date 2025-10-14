@@ -132,7 +132,7 @@ export function StayIndex() {
                             </h2>
                         </header>
                         <StayList
-                            stays={row.items.slice(0, 7)}
+                            stays={row.items.slice(0, 8)}
                             onRemoveStay={async id => {
                                 try { await removeStay(id); showSuccessMsg('Stay removed') }
                                 catch { showErrorMsg('Cannot remove stay') }

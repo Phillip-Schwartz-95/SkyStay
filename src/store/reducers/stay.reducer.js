@@ -13,6 +13,7 @@ const initialFilter = {
     sortDir: '',
     startDate: null,
     endDate: null,
+    capacity: 0,
 }
 
 const initialState = {
