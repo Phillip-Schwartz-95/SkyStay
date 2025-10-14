@@ -54,6 +54,11 @@ async function applyFilter(items, f) {
         res = res.filter(s => Array.isArray(s.amenities) && f.amenities.every(a => s.amenities.includes(a)))
     }
 
+    const requiredCapacity = parseInt(f.capacity)
+    if (!isNaN(requiredCapacity) && requiredCapacity > 0) {
+        res = res.filter(s => typeof s.maxGuests === 'number' && s.maxGuests >= requiredCapacity)
+    }
+
     const startDate = f.startDate ? new Date(f.startDate).getTime() : null
     const endDate = f.endDate ? new Date(f.endDate).getTime() : null
     if (startDate && endDate) {
@@ -81,11 +86,11 @@ function applySort(items, sortField, sortDir) {
     return arr
 }
 
-async function query(filterBy = { txt: '', sortField: '', sortDir: '', startDate: null, endDate: null }) {
-    //const all = await ensureSeeded()
-    //const filtered = await applyFilter(all, filterBy)
-    //return applySort(filtered, filterBy.sortField, filterBy.sortDir)
-    return await storageService.query(STORAGE_KEY)
+async function query(filterBy = { txt: '', sortField: '', sortDir: '', startDate: null, endDate: null, capacity: 0 }) {
+    const all = await ensureSeeded()
+    const filtered = await applyFilter(all, filterBy)
+    return applySort(filtered, filterBy.sortField, filterBy.sortDir)
+    // return await storageService.query(STORAGE_KEY)
 }
 
 function getById(stayId) {
