@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 
 import { setFilter } from '../store/actions/stay.actions'
@@ -10,6 +10,8 @@ export function StayFilter() {
     const [activeMenu, setActiveMenu] = useState(null)
     const [draft, setDraft] = useState({ ...filterBy, capacity: filterBy.capacity || 0 })
 
+    const inputRefs = useRef({})
+
     useEffect(() => {
         setDraft({
             ...filterBy,
@@ -18,6 +20,14 @@ export function StayFilter() {
             capacity: filterBy.capacity || 0,
         })
     }, [filterBy])
+
+    useEffect(() => {
+        if (activeMenu && inputRefs.current[activeMenu]) {
+            setTimeout(() => {
+                inputRefs.current[activeMenu].focus()
+            }, 0)
+        }
+    }, [activeMenu])
 
     function onChange(field, value) {
         const newValue = field === 'capacity' ? +value : value
@@ -67,15 +77,17 @@ export function StayFilter() {
                     className={`pill-section where ${activeMenu === 'where' ? 'active' : ''}`}
                     onClick={() => onPillClick('where')}
                 >
-                    <label className="label">Where</label>
+                    <label className="label" htmlFor="whereInput">Where</label>
                     <input
                         className="placeholder-input"
                         type="text"
+                        id="whereInput"
                         placeholder="Search destinations"
                         readOnly={activeMenu !== 'where'}
                         value={draft.txt || ''}
                         onChange={ev => onChange('txt', ev.target.value)}
                         onClick={onChildClick}
+                        ref={el => inputRefs.current.where = el}
                     />
                 </div>
 
@@ -85,14 +97,16 @@ export function StayFilter() {
                     className={`pill-section checkin ${activeMenu === 'checkin' ? 'active' : ''}`}
                     onClick={() => onPillClick('checkin')}
                 >
-                    <label className="label">Check in</label>
+                    <label className="label" htmlFor="chekinInput">Check in</label>
                     {activeMenu === 'checkin' ? (
                         <input
                             className="date-input"
                             type="date"
+                            id="chekinInput"
                             value={draft.startDate || ''}
                             onChange={ev => onChange('startDate', ev.target.value)}
                             onClick={onChildClick}
+                            ref={el => inputRefs.current.checkin = el}
                         />
                     ) : (
                         <span className="placeholder-btn">Add dates</span>
@@ -105,14 +119,16 @@ export function StayFilter() {
                     className={`pill-section checkout ${activeMenu === 'checkout' ? 'active' : ''}`}
                     onClick={() => onPillClick('checkout')}
                 >
-                    <label className="label">Check out</label>
+                    <label className="label" htmlFor="checkoutInput">Check out</label>
                     {activeMenu === 'checkout' ? (
                         <input
                             className="date-input"
                             type="date"
+                            id="checkoutInput"
                             value={draft.endDate || ''}
                             onChange={ev => onChange('endDate', ev.target.value)}
                             onClick={onChildClick}
+                            ref={el => inputRefs.current.checkout = el}
                         />
                     ) : (
                         <span className="placeholder-btn">Add dates</span>
@@ -125,16 +141,18 @@ export function StayFilter() {
                     className={`pill-section who ${activeMenu === 'who' ? 'active' : ''}`}
                     onClick={() => onPillClick('who')}
                 >
-                    <label className="label">Who</label>
+                    <label className="label" htmlFor="whoInput">Who</label>
                     {activeMenu === 'who' ? (
                         <input
                             className="capacity-input"
                             type="number"
+                            id="whoInput"
                             placeholder="Add guests"
                             value={draft.capacity === 0 ? '' : draft.capacity}
                             min="0"
                             onChange={ev => onChange('capacity', ev.target.value)}
                             onClick={onChildClick}
+                            ref={el => inputRefs.current.who = el}
                         />
                     ) : (
                         <span className="placeholder-btn">
