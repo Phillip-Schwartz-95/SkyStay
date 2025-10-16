@@ -3,9 +3,6 @@ import { useNavigate } from "react-router-dom"
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { GoogleMap, Marker, useJsApiLoader, StandaloneSearchBox } from '@react-google-maps/api'
-import { FiKey, FiMapPin, FiCalendar } from 'react-icons/fi'
-import { FaWifi, FaSnowflake, FaSwimmingPool, FaTv } from 'react-icons/fa'
-import { MdKitchen, MdLocalLaundryService } from 'react-icons/md'
 import { SvgIcon } from '../cmps/SvgIcon'
 
 import { loadStay, addStayMsg } from '../store/actions/stay.actions'
@@ -42,26 +39,6 @@ export function StayDetails() {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries,
   })
-
-  const iconMap = {
-    key: FiKey,
-    map: FiMapPin,
-    calendar: FiCalendar,
-  }
-
-  const amenityIcons = {
-    wifi: FaWifi,
-    'air conditioning': FaSnowflake,
-    pool: FaSwimmingPool,
-    kitchen: MdKitchen,
-    tv: FaTv,
-    laundry: MdLocalLaundryService,
-    // Add more mappings as needed:
-    // 'free parking': FiKey,
-    // washer: MdLocalLaundryService,
-    // heating: FiKey,
-    // elevator: FiKey,
-  }
 
   useEffect(() => {
     loadStay(stayId)
@@ -208,24 +185,17 @@ export function StayDetails() {
 
             <ul className="listing-highlights">
               {stay.highlights?.map((h, idx) => {
-                if (typeof h === 'string') {
-                  const Icon = FiKey
-                  return (
-                    <li key={idx} className="highlight-item">
-                      <Icon className="highlight-icon" />
-                      <div>
-                        <p className="highlight-title">{h}</p>
-                      </div>
-                    </li>
-                  )
-                }
-                const Icon = iconMap[h?.icon] || FiKey
+                const iconName =
+                  typeof h === 'string'
+                    ? 'key'
+                    : (h.icon?.toLowerCase?.() || 'key')
+
                 return (
                   <li key={idx} className="highlight-item">
-                    <Icon className="highlight-icon" />
+                    <SvgIcon iconName={iconName} className="highlight-icon" />
                     <div>
-                      <p className="highlight-title">{h?.title || ''}</p>
-                      <p className="highlight-desc">{h?.desc || ''}</p>
+                      <p className="highlight-title">{h.title || h}</p>
+                      {h.desc && <p className="highlight-desc">{h.desc}</p>}
                     </div>
                   </li>
                 )
@@ -240,11 +210,10 @@ export function StayDetails() {
               <h2>What this place offers</h2>
               <ul className="amenities-grid">
                 {stay.amenities?.map((a, idx) => {
-                  const key = (a || '').toString().toLowerCase()
-                  const Icon = amenityIcons[key] || FiKey
+                  const iconName = (a || '').toString().toLowerCase().replace(/\s+/g, '')
                   return (
                     <li key={idx} className="amenity-item">
-                      <Icon className="amenity-icon" />
+                      <SvgIcon iconName={iconName} className="amenity-icon" />
                       <span>{a}</span>
                     </li>
                   )

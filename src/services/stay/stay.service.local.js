@@ -156,9 +156,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 2,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation before Dec 4"
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in experience",
+                    "desc": "Recent guests gave the check-in process a 5-star rating."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Guests say this area is easy to get around."
+                },
+                {
+                    "icon": "schedule",
+                    "title": "Free cancellation before Dec 4",
+                    "desc": "Get a full refund if you change your mind."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -233,12 +245,12 @@ function _createstays() {
                     "desc": "Recent guests gave the check-in process a 5-star rating."
                 },
                 {
-                    "icon": "map",
+                    "icon": "mapMarker",
                     "title": "Walkable area",
                     "desc": "Guests say this area is easy to get around."
                 },
                 {
-                    "icon": "calendar",
+                    "icon": "schedule",
                     "title": "Free cancellation before Nov 30",
                     "desc": "Get a full refund if you change your mind."
                 }
@@ -301,9 +313,21 @@ function _createstays() {
             ],
             "summary": "Minimalist high-rise loft with city views, steps from restaurants and transit.",
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Check yourself in with the smart lock."
+                },
+                {
+                    "icon": "location",
+                    "title": "Near subway",
+                    "desc": "Steps away from Shinjuku Station and metro lines."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Enjoy panoramic Tokyo skyline views."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -363,9 +387,21 @@ function _createstays() {
             ],
             "summary": "Traditional machiya with inner garden, tatami rooms, and tea corner near Gion.",
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "location",
+                    "title": "Historic neighborhood",
+                    "desc": "Stay in Kyoto’s traditional Gion district."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Peaceful area with a private courtyard."
+                },
+                {
+                    "icon": "kitchen",
+                    "title": "Tea set included",
+                    "desc": "Enjoy your own tea ceremony setup."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -425,9 +461,21 @@ function _createstays() {
             ],
             "summary": "Rustic hillside villa with olive grove views, terrace dining, and easy access to the Duomo.",
             "highlights": [
-                "Panoramic terrace",
-                "Free parking",
-                "Great for families"
+                {
+                    "icon": "balcony",
+                    "title": "Panoramic terrace",
+                    "desc": "Enjoy stunning views of Tuscan hills and olive groves."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Free parking",
+                    "desc": "Private parking spot available on site for convenience."
+                },
+                {
+                    "icon": "family",
+                    "title": "Great for families",
+                    "desc": "Spacious villa perfect for group stays and family dinners."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -488,9 +536,21 @@ function _createstays() {
             ],
             "summary": "Modern apartment above the bay with balcony sunsets and quick access to the gardens.",
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Enjoy sunsets and sea breezes from your private balcony."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Guests say this location is perfect for exploring on foot."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Secure on-site parking spot available below the building."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -550,9 +610,21 @@ function _createstays() {
             ],
             "summary": "Sunny parlor-floor suite in a classic brownstone with easy subway access.",
             "highlights": [
-                "Great location",
-                "Exceptional check-in",
-                "Work-friendly space"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Guests rate this neighborhood highly for easy subway access and cafes."
+                },
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in",
+                    "desc": "Smooth and flexible self check-in for a hassle-free arrival."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "A quiet area with a dedicated workspace, perfect for remote work."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -616,9 +688,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 1,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in experience",
+                    "desc": "Guests rated the check-in process 5 stars for convenience."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Located near Eilat’s beaches, cafes, and shops — easy to explore on foot."
+                },
+                {
+                    "icon": "schedule",
+                    "title": "Free cancellation",
+                    "desc": "Enjoy flexibility with full refunds before Jan 30."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -681,9 +765,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 1,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in experience",
+                    "desc": "Guests praised the quick and easy check-in process."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Located near restaurants, the promenade, and cultural landmarks."
+                },
+                {
+                    "icon": "schedule",
+                    "title": "Free cancellation",
+                    "desc": "Get a full refund if you cancel before Nov 19."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -747,9 +843,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 2,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Guests love the central Eilat area close to beaches and nightlife."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Cozy desk setup ideal for remote work or studying."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Close to vibrant bars, restaurants, and local entertainment."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -812,9 +920,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 2,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Enjoy panoramic views of the Sea of Galilee right from your balcony."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Steps from cafes, restaurants, and the lakeside promenade."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Private and secure parking available for all guests."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -877,9 +997,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 2,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "heritage",
+                    "title": "Historic neighborhood",
+                    "desc": "Stay in the heart of Zikhron Ya’akov’s charming old town streets."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Peaceful surroundings near wineries and Mediterranean views."
+                },
+                {
+                    "icon": "teacup",
+                    "title": "Tea set included",
+                    "desc": "Enjoy complimentary local tea during your stay."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -942,9 +1074,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Seamless entry with a smart lock for flexible arrivals."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Conveniently located close to public transport and harbor paths."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Capture unforgettable sunsets over Santorini’s iconic rooftops."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1008,9 +1152,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 3,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in experience",
+                    "desc": "Guests appreciate the smooth and flexible check-in process."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Steps from Chicago’s main attractions, shopping, and dining."
+                },
+                {
+                    "icon": "schedule",
+                    "title": "Free cancellation",
+                    "desc": "Full refund available for cancellations before Jan 19."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1073,9 +1229,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 2,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "heritage",
+                    "title": "Historic neighborhood",
+                    "desc": "Located in a charming part of Barcelona with cultural landmarks nearby."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Enjoy a peaceful setting just minutes from the Gothic Quarter."
+                },
+                {
+                    "icon": "teacup",
+                    "title": "Tea set included",
+                    "desc": "Relax with complimentary local tea during your stay."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1138,9 +1306,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 3,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Convenient base near cafés, beaches, and Table Mountain views."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Includes a cozy desk setup for remote work or study."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Located near Cape Town’s buzzing food and nightlife scene."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1204,9 +1384,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 2,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Take in panoramic city and lake views from your private balcony."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Close to Zurich’s cafés, boutiques, and public transport."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Safe, convenient parking directly below the building."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1269,9 +1461,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 1,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "heritage",
+                    "title": "Historic neighborhood",
+                    "desc": "Stay among Rome’s ancient streets and historic landmarks."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Enjoy calm surroundings near the vibrant heart of Rome."
+                },
+                {
+                    "icon": "teacup",
+                    "title": "Tea set included",
+                    "desc": "Complimentary Italian tea selection provided for guests."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1335,9 +1539,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 3,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Arrive anytime with easy smart lock access."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Just a short walk from Sapporo Station and key attractions."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Panoramic skyline views from your private suite."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1400,9 +1616,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 3,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in experience",
+                    "desc": "Guests love the easy and smooth arrival process."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Right by Vienna’s famous cafés, palaces, and shopping streets."
+                },
+                {
+                    "icon": "schedule",
+                    "title": "Free cancellation",
+                    "desc": "Full refund available for cancellations before Nov 5."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1465,9 +1693,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Check yourself in easily with smart lock access."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Close to public transport, shops, and cafés."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Wake up to mountain and skyline views from your window."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1530,9 +1770,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Enjoy breathtaking lake and mountain views from the balcony."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Steps from Queenstown’s best cafés, shops, and scenic trails."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Convenient secure parking available for guests."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1596,9 +1848,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 2,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Enjoy flexible arrivals with keyless smart lock entry."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Centrally located with easy metro and bus access."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Catch beautiful sunsets over the Los Angeles skyline."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1661,9 +1925,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 1,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "heritage",
+                    "title": "Historic neighborhood",
+                    "desc": "Stay steps from Paris’s most iconic landmarks and cafés."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Peaceful retreat in a calm residential area of Paris."
+                },
+                {
+                    "icon": "teacup",
+                    "title": "Tea set included",
+                    "desc": "Relax with complimentary tea while enjoying the view."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1726,9 +2002,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 2,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Central Vienna location with easy access to attractions and cafés."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Equipped with a desk and fast Wi-Fi for remote work."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Surrounded by music halls, restaurants, and night spots."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1791,9 +2079,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 2,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "In the heart of Buenos Aires, close to shopping and dining."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Comfortable setup for working or studying during your stay."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Experience the city’s energy, with bars and cafés nearby."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1856,9 +2156,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 2,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "heritage",
+                    "title": "Historic neighborhood",
+                    "desc": "Stay among Rome’s ancient streets and iconic landmarks."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Peaceful retreat tucked away from the city bustle."
+                },
+                {
+                    "icon": "teacup",
+                    "title": "Tea set included",
+                    "desc": "Enjoy complimentary Italian teas during your stay."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1921,9 +2233,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Arrive anytime with easy smart lock access."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Just minutes from the metro and popular Vienna spots."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Enjoy skyline views over Vienna from your window."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -1987,9 +2311,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 3,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Take in panoramic views of Table Mountain and the bay."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Close to cafés, beaches, and vibrant nightlife."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Secure parking available on-site for guests."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2052,9 +2388,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 3,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Located near downtown Chicago and major attractions."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Dedicated workspace and strong Wi-Fi for remote work."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Surrounded by Chicago’s best restaurants and music venues."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2117,9 +2465,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 3,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Relax on a private terrace overlooking the medina skyline."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Steps away from souks, cafés, and historic landmarks."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Safe, convenient parking available for guests."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2182,9 +2542,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "heritage",
+                    "title": "Historic neighborhood",
+                    "desc": "Charming area near the lake, rich with Viennese history."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Peaceful surroundings perfect for a relaxing getaway."
+                },
+                {
+                    "icon": "teacup",
+                    "title": "Tea set included",
+                    "desc": "Unwind with complimentary tea on the terrace."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2247,9 +2619,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Arrive anytime with easy, keyless entry."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Central location close to Reykjavik harbor and shops."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Enjoy sweeping views of the harbor and city lights."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2312,9 +2696,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 1,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Watch the sunset over the Tagus River from your balcony."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Centrally located near Lisbon’s scenic streets and cafés."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Secure, on-site parking available for guests."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2377,9 +2773,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 3,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in experience",
+                    "desc": "Highly rated by guests for smooth, hassle-free arrivals."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Close to local markets, cafés, and historic temples."
+                },
+                {
+                    "icon": "schedule",
+                    "title": "Free cancellation",
+                    "desc": "Full refund available for cancellations before Jan 30."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2442,9 +2850,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 2,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Enjoy a smooth arrival with convenient smart lock access."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Just a short stroll from Nara’s main station and deer park."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Panoramic views of the old town and surrounding hills."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2507,9 +2927,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 3,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Nestled along the canals near famous Venetian landmarks."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Cozy desk area and strong Wi-Fi for remote work."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Surrounded by Venice’s cafés, art galleries, and shops."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2572,9 +3004,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Easy keyless entry for a flexible arrival."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Steps from Paris Metro lines and local bakeries."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Enjoy skyline views featuring the Eiffel Tower."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2637,9 +3081,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 3,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Unwind with views of the Tagus River from your terrace."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Close to the city center, cafés, and tram lines."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Private and secure on-site parking available."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2702,9 +3158,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 1,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "heritage",
+                    "title": "Historic neighborhood",
+                    "desc": "Stay in the heart of Marrakesh’s old medina."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Peaceful oasis just steps from vibrant markets."
+                },
+                {
+                    "icon": "teacup",
+                    "title": "Tea set included",
+                    "desc": "Traditional Moroccan tea set provided for guests."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2767,9 +3235,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 2,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Central Vienna apartment close to museums and transport."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Ideal setup for remote work or study with fast Wi-Fi."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Surrounded by Viennese cafés, music halls, and nightlife."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2832,9 +3312,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 3,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Unwind with views of the Bosphorus from your private terrace."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Steps away from historic sites like Hagia Sophia and local cafés."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Secure garage parking available for guests."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2897,9 +3389,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 2,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Relax with sweeping sea views from your balcony."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Centrally located near ferries, markets, and transit."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Private on-site parking for added convenience."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -2962,9 +3466,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 3,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Close to the Golden Gate Bridge and Fisherman’s Wharf."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Dedicated workspace and fast Wi-Fi for remote work."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Enjoy nearby coffee shops, galleries, and nightlife."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3027,9 +3543,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 3,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in experience",
+                    "desc": "Smooth, flexible self check-in with smart lock."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Short walk to the harbor, museums, and restaurants."
+                },
+                {
+                    "icon": "schedule",
+                    "title": "Free cancellation",
+                    "desc": "Cancel anytime before your trip with no fees."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3093,9 +3621,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Take in city and water views from your terrace."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Easy access to cafés, trams, and parks."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Private parking garage for guests’ use."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3158,9 +3698,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Located near Copacabana Beach and Sugarloaf Mountain."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Peaceful area to stay productive while traveling."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Surrounded by Rio’s iconic nightlife and music."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3223,9 +3775,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Enjoy a flexible arrival with keypad access."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Close to Odori Park and local transit lines."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Enjoy views of Sapporo’s skyline and snow peaks."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3288,9 +3852,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 2,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Seamless arrival with smart lock access."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Minutes from the Metro and city’s top sights."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Enjoy Eiffel Tower views from the window."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3353,9 +3929,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 1,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Walk to the Colosseum and nearby restaurants."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Ideal home base for business or leisure."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Located in the heart of Rome’s Trastevere district."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3419,9 +4007,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 2,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Private balcony overlooking Lake Zurich."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Close to Old Town and Bahnhofstrasse shopping."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Secure garage parking available."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3484,9 +4084,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Quick and easy arrival with smart lock."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Located near Plaça Catalunya and metro stations."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Balcony views of the Sagrada Família skyline."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3550,9 +4162,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 1,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Watch the sunset over Biscayne Bay."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Close to beaches, cafés, and nightlife."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Private garage with guest access."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3615,9 +4239,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "heritage",
+                    "title": "Historic neighborhood",
+                    "desc": "Located in the heart of the old medina."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Peaceful corner near bustling souks."
+                },
+                {
+                    "icon": "teacup",
+                    "title": "Tea set included",
+                    "desc": "Traditional Moroccan tea service available."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3681,9 +4317,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 2,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Easy check-in process with keypad entry."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Convenient access to BART and MUNI lines."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Panoramic views of downtown San Francisco."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3746,9 +4394,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Flexible arrival with keyless entry."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Steps from Fira town center and bus station."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Iconic views of whitewashed cliffs and the sea."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3812,9 +4472,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 1,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Central Berlin flat near Alexanderplatz and cafés."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Comfortable desk setup for remote work."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Buzzing neighborhood full of art, culture, and dining."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3877,9 +4549,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 2,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Smooth arrival with secure keyless entry."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Steps from London Underground and top attractions."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Panoramic views of London’s skyline and landmarks."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -3942,9 +4626,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 2,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Close to Sydney Harbour and the Opera House."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Dedicated workspace and fast Wi-Fi for remote work."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Surrounded by Sydney’s restaurants, bars, and nightlife."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4007,9 +4703,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 3,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Located near Table Mountain and the V&A Waterfront."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Comfortable setup for work or study with scenic views."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Enjoy the buzz of Cape Town’s cafés and cultural scene."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4072,9 +4780,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 3,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "heritage",
+                    "title": "Historic neighborhood",
+                    "desc": "Stay in Amsterdam’s charming canal district."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Peaceful area despite being near the city center."
+                },
+                {
+                    "icon": "teacup",
+                    "title": "Tea set included",
+                    "desc": "Complimentary tea service for your comfort."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4137,9 +4857,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 1,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Prime spot near Dubai Marina and iconic attractions."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Ideal for business travelers with a quiet desk area."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Enjoy the vibrant energy of Dubai’s nightlife and malls."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4202,9 +4934,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 1,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Overlooks the historic Bryggen waterfront and harbor."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Steps from shops, restaurants, and mountain trails."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Private parking available for your convenience."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4267,9 +5011,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 3,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Relax with rooftop views of the Eternal City."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Close to the Colosseum and charming Roman cafés."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Secure parking located directly below the apartment."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4332,9 +5088,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 3,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Near beaches, art galleries, and the city center."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Quiet nook with reliable Wi-Fi for remote work."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Located in Cape Town’s creative and cultural hub."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4397,9 +5165,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Enjoy easy and flexible access with smart lock entry."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Close to transit, cafés, and boutique shops."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Admire panoramic Cape Town views from the window."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4462,9 +5242,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 2,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Effortless entry for a relaxed arrival."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Convenient access to central Israel’s main routes."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Enjoy scenic hilltop views over vineyards and sea."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4528,9 +5320,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 3,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Located near Lake Wakatipu and adventure hubs."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Modern desk setup with high-speed internet."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Enjoy Queenstown’s restaurants, bars, and lakefront energy."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4593,9 +5397,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 3,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in experience",
+                    "desc": "Warm Moroccan welcome with flexible arrival options."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Easily explore the Medina’s vibrant souks and cafés."
+                },
+                {
+                    "icon": "schedule",
+                    "title": "Free cancellation",
+                    "desc": "Cancel free of charge before your stay begins."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4658,9 +5474,21 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 1,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "heritage",
+                    "title": "Historic neighborhood",
+                    "desc": "Nestled in one of London’s oldest districts."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Peaceful surroundings in a central location."
+                },
+                {
+                    "icon": "teacup",
+                    "title": "Tea set included",
+                    "desc": "Enjoy a relaxing cup of tea, British-style."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4723,9 +5551,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 2,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in experience",
+                    "desc": "Easy self check-in to start your island getaway."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Close to Fira’s scenic alleys and cliffside cafés."
+                },
+                {
+                    "icon": "schedule",
+                    "title": "Free cancellation",
+                    "desc": "Flexible cancellation for peace of mind."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4789,9 +5629,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Enjoy Tagus River views from your private terrace."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Explore Alfama’s narrow streets and viewpoints nearby."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Convenient parking beneath the building."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4854,9 +5706,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 3,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in experience",
+                    "desc": "Smooth digital check-in for convenience and privacy."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Minutes from Shinjuku Station and local eateries."
+                },
+                {
+                    "icon": "schedule",
+                    "title": "Free cancellation",
+                    "desc": "Book confidently with flexible cancellation."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4919,9 +5783,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 2,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Centrally located near the Old Town and Lake Zurich."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Bright workspace with reliable Wi-Fi for remote work."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Surrounded by cafés, boutiques, and art galleries."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -4985,9 +5861,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 3,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Enjoy panoramic views over Vienna’s rooftops."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Just minutes from Schönbrunn Palace and cafés."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Convenient secure parking for your vehicle."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5051,9 +5939,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 2,
             "highlights": [
-                "Bay view balcony",
-                "Walkable area",
-                "Underground parking"
+                {
+                    "icon": "balcony",
+                    "title": "Bay view balcony",
+                    "desc": "Overlooks Marrakesh rooftops and the Medina skyline."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Steps from souks, cafés, and Jemaa el-Fnaa."
+                },
+                {
+                    "icon": "parking",
+                    "title": "Underground parking",
+                    "desc": "Private on-site parking for guests."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5116,9 +6016,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 1,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                {
+                    "icon": "checkin",
+                    "title": "Exceptional check-in experience",
+                    "desc": "Fast, smooth self check-in on arrival."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Walkable area",
+                    "desc": "Close to shops, restaurants, and waterfront views."
+                },
+                {
+                    "icon": "schedule",
+                    "title": "Free cancellation",
+                    "desc": "Cancel free of charge before your stay begins."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5182,9 +6094,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 3,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                {
+                    "icon": "heritage",
+                    "title": "Historic neighborhood",
+                    "desc": "Set in the heart of Barcelona’s Gothic Quarter."
+                },
+                {
+                    "icon": "nature",
+                    "title": "Quiet street",
+                    "desc": "Tranquil area tucked away from the main bustle."
+                },
+                {
+                    "icon": "teacup",
+                    "title": "Tea set included",
+                    "desc": "Enjoy an evening tea on your private terrace."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5247,9 +6171,21 @@ function _createstays() {
             "bedRooms": 3,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Smart lock entry for easy, flexible arrival."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Quick access to public transit and major sites."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Views of Hagia Sophia and the Bosphorus skyline."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5312,9 +6248,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 3,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Near the MuseumsQuartier and Schönbrunn Palace."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Spacious desk area with strong Wi-Fi connection."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Surrounded by restaurants, bars, and historic streets."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5378,9 +6326,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 3,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Close to beaches, parks, and central Sydney."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Comfortable desk and fast internet for work."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Experience Sydney’s waterfront dining and nightlife."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5443,9 +6403,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Contactless check-in for a stress-free arrival."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Close to Reykjavik’s main bus routes and landmarks."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Admire colorful rooftops and mountain backdrops."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5508,9 +6480,21 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 2,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                {
+                    "icon": "checkin",
+                    "title": "Self check-in",
+                    "desc": "Effortless arrival with smart keypad entry."
+                },
+                {
+                    "icon": "mapmarker",
+                    "title": "Near subway",
+                    "desc": "Steps from Baixa-Chiado metro station and cafés."
+                },
+                {
+                    "icon": "cityview",
+                    "title": "Great city views",
+                    "desc": "Enjoy Lisbon’s red rooftops and river vistas."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5573,9 +6557,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "In the heart of Nara, near temples and deer park."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Peaceful desk setup surrounded by traditional charm."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Enjoy local markets and cozy eateries nearby."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5638,9 +6634,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 2,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Minutes from the Seine and the Eiffel Tower."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Charming setup for work or study with natural light."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Bustling Parisian neighborhood with cafés and galleries."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5704,9 +6712,21 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 2,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                {
+                    "icon": "mapmarker",
+                    "title": "Great location",
+                    "desc": "Central Lisbon flat near Rossio Square and trams."
+                },
+                {
+                    "icon": "workspace",
+                    "title": "Work-friendly space",
+                    "desc": "Comfortable desk area with fast internet."
+                },
+                {
+                    "icon": "lively",
+                    "title": "Lively area",
+                    "desc": "Vibrant neighborhood full of music and culture."
+                }
             ],
             "amenities": [
                 "WiFi",
@@ -5769,9 +6789,9 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 2,
             "highlights": [
-                "Historic neighborhood",
-                "Quiet street",
-                "Tea set included"
+                { "icon": "heritage", "title": "Historic neighborhood", "desc": "Located in the heart of Tel Aviv’s White City district." },
+                { "icon": "nature", "title": "Quiet street", "desc": "Peaceful area near Rothschild Boulevard." },
+                { "icon": "teacup", "title": "Tea set included", "desc": "Enjoy complimentary teas from local blends." }
             ],
             "amenities": [
                 "WiFi",
@@ -5834,9 +6854,9 @@ function _createstays() {
             "bedRooms": 2,
             "baths": 3,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                { "icon": "checkin", "title": "Exceptional check-in experience", "desc": "Smooth arrival with flexible check-in." },
+                { "icon": "mapmarker", "title": "Walkable area", "desc": "Close to Montmartre cafés and metro stops." },
+                { "icon": "schedule", "title": "Free cancellation", "desc": "Cancel for free before your stay begins." }
             ],
             "amenities": [
                 "WiFi",
@@ -5899,9 +6919,9 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 1,
             "highlights": [
-                "Exceptional check-in experience",
-                "Walkable area",
-                "Free cancellation"
+                { "icon": "checkin", "title": "Exceptional check-in experience", "desc": "Seamless self check-in process." },
+                { "icon": "mapmarker", "title": "Walkable area", "desc": "Steps from Circular Quay and restaurants." },
+                { "icon": "schedule", "title": "Free cancellation", "desc": "Flexible booking with free cancellation." }
             ],
             "amenities": [
                 "WiFi",
@@ -5964,9 +6984,9 @@ function _createstays() {
             "bedRooms": 4,
             "baths": 1,
             "highlights": [
-                "Self check-in",
-                "Near subway",
-                "Great city views"
+                { "icon": "checkin", "title": "Self check-in", "desc": "Enter easily using keyless smart lock." },
+                { "icon": "mapmarker", "title": "Near subway", "desc": "Quick access to city transit and lake views." },
+                { "icon": "cityview", "title": "Great city views", "desc": "Enjoy vistas over Tiberias and the Sea of Galilee." }
             ],
             "amenities": [
                 "WiFi",
@@ -6030,9 +7050,9 @@ function _createstays() {
             "bedRooms": 1,
             "baths": 3,
             "highlights": [
-                "Great location",
-                "Work-friendly space",
-                "Lively area"
+                { "icon": "mapmarker", "title": "Great location", "desc": "Centrally located near La Rambla and the beach." },
+                { "icon": "workspace", "title": "Work-friendly space", "desc": "Bright desk area and strong Wi-Fi." },
+                { "icon": "lively", "title": "Lively area", "desc": "Surrounded by shops and nightlife spots." }
             ],
             "amenities": [
                 "WiFi",
@@ -6087,7 +7107,11 @@ function _createstays() {
             "maxGuests": 2,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Central", "Self check-in", "Workspace"],
+            "highlights": [
+                { "icon": "mapmarker", "title": "Central", "desc": "Right off iconic Rothschild Boulevard." },
+                { "icon": "checkin", "title": "Self check-in", "desc": "Smart lock access anytime." },
+                { "icon": "workspace", "title": "Workspace", "desc": "Desk and natural light for remote work." }
+            ],
             "amenities": ["WiFi", "Air conditioning", "Washer"],
             "ratings": { "overall": 4.83, "categories": { "cleanliness": 4.8, "accuracy": 4.8, "checkIn": 4.9, "communication": 4.9, "location": 5.0, "value": 4.6 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM", "No parties"],
@@ -6105,7 +7129,11 @@ function _createstays() {
             "maxGuests": 3,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Garden", "Quiet street", "Walkable"],
+            "highlights": [
+                { "icon": "garden", "title": "Garden", "desc": "Private patio with local greenery and shade." },
+                { "icon": "nature", "title": "Quiet street", "desc": "Tucked away in a peaceful neighborhood." },
+                { "icon": "mapmarker", "title": "Walkable", "desc": "Steps from cafés, shops, and parks." }
+            ],
             "amenities": ["WiFi", "Heating", "Kitchenette"],
             "ratings": { "overall": 4.78, "categories": { "cleanliness": 4.8, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.9, "location": 4.9, "value": 4.6 } },
             "houseRules": ["Check-in after 2:00 PM", "Checkout before 10:00 AM"],
@@ -6123,7 +7151,11 @@ function _createstays() {
             "maxGuests": 4,
             "bedRooms": 2,
             "baths": 1,
-            "highlights": ["Bay view", "Free parking", "Near gardens"],
+            "highlights": [
+                { "icon": "cityview", "title": "Bay view", "desc": "Overlooks Haifa Bay and Baháʼí Gardens." },
+                { "icon": "parking", "title": "Free parking", "desc": "Private parking space for guests." },
+                { "icon": "nature", "title": "Near gardens", "desc": "Close to Baháʼí terraces and Carmel trails." }
+            ],
             "amenities": ["WiFi", "Kitchen", "Washer"],
             "ratings": { "overall": 4.72, "categories": { "cleanliness": 4.7, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.8, "location": 4.9, "value": 4.6 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6141,7 +7173,11 @@ function _createstays() {
             "maxGuests": 4,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Near beach", "Pool access", "Parking"],
+            "highlights": [
+                { "icon": "beach", "title": "Near beach", "desc": "Just steps from Eilat’s Coral Beach." },
+                { "icon": "pool", "title": "Pool access", "desc": "Cool off in the shared outdoor pool." },
+                { "icon": "parking", "title": "Parking", "desc": "Free guest parking near the suite." }
+            ],
             "amenities": ["WiFi", "Air conditioning", "Smart TV"],
             "ratings": { "overall": 4.68, "categories": { "cleanliness": 4.7, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.7, "location": 4.8, "value": 4.6 } },
             "houseRules": ["Check-in after 2:00 PM", "Checkout before 10:00 AM"],
@@ -6159,7 +7195,11 @@ function _createstays() {
             "maxGuests": 3,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Historic lane", "Views", "Quiet"],
+            "highlights": [
+                { "icon": "heritage", "title": "Historic lane", "desc": "Set in the artists’ quarter’s cobblestone alleys." },
+                { "icon": "cityview", "title": "Views", "desc": "Beautiful panoramas of the Galilee hills." },
+                { "icon": "nature", "title": "Quiet", "desc": "Serene retreat ideal for couples." }
+            ],
             "amenities": ["WiFi", "Heating", "Kitchenette"],
             "ratings": { "overall": 4.74, "categories": { "cleanliness": 4.7, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.9, "location": 4.8, "value": 4.7 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6177,7 +7217,11 @@ function _createstays() {
             "maxGuests": 4,
             "bedRooms": 2,
             "baths": 2,
-            "highlights": ["Terrace", "Elevator", "Parking"],
+            "highlights": [
+                { "icon": "balcony", "title": "Terrace", "desc": "Spacious terrace overlooking the marina." },
+                { "icon": "elevator", "title": "Elevator", "desc": "Easy access to top-floor penthouse." },
+                { "icon": "parking", "title": "Parking", "desc": "Private garage space for one vehicle." }
+            ],
             "amenities": ["WiFi", "Air conditioning", "Washer"],
             "ratings": { "overall": 4.81, "categories": { "cleanliness": 4.8, "accuracy": 4.8, "checkIn": 4.9, "communication": 4.9, "location": 4.9, "value": 4.6 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6195,7 +7239,11 @@ function _createstays() {
             "maxGuests": 5,
             "bedRooms": 2,
             "baths": 1,
-            "highlights": ["Sea breeze", "Playground nearby", "Parking"],
+            "highlights": [
+                { "icon": "beach", "title": "Sea breeze", "desc": "Overlooks the Mediterranean cliffs and sea." },
+                { "icon": "playground", "title": "Playground nearby", "desc": "Perfect for families with kids." },
+                { "icon": "parking", "title": "Parking", "desc": "Free parking right next to the building." }
+            ],
             "amenities": ["WiFi", "Air conditioning", "Kitchenette"],
             "ratings": { "overall": 4.7, "categories": { "cleanliness": 4.6, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.8, "location": 4.9, "value": 4.6 } },
             "houseRules": ["Check-in after 2:00 PM", "Checkout before 10:00 AM"],
@@ -6213,7 +7261,11 @@ function _createstays() {
             "maxGuests": 3,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Patio", "Great views", "Parking"],
+            "highlights": [
+                { "icon": "patio", "title": "Patio", "desc": "Outdoor seating with mountain views." },
+                { "icon": "cityview", "title": "Great views", "desc": "Panoramic view of vineyards and hills." },
+                { "icon": "parking", "title": "Parking", "desc": "Private space next to the cottage." }
+            ],
             "amenities": ["WiFi", "Heating", "Kitchenette"],
             "ratings": { "overall": 4.73, "categories": { "cleanliness": 4.7, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.9, "location": 4.8, "value": 4.7 } },
             "houseRules": ["Check-in after 2:00 PM", "Checkout before 10:00 AM"],
@@ -6231,7 +7283,11 @@ function _createstays() {
             "maxGuests": 4,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Lake view", "Walkable", "Parking"],
+            "highlights": [
+                { "icon": "lake", "title": "Lake view", "desc": "Balcony overlooking the Sea of Galilee." },
+                { "icon": "mapmarker", "title": "Walkable", "desc": "Close to Tiberias promenade and restaurants." },
+                { "icon": "parking", "title": "Parking", "desc": "On-site free parking for guests." }
+            ],
             "amenities": ["WiFi", "Air conditioning", "Washer"],
             "ratings": { "overall": 4.71, "categories": { "cleanliness": 4.7, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.8, "location": 4.9, "value": 4.6 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6249,7 +7305,11 @@ function _createstays() {
             "maxGuests": 2,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Prime location", "Elevator", "Self check-in"],
+            "highlights": [
+                { "icon": "mapmarker", "title": "Prime location", "desc": "Charming West Village block near Hudson River." },
+                { "icon": "elevator", "title": "Elevator", "desc": "Easy access to your floor without stairs." },
+                { "icon": "checkin", "title": "Self check-in", "desc": "Flexible entry with keypad access." }
+            ],
             "amenities": ["WiFi", "Heating", "Smart TV"],
             "ratings": { "overall": 4.79, "categories": { "cleanliness": 4.8, "accuracy": 4.8, "checkIn": 4.9, "communication": 4.9, "location": 4.9, "value": 4.5 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6267,7 +7327,11 @@ function _createstays() {
             "maxGuests": 3,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Walkable", "Bay glimpses", "Keyless entry"],
+            "highlights": [
+                { "icon": "mapmarker", "title": "Walkable", "desc": "Steps from Coit Tower and cafés." },
+                { "icon": "cityview", "title": "Bay glimpses", "desc": "Partial views of the San Francisco Bay." },
+                { "icon": "checkin", "title": "Keyless entry", "desc": "Smart lock for easy check-in." }
+            ],
             "amenities": ["WiFi", "Washer", "Heating"],
             "ratings": { "overall": 4.8, "categories": { "cleanliness": 4.8, "accuracy": 4.8, "checkIn": 4.9, "communication": 4.9, "location": 4.9, "value": 4.6 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6285,7 +7349,11 @@ function _createstays() {
             "maxGuests": 3,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Patio", "Parking", "Great food nearby"],
+            "highlights": [
+                { "icon": "patio", "title": "Patio", "desc": "Outdoor dining area with plants and shade." },
+                { "icon": "parking", "title": "Parking", "desc": "Free private parking spot on property." },
+                { "icon": "food", "title": "Great food nearby", "desc": "Walk to Silver Lake’s best cafés and tacos." }
+            ],
             "amenities": ["WiFi", "Air conditioning", "Kitchen"],
             "ratings": { "overall": 4.75, "categories": { "cleanliness": 4.8, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.8, "location": 4.8, "value": 4.6 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6303,7 +7371,11 @@ function _createstays() {
             "maxGuests": 2,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Walkable", "Self check-in", "Workspace"],
+            "highlights": [
+                { "icon": "mapmarker", "title": "Walkable", "desc": "Close to bars, parks, and light rail." },
+                { "icon": "checkin", "title": "Self check-in", "desc": "Keypad entry for convenient arrival." },
+                { "icon": "workspace", "title": "Workspace", "desc": "Cozy desk area for laptop work." }
+            ],
             "amenities": ["WiFi", "Washer", "Dryer"],
             "ratings": { "overall": 4.78, "categories": { "cleanliness": 4.8, "accuracy": 4.8, "checkIn": 4.9, "communication": 4.8, "location": 4.9, "value": 4.7 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6321,7 +7393,11 @@ function _createstays() {
             "maxGuests": 3,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Near beach", "Historic building", "Keyless entry"],
+            "highlights": [
+                { "icon": "beach", "title": "Near beach", "desc": "One block from Ocean Drive and the sand." },
+                { "icon": "heritage", "title": "Historic building", "desc": "Classic Art Deco architecture from the 1930s." },
+                { "icon": "checkin", "title": "Keyless entry", "desc": "Smart lock access for smooth check-in." }
+            ],
             "amenities": ["WiFi", "Air conditioning", "Kitchen"],
             "ratings": { "overall": 4.77, "categories": { "cleanliness": 4.7, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.8, "location": 4.9, "value": 4.6 } },
             "houseRules": ["Check-in after 2:00 PM", "Checkout before 10:00 AM"],
@@ -6339,7 +7415,11 @@ function _createstays() {
             "maxGuests": 3,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Patio", "Parking", "Walkable"],
+            "highlights": [
+                { "icon": "patio", "title": "Patio", "desc": "Private outdoor sitting area with greenery." },
+                { "icon": "parking", "title": "Parking", "desc": "Free on-site parking for guests." },
+                { "icon": "mapmarker", "title": "Walkable", "desc": "Close to Barton Springs and local cafés." }
+            ],
             "amenities": ["WiFi", "Kitchenette", "Smart TV"],
             "ratings": { "overall": 4.75, "categories": { "cleanliness": 4.7, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.8, "location": 4.8, "value": 4.6 } },
             "houseRules": ["Check-in after 2:00 PM", "Checkout before 10:00 AM"],
@@ -6357,7 +7437,11 @@ function _createstays() {
             "maxGuests": 3,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Historic area", "Walkable", "Self check-in"],
+            "highlights": [
+                { "icon": "heritage", "title": "Historic area", "desc": "Located in Boston’s classic North End." },
+                { "icon": "mapmarker", "title": "Walkable", "desc": "Steps from Freedom Trail and pastry shops." },
+                { "icon": "checkin", "title": "Self check-in", "desc": "Easy access with keypad entry." }
+            ],
             "amenities": ["WiFi", "Heating", "Kitchen"],
             "ratings": { "overall": 4.8, "categories": { "cleanliness": 4.8, "accuracy": 4.8, "checkIn": 4.9, "communication": 4.9, "location": 4.9, "value": 4.6 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6375,7 +7459,11 @@ function _createstays() {
             "maxGuests": 5,
             "bedRooms": 2,
             "baths": 2,
-            "highlights": ["Garage", "Rooftop", "Family friendly"],
+            "highlights": [
+                { "icon": "garage", "title": "Garage", "desc": "Private garage with direct entry." },
+                { "icon": "balcony", "title": "Rooftop", "desc": "Rooftop patio for sunset views." },
+                { "icon": "family", "title": "Family friendly", "desc": "Spacious setup ideal for small families." }
+            ],
             "amenities": ["WiFi", "Washer", "Air conditioning"],
             "ratings": { "overall": 4.73, "categories": { "cleanliness": 4.7, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.8, "location": 4.8, "value": 4.6 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6393,7 +7481,11 @@ function _createstays() {
             "maxGuests": 4,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Workspace", "Great food", "Self check-in"],
+            "highlights": [
+                { "icon": "workspace", "title": "Workspace", "desc": "Dedicated desk with city light views." },
+                { "icon": "food", "title": "Great food", "desc": "Surrounded by Chicago’s top eateries." },
+                { "icon": "checkin", "title": "Self check-in", "desc": "Flexible arrival with keypad entry." }
+            ],
             "amenities": ["WiFi", "Air conditioning", "Elevator"],
             "ratings": { "overall": 4.78, "categories": { "cleanliness": 4.8, "accuracy": 4.8, "checkIn": 4.8, "communication": 4.8, "location": 4.9, "value": 4.6 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6411,7 +7503,11 @@ function _createstays() {
             "maxGuests": 3,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Walkable", "Balcony", "Keyless entry"],
+            "highlights": [
+                { "icon": "mapmarker", "title": "Walkable", "desc": "Steps from Powell’s Books and coffee shops." },
+                { "icon": "balcony", "title": "Balcony", "desc": "Enjoy views of downtown Portland." },
+                { "icon": "checkin", "title": "Keyless entry", "desc": "Contactless check-in anytime." }
+            ],
             "amenities": ["WiFi", "Washer", "Heating"],
             "ratings": { "overall": 4.76, "categories": { "cleanliness": 4.8, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.8, "location": 4.9, "value": 4.6 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],
@@ -6429,7 +7525,11 @@ function _createstays() {
             "maxGuests": 4,
             "bedRooms": 1,
             "baths": 1,
-            "highlights": ["Balcony", "Free parking", "Self check-in"],
+            "highlights": [
+                { "icon": "balcony", "title": "Balcony", "desc": "Private balcony with skyline views." },
+                { "icon": "parking", "title": "Free parking", "desc": "Complimentary on-site parking." },
+                { "icon": "checkin", "title": "Self check-in", "desc": "Keyless access for flexible arrival." }
+            ],
             "amenities": ["WiFi", "Air conditioning", "Kitchen"],
             "ratings": { "overall": 4.77, "categories": { "cleanliness": 4.8, "accuracy": 4.7, "checkIn": 4.8, "communication": 4.8, "location": 4.9, "value": 4.6 } },
             "houseRules": ["Check-in after 3:00 PM", "Checkout before 11:00 AM"],

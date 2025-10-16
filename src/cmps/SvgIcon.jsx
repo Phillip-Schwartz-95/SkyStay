@@ -47,11 +47,17 @@ function _getIcon(iconName) {
                 aria-hidden="true"
                 role="presentation"
                 focusable="false"
-                style={{ display: 'block', height: '24px', width: '24px', fill: 'currentColor' }}
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
             >
-                <path d="M17 1v4.03l4.03-2.32 1 1.73L17 7.34v6.93l6-3.47V5h2v4.65l3.49-2.02 1 1.74L26 11.38l4.03 2.33-1 1.73-5.03-2.9L18 16l6 3.46 5.03-2.9 1 1.73L26 20.62l3.49 2.01-1 1.74L25 22.35V27h-2v-5.8l-6-3.47v6.93l5.03 2.9-1 1.73L17 26.97V31h-2v-4.03l-4.03 2.32-1-1.73 5.03-2.9v-6.93L9 21.2V27H7v-4.65l-3.49 2.02-1-1.74L6 20.62l-4.03-2.33 1-1.73L8 19.46 14 16l-6-3.46-5.03 2.9-1-1.73L6 11.38 2.51 9.37l1-1.74L7 9.65V5h2v5.8l6 3.47V7.34l-5.03-2.9 1-1.73L15 5.03V1z"></path>
+                <path d="M2 23a1 1 0 0 1 1-1c1.74 0 2.6.49 3.39.97.69.42 1.33.8 2.61.8s1.92-.38 2.61-.8C12.4 22.49 13.26 22 15 22s2.6.49 3.39.97c.69.42 1.33.8 2.61.8s1.92-.38 2.61-.8C24.4 22.49 25.26 22 27 22a1 1 0 1 1 0 2c-1.28 0-1.92.38-2.61.8-.79.48-1.65.97-3.39.97s-2.6-.49-3.39-.97c-.69-.42-1.33-.8-2.61-.8s-1.92.38-2.61.8C11.2 25.51 10.34 26 8.6 26s-2.6-.49-3.39-.97C4.52 24.38 3.86 24 2.58 24a1 1 0 0 1-1-1ZM2 27a1 1 0 0 1 1-1c1.74 0 2.6.49 3.39.97.69.42 1.33.8 2.61.8s1.92-.38 2.61-.8C12.4 26.49 13.26 26 15 26s2.6.49 3.39.97c.69.42 1.33.8 2.61.8s1.92-.38 2.61-.8C24.4 26.49 25.26 26 27 26a1 1 0 1 1 0 2c-1.28 0-1.92.38-2.61.8-.79.48-1.65.97-3.39.97s-2.6-.49-3.39-.97c-.69-.42-1.33-.8-2.61-.8s-1.92.38-2.61.8C11.2 29.51 10.34 30 8.6 30s-2.6-.49-3.39-.97C4.52 28.38 3.86 28 2.58 28a1 1 0 0 1-1-1ZM21 2a3 3 0 0 1 3 3v9h2V5a5 5 0 0 0-10 0v9h2V5a3 3 0 0 1 3-3ZM11 2a3 3 0 0 1 3 3v9h2V5a5 5 0 0 0-10 0v9h2V5a3 3 0 0 1 3-3Z"></path>
             </svg>
         ),
+
         cleanliness: (
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,6 +94,58 @@ function _getIcon(iconName) {
                 <path d="M16.84 27.16v-3.4l-.26.09c-.98.32-2.03.51-3.11.55h-.7A11.34 11.34 0 0 1 1.72 13.36v-.59A11.34 11.34 0 0 1 12.77 1.72h.59c6.03.16 10.89 5.02 11.04 11.05V13.45a11.3 11.3 0 0 1-.9 4.04l-.13.3 7.91 7.9v5.6H25.7l-4.13-4.13zM10.31 7.22a3.1 3.1 0 1 1 0 6.19 3.1 3.1 0 0 1 0-6.2zm0 2.06a1.03 1.03 0 1 0 0 2.06 1.03 1.03 0 0 0 0-2.06zM22.43 25.1l4.12 4.13h2.67v-2.67l-8.37-8.37.37-.68.16-.3c.56-1.15.9-2.42.96-3.77v-.64a9.28 9.28 0 0 0-9-9h-.55a9.28 9.28 0 0 0-9 9v.54a9.28 9.28 0 0 0 13.3 8.1l.3-.16 1.52-.8v4.62z"></path>
             </svg>
         ),
+        airconditioning: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="M17 1v4.03l4.03-2.32 1 1.73L17 7.34v6.93l6-3.47V5h2v4.65l3.49-2.02 1 1.74L26 11.38l4.03 2.33-1 1.73-5.03-2.9L18 16l6 3.46 5.03-2.9 1 1.73L26 20.62l3.49 2.01-1 1.74L25 22.35V27h-2v-5.8l-6-3.47v6.93l5.03 2.9-1 1.73L17 26.97V31h-2v-4.03l-4.03 2.32-1-1.73 5.03-2.9v-6.93L9 21.2V27H7v-4.65l-3.49 2.02-1-1.74L6 20.62l-4.03-2.33 1-1.73L8 19.46 14 16l-6-3.46-5.03 2.9-1-1.73L6 11.38 2.51 9.37l1-1.74L7 9.65V5h2v5.8l6 3.47V7.34l-5.03-2.9 1-1.73L15 5.03V1z"></path>
+            </svg>
+        ),
+        kitchen: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="M26 1a5 5 0 0 1 5 5c0 6.39-1.6 13.19-4 14.7V31h-2V20.7c-2.36-1.48-3.94-8.07-4-14.36v-.56A5 5 0 0 1 26 1zm-9 0v18.12c2.32.55 4 3 4 5.88 0 3.27-2.18 6-5 6s-5-2.73-5-6c0-2.87 1.68-5.33 4-5.88V1zM2 1h1c4.47 0 6.93 6.37 7 18.5V21H4v10H2zm14 20c-1.6 0-3 1.75-3 4s1.4 4 3 4 3-1.75 3-4-1.4-4-3-4zM4 3.24V19h4l-.02-.96-.03-.95C7.67 9.16 6.24 4.62 4.22 3.36L4.1 3.3zm19 2.58v.49c.05 4.32 1.03 9.13 2 11.39V3.17a3 3 0 0 0-2 2.65zm4-2.65V17.7c.99-2.31 2-7.3 2-11.7a3 3 0 0 0-2-2.83z"></path>
+            </svg>
+        ),
+        refrigerator: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="M25 1a2 2 0 0 1 2 1.85V29a2 2 0 0 1-1.85 2H7a2 2 0 0 1-2-1.85V3a2 2 0 0 1 1.85-2H7zm0 10H7v18h18zm-15 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM25 3H7v6h18zM10 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+            </svg>
+        ),
+
         communication: (
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -243,6 +301,176 @@ function _getIcon(iconName) {
                 <path d="m8.5 7.6 3.1-1.75 1.47-.82a.83.83 0 0 0 .43-.73V1.33a.83.83 0 0 0-.83-.83H3.33a.83.83 0 0 0-.83.83V4.3c0 .3.16.59.43.73l3 1.68 1.57.88c.35.2.65.2 1 0zm-.5.9a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"></path>
             </svg>
         ),
+        key: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="M16.84 27.16v-3.4l-.26.09c-.98.32-2.03.51-3.11.55h-.7A11.34 11.34 0 0 1 1.72 13.36v-.59A11.34 11.34 0 0 1 12.77 1.72h.59c6.03.16 10.89 5.02 11.04 11.05V13.45a11.3 11.3 0 0 1-.9 4.04l-.13.3 7.91 7.9v5.6H25.7l-4.13-4.13zM10.31 7.22a3.1 3.1 0 1 1 0 6.19 3.1 3.1 0 0 1 0-6.2zm0 2.06a1.03 1.03 0 1 0 0 2.06 1.03 1.03 0 0 0 0-2.06zM22.43 25.1l4.12 4.13h2.67v-2.67l-8.37-8.37.37-.68.16-.3c.56-1.15.9-2.42.96-3.77v-.64a9.28 9.28 0 0 0-9-9h-.55a9.28 9.28 0 0 0-9 9v.54a9.28 9.28 0 0 0 13.3 8.1l.3-.16 1.52-.8v4.62z"></path>
+            </svg>
+        ),
+
+        mapmarker: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="M16 0a12 12 0 0 1 12 12c0 6.34-3.81 12.75-11.35 19.26l-.65.56-1.08-.93C7.67 24.5 4 18.22 4 12 4 5.42 9.4 0 16 0zm0 2C10.5 2 6 6.53 6 12c0 5.44 3.25 11.12 9.83 17.02l.17.15.58-.52C22.75 23 25.87 17.55 26 12.33V12A10 10 0 0 0 16 2zm0 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path>
+            </svg>
+        ),
+
+        schedule: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="M11.67 0v1.67h8.66V0h2v1.67h6a2 2 0 0 1 2 1.85v16.07a2 2 0 0 1-.46 1.28l-.12.13L21 29.75a2 2 0 0 1-1.24.58H6.67a5 5 0 0 1-5-4.78V3.67a2 2 0 0 1 1.85-2h6.15V0zm16.66 11.67H3.67v13.66a3 3 0 0 0 2.82 3h11.18v-5.66a5 5 0 0 1 4.78-5h5.88zm-.08 8h-5.58a3 3 0 0 0-3 2.82v5.76zm-18.58-16h-6v6h24.66v-6h-6v1.66h-2V3.67h-8.66v1.66h-2z"></path>
+            </svg>
+        ),
+        cityview: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="M28 2a2 2 0 0 1 2 1.85V28a2 2 0 0 1-1.85 2H4a2 2 0 0 1-2-1.85V4a2 2 0 0 1 1.85-2H4zM15 13H9v8H4v7h24v-7h-3v4H15zm-3 10a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM28 4H4v15h3v-6a2 2 0 0 1 1.85-2H15a2 2 0 0 1 2 1.85V23h6v-2a2 2 0 0 1 1.85-2H28zM12 19a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm10-8a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path>
+            </svg>
+        ),
+        nature: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="m15.59 1.91 1.02.8C22.17 7.04 25 11.46 25 15.98a8.99 8.99 0 0 1-.5 3.02H31v2h-2v9a1 1 0 0 1-.88 1H4a1 1 0 0 1-1-.88V21H1v-2h6.42c-.28-.9-.42-1.91-.42-3.01 0-2.25 1.1-4.82 3.27-7.75l.27-.35.55-.73 1.78 1.12L15.6 1.9zM27 21H5v8h22v-8zM16.4 5.1l-2.6 6.1-2.21-1.37-.17.24C9.87 12.3 9.07 14.2 9 15.77l-.01.21c0 1.1.17 2.04.48 2.85l.07.17h3a6.1 6.1 0 0 1-.05-.83c0-1.52.86-3.19 2.52-5.07l.24-.27.74-.81.74.8c1.82 2 2.76 3.76 2.76 5.35 0 .3-.02.57-.05.83h3.06l-.14-.07a6.7 6.7 0 0 0 .63-2.95c0-3.42-2.03-6.93-6.17-10.51l-.43-.36zm-.4 9.94-.08.1c-.9 1.14-1.36 2.11-1.41 2.88l-.01.15c0 .35.03.63.09.83h2.82c.06-.2.09-.48.09-.83 0-.79-.46-1.8-1.42-3.04l-.08-.1z"></path>
+            </svg>
+        ),
+        parking: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="M26 19a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm20.7-5 .41 1.12A4.97 4.97 0 0 1 30 18v9a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2H8v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9c0-1.57.75-2.96 1.89-3.88L4.3 13H2v-2h3v.15L6.82 6.3A2 2 0 0 1 8.69 5h14.62c.83 0 1.58.52 1.87 1.3L27 11.15V11h3v2h-2.3zM6 25H4v2h2v-2zm22 0h-2v2h2v-2zm0-2v-5a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v5h24zm-3-10h.56L23.3 7H8.69l-2.25 6H25zm-15 7h12v-2H10v2z"></path>
+            </svg>
+        ),
+        balcony: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="M23 1a2 2 0 0 1 2 1.85V19h4v2h-2v8h2v2H3v-2h2v-8H3v-2h4V3a2 2 0 0 1 1.85-2H9zM9 21H7v8h2zm4 0h-2v8h2zm4 0h-2v8h2zm4 0h-2v8h2zm4 0h-2v8h2zm-10-8H9v6h6zm8 0h-6v6h6zM15 3H9v8h6zm8 0h-6v8h6z"></path>
+            </svg>
+        ),
+        workspace: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="M30 4H2a1 1 0 0 0-1 1v17a1 1 0 0 0 1 1h13v4H9v2h14v-2h-6v-4h13a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1ZM29 21H3V6h26v15Z"></path>
+            </svg>
+        ),
+        lively: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                    display: 'block',
+                    height: '24px',
+                    width: '24px',
+                    fill: 'currentcolor'
+                }}
+            >
+                <path d="M16 1a3 3 0 0 1 3 3v8l7.36-4.25a3 3 0 1 1 3 5.2l-7.36 4.25 7.36 4.25a3 3 0 1 1-3 5.2L19 22v8a3 3 0 1 1-6 0v-8l-7.36 4.25a3 3 0 1 1-3-5.2L10 17 2.64 12.75a3 3 0 1 1 3-5.2L13 12V4a3 3 0 0 1 3-3z"></path>
+            </svg>
+        ),
+        heritage: (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"
+                role="presentation" focusable="false"
+                style={{ display: "block", height: "24px", width: "24px", fill: "currentcolor" }}>
+                <path d="M16 2 2 10v2h28v-2L16 2zm12 10H4v16h24V12zm-2 14H6V14h20v12z"></path>
+            </svg>
+        ),
+        teacup: (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"
+                role="presentation" focusable="false"
+                style={{ display: "block", height: "24px", width: "24px", fill: "currentcolor" }}>
+                <path d="M27 8H3v6a11 11 0 0 0 10 10.95V28H7v2h18v-2h-6v-3.05A11 11 0 0 0 27 14v-1h1a3 3 0 1 0 0-6h-1V8zm-2 6a9 9 0 0 1-18 0v-4h18v4zm2-4h1a1 1 0 1 1 0 2h-1v-2z"></path>
+            </svg>
+        ),
+
     }
     return icons[iconName]
 }
