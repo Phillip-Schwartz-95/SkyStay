@@ -7,10 +7,27 @@ import { StayFilter } from './StayFilter'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
-	const navigate = useNavigate()
+
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
-	const menuRef = useRef(null)
 	const [isHostingView, setIsHostingView] = useState(false)
+	const [isScrolledDown, setIsScrolledDown] = useState(false)
+
+	const navigate = useNavigate()
+
+	const menuRef = useRef(null)
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 10) {
+				setIsScrolledDown(true)
+			} else {
+				setIsScrolledDown(false)
+			}
+		}
+
+		window.addEventListener('scroll', handleScroll)
+		return () => window.removeEventListener('scroll', handleScroll)
+	}, [])
 
 	async function onLogout() {
 		try {
@@ -31,8 +48,10 @@ export function AppHeader() {
 		return () => document.removeEventListener('click', onDocClick)
 	}, [])
 
+	const headerClasses = isScrolledDown ? 'app-header mini' : 'app-header'
+
 	return (
-		<header className="app-header">
+		<header className={headerClasses}>
 			<nav className="header-nav container">
 				<div className="header-left">
 					<Link to="/" className="logo">
@@ -59,7 +78,7 @@ export function AppHeader() {
 							<span>My Listings</span>
 						</Link>
 					) : (
-						<Link to="/" className="nav-pill homes">
+						<Link to="/" className="nav-pill homes" style={{ display: isScrolledDown ? 'none' : 'inline-flex' }}>
 							<img
 								src="https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-search-bar-icons/original/4aae4ed7-5939-4e76-b100-e69440ebeae4.png?im_w=240"
 								alt=""
@@ -133,7 +152,8 @@ export function AppHeader() {
 				{/* hide filter when in hosting mode */}
 				{!isHostingView && (
 					<div className="header-center">
-						<StayFilter />
+						<StayFilter
+						isScrolledDown={isScrolledDown} />
 					</div>
 				)}
 			</nav>

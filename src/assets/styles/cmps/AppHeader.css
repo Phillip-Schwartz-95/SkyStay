@@ -5,6 +5,7 @@
     top: 0;
     z-index: 1000;
     margin-bottom: 20px;
+    transition: min-height 0.3s ease-out, background 0.3s ease-out;
 }
 
 .header-nav {
@@ -18,6 +19,7 @@
     row-gap: 12px;
     min-height: 150px;
     background: rgb(251, 251, 251);
+    transition: all 0.3s ease-out;
 }
 
 .app-header .container {
@@ -53,6 +55,7 @@
     justify-self: center;
     width: 100%;
     max-width: 850px;
+    position: relative;
 }
 
 .logo {
@@ -247,4 +250,22 @@
     font-size: 30px;
     transform: translateX(-3px) scaleX(-1);
     transform-origin: center;
+}
+
+.app-header.mini .header-nav {
+    grid-template-rows: 90px;
+    min-height: 90px;
+    background-color: #fff;
+}
+
+.app-header.mini .header-center {
+    display: block;
+}
+
+.app-header.mini .header-top-center {
+    display: none;
+}
+
+.app-header.mini .header-left {
+    margin-left: 20px;
 }
