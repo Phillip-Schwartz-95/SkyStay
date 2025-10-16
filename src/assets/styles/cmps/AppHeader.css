@@ -17,7 +17,7 @@
     align-items: center;
     row-gap: 12px;
     min-height: 150px;
-    background: #fff;
+    background: rgb(251, 251, 251);
 }
 
 .app-header .container {
