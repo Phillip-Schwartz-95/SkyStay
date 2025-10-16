@@ -14,6 +14,7 @@
     height: 66px;
     transition: box-shadow 0.2s ease;
     position: relative;
+    margin-bottom: 36px;
 }
 
 .search-pill:hover,
