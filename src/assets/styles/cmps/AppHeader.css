@@ -5,7 +5,7 @@
     top: 0;
     z-index: 1000;
     margin-bottom: 20px;
-    transition: min-height 0.3s ease-out, background 0.3s ease-out;
+    transition: background 0.3s ease-out;
 }
 
 .header-nav {
@@ -19,7 +19,7 @@
     row-gap: 12px;
     min-height: 150px;
     background: rgb(251, 251, 251);
-    transition: all 0.3s ease-out;
+    transition: min-height 0.3s ease-out;
 }
 
 .app-header .container {
@@ -253,13 +253,22 @@
 }
 
 .app-header.mini .header-nav {
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas: "left center right";
+    align-items: center;
+    row-gap: 0;
     grid-template-rows: 90px;
     min-height: 90px;
     background-color: #fff;
 }
 
 .app-header.mini .header-center {
-    display: block;
+    width: auto;
+    max-width: none;
+    justify-self: start;
+    padding-left: 0;
+    margin-left: -120px;
+    transform: none;
 }
 
 .app-header.mini .header-top-center {

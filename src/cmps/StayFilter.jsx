@@ -207,12 +207,14 @@ export function StayFilter({ isScrolledDown}) {
                     className="mini-search-pill"
                     onClick={() => onPillClick('where')}
                 >
-                    <button className="mini-search-btn">
-                        <svg width="14" height="14" viewBox="0 0 24 24">...</svg>
-                    </button>
                     <div className="mini-search-content">
                         <span className="mini-search-main">{fixedSearchText}</span>
                         <span className="mini-search-secondary">{fixedSearchDate} · {fixedSearchGuests}</span>
+                    </div>
+                    <div className="mini-search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10.5 3a7.5 7.5 0 1 1 0 15c-1.83 0-3.51-.64-4.82-1.71l-3.49 3.49a1 1 0 1 1-1.41-1.41l3.49-3.49A7.46 7.46 0 0 1 3 10.5 7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11Z" />
+                        </svg>
                     </div>
                 </div>
             )}
