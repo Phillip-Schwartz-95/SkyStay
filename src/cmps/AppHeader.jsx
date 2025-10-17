@@ -18,7 +18,7 @@ export function AppHeader() {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (window.scrollY > 10) {
+			if (window.scrollY > 1) {
 				setIsScrolledDown(true)
 			} else {
 				setIsScrolledDown(false)

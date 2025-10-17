@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import { setFilter } from '../store/actions/stay.actions'
 
-export function StayFilter({ isScrolledDown}) {
+export function StayFilter({ isScrolledDown }) {
 
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
 
@@ -98,7 +98,8 @@ export function StayFilter({ isScrolledDown}) {
             : 'Anytime'
     const fixedSearchGuests = draft.capacity > 0 ? `${draft.capacity} guests` : 'Add guests'
 
-    const searchPillClasses = `search-pill ${activeMenu ? 'has-active-menu' : ''}`
+    const isFullHeaderSearch = showFullSearch && !isFixedMenuOpen
+    const searchPillClasses = `${isFullHeaderSearch ? 'search-pill' : 'search-pill-in-overlay'} ${activeMenu ? 'has-active-menu' : ''}`
 
     return (
         <div className="filter-wrapper">

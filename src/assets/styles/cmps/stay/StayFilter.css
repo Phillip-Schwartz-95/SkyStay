@@ -1,4 +1,5 @@
-.search-pill {
+.search-pill,
+.search-pill-in-overlay {
     display: flex;
     align-items: center;
     gap: 0;
@@ -14,7 +15,15 @@
     height: 66px;
     transition: box-shadow 0.2s ease;
     position: relative;
+}
+
+.search-pill {
     margin-bottom: 36px;
+}
+
+.search-pill-in-overlay {
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 .search-pill:hover,
@@ -360,10 +369,6 @@
 
 .close-btn:hover {
     background-color: #f7f7f7;
-}
-
-.search-dropdown-overlay.fixed-overlay form.search-pill {
-    margin-top: 0;
 }
 
 .recent-searches,
