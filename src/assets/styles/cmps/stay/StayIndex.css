@@ -4,7 +4,7 @@
     padding-inline: 24px;
 }
 
-.stay-index header {
+.stay-index .row-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -14,25 +14,32 @@
 .stay-index h2 {
     margin: 0;
     font-size: 1.3em;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
 }
 
 .stay-index button {
     margin-inline-end: 0;
 }
 
-.stay-index .row-title svg {
-    display: block;
+.stay-index .row-title {
+    margin: 0;
+}
+
+.stay-index .row-title-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: inherit;
+    white-space: nowrap;
+}
+
+.stay-index .row-title-link svg {
+    display: inline-block;
     width: 12px;
     height: 12px;
     fill: none;
     stroke: currentColor;
     stroke-width: 5.33333;
     overflow: visible;
-}
-
-.stay-index .row-title svg {
-    transform: translateY(3px);
+    transform: translateY(2px);
 }
