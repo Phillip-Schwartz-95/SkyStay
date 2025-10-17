@@ -116,7 +116,7 @@ export function StayFilter({ isScrolledDown}) {
                             type="text"
                             id="whereInput"
                             placeholder="Search destinations"
-                            readOnly={activeMenu !== 'where'}
+                            // readOnly={activeMenu !== 'where'}
                             value={draft.txt || ''}
                             onChange={ev => onChange('txt', ev.target.value)}
                             onClick={onChildClick}
