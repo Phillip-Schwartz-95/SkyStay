@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { loadStays, addStay, updateStay, removeStay } from '../store/actions/stay.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { stayService } from '../services/stay'
@@ -124,11 +125,19 @@ export function StayIndex() {
                 {rowsLimited.map((row, idx) => (
                     <section key={`${row.type}-${row.label}-${idx}`} className="recommendation-row">
                         <header className="row-header">
-                            <h2>
-                                {(row.type === 'city'
-                                    ? phrasesCity[idx % phrasesCity.length]
-                                    : phrasesCountry[idx % phrasesCountry.length])}{' '}
-                                {row.label}
+                            <h2 className="row-title">
+                                <Link
+                                    to={`/browse?type=${encodeURIComponent(row.type)}&label=${encodeURIComponent(row.label)}`}
+                                    className="row-title-link"
+                                >
+                                    {(row.type === 'city'
+                                        ? phrasesCity[idx % phrasesCity.length]
+                                        : phrasesCountry[idx % phrasesCountry.length])}{' '}
+                                    {row.label}
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'currentColor', strokeWidth: 5.33333, overflow: 'visible', marginLeft: '4px', transform: 'translateY(2px)' }}>
+                                        <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
+                                    </svg>
+                                </Link>
                             </h2>
                         </header>
                         <StayList

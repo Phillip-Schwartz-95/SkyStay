@@ -1,24 +1,20 @@
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router'
-
 import { StayIndex } from './pages/StayIndex.jsx'
 import { StayDetails } from './pages/StayDetails.jsx'
 import { UserProfile } from './pages/UserProfile.jsx'
 import { LoginSignup, Login, Signup } from './pages/LoginSignup.jsx'
 import { ImagePage } from './pages/ImagePage.jsx'
-
 import { HostSetup } from './pages/HostSetup.jsx'
 import { HostingDashboard } from './pages/HostingDashboard.jsx'
 import { HostStayForm } from './pages/HostStayForm.jsx'
-
+import BrowsePage from './pages/BrowsePage.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
 
 export function RootCmp() {
     const location = useLocation()
-
-    //condition: hide header on photo gallery page
     const hideHeader = location.pathname.includes('/photos')
 
     return (
@@ -35,25 +31,15 @@ export function RootCmp() {
                         <Route path="login" element={<Login />} />
                         <Route path="signup" element={<Signup />} />
                     </Route>
-
                     <Route path="host/start" element={<HostSetup />} />
                     <Route path="hosting" element={<HostingDashboard />} />
                     <Route path="host/new" element={<HostStayForm />} />
-
-                    {/* Future routes (currently disabled) */}
-                    {/* <Route path="about" element={<AboutUs />}>
-                        <Route path="team" element={<AboutTeam />} />
-                        <Route path="vision" element={<AboutVision />} />
-                    </Route>
-                    <Route path="review" element={<ReviewIndex />} />
-                    <Route path="chat" element={<ChatApp />} />
-                    <Route path="admin" element={<AdminIndex />} /> */}
+                    <Route path="browse" element={<BrowsePage />} />
                 </Routes>
             </main>
 
-            {/* <AppFooter /> */}
         </div>
     )
 }
 
-
+export default RootCmp

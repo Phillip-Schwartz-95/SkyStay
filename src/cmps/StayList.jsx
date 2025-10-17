@@ -2,9 +2,6 @@ import { useRef, useMemo, useEffect, useState } from 'react'
 import { userService } from '../services/user'
 import { StayPreview } from './StayPreview'
 
-const CARD_W = 250
-const GAP = 10
-
 export function StayList({ stays = [], onRemoveStay, onUpdateStay }) {
     const rowRef = useRef(null)
     const [canScroll, setCanScroll] = useState({ any: false, left: false, right: false })
@@ -32,8 +29,7 @@ export function StayList({ stays = [], onRemoveStay, onUpdateStay }) {
     function scrollRow(dir) {
         const track = rowRef.current
         if (!track) return
-        const visible = Math.max(1, Math.floor(track.clientWidth / (CARD_W + GAP)))
-        const delta = (CARD_W + GAP) * visible * (dir === 'right' ? 1 : -1)
+        const delta = track.clientWidth * (dir === 'right' ? 1 : -1)
         track.scrollBy({ left: delta, behavior: 'smooth' })
     }
 
@@ -75,7 +71,9 @@ export function StayList({ stays = [], onRemoveStay, onUpdateStay }) {
                             disabled={!canScroll.left}
                             style={{ visibility: canScroll.left ? 'visible' : 'hidden' }}
                         >
-                            ‹
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className="arrow-svg left">
+                                <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
+                            </svg>
                         </button>
                         <button
                             type="button"
@@ -85,7 +83,9 @@ export function StayList({ stays = [], onRemoveStay, onUpdateStay }) {
                             disabled={!canScroll.right}
                             style={{ visibility: canScroll.right ? 'visible' : 'hidden' }}
                         >
-                            ›
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className="arrow-svg right">
+                                <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
+                            </svg>
                         </button>
                     </div>
                 )}
