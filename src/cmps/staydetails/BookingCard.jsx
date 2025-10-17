@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-import { reservationService } from '../services/reservations/reservation.service.local'
+import { reservationService } from '../../services/reservations/reservation.service.local'
 
 export function BookingCard({
     stayId, userId, pricePerNight, maxGuests,

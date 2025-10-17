@@ -1,0 +1,32 @@
+/* Review Form */
+.stay-reviews {
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.reviews-header {
+    margin-bottom: 0;
+    font-size: 24px;
+}
+
+/* .stay-reviews form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.stay-reviews input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.stay-reviews button {
+    padding: 0.5rem 1rem;
+    background-color: #ff385c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+} */

@@ -470,6 +470,21 @@ function _getIcon(iconName) {
                 <path d="M27 8H3v6a11 11 0 0 0 10 10.95V28H7v2h18v-2h-6v-3.05A11 11 0 0 0 27 14v-1h1a3 3 0 1 0 0-6h-1V8zm-2 6a9 9 0 0 1-18 0v-4h18v4zm2-4h1a1 1 0 1 1 0 2h-1v-2z"></path>
             </svg>
         ),
+        showall: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{ display: "block", height: "24px", width: "24px", fill: "currentcolor" }}
+            >
+                <path
+                    fillRule="evenodd"
+                    d="M3 11.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"
+                ></path>
+            </svg>
+        ),
 
     }
     return icons[iconName]

@@ -1,0 +1,131 @@
+/* Container */
+.stay-details-wrapper {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.stay-details {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto 1fr;
+    row-gap: 12px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: var(--bnb-text);
+    color: #222;
+}
+
+/* Header and Gallery span full width */
+.stay-details>header,
+.stay-details>.photo-gallery,
+.stay-details>section:not(.details-layout) {
+    grid-column: 1 / -1;
+}
+
+/* Header */
+
+.stay-title {
+    font-size: 26px;
+    line-height: 30px;
+    font-weight: 500;
+    letter-spacing: normal;
+    color: #222222;
+    margin-bottom: 0;
+}
+
+/* Two-column layout */
+.details-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    grid-column: 1 / -1;
+}
+
+.details-left {
+    grid-column: 1;
+}
+
+.details-left .host-info .host-avatar {
+    display: flex;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+.details-left .host-info .host-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.details-left .stay-location {
+    font-size: 22px;
+    font-weight: 500;
+    font-family: var(--bnb-text);
+    color: #222;
+    margin: 0;
+}
+
+.details-right {
+    grid-column: 2;
+    align-self: flex-start;
+    position: sticky;
+    top: 180px;
+}
+
+/* Location and basic details */
+.stay-location {
+    font-size: 22px;
+    line-height: 26px;
+    color: #222222;
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.basic-details p {
+    font-size: 16px;
+    color: #717171;
+    margin: 0;
+    margin-bottom: 2px;
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 20px;
+}
+
+.rating-row .star {
+    color: #222;
+    font-size: 16px;
+    margin-right: 4px;
+}
+
+.rating-row .rating {
+    font-weight: 600;
+}
+
+.rating-row .reviews-link {
+    color: #222;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+/* Lists */
+.stay-amenities ul,
+.stay-rules ul,
+.stay-reviews ul {
+    list-style: none;
+    padding: 0;
+}
+
+.stay-amenities li,
+.stay-rules li,
+.stay-reviews li {
+    margin-bottom: 0.3rem;
+}

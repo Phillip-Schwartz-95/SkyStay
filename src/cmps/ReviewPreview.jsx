@@ -1,11 +1,45 @@
-import { Link } from 'react-router-dom'
-
 export function ReviewPreview({ review }) {
-    const { byUser, aboutUser } = review
+  if (!review) return null
 
-    return <article className="review-preview">
-        <p>About: <Link to={`/user/${aboutUser._id}`}>{aboutUser.fullname}</Link></p>
-        <p className="review-by">By: <Link to={`/user/${byUser._id}`}>{byUser.fullname}</Link></p>
-        <p className="review-txt">{review.txt}</p>
-    </article>
+  return (
+    <li className="review-card">
+      <div className="review-header">
+        <img
+          src={review.byUser.imgUrl}
+          alt={review.byUser.fullname}
+          className="review-avatar"
+        />
+        <div className="review-meta">
+          <strong>{review.byUser.fullname}</strong>
+          <p className="review-tenure">
+            {review.byUser.tenure || review.byUser.location || 'Airbnb guest'}
+          </p>
+        </div>
+      </div>
+
+      <div className="review-info-row">
+        <span className="review-stars">
+          {'★'.repeat(Number(review.rating || 5))}
+        </span>
+        <span className="dot">·</span>
+        <span className="review-date">
+          {review.date || 'August 2025'}
+        </span>
+        <span className="dot">·</span>
+        <span className="review-stay">
+          {review.stayLength || 'Stayed one night'}
+        </span>
+      </div>
+
+      <p className="review-text">
+        {review.txt.length > 120
+          ? review.txt.slice(0, 120) + '...'
+          : review.txt}
+      </p>
+
+      {review.txt.length > 120 && (
+        <button className="review-show-more">Show more</button>
+      )}
+    </li>
+  )
 }

@@ -23,10 +23,18 @@
 @import "cmps/stay/StayList";
 @import "cmps/stay/StayPreview";
 @import "cmps/stay/StayFilter";
-@import "cmps/stay/StayDetails";
-@import "cmps/stay/MeetYourHost";
-@import "cmps/stay/PhotoGalleryDetails.css";
-@import "cmps/stay/BookingCard.css";
+
+@import "cmps/stay/staydetails/StayDetails";
+@import "cmps/stay/staydetails/MeetYourHost";
+@import "cmps/stay/staydetails/PhotoGalleryDetails.css";
+@import "cmps/stay/staydetails/BookingCard.css";
+@import "cmps/stay/staydetails/AmenitiesList.css";
+@import "cmps/stay/staydetails/HighlightsList.css";
+@import "cmps/stay/staydetails/HostInfo.css";
+@import "cmps/stay/staydetails/MapSection.css";
+@import "cmps/stay/staydetails/ThingsToKnow.css";
+@import "cmps/stay/staydetails/ReviewsDetails.css";
+
 @import "cmps/stay/ImagePage.css";
 
 @import "cmps/review/ReviewEdit";

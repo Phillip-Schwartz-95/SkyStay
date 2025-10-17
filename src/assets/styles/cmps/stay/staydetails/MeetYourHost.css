@@ -159,20 +159,34 @@
 }
 
 /* RIGHT SIDE */
-.host-info {
+.meet-host-info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
     border-top: none;
-    border-bottom: 1px solid #ddd;
+}
+
+.superhost-heading {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.superhost-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    margin-bottom: 20px;
 }
 
 .info-heading {
     font-size: 18px;
     line-height: 24px;
     font-weight: 500;
-    margin: 0;
+    margin-bottom: 15px;
 }
 
 .info-text {
@@ -180,18 +194,23 @@
     font-size: 16px;
     line-height: 24px;
     color: #000000;
+}
 
+.info-text span {
+    margin-top: 0;
 }
 
 .message-host-btn {
-    margin-top: 1rem;
-    padding: 0.75rem 1.25rem;
+    margin-top: 30px;
     color: #222;
     background: #f2f2f2;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    width: 151.413px;
+    height: 48px;
+    margin-left: 0;
 }
 
 .message-host-btn:hover {

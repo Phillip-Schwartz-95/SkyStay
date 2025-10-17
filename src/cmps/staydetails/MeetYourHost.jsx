@@ -1,4 +1,4 @@
-import { SvgIcon } from './SvgIcon'
+import { SvgIcon } from '../SvgIcon'
 
 export function MeetYourHost({ stay }) {
     if (!stay?.host) return null
@@ -74,16 +74,16 @@ export function MeetYourHost({ stay }) {
                 </div>
 
                 {/* RIGHT SIDE */}
-                <div className="host-info">
-                    <h4 className="info-heading">{stay.host?.fullname} is a Superhost</h4>
-                    <p className="info-text">
+                <div className="meet-host-info">
+                    <h4 className="superhost-heading">{stay.host?.fullname} is a Superhost</h4>
+                    <p className="superhost-text">
                         Superhosts are experienced, highly rated hosts who are committed
                         to providing great stays for guests.
                     </p>
 
                     <h4 className="info-heading">Host details</h4>
                     <p className="info-text">Response rate: {stay.host?.responseRate}%</p>
-                    <p className="info-text">Responds within {stay.host?.responseTime}</p>
+                    <span>Responds within {stay.host?.responseTime}</span>
 
                     <button className="message-host-btn">Message host</button>
                 </div>

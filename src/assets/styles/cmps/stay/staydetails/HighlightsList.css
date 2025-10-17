@@ -1,0 +1,41 @@
+/* Highlights */
+.listing-highlights {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 20px;
+    border-bottom: 1px solid #bababa;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.highlight-icon {
+    font-size: 20px;
+    color: #222;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.highlight-title {
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+    color: #222;
+}
+
+.highlight-desc {
+    font-size: 14px;
+    color: #717171;
+    margin: 2px 0 0;
+}
+
+/* Sections */
+.room-description {
+    font-size: 16px;
+    line-height: 22px;
+    margin-top: 40px;
+}

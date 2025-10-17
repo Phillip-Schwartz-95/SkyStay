@@ -1,21 +1,30 @@
+// /pages/StayDetails.jsx
 import { useEffect, useState, useRef } from 'react'
-import { useNavigate } from "react-router-dom"
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { GoogleMap, Marker, useJsApiLoader, StandaloneSearchBox } from '@react-google-maps/api'
-import { SvgIcon } from '../cmps/SvgIcon'
+import { useJsApiLoader } from '@react-google-maps/api'
 
-import { loadStay, addStayMsg } from '../store/actions/stay.actions'
+import { loadStay } from '../store/actions/stay.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
-import stayphotos from '../data/stayphotos.json'
 import { reviewService } from '../services/review'
 import { userService } from '../services/user'
+
+//shared components
 import { ReviewBreakdown } from '../cmps/ReviewBreakdown'
-import { BookingCard } from '../cmps/BookingCard'
-import { MeetYourHost } from '../cmps/MeetYourHost'
+import { ReviewsList } from '../cmps/ReviewList'
 import { StayCalendar } from '../cmps/StayCalendar'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+
+// Subcomponents
+import { PhotoGallery } from '../cmps/staydetails/PhotoGallery'
+import { HostInfo } from '../cmps/staydetails/HostInfo'
+import { HighlightsList } from '../cmps/staydetails/HighlightsList'
+import { AmenitiesList } from '../cmps/staydetails/AmenitiesList'
+import { MapSection } from '../cmps/staydetails/MapSection'
+import { ThingsToKnow } from '../cmps/staydetails/ThingsToKnow'
+import { BookingCard } from '../cmps/staydetails/BookingCard'
+import { MeetYourHost } from '../cmps/staydetails/MeetYourHost'
+
+import stayphotos from '../data/stayphotos.json'
 import '../assets/styles/cmps/stay/StayCalendar.css'
 
 const libraries = ['places']
@@ -23,37 +32,33 @@ const libraries = ['places']
 export function StayDetails() {
   const { stayId } = useParams()
   const stay = useSelector(storeState => storeState.stayModule.stay)
-  const photo = stayphotos[stayId]
   const navigate = useNavigate()
-  const [msgTxt, setMsgTxt] = useState('')
+
   const [reviews, setReviews] = useState([])
-  const mapRef = useRef(null)
-  const searchBoxRef = useRef(null)
-  const [center, setCenter] = useState({ lat: 0, lng: 0 })
   const [checkIn, setCheckIn] = useState(null)
   const [checkOut, setCheckOut] = useState(null)
   const [reservedDates, setReservedDates] = useState([])
   const [hostUser, setHostUser] = useState(null)
+  const mapRef = useRef(null)
+  const searchBoxRef = useRef(null)
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries,
   })
 
+  // Load stay and reviews
   useEffect(() => {
     loadStay(stayId)
     loadReviews()
   }, [stayId])
 
-  useEffect(() => {
-    if (stay?.loc?.lat && stay?.loc?.lng) {
-      setCenter({ lat: stay.loc.lat, lng: stay.loc.lng })
-    }
-  }, [stay?.loc?.lat, stay?.loc?.lng])
-
+  // Load host info
   useEffect(() => {
     if (stay?.host?.fullname) {
-      userService.getByFullname(stay.host.fullname).then(setHostUser).catch(() => setHostUser(null))
+      userService.getByFullname(stay.host.fullname)
+        .then(setHostUser)
+        .catch(() => setHostUser(null))
     }
   }, [stay?.host?.fullname])
 
@@ -66,96 +71,45 @@ export function StayDetails() {
     }
   }
 
-  function onPlacesChanged() {
-    const places = searchBoxRef.current.getPlaces()
-    if (places.length > 0) {
-      const location = places[0].geometry.location
-      setCenter({ lat: location.lat(), lng: location.lng() })
-    }
-  }
-
   const starCounts = reviews.reduce((acc, review) => {
     const stars = review.rating || 5
     acc[stars] = (acc[stars] || 0) + 1
     return acc
   }, {})
 
-  async function onAddStayMsg(ev) {
-    ev.preventDefault()
-    try {
-      await addStayMsg(stayId, msgTxt)
-      showSuccessMsg('Message added')
-      setMsgTxt('')
-    } catch (err) {
-      showErrorMsg('Cannot add message')
-    }
-  }
-
-  const zoomBtnStyle = {
-    width: '40px',
-    height: '40px',
-    margin: '2px 0',
-    border: 'none',
-    borderRadius: '4px',
-    backgroundColor: '#fff',
-    fontSize: '20px',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
-  }
-
   if (!stay) return <div>Loading...</div>
+
+  // Handle “Show all photos”
+  const onOpenAllPhotos = () => navigate(`/stay/${stay._id}/photos`)
+
+  // Handle date changes in calendar
+  const onChangeDates = (start, end) => {
+    setCheckIn(start)
+    setCheckOut(end)
+  }
 
   return (
     <section className="stay-details-wrapper">
       <section className="stay-details">
+
+        {/* Header */}
         <header className="stay-header">
           <h1 className="stay-title">{stay.title}</h1>
         </header>
 
-        <div className="photo-gallery">
-          <div className="main-photo">
-            <img src={stay.imgs?.[0]} alt="Main stay image" />
-          </div>
+        {/* Photo Gallery */}
+        <PhotoGallery imgs={stay.imgs} stayId={stay._id} onOpenAll={onOpenAllPhotos} />
 
-          <div className="side-photos">
-            {stay.imgs?.slice(1, 5).map((img, idx) => (
-              <img key={idx} src={img} alt={`Stay side ${idx + 1}`} />
-            ))}
-          </div>
-
-          {stay.imgs?.length > 5 && (
-            <button className="show-all-btn" onClick={() => navigate(`/stay/${stay._id}/photos`)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-                role="presentation"
-                focusable="false"
-                className="show-all-icon"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3 11.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"
-                />
-              </svg>
-              Show all photos
-            </button>
-          )}
-
-        </div>
-
+        {/* Main layout */}
         <div className="details-layout">
           <div className="details-left">
+
+            {/* Stay basic info */}
             <div className="stay-block">
               <p className="stay-location">{stay.title}</p>
-
               <div className="basic-details">
-                <p>
-                  {stay.maxGuests} guests · {stay.bedRooms} bedroom · {stay.baths} baths
-                </p>
+                <p>{stay.maxGuests} guests · {stay.bedRooms} bedroom · {stay.baths} baths</p>
               </div>
-
               <p className="rating-row">
                 <span className="star">★</span>
                 <span className="rating">{Number(stay.host?.rating).toFixed(2)}</span>
@@ -164,95 +118,39 @@ export function StayDetails() {
               </p>
             </div>
 
-            <div className="host-info">
-              <img
-                src={stay.host?.imgUrl}
-                alt={stay.host?.fullname}
-                className="host-avatar"
-              />
-              <div className="host-meta">
-                <p className="hosted-by">Hosted by {stay.host?.fullname}</p>
-                <p className="host-time">
-                  {hostUser?.timeAsUser ??
-                    (typeof stay.host?.monthsHosting === 'number'
-                      ? (stay.host.monthsHosting >= 12
-                        ? `${Math.floor(stay.host.monthsHosting / 12)} years hosting`
-                        : `${stay.host.monthsHosting} months hosting`)
-                      : '')}
-                </p>
-              </div>
-            </div>
+            {/* Host Info */}
+            <HostInfo host={stay.host} hostUser={hostUser} />
 
-            <ul className="listing-highlights">
-              {stay.highlights?.map((h, idx) => {
-                const iconName =
-                  typeof h === 'string'
-                    ? 'key'
-                    : (h.icon?.toLowerCase?.() || 'key')
+            {/* Highlights */}
+            <HighlightsList highlights={stay.highlights} />
 
-                return (
-                  <li key={idx} className="highlight-item">
-                    <SvgIcon iconName={iconName} className="highlight-icon" />
-                    <div>
-                      <p className="highlight-title">{h.title || h}</p>
-                      {h.desc && <p className="highlight-desc">{h.desc}</p>}
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-
+            {/* Description */}
             <section className="room-description">
               <p>{stay.summary}</p>
             </section>
 
-            <section className="stay-amenities">
-              <h2>What this place offers</h2>
-              <ul className="amenities-grid">
-                {stay.amenities?.map((a, idx) => {
-                  const iconName = (a || '').toString().toLowerCase().replace(/\s+/g, '')
-                  return (
-                    <li key={idx} className="amenity-item">
-                      <SvgIcon iconName={iconName} className="amenity-icon" />
-                      <span>{a}</span>
-                    </li>
-                  )
-                })}
-              </ul>
-            </section>
+            {/* Amenities */}
+            <AmenitiesList amenities={stay.amenities} />
 
-            <section className="stay-calendar">
-              <h2>
-                {checkIn && checkOut
-                  ? `${Math.ceil(
-                    (new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24)
-                  )} nights in ${stay.loc?.city}`
-                  : 'Select your stay dates'}
-              </h2>
-              <DatePicker
-                selectsRange
-                startDate={checkIn}
-                endDate={checkOut}
-                onChange={(dates) => {
-                  const [start, end] = dates
-                  setCheckIn(start)
-                  setCheckOut(end)
-                }}
-                monthsShown={2}
-                inline
-                excludeDates={reservedDates.map(d => new Date(d))}
-                minDate={new Date()}
-                calendarClassName="airbnb-calendar"
-              />
-            </section>
+            {/* Calendar */}
+            <StayCalendar
+              stay={stay}
+              reservedDates={reservedDates}
+              checkIn={checkIn}
+              setCheckIn={setCheckIn}
+              checkOut={checkOut}
+              setCheckOut={setCheckOut}
+            />
+
           </div>
 
+          {/* Booking Card */}
           <div className="details-right">
             <BookingCard
               stayId={stay._id}
               userId={'u101'}
               pricePerNight={stay.price}
-              maxGuests={4}
+              maxGuests={stay.maxGuests}
               checkIn={checkIn}
               checkOut={checkOut}
               setCheckIn={setCheckIn}
@@ -263,6 +161,7 @@ export function StayDetails() {
           </div>
         </div>
 
+        {/* Reviews */}
         <section className="stay-reviews">
           <h2 className="reviews-header">
             <span className="star">★</span>
@@ -270,155 +169,35 @@ export function StayDetails() {
           </h2>
 
           {stay.ratings && (
-            <div className="review-breakdown">
-              <ReviewBreakdown
-                ratings={stay.ratings}
-                reviewCount={reviews.length}
-                starCounts={starCounts}
-              />
-            </div>
+            <ReviewBreakdown
+              ratings={stay.ratings}
+              reviewCount={reviews.length}
+              starCounts={starCounts}
+            />
           )}
 
-          <ul className="review-list">
-            {reviews.map(review => (
-              <li key={review._id} className="review-card">
-                <div className="review-header">
-                  <img
-                    src={review.byUser.imgUrl}
-                    alt={review.byUser.fullname}
-                    className="review-avatar"
-                  />
-                  <div className="review-meta">
-                    <strong>{review.byUser.fullname}</strong>
-                    <p className="review-tenure">
-                      {review.byUser.tenure || review.byUser.location || 'Airbnb guest'}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="review-info-row">
-                  <span className="review-stars">
-                    {'★'.repeat(Number(review.rating || 5))}
-                  </span>
-                  <span className="dot">·</span>
-                  <span className="review-date">
-                    {review.date || 'August 2025'}
-                  </span>
-                  <span className="dot">·</span>
-                  <span className="review-stay">
-                    {review.stayLength || 'Stayed one night'}
-                  </span>
-                </div>
-
-                <p className="review-text">
-                  {review.txt.length > 120
-                    ? review.txt.slice(0, 120) + '...'
-                    : review.txt}
-                </p>
-                {review.txt.length > 120 && (
-                  <button className="review-show-more">Show more</button>
-                )}
-              </li>
-            ))}
-          </ul>
+          <ReviewsList reviews={reviews} />
 
         </section>
 
-        <section className="stay-location-map">
-          <h2>Where you'll be</h2>
-          <p className="map-location">
-            {stay.loc?.city}, {stay.loc?.country}
-          </p>
+        {/* Map */}
+        <MapSection
+          isLoaded={isLoaded}
+          loc={stay.loc}
+          mapRef={mapRef}
+          searchBoxRef={searchBoxRef}
+        />
 
-          {isLoaded && stay.loc?.lat && stay.loc?.lng && (
-            <div style={{ position: 'relative', width: '100%', height: '500px' }}>
-              <GoogleMap
-                center={center}
-                zoom={13}
-                onLoad={(map) => (mapRef.current = map)}
-                options={{
-                  disableDefaultUI: true,
-                  mapTypeControl: false,
-                  fullscreenControl: true,
-                  streetViewControl: true,
-                  zoomControl: false,
-                }}
-                mapContainerStyle={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                }}
-              >
-                <Marker
-                  position={{ lat: stay.loc.lat, lng: stay.loc.lng }}
-                  icon={{
-                    url: `data:image/svg+xml;utf-8,
-<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
-  <circle cx="20" cy="20" r="20" fill="black"/>
-  <path d="M10 22 L20 12 L30 22 V32 H22 V24 H18 V32 H10 Z" fill="white"/>
-</svg>`,
-                    scaledSize: new window.google.maps.Size(40, 40),
-                    anchor: new window.google.maps.Point(20, 20),
-                  }}
-                />
-              </GoogleMap>
-
-              <div className="map-search-box">
-                <StandaloneSearchBox
-                  onLoad={ref => (searchBoxRef.current = ref)}
-                  onPlacesChanged={onPlacesChanged}
-                >
-                  <input
-                    type="text"
-                    placeholder="Search location"
-                    className="map-search-input"
-                  />
-                </StandaloneSearchBox>
-              </div>
-
-              <div className="custom-zoom-controls">
-                <button onClick={() => mapRef.current?.setZoom(mapRef.current.getZoom() + 1)}>+</button>
-                <button onClick={() => mapRef.current?.setZoom(mapRef.current.getZoom() - 1)}>−</button>
-              </div>
-            </div>
-          )}
-        </section>
-
+        {/* Meet the Host */}
         <MeetYourHost stay={stay} />
 
-        {/* Things to know */}
-        <section className="things-to-know">
-          <h2>Things to know</h2>
-          <div className="info-grid">
-            <div className="info-block">
-              <h3>House Rules</h3>
-              <ul>
-                {stay.houseRules?.map((rule, idx) => (
-                  <li key={idx}>{rule}</li>
-                ))}
-              </ul>
-            </div>
+        {/* Things to Know */}
+        <ThingsToKnow
+          rules={stay.houseRules}
+          safety={stay.safety}
+          cancellation={stay.cancellationPolicy}
+        />
 
-            <div className="info-block">
-              <h3>Safety & Property</h3>
-              <ul>
-                {stay.safety?.map((s, idx) => (
-                  <li key={idx}>{s}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="info-block">
-              <h3>Cancellation Policy</h3>
-              <ul>
-                {stay.cancellationPolicy?.map((c, idx) => (
-                  <li key={idx}>{c}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
       </section>
     </section>
   )
