@@ -52,6 +52,12 @@
     background-color: transparent;
 }
 
+.pill-section input {
+    border: none;
+    background-color: inherit;
+    outline: none;
+}
+
 .pill-divider {
     width: 1px;
     height: 32px;
