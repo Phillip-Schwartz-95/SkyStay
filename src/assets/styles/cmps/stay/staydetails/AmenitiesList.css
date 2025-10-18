@@ -1,8 +1,11 @@
 /* amenities grid */
 .stay-amenities {
     margin: 40px 0;
-    padding-top: 45px;
+    
     border-top: 1px solid #e4e4e4;
+    margin-bottom: 40px;
+    padding: 40px 0 25px;
+    border-bottom: 1px solid #bababa;
 }
 
 .stay-amenities h2 {
@@ -14,7 +17,9 @@
 
 .amenities-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-rows: repeat(4, auto);
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px 24px;
     list-style: none;
     padding: 0;

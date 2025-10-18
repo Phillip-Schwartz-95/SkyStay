@@ -88,6 +88,29 @@ export function StayDetails() {
     setCheckOut(end)
   }
 
+  function normalizeAmenities(stay) {
+    const amenities = stay.amenities ? [...stay.amenities] : []
+    const safety = stay.safety || []
+
+    const hasSmoke = safety.some(rule => rule.toLowerCase().includes('smoke alarm'))
+    const hasCO = safety.some(rule => rule.toLowerCase().includes('co alarm'))
+
+    // Always include both items — one normal or crossed-out
+    if (hasSmoke) {
+      amenities.push('Smoke Alarm')
+    } else {
+      amenities.push('Smoke Alarm (missing)')
+    }
+
+    if (hasCO) {
+      amenities.push('Carbon Monoxide Alarm')
+    } else {
+      amenities.push('Carbon Monoxide Alarm (missing)')
+    }
+
+    return amenities
+  }
+
   return (
     <section className="stay-details-wrapper">
       <section className="stay-details">
@@ -130,7 +153,7 @@ export function StayDetails() {
             </section>
 
             {/* Amenities */}
-            <AmenitiesList amenities={stay.amenities} />
+            <AmenitiesList amenities={normalizeAmenities(stay)} />
 
             {/* Calendar */}
             <StayCalendar
