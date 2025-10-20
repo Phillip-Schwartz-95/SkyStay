@@ -8,7 +8,12 @@ export function StayFilter({ isScrolledDown }) {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
 
     const [activeMenu, setActiveMenu] = useState(null)
-    const [draft, setDraft] = useState({ ...filterBy, capacity: filterBy.capacity || 0 })
+    const [draft, setDraft] = useState({
+        ...filterBy,
+        capacity: filterBy.capacity || 0,
+        coords: filterBy.coords || null,
+        city: filterBy.city || ''
+    })
     const [isFixedMenuOpen, setIsFixedMenuOpen] = useState(false)
 
     const inputRefs = useRef({})
@@ -22,6 +27,8 @@ export function StayFilter({ isScrolledDown }) {
     useEffect(() => {
         setDraft({
             ...filterBy,
+            coords: filterBy.coords || null,
+            city: filterBy.city || '',
             startDate: filterBy.startDate ? formatDateForInput(filterBy.startDate) : '',
             endDate: filterBy.endDate ? formatDateForInput(filterBy.endDate) : '',
             capacity: filterBy.capacity || 0,
@@ -44,11 +51,16 @@ export function StayFilter({ isScrolledDown }) {
     function onSearch(ev) {
         ev.preventDefault()
 
+        const finalSearchTxt = draft.city || draft.txt
+
         const finalFilter = {
             ...draft,
+            txt: finalSearchTxt,
+            coords: draft.coords || null,
             startDate: draft.startDate || null,
             endDate: draft.endDate || null,
-            capacity: draft.capacity > 0 ? draft.capacity : 0
+            capacity: draft.capacity > 0 ? draft.capacity : 0,
+            city: '',
         }
 
         setFilter(finalFilter)
@@ -89,9 +101,44 @@ export function StayFilter({ isScrolledDown }) {
         return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
     }
 
+    function handleNearbySearch() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords
+                    const newFilter = {
+                        ...draft,
+                        txt: 'Nearby',
+                        city: '',
+                        coords: { lat: latitude, lng: longitude }
+                    }
+                    setDraft(newFilter)
+                    setActiveMenu(null)
+                    setFilter(newFilter)
+                },
+                (error) => {
+                    console.error('Geolocation error:', error)
+                    alert('Could not get your location for Nearby search')
+                    setActiveMenu(null)
+                }
+            )
+        } else {
+            alert('Geolocation is not supported by this browser for Nearby search')
+            setActiveMenu(null)
+        }
+    }
+
     function onLocationSelecet(location) {
-        setDraft(prev => ({ ...prev, txt: location.title }))
-        setActiveMenu(null)
+        if (location.isNearby) {
+            handleNearbySearch()
+        } else {
+            setDraft(prev => ({
+                ...prev,
+                txt: location.title,
+                city: location.searchCity || location.title,
+                coords: null
+            }))
+        }
     }
 
     const showFullSearch = !isScrolledDown || (isScrolledDown && isFixedMenuOpen)
@@ -106,13 +153,13 @@ export function StayFilter({ isScrolledDown }) {
     const isFullHeaderSearch = showFullSearch && !isFixedMenuOpen
     const searchPillClasses = `${isFullHeaderSearch ? 'search-pill' : 'search-pill-in-overlay'} ${activeMenu ? 'has-active-menu' : ''}`
 
-    const recentSearch = { title: 'Rome', subtitle: 'Weekend in Oct' } // For now, hard coded
+    const recentSearch = { title: 'Rome', subtitle: 'Weekend in Oct', searchCity: 'Rome' } // For now, hard coded
     const suggestedDestinations = [
-        { title: 'Nearby', subtitle: `Find what's around you`, isNearby: true, city: '' },
-        { title: 'Tel Aviv-Yafo', subtitle: 'Popular beach destination', city: 'Tel Aviv-Yafo' },
-        { title: 'Paris, France', subtitle: 'Experience the city of love', city: 'Paris' },
-        { title: 'Lisbon, Portugal', subtitle: 'Historic capital city', city: 'Lisbon' },
-        { title: 'Vienna, Austria', subtitle: 'Classical music and history', city: 'Vienna' },
+        { title: 'Nearby', subtitle: `Find what's around you`, isNearby: true, searchCity: '' },
+        { title: 'Tel Aviv-Yafo', subtitle: 'Popular beach destination', searchCity: 'Tel Aviv' },
+        { title: 'Paris, France', subtitle: 'Experience the city of love', searchCity: 'Paris' },
+        { title: 'Lisbon, Portugal', subtitle: 'Historic capital city', searchCity: 'Lisbon' },
+        { title: 'Vienna, Austria', subtitle: 'Classical music and history', searchCity: 'Vienna' },
     ]
 
     return (

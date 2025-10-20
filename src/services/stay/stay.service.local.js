@@ -1,6 +1,6 @@
 import staysJson from '../../data/stays.json'
 import { storageService } from '../async-storage.service'
-import { loadFromStorage, makeId, saveToStorage } from '../util.service'
+import { loadFromStorage, makeId, saveToStorage, getDistance } from '../util.service'
 import { userService } from '../user'
 import { reservationService } from '../reservations/reservation.service.local'
 
@@ -36,6 +36,24 @@ async function applyFilter(items, f) {
     if (!Array.isArray(items)) return []
     if (!f) return items
     let res = items
+
+    if (f.coords && f.coords.lat && f.coords.lng) {
+        const MAX_DISTANCE_KM = 50
+        const userLat = f.coords.lat
+        const userLng = f.coords.lng
+
+        res = res.filter(s => {
+            const stayLat = s?.loc?.lat
+            const stayLng = s?.loc?.lng
+
+            if (typeof stayLat !== 'number' || typeof stayLng !== 'number') return false
+
+            const distance = getDistance(userLat, userLng, stayLat, stayLng)
+           
+            return distance <= MAX_DISTANCE_KM
+        })
+    }
+    
     if (f.txt && typeof f.txt === 'string') {
         const t = f.txt.toLowerCase()
         res = res.filter(s => {

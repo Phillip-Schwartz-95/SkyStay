@@ -8,6 +8,8 @@ export const SET_FILTER = 'SET_FILTER'
 
 const initialFilter = {
     txt: '',
+    coords: null,
+    city: '',
     minPrice: '',
     sortField: '',
     sortDir: '',
