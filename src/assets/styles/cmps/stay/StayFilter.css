@@ -263,7 +263,6 @@
 
 .pill-section.who .placeholder-btn {
     font-size: 14px;
-    /* margin-top: 6px; */
 }
 
 .filter-wrapper {
@@ -329,7 +328,7 @@
 }
 
 .search-dropdown-overlay.where-overlay {
-    width: 480px;
+    width: 410px;
     left: 8px;
 }
 
