@@ -172,13 +172,12 @@ export function StayFilter({ isScrolledDown }) {
     const isFullHeaderSearch = showFullSearch && !isFixedMenuOpen
     const searchPillClasses = `${isFullHeaderSearch ? 'search-pill' : 'search-pill-in-overlay'} ${activeMenu ? 'has-active-menu' : ''}`
 
-    const recentSearch = { title: 'Rome', subtitle: 'Weekend in Oct', searchCity: 'Rome' } // For now, hard coded
+    const recentSearch = { title: 'Sydney', subtitle: 'Explore the Harbour', searchCity: 'Sydney' } // For now, hard coded
     const suggestedDestinations = [
         { title: 'Nearby', subtitle: `Find what's around you`, isNearby: true, searchCity: '' },
         { title: 'Tel Aviv-Yafo', subtitle: 'Popular beach destination', searchCity: 'Tel Aviv' },
-        { title: 'Paris, France', subtitle: 'Experience the city of love', searchCity: 'Paris' },
-        { title: 'Lisbon, Portugal', subtitle: 'Historic capital city', searchCity: 'Lisbon' },
-        { title: 'Vienna, Austria', subtitle: 'Classical music and history', searchCity: 'Vienna' },
+        { title: 'Barcelona, Spain', subtitle: 'Gaudi architecture & beach life', searchCity: 'Barcelona' },
+        { title: 'New York, USA', subtitle: 'Iconic city that never sleeps', searchCity: 'New York' },
     ]
 
     return (
