@@ -329,12 +329,12 @@
 
 .search-dropdown-overlay.where-overlay {
     width: 410px;
-    left: 8px;
+    left: 2px;
 }
 
 .search-dropdown-overlay.who-overlay {
-    width: 480px;
-    right: 8px;
+    width: 430px;
+    right: 2px;
 }
 
 .menu-header {
