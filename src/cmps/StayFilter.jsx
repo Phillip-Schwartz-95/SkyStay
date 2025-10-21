@@ -10,6 +10,10 @@ export function StayFilter({ isScrolledDown }) {
     const [activeMenu, setActiveMenu] = useState(null)
     const [draft, setDraft] = useState({
         ...filterBy,
+        adults: 1,
+        children: 0,
+        infants: 0,
+        pets: 0,
         capacity: filterBy.capacity || 0,
         coords: filterBy.coords || null,
         city: filterBy.city || ''
@@ -84,6 +88,16 @@ export function StayFilter({ isScrolledDown }) {
     function closeFixedMenu() {
         setIsFixedMenuOpen(false)
         setActiveMenu(null)
+    }
+
+    function handleGuestChange(type, delta) {
+        setDraft(prevDraft => {
+            const newCount = Math.max(0, prevDraft[type] + delta)
+            const newDraft = { ...prevDraft, [type]: newCount }
+            const newCapacity = newDraft.adults + newDraft.children
+
+            return { ...newDraft, capacity: newCapacity}
+        })
     }
 
     function formatDateForInput(dateValue) {
