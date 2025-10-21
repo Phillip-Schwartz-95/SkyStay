@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 
 import { setFilter } from '../store/actions/stay.actions'
+import { GuestCounter } from './GuestCounter'
 
 export function StayFilter({ isScrolledDown }) {
 
@@ -31,6 +32,10 @@ export function StayFilter({ isScrolledDown }) {
     useEffect(() => {
         setDraft({
             ...filterBy,
+            adults: filterBy.adults || 1,
+            children: filterBy.children || 0,
+            infants: filterBy.infants || 0,
+            pets: filterBy.pets || 0,
             coords: filterBy.coords || null,
             city: filterBy.city || '',
             startDate: filterBy.startDate ? formatDateForInput(filterBy.startDate) : '',
@@ -96,7 +101,7 @@ export function StayFilter({ isScrolledDown }) {
             const newDraft = { ...prevDraft, [type]: newCount }
             const newCapacity = newDraft.adults + newDraft.children
 
-            return { ...newDraft, capacity: newCapacity}
+            return { ...newDraft, capacity: newCapacity }
         })
     }
 
@@ -348,9 +353,39 @@ export function StayFilter({ isScrolledDown }) {
                     )}
 
                     {activeMenu === 'who' && (
-                        <div className="who-menu">
-                            <h3>Who is coming?</h3>
-                            <p>Guest selection counter (Adults, Children, Infants, Pets).</p>
+                        <div className="who-menu" onClick={onChildClick}>
+                            <GuestCounter
+                                title="Adults"
+                                subtitle="Ages 13 or above"
+                                count={draft.adults}
+                                onIncrease={() => handleGuestChange('adults', 1)}
+                                onDecrease={() => handleGuestChange('adults', -1)}
+                                min={1}
+                            />
+                            <GuestCounter
+                                title="Children"
+                                subtitle="Ages 2–12"
+                                count={draft.children}
+                                onIncrease={() => handleGuestChange('children', 1)}
+                                onDecrease={() => handleGuestChange('children', -1)}
+                                min={0}
+                            />
+                            <GuestCounter
+                                title="Infants"
+                                subtitle="Under 2"
+                                count={draft.infants}
+                                onIncrease={() => handleGuestChange('infants', 1)}
+                                onDecrease={() => handleGuestChange('infants', -1)}
+                                min={1}
+                            />
+                            <GuestCounter
+                                title="Pets"
+                                subtitle="Bringing a service animal?"
+                                count={draft.pets}
+                                onIncrease={() => handleGuestChange('pets', 1)}
+                                onDecrease={() => handleGuestChange('pets', -1)}
+                                min={1}
+                            />
                         </div>
                     )}
                 </div>
