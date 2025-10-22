@@ -15,11 +15,14 @@ import { AppFooter } from './cmps/AppFooter.jsx'
 
 export function RootCmp() {
     const location = useLocation()
+    const isStayDetails = /^\/stay\/[^/]+$/.test(location.pathname)
     const hideHeader = location.pathname.includes('/photos')
+
 
     return (
         <div className="main-app">
-            {!hideHeader && <AppHeader />}
+            {!hideHeader && <AppHeader isMini={isStayDetails} />}
+
 
             <main className="main-container">
                 <Routes>

@@ -5,7 +5,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 import { StayFilter } from './StayFilter'
 
-export function AppHeader() {
+export function AppHeader({ isMini = false }) {
 	const user = useSelector(storeState => storeState.userModule.user)
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -17,34 +17,14 @@ export function AppHeader() {
 	const menuRef = useRef(null)
 
 	useEffect(() => {
-		const handleScroll = () => {
-			if (window.scrollY > 1) setIsScrolledDown(true)
-			else setIsScrolledDown(false)
-		}
+		const handleScroll = () => setIsScrolledDown(window.scrollY > 1)
 		window.addEventListener('scroll', handleScroll)
 		return () => window.removeEventListener('scroll', handleScroll)
 	}, [])
 
-	async function onLogout() {
-		try {
-			await logout()
-			navigate('/')
-			showSuccessMsg('Bye now')
-		} catch {
-			showErrorMsg('Cannot logout')
-		}
-	}
-
-	useEffect(() => {
-		function onDocClick(ev) {
-			if (!menuRef.current) return
-			if (!menuRef.current.contains(ev.target)) setIsMenuOpen(false)
-		}
-		document.addEventListener('click', onDocClick)
-		return () => document.removeEventListener('click', onDocClick)
-	}, [])
-
-	const headerClasses = isScrolledDown ? 'app-header mini' : 'app-header'
+	// 👇 combine scroll-based state and prop
+	const headerClasses =
+		isMini || isScrolledDown ? 'app-header mini' : 'app-header'
 
 	function goToHostStart() {
 		if (!user) {
@@ -288,9 +268,10 @@ export function AppHeader() {
 
 				{!isHostingView && (
 					<div className="header-center">
-						<StayFilter isScrolledDown={isScrolledDown} />
+						<StayFilter isScrolledDown={isMini || isScrolledDown} />
 					</div>
 				)}
+
 			</nav>
 		</header>
 	)
