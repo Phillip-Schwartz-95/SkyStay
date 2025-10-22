@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import { loadStays } from '../store/actions/stay.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 import { stayService } from '../services/stay'
-import { StayPreview } from '../cmps/StayPreview'
+import { StayBrowsePreview } from '../cmps/staybrowsepreview'
 import GoogleMapPane from '../cmps/GoogleMapPane'
 import '../assets/styles/cmps/browse.css'
 import '../assets/styles/cmps/stay/StayPreview.css'
@@ -58,7 +58,7 @@ export default function BrowsePage() {
                     <ul className="results-grid">
                         {pageItems.map((s, i) => (
                             <li key={(s?._id || 's') + '-' + i} className="result-card">
-                                <StayPreview stay={s} />
+                                <StayBrowsePreview stay={s} />
                             </li>
                         ))}
                     </ul>
