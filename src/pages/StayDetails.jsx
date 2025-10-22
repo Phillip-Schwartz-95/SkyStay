@@ -23,6 +23,7 @@ import { MapSection } from '../cmps/staydetails/MapSection'
 import { ThingsToKnow } from '../cmps/staydetails/ThingsToKnow'
 import { BookingCard } from '../cmps/staydetails/BookingCard'
 import { MeetYourHost } from '../cmps/staydetails/MeetYourHost'
+import { StaySubHeader } from '../cmps/staydetails/StaySubHeader'
 
 import stayphotos from '../data/stayphotos.json'
 import '../assets/styles/cmps/stay/StayCalendar.css'
@@ -41,6 +42,16 @@ export function StayDetails() {
   const [hostUser, setHostUser] = useState(null)
   const mapRef = useRef(null)
   const searchBoxRef = useRef(null)
+
+  // intersection + section Refs
+  const photoSectionRef = useRef(null)
+  const amenitiesRef = useRef(null)
+  const reviewsRef = useRef(null)
+  const locationRef = useRef(null)
+
+  // showing the subheader
+  const [showSubHeader, setShowSubHeader] = useState(false)
+
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
@@ -62,56 +73,87 @@ export function StayDetails() {
     }
   }, [stay?.host?.fullname])
 
-  async function loadReviews() {
-    try {
-      const res = await reviewService.query({ aboutStayId: stayId })
-      setReviews(res)
-    } catch (err) {
-      console.error('Failed to load reviews', err)
-    }
+  // Show sub-header after photos out of view
+  useEffect(() => {
+    if (!photoSectionRef.current) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        console.log(' visible?', entry.isIntersecting)
+        setShowSubHeader(!entry.isIntersecting)
+      },
+      { threshold: 0.15 }
+    )
+
+    observer.observe(photoSectionRef.current)
+    return () => observer.disconnect()
+  }, [stay])
+
+function handleScrollTo(section) {
+  const refs = {
+    photos: photoSectionRef,
+    amenities: amenitiesRef,
+    reviews: reviewsRef,
+    location: locationRef
   }
 
-  const starCounts = reviews.reduce((acc, review) => {
-    const stars = review.rating || 5
-    acc[stars] = (acc[stars] || 0) + 1
-    return acc
-  }, {})
+  refs[section]?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 
-  if (!stay) return <div>Loading...</div>
+async function loadReviews() {
+  try {
+    const res = await reviewService.query({ aboutStayId: stayId })
+    setReviews(res)
+  } catch (err) {
+    console.error('Failed to load reviews', err)
+  }
+}
 
-  // Handle “Show all photos”
-  const onOpenAllPhotos = () => navigate(`/stay/${stay._id}/photos`)
+const starCounts = reviews.reduce((acc, review) => {
+  const stars = review.rating || 5
+  acc[stars] = (acc[stars] || 0) + 1
+  return acc
+}, {})
 
-  // Handle date changes in calendar
-  const onChangeDates = (start, end) => {
-    setCheckIn(start)
-    setCheckOut(end)
+if (!stay) return <div>Loading...</div>
+
+// Handle “Show all photos”
+const onOpenAllPhotos = () => navigate(`/stay/${stay._id}/photos`)
+
+// Handle date changes in calendar
+const onChangeDates = (start, end) => {
+  setCheckIn(start)
+  setCheckOut(end)
+}
+
+function normalizeAmenities(stay) {
+  const amenities = stay.amenities ? [...stay.amenities] : []
+  const safety = stay.safety || []
+
+  const hasSmoke = safety.some(rule => rule.toLowerCase().includes('smoke alarm'))
+  const hasCO = safety.some(rule => rule.toLowerCase().includes('co alarm'))
+
+  // Always include both items — one normal or crossed-out
+  if (hasSmoke) {
+    amenities.push('Smoke Alarm')
+  } else {
+    amenities.push('Smoke Alarm (missing)')
   }
 
-  function normalizeAmenities(stay) {
-    const amenities = stay.amenities ? [...stay.amenities] : []
-    const safety = stay.safety || []
-
-    const hasSmoke = safety.some(rule => rule.toLowerCase().includes('smoke alarm'))
-    const hasCO = safety.some(rule => rule.toLowerCase().includes('co alarm'))
-
-    // Always include both items — one normal or crossed-out
-    if (hasSmoke) {
-      amenities.push('Smoke Alarm')
-    } else {
-      amenities.push('Smoke Alarm (missing)')
-    }
-
-    if (hasCO) {
-      amenities.push('Carbon Monoxide Alarm')
-    } else {
-      amenities.push('Carbon Monoxide Alarm (missing)')
-    }
-
-    return amenities
+  if (hasCO) {
+    amenities.push('Carbon Monoxide Alarm')
+  } else {
+    amenities.push('Carbon Monoxide Alarm (missing)')
   }
 
-  return (
+  return amenities
+}
+
+return (
+
+  <>
+    {showSubHeader && <StaySubHeader onScrollTo={handleScrollTo} className={showSubHeader ? 'show' : ''} />}
+
     <section className="stay-details-wrapper">
       <section className="stay-details">
 
@@ -121,7 +163,13 @@ export function StayDetails() {
         </header>
 
         {/* Photo Gallery */}
-        <PhotoGallery imgs={stay.imgs} stayId={stay._id} onOpenAll={onOpenAllPhotos} />
+        <section ref={photoSectionRef}>
+          <PhotoGallery
+            imgs={stay.imgs}
+            stayId={stay._id}
+            onOpenAll={onOpenAllPhotos}
+          />
+        </section>
 
         {/* Main layout */}
         <div className="details-layout">
@@ -153,7 +201,9 @@ export function StayDetails() {
             </section>
 
             {/* Amenities */}
-            <AmenitiesList amenities={normalizeAmenities(stay)} />
+            <section ref={amenitiesRef}>
+              <AmenitiesList amenities={normalizeAmenities(stay)} />
+            </section>
 
             {/* Calendar */}
             <StayCalendar
@@ -185,7 +235,7 @@ export function StayDetails() {
         </div>
 
         {/* Reviews */}
-        <section className="stay-reviews">
+        <section ref={reviewsRef}>
           <h2 className="reviews-header">
             <span className="star">★</span>
             {stay.host?.rating?.toFixed(1)} · {reviews.length} reviews
@@ -200,16 +250,17 @@ export function StayDetails() {
           )}
 
           <ReviewsList reviews={reviews} />
-
         </section>
 
-        {/* Map */}
-        <MapSection
-          isLoaded={isLoaded}
-          loc={stay.loc}
-          mapRef={mapRef}
-          searchBoxRef={searchBoxRef}
-        />
+        {/* Map / Location */}
+        <section ref={locationRef}>
+          <MapSection
+            isLoaded={isLoaded}
+            loc={stay.loc}
+            mapRef={mapRef}
+            searchBoxRef={searchBoxRef}
+          />
+        </section>
 
         {/* Meet the Host */}
         <MeetYourHost stay={stay} />
@@ -223,5 +274,6 @@ export function StayDetails() {
 
       </section>
     </section>
-  )
+  </>
+)
 }

@@ -22,9 +22,8 @@ export function AppHeader({ isMini = false }) {
 		return () => window.removeEventListener('scroll', handleScroll)
 	}, [])
 
-	// 👇 combine scroll-based state and prop
-	const headerClasses =
-		isMini || isScrolledDown ? 'app-header mini' : 'app-header'
+	// combine scroll-based state and prop
+	const headerClasses = isMini ? 'app-header mini' : isScrolledDown ? 'app-header scrolled' : 'app-header'
 
 	function goToHostStart() {
 		if (!user) {

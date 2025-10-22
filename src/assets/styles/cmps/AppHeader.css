@@ -252,6 +252,12 @@
     transform-origin: center;
 }
 
+/* For stay details only */
+.app-header.mini {
+    position: relative;
+    /* scroll away from the page */
+}
+
 .app-header.mini .header-nav {
     grid-template-columns: 1fr auto 1fr;
     grid-template-areas: "left center right";

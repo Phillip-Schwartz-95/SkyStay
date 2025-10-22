@@ -1,8 +1,6 @@
-// /pages/StayDetails/parts/PhotoGallery.jsx
-import { SvgIcon } from "../SvgIcon"
-
 export function PhotoGallery({ imgs = [], stayId, onOpenAll }) {
   if (!imgs?.length) return null
+
   return (
     <div className="photo-gallery">
       <div className="main-photo">
@@ -17,7 +15,6 @@ export function PhotoGallery({ imgs = [], stayId, onOpenAll }) {
 
       {imgs.length > 5 && (
         <button className="show-all-btn" onClick={onOpenAll}>
-          <SvgIcon iconName="showall"></SvgIcon>
           Show all photos
         </button>
       )}
