@@ -1,15 +1,17 @@
-
 .main-container {
     display: grid;
-    grid-template-columns: 1rem 1fr 1rem;
+    grid-template-columns: minmax(28px, 1fr) minmax(auto, 1832px) minmax(28px, 1fr);
+    padding: 0 28px;
+}
 
-    >* {
-        grid-column: 2;
+/* All inner elements in center column */
+.main-container>* {
+    grid-column: 2;
+}
 
-        &.full {
-            grid-column: 1 / -1;
-        }
-    }
+/* Anything that should span full width (banners/galleries) */
+.main-container>*.full {
+    grid-column: 1 / -1;
 }
 
 .sample-grid-layout {
@@ -17,15 +19,15 @@
     grid-template-columns: 12px 1fr 12px;
 
     @media (min-width: 624px) {
-        grid-template-columns: minmax(12px, 1fr) minmax(auto, 624px) minmax(12px, 1fr);        
+        grid-template-columns: minmax(12px, 1fr) minmax(auto, 624px) minmax(12px, 1fr);
     }
 
     @media (min-width: 784px) {
-        grid-template-columns: minmax(12px, 1fr) minmax(auto, 784px) minmax(12px, 1fr);        
+        grid-template-columns: minmax(12px, 1fr) minmax(auto, 784px) minmax(12px, 1fr);
     }
 
     @media (min-width: 1048px) {
-        grid-template-columns: minmax(12px, 1fr) minmax(auto, 1048px) minmax(12px, 1fr);        
+        grid-template-columns: minmax(12px, 1fr) minmax(auto, 1048px) minmax(12px, 1fr);
     }
 
 
@@ -49,7 +51,7 @@
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 10px;
 
-    > article {
+    >article {
         border: 1px solid #ccc;
         border-radius: 6px;
         padding: 2rem;
