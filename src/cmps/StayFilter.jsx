@@ -172,12 +172,12 @@ export function StayFilter({ isScrolledDown }) {
     const isFullHeaderSearch = showFullSearch && !isFixedMenuOpen
     const searchPillClasses = `${isFullHeaderSearch ? 'search-pill' : 'search-pill-in-overlay'} ${activeMenu ? 'has-active-menu' : ''}`
 
-    const recentSearch = { title: 'Sydney', subtitle: 'Explore the Harbour', searchCity: 'Sydney' } // For now, hard coded
+    const recentSearch = { title: 'Sydney', subtitle: 'Explore the Harbour', searchCity: 'Sydney', imgUrl: 'https://www.svgrepo.com/show/220980/sydney-opera-house-sydney.svg' } // For now, hard coded
     const suggestedDestinations = [
-        { title: 'Nearby', subtitle: `Find what's around you`, isNearby: true, searchCity: '' },
-        { title: 'Tel Aviv-Yafo', subtitle: 'Popular beach destination', searchCity: 'Tel Aviv' },
-        { title: 'Barcelona, Spain', subtitle: 'Gaudi architecture & beach life', searchCity: 'Barcelona' },
-        { title: 'New York, USA', subtitle: 'Iconic city that never sleeps', searchCity: 'New York' },
+        { title: 'Nearby', subtitle: `Find what's around you`, isNearby: true, searchCity: '', imgUrl: 'https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/ea5e5ee3-e9d8-48a1-b7e9-1003bf6fe850.png' },
+        { title: 'Tel Aviv-Yafo', subtitle: 'Popular beach destination', searchCity: 'Tel Aviv', imgUrl: 'https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/eede907b-881f-4c1f-abeb-6379d89a74b6.png' },
+        { title: 'Barcelona, Spain', subtitle: 'Gaudi architecture & beach life', searchCity: 'Barcelona', imgUrl: 'https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/aeba68c0-44ba-4ee6-9835-da23d7fb0a65.png' },
+        { title: 'New York, USA', subtitle: 'Iconic city that never sleeps', searchCity: 'New York', imgUrl: 'https://www.svgrepo.com/show/317308/new-york.svg' },
     ]
 
     return (
@@ -316,7 +316,7 @@ export function StayFilter({ isScrolledDown }) {
                                     className="recent-item"
                                     onClick={() => onLocationSelecet(recentSearch)}>
                                     <div className="item-icon">
-                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: '20px', width: '20px', fill: 'currentcolor' }}><path d="M16 3C8.83 3 3 8.83 3 16s5.83 13 13 13 13-5.83 13-13S23.17 3 16 3zm0 2c6.08 0 11 4.92 11 11s-4.92 11-11 11S5 22.08 5 16 9.92 5 16 5zm0 1.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm0 5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm0 5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" fillRule="evenodd"></path></svg>
+                                        <img src={recentSearch.imgUrl} alt={`${recentSearch.title} icon`} className='location-icon' />
                                     </div>
                                     <div className="item-details">
                                         <p className="item-title">{recentSearch.title}</p>
@@ -335,11 +335,11 @@ export function StayFilter({ isScrolledDown }) {
                                         onClick={() => onLocationSelecet(item)}
                                     >
                                         <div className="item-icon">
-                                            {item.isNearby ? (
-                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: '24px', width: '24px', fill: 'currentcolor' }}><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM12 6a6 6 0 1 0 0 12 6 6 0 0 0 0-12zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z" fillRule="evenodd"></path></svg>
-                                            ) : (
-                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: '24px', width: '24px', fill: 'currentcolor' }}><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fillRule="evenodd"></path></svg>
-                                            )}
+                                            <img
+                                                src={item.imgUrl}
+                                                alt={`${item.title} icon`}
+                                                className='location-icon'
+                                            />
                                         </div>
                                         <div className="item-details">
                                             <p className="item-title">{item.title}</p>
