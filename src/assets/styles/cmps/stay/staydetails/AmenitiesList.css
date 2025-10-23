@@ -1,11 +1,11 @@
 /* amenities grid */
 .stay-amenities {
-    margin: 40px 0;
-    
-    border-top: 1px solid #e4e4e4;
-    margin-bottom: 40px;
-    padding: 40px 0 25px;
+    margin: 40px 0 106px 0;
+    border-top: 1px solid #bababa;
     border-bottom: 1px solid #bababa;
+    padding: 40px 0 78px;
+    /* increased bottom padding from 25px to 40px */
+    position: relative;
 }
 
 .stay-amenities h2 {
@@ -17,14 +17,14 @@
 
 .amenities-grid {
     display: grid;
-    grid-template-rows: repeat(4, auto);
-    grid-auto-flow: column;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px 24px;
+    grid-template-rows: repeat(4, auto);
+    gap: 16px 61px;
     list-style: none;
     padding: 0;
-    margin: 0;
-    margin-bottom: 40px;
+    margin: 0 0 40px;
+    overflow: visible;
+    max-height: none;
 }
 
 .amenity-item {
@@ -33,7 +33,6 @@
     gap: 16px;
     font-size: 16px;
     color: #222;
-    margin-bottom: 25px;
 }
 
 .amenity-icon {
@@ -42,10 +41,51 @@
     flex-shrink: 0;
 }
 
+.show-all-btn {
+    position: absolute;
+    padding-top: 10px;
+    bottom: 44px;
+    left: -6px;
+    transform: translateX(0);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #F2F2F2;
+    border-radius: 8px;
+    border: none;
+    padding: 10px 16px;
+    font-family: var(--bnb-text);
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    width: 198.325px;
+    height: 48px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.show-all-btn:hover {
+    background: #ecebeb;
+}
+
 @media (max-width: 768px) {
-  .amenities-grid {
-    grid-template-columns: 1fr;   /* single column */
-    grid-auto-flow: row;
-    grid-template-rows: auto;
-  }
+    .amenities-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .show-all-btn {
+        grid-column: 1;
+        justify-self: stretch;
+    }
+}
+
+@media (max-width: 768px) {
+    .amenities-grid {
+        grid-template-columns: 1fr;
+        /* single column */
+        grid-auto-flow: row;
+        grid-template-rows: auto;
+    }
 }

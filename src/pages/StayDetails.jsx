@@ -79,8 +79,15 @@ export function StayDetails() {
       { threshold: 0.1 }
     )
 
-    observer.observe(photoSectionRef.current)
-    return () => observer.disconnect()
+    // small delay ensures the gallery is fully rendered before observing
+    const timeout = setTimeout(() => {
+      observer.observe(photoSectionRef.current)
+    }, 100)
+
+    return () => {
+      clearTimeout(timeout)
+      observer.disconnect()
+    }
   }, [])
 
   async function loadReviews() {
@@ -113,21 +120,14 @@ export function StayDetails() {
     const amenities = stay.amenities ? [...stay.amenities] : []
     const safety = stay.safety || []
 
-    const hasSmoke = safety.some(rule => rule.toLowerCase().includes('smoke alarm'))
-    const hasCO = safety.some(rule => rule.toLowerCase().includes('co alarm'))
+    const allText = [...amenities, ...safety].map(a => a.toLowerCase())
 
-    // Always include both items — one normal or crossed-out
-    if (hasSmoke) {
-      amenities.push('Smoke Alarm')
-    } else {
-      amenities.push('Smoke Alarm (missing)')
-    }
+    const hasSmoke = allText.some(a => a.includes('smoke alarm') || a.includes('smoke detector'))
+    const hasCO = allText.some(a => a.includes('carbon monoxide') || a.includes('co alarm'))
 
-    if (hasCO) {
-      amenities.push('Carbon Monoxide Alarm')
-    } else {
-      amenities.push('Carbon Monoxide Alarm (missing)')
-    }
+    // Only add if not present
+    if (!hasSmoke) amenities.push('Smoke Alarm (missing)')
+    if (!hasCO) amenities.push('Carbon Monoxide Alarm (missing)')
 
     return amenities
   }
@@ -253,12 +253,12 @@ export function StayDetails() {
 
           {/* Map */}
           <section ref={locationRef}>
-          <MapSection
-            isLoaded={isLoaded}
-            loc={stay.loc}
-            mapRef={mapRef}
-            searchBoxRef={searchBoxRef}
-          />
+            <MapSection
+              isLoaded={isLoaded}
+              loc={stay.loc}
+              mapRef={mapRef}
+              searchBoxRef={searchBoxRef}
+            />
           </section>
 
           {/* Meet the Host */}
