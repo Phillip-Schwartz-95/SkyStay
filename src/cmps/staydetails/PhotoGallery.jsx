@@ -1,10 +1,10 @@
-// /pages/StayDetails/parts/PhotoGallery.jsx
 import { SvgIcon } from "../SvgIcon"
 
-export function PhotoGallery({ imgs = [], stayId, onOpenAll }) {
+export function PhotoGallery({ imgs = [], stayId, onOpenAll, photoRef }) {
   if (!imgs?.length) return null
+
   return (
-    <div className="photo-gallery">
+    <div className="photo-gallery" ref={photoRef}>
       <div className="main-photo">
         <img src={imgs[0]} alt="Main stay image" />
       </div>
@@ -17,7 +17,7 @@ export function PhotoGallery({ imgs = [], stayId, onOpenAll }) {
 
       {imgs.length > 5 && (
         <button className="show-all-btn" onClick={onOpenAll}>
-          <SvgIcon iconName="showall"></SvgIcon>
+          <SvgIcon iconName="showall" />
           Show all photos
         </button>
       )}

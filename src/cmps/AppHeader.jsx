@@ -18,6 +18,7 @@ export function AppHeader({ isMini = false }) {
 	const navigate = useNavigate()
 	const location = useLocation()
 	const isBrowse = location.pathname.startsWith('/browse')
+	const isStayDetails = /^\/stay\/[^/]+$/.test(location.pathname) // detect stay details page
 	const menuRef = useRef(null)
 
 	useEffect(() => {
@@ -26,11 +27,28 @@ export function AppHeader({ isMini = false }) {
 		return () => window.removeEventListener('scroll', onScroll)
 	}, [])
 
-	const headerClasses = (isMini || isScrolledDown) ? 'app-header mini' : 'app-header'
+	const headerClasses =
+		isMini || isScrolledDown ? 'app-header mini' : 'app-header'
 	const headerBrowseClass = isBrowse ? ' app-header--browse' : ''
+
+	// headerStyle logic
 	const headerStyle = isBrowse
-		? { position: 'sticky', top: 0, zIndex: 1000, background: '#fff', borderBottom: '1px solid rgba(0,0,0,.06)' }
-		: undefined
+		? {
+			position: 'sticky',
+			top: 0,
+			zIndex: 1000,
+			background: '#fff',
+			borderBottom: '1px solid rgba(0,0,0,.06)',
+		}
+		: isStayDetails
+			? {
+				position: 'relative',
+				background: '#fff',
+				borderBottom: 'none',
+				height: '80px',
+				zIndex: 2,
+			}
+			: undefined
 
 	function goToHostStart() {
 		if (!user) {
