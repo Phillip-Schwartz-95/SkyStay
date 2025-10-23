@@ -1,21 +1,34 @@
 /* Container */
 .stay-details-wrapper {
+    width: 100%;
     max-width: 1120px;
     margin: 0 auto;
+    padding: 0;
+    /* remove conflict with main-container */
+    box-sizing: border-box;
+}
+
+.stay-details {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
 }
 
-.stay-details {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto 1fr;
-    row-gap: 12px;
-    max-width: 1200px;
-    margin: 0 auto;
-    font-family: var(--bnb-text);
-    color: #222;
+/* force all top-level sections inside StayDetails to respect wrapper width */
+.stay-details>* {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* make photo gallery span wrapper width but not full viewport */
+.stay-details .photo-gallery {
+    width: 100%;
+    margin: 22px auto;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 /* Header and Gallery span full width */
@@ -39,13 +52,20 @@
 /* Two-column layout */
 .details-layout {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    grid-column: 1 / -1;
+    grid-template-columns: 2fr 372px;
+    column-gap: 64px;
+    /* enough space between left and card */
+    align-items: start;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .details-left {
     grid-column: 1;
+    min-width: 0;
+    padding-right: 6px;
+    /* spacing from the card */
 }
 
 .details-left .host-info .host-avatar {
@@ -74,8 +94,14 @@
 .details-right {
     grid-column: 2;
     align-self: flex-start;
+    justify-self: end;
     position: sticky;
     top: 180px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    /* push it to the natural right edge */
+    box-sizing: border-box;
 }
 
 /* Location and basic details */

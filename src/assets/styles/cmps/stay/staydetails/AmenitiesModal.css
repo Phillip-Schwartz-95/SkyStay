@@ -1,0 +1,145 @@
+/* === AMENITIES MODAL === */
+
+.amenities-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.amenities-modal {
+    background: #fff;
+    border-radius: 32px;
+    width: 90%;
+    max-width: 780px;
+    height: auto;
+    max-height: 628px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    animation: fadeInUp 0.25s ease forwards;
+
+    /* This lets the inner div scroll while keeping rounded corners visible */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.amenities-modal-content {
+    padding: 40px 40px 40px 36px;
+    margin-top: 56px;
+    overflow-y: auto;
+    /* Scrollbar appears here */
+    flex: 1;
+    scrollbar-width: auto;
+    /* Firefox */
+    scrollbar-color: rgba(0, 0, 0, 0.47) transparent;
+    /* Firefox */
+}
+
+/* Custom scrollbar for Chrome/Edge/Safari */
+.amenities-modal-content::-webkit-scrollbar {
+    width: 24px;
+}
+
+.amenities-modal-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 8px;
+    width: 16px;
+}
+
+.amenities-modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Header and close button */
+.close-modal-btn {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background: none;
+    border: none;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    color: #222;
+    transition: transform 0.2s ease;
+    z-index: 10;
+}
+
+.close-modal-btn:hover {
+    transform: scale(1.15);
+}
+
+.amenity-header {
+    font-size: 24px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* Category headers */
+.amenity-category {
+    margin-top: 32px;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #eee;
+}
+
+.amenity-category:last-child {
+    border-bottom: none;
+}
+
+.amenity-category h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #222;
+}
+
+/* Amenities list */
+.amenities-grid.full {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 16px;
+    color: #222;
+}
+
+.amenity-icon {
+    font-size: 22px;
+    color: #222;
+    flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    .amenities-modal {
+        width: 95%;
+    }
+
+    .amenities-modal-content {
+        padding: 32px 24px;
+    }
+}

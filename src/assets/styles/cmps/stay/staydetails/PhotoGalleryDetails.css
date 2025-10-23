@@ -46,6 +46,10 @@
     object-fit: cover;
 }
 
+.photo-counter {
+    display: none;
+}
+
 /* show all photos button */
 .show-all-btn {
     position: absolute;

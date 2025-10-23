@@ -6,6 +6,8 @@
     z-index: 1000;
     margin-bottom: 20px;
     transition: background 0.3s ease-out;
+    max-height: 200px;
+    overflow: hidden;
 }
 
 .header-nav {
@@ -20,6 +22,8 @@
     min-height: 150px;
     background: rgb(251, 251, 251);
     transition: min-height 0.3s ease-out;
+    max-height: 200px;
+    overflow: hidden;
 }
 
 .app-header .container {
@@ -127,7 +131,7 @@
 }
 
 .lang-btn {
-    background: transparent;
+    background: rgb(240, 240, 240);
     border: 0;
     width: 40px;
     height: 40px;
@@ -135,6 +139,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .lang-btn .fi {
@@ -146,7 +151,7 @@
 .lang-btn:hover,
 .lang-btn:focus,
 .lang-btn:active {
-    background: transparent;
+    background: rgb(240, 240, 240);
     border: 0;
     box-shadow: none;
 }
@@ -156,9 +161,9 @@
 }
 
 .profile-btn {
-    background: transparent;
+    background: rgb(240, 240, 240);
     border: 0;
-    border-radius: 0;
+    border-radius: 50%;
     box-shadow: none;
     width: 40px;
     height: 40px;
@@ -171,7 +176,7 @@
 .profile-btn:hover,
 .profile-btn:focus,
 .profile-btn:active {
-    background: transparent;
+    background: rgb(240, 240, 240);
     border: 0;
     box-shadow: none;
 }
@@ -402,4 +407,19 @@
     .app-header--browse .header-right .lang-btn {
         margin-right: 12px !important;
     }
+}
+
+body.details-page .app-header,
+body.details-page .app-header .header-nav,
+body.details-page .app-header--browse .header-nav,
+body.details-page .app-header.mini,
+body.details-page .app-header.mini .header-nav,
+body.details-page .app-header .container {
+    background: transparent !important;
+}
+
+body.details-page .app-header,
+body.details-page .app-header.mini {
+    border-bottom: 1px solid rgba(0, 0, 0, .08) !important;
+    box-shadow: none !important;
 }

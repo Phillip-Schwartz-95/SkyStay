@@ -3,9 +3,8 @@ import { SvgIcon } from "../SvgIcon"
 
 export function PhotoGallery({ imgs = [], stayId, onOpenAll, photoRef }) {
   const [currentIndex, setCurrentIndex] = useState(1)
-
   const scrollRef = useRef(null)
-  const slideRefs = useRef([]) // holds refs to each <img>
+  const slideRefs = useRef([])
 
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768)
   useEffect(() => {
@@ -14,31 +13,25 @@ export function PhotoGallery({ imgs = [], stayId, onOpenAll, photoRef }) {
     return () => window.removeEventListener("resize", onResize)
   }, [])
 
-  // Observe which image is most visible inside the scroller (mobile only)
   useEffect(() => {
     if (!isMobile) return
     const root = scrollRef.current
     if (!root) return
 
-    // Clean prev refs
     slideRefs.current = slideRefs.current.filter(Boolean)
 
     const io = new IntersectionObserver(
       (entries) => {
-        // Pick the entry with the largest intersection ratio
         let best = null
         for (const e of entries) {
           if (!best || e.intersectionRatio > best.intersectionRatio) best = e
         }
         if (best?.isIntersecting) {
-          const idx = Number(best.target.dataset.index) // 1-based
+          const idx = Number(best.target.dataset.index)
           setCurrentIndex(idx)
         }
       },
-      {
-        root: null,
-        threshold: 0.5, // mostly in view
-      }
+      { root: null, threshold: 0.5 }
     )
 
     slideRefs.current.forEach((el) => el && io.observe(el))
@@ -47,16 +40,15 @@ export function PhotoGallery({ imgs = [], stayId, onOpenAll, photoRef }) {
 
   if (!imgs?.length) return null
 
-  // we render 1 main + up to 4 side images (total up to 5)
   const totalSlides = Math.min(imgs.length, 5)
 
   return (
-    <div
-      className="photo-gallery"
-      ref={(node) => {
-        scrollRef.current = node
-        if (photoRef) photoRef.current = node
+    <section
+      ref={(el) => {
+        scrollRef.current = el
+        if (photoRef) photoRef.current = el
       }}
+      className="photo-gallery"
     >
       <div className="main-photo">
         <img
@@ -73,16 +65,15 @@ export function PhotoGallery({ imgs = [], stayId, onOpenAll, photoRef }) {
             key={idx}
             src={img}
             alt={`Stay side ${idx + 1}`}
-            data-index={idx + 2} // continue 1-based indexing
+            data-index={idx + 2}
             ref={(el) => (slideRefs.current[idx + 1] = el)}
           />
         ))}
       </div>
 
-      {/* Mobile-only counter (safe on desktop too, but you can wrap with isMobile if you want) */}
       <div className="photo-counter">
         {currentIndex}/{totalSlides}
       </div>
-    </div>
+    </section>
   )
 }
