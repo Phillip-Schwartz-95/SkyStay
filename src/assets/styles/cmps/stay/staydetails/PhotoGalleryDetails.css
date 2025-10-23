@@ -3,6 +3,7 @@
     position: relative;
     /* for the overlay button later */
     display: grid;
+    width: 100vw;
     grid-template-columns: repeat(4, 1fr);
     /* 4 columns */
     grid-template-rows: repeat(2, 170px);
@@ -74,4 +75,73 @@
     height: 16px;
     width: 16px;
     fill: currentColor;
+}
+
+/* --- MOBILE: horizontal swipe gallery --- */
+@media (max-width: 768px) {
+
+    .photo-gallery {
+        /* horizontal swipe */
+        display: flex;
+        overflow-x: auto;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 0;
+
+        /* key: counteract .main-container padding (28px) so the gallery
+       starts at the very left edge of the viewport and doesn't get cut off */
+        margin-left: -56px;
+        margin-right: 56px;
+
+        /* no centering tricks */
+        width: auto;
+        transform: none;
+
+        border-radius: 0;
+        scroll-behavior: smooth;
+        position: relative;
+        background: #000;
+        /* avoids white gaps between slides */
+    }
+
+    .photo-gallery::-webkit-scrollbar {
+        display: none;
+    }
+
+    .main-photo,
+    .side-photos {
+        display: contents;
+    }
+
+    /* flatten grid to a single row of images */
+
+    .photo-gallery img {
+        flex: 0 0 100vw;
+        /* each slide is exactly viewport width */
+        width: 100vw;
+        height: 100vw;
+        /* square */
+        object-fit: cover;
+        scroll-snap-align: start;
+    }
+
+    .photo-counter {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 22px;
+        width: 45px;
+        bottom: 20px;
+        right: 28px;
+        /* now visible (not clipped) */
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 6px 10px;
+        border-radius: 5px;
+        z-index: 10;
+    }
 }

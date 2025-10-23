@@ -14,6 +14,15 @@
     grid-column: 1 / -1;
 }
 
+/* Full-width galleries and banners */
+.main-container>.photo-gallery.full {
+    grid-column: 1 / -1;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 0;
+    border-radius: 0;
+}
+
 .sample-grid-layout {
     display: grid;
     grid-template-columns: 12px 1fr 12px;

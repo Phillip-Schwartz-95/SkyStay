@@ -166,6 +166,7 @@ export function StayDetails() {
             imgs={stay.imgs}
             stayId={stay._id}
             onOpenAll={onOpenAllPhotos}
+            className="full"
           />
 
           {/* Main layout */}

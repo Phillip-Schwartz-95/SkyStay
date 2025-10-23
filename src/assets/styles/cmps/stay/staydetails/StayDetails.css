@@ -132,3 +132,14 @@
 .stay-reviews li {
     margin-bottom: 0.3rem;
 }
+
+@media (max-width: 768px) {
+
+    .stay-details-wrapper,
+    .stay-details {
+        max-width: none;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+    }
+}
