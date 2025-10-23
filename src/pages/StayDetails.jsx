@@ -1,4 +1,3 @@
-// /pages/StayDetails.jsx
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -24,7 +23,6 @@ import { ThingsToKnow } from '../cmps/staydetails/ThingsToKnow'
 import { BookingCard } from '../cmps/staydetails/BookingCard'
 import { MeetYourHost } from '../cmps/staydetails/MeetYourHost'
 import { StaySubHeader } from '../cmps/staydetails/StaySubHeader'
-
 
 import stayphotos from '../data/stayphotos.json'
 import '../assets/styles/cmps/stay/StayCalendar.css'
@@ -54,6 +52,11 @@ export function StayDetails() {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries,
   })
+
+  useEffect(() => {
+    document.body.classList.add('details-page')
+    return () => document.body.classList.remove('details-page')
+  }, [])
 
   // Load stay and reviews
   useEffect(() => {

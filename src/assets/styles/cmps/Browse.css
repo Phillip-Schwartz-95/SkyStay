@@ -26,7 +26,7 @@
 
     --pad-l: 48px;
     --pad-r: 48px;
-    --gap: 18px;
+    --gap: 24px;
     --cols: 3;
     --card-w: calc((50vw - var(--pad-l) - var(--pad-r) - (var(--gap) * (var(--cols) - 1))) / var(--cols));
 }
@@ -177,6 +177,7 @@
 .map-pane .gm-style,
 .map-pane iframe,
 .map-pane canvas {
+    mask-image: radial-gradient(white, black);
     -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
