@@ -1,6 +1,6 @@
 .app-header {
-    background: #fff;
-    border-bottom: 1px solid rgba(0, 0, 0, .08);
+    background: rgb(251, 251, 251);
+    border-bottom: 1px solid rgba(0, 0, 0, .04);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -96,14 +96,23 @@
     font-weight: 700;
     padding: 8px 12px;
     border-radius: 24px;
+    border: 0;
+    outline: none;
+    appearance: none;
+    box-shadow: none;
+    background: transparent;
 }
 
 .host-link:hover,
 .host-link:focus,
-.host-link:active {
+.host-link:active,
+.host-link:focus-visible {
     color: #222;
     box-shadow: none;
     text-decoration: none;
+    border: 0;
+    outline: none;
+    background: rgba(0, 0, 0, 0.04);
 }
 
 .app-header .switch-mode-btn,
@@ -116,6 +125,36 @@
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    appearance: none;
+}
+
+.app-header .header-right span[role="button"][tabindex="0"] {
+    border: 0 !important;
+    outline: none;
+    box-shadow: none;
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+    background: transparent;
+    padding: 7px 12px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transform: translate(15px, 2px);
+    opacity: 1;
+    transition: opacity 0.15s;
+}
+
+.app-header .header-right span[role="button"][tabindex="0"]:hover,
+.app-header .header-right span[role="button"][tabindex="0"]:focus,
+.app-header .header-right span[role="button"][tabindex="0"]:active,
+.app-header .header-right span[role="button"][tabindex="0"]:focus-visible {
+    border: 0 !important;
+    outline: none;
+    box-shadow: none;
+    background: rgba(0, 0, 0, 0.04);
 }
 
 .app-header .switch-mode-btn:hover,
@@ -223,17 +262,15 @@
     align-items: center;
     gap: 10px;
     padding: 14px 20px;
-    border: 1px solid rgba(0, 0, 0, .08);
     border-radius: 0;
     text-decoration: none;
     color: #222;
     line-height: 1;
     font-weight: 700;
-    font-size: 18px;
-    border: 1px solid rgba(0, 0, 0, .08);
+    font-size: 14px;
     border-bottom: 3px solid #000;
-    padding: 16px 22px 6px;
-    gap: 12px;
+    padding: 8px 4px 1px;
+    gap: 2px;
 }
 
 .nav-pill.homes img {
@@ -243,8 +280,8 @@
 }
 
 .app-header .header-center .search-btn {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
 }
 
 .app-header .header-center .search-btn svg,
@@ -382,6 +419,14 @@
 
     .app-header--browse .header-right .profile-btn {
         margin-right: 0 !important;
+    }
+}
+
+@media (max-width: 1128px) {
+
+    .app-header .header-right .host-link,
+    .app-header .header-right span[role="button"][tabindex="0"] {
+        display: none !important;
     }
 }
 

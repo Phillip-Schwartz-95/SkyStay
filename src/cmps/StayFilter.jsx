@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
+import { createPortal } from 'react-dom'
 
 import { setFilter } from '../store/actions/stay.actions'
 import { GuestCounter } from './GuestCounter'
@@ -20,8 +21,10 @@ export function StayFilter({ isScrolledDown }) {
         city: filterBy.city || ''
     })
     const [isFixedMenuOpen, setIsFixedMenuOpen] = useState(false)
+    const [overlayPos, setOverlayPos] = useState({ top: 0, left: 0 })
 
     const inputRefs = useRef({})
+    const pillRefs = useRef({})
 
     useEffect(() => {
         if (!isScrolledDown) {
@@ -52,6 +55,26 @@ export function StayFilter({ isScrolledDown }) {
         }
     }, [activeMenu])
 
+    useEffect(() => {
+        if (!activeMenu) return
+        const handleReposition = () => {
+            const el = pillRefs.current[activeMenu]
+            if (!el) return
+            const r = el.getBoundingClientRect()
+            setOverlayPos({
+                top: Math.round(r.bottom + 8),
+                left: Math.round(r.left)
+            })
+        }
+        handleReposition()
+        window.addEventListener('resize', handleReposition)
+        window.addEventListener('scroll', handleReposition, true)
+        return () => {
+            window.removeEventListener('resize', handleReposition)
+            window.removeEventListener('scroll', handleReposition, true)
+        }
+    }, [activeMenu])
+
     function onChange(field, value) {
         const newValue = field === 'capacity' ? +value : value
         setDraft(prev => ({ ...prev, [field]: newValue }))
@@ -73,8 +96,6 @@ export function StayFilter({ isScrolledDown }) {
         }
 
         setFilter(finalFilter)
-        console.log('Filter set globally:', finalFilter)
-
         setActiveMenu(null)
     }
 
@@ -82,8 +103,18 @@ export function StayFilter({ isScrolledDown }) {
         if (isScrolledDown && !isFixedMenuOpen) {
             setIsFixedMenuOpen(true)
         }
-
-        setActiveMenu(activeMenu === menuName ? null : menuName)
+        const next = activeMenu === menuName ? null : menuName
+        setActiveMenu(next)
+        if (next) {
+            const el = pillRefs.current[menuName]
+            if (el) {
+                const r = el.getBoundingClientRect()
+                setOverlayPos({
+                    top: Math.round(r.bottom + 8),
+                    left: Math.round(r.left)
+                })
+            }
+        }
     }
 
     function onChildClick(ev) {
@@ -100,7 +131,6 @@ export function StayFilter({ isScrolledDown }) {
             const newCount = Math.max(0, prevDraft[type] + delta)
             const newDraft = { ...prevDraft, [type]: newCount }
             const newCapacity = newDraft.adults + newDraft.children
-
             return { ...newDraft, capacity: newCapacity }
         })
     }
@@ -135,8 +165,7 @@ export function StayFilter({ isScrolledDown }) {
                     setActiveMenu(null)
                     setFilter(newFilter)
                 },
-                (error) => {
-                    console.error('Geolocation error:', error)
+                () => {
                     alert('Could not get your location for Nearby search')
                     setActiveMenu(null)
                 }
@@ -172,7 +201,7 @@ export function StayFilter({ isScrolledDown }) {
     const isFullHeaderSearch = showFullSearch && !isFixedMenuOpen
     const searchPillClasses = `${isFullHeaderSearch ? 'search-pill' : 'search-pill-in-overlay'} ${activeMenu ? 'has-active-menu' : ''}`
 
-    const recentSearch = { title: 'Sydney', subtitle: 'Explore the Harbour', searchCity: 'Sydney', imgUrl: 'https://www.svgrepo.com/show/220980/sydney-opera-house-sydney.svg' } // For now, hard coded
+    const recentSearch = { title: 'Sydney', subtitle: 'Explore the Harbour', searchCity: 'Sydney', imgUrl: 'https://www.svgrepo.com/show/220980/sydney-opera-house-sydney.svg' }
     const suggestedDestinations = [
         { title: 'Nearby', subtitle: `Find what's around you`, isNearby: true, searchCity: '', imgUrl: 'https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/ea5e5ee3-e9d8-48a1-b7e9-1003bf6fe850.png' },
         { title: 'Tel Aviv-Yafo', subtitle: 'Popular beach destination', searchCity: 'Tel Aviv', imgUrl: 'https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/eede907b-881f-4c1f-abeb-6379d89a74b6.png' },
@@ -189,6 +218,7 @@ export function StayFilter({ isScrolledDown }) {
                     <div
                         className={`pill-section where ${activeMenu === 'where' ? 'active' : ''}`}
                         onClick={() => onPillClick('where')}
+                        ref={el => pillRefs.current.where = el}
                     >
                         <label className="label" htmlFor="whereInput">Where</label>
                         <input
@@ -196,7 +226,6 @@ export function StayFilter({ isScrolledDown }) {
                             type="text"
                             id="whereInput"
                             placeholder="Search destinations"
-                            // readOnly={activeMenu !== 'where'}
                             value={draft.txt || ''}
                             onChange={ev => onChange('txt', ev.target.value)}
                             onClick={onChildClick}
@@ -209,6 +238,7 @@ export function StayFilter({ isScrolledDown }) {
                     <div
                         className={`pill-section checkin ${activeMenu === 'checkin' ? 'active' : ''}`}
                         onClick={() => onPillClick('checkin')}
+                        ref={el => pillRefs.current.checkin = el}
                     >
                         <label className="label" htmlFor="chekinInput">Check in</label>
                         {activeMenu === 'checkin' ? (
@@ -231,6 +261,7 @@ export function StayFilter({ isScrolledDown }) {
                     <div
                         className={`pill-section checkout ${activeMenu === 'checkout' ? 'active' : ''}`}
                         onClick={() => onPillClick('checkout')}
+                        ref={el => pillRefs.current.checkout = el}
                     >
                         <label className="label" htmlFor="checkoutInput">Check out</label>
                         {activeMenu === 'checkout' ? (
@@ -253,6 +284,7 @@ export function StayFilter({ isScrolledDown }) {
                     <div
                         className={`pill-section who ${activeMenu === 'who' ? 'active' : ''}`}
                         onClick={() => onPillClick('who')}
+                        ref={el => pillRefs.current.who = el}
                     >
                         <label className="label" htmlFor="whoInput">Who</label>
                         {activeMenu === 'who' ? (
@@ -274,8 +306,16 @@ export function StayFilter({ isScrolledDown }) {
                         )}
 
                         <button className="search-btn" type="submit" aria-label="Search">
-                            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
-                                <path fill="currentColor" d="M10.5 3a7.5 7.5 0 1 1 0 15c-1.83 0-3.51-.64-4.82-1.71l-3.49 3.49a1 1 0 1 1-1.41-1.41l3.49-3.49A7.46 7.46 0 0 1 3 10.5 7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11Z" />
+                            <svg
+                                viewBox="0 0 32 32"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                                role="presentation"
+                                focusable="false"
+                                style={{ display: 'block', fill: 'none', height: '14px', width: '14px', stroke: 'currentColor', strokeWidth: 4, overflow: 'visible', transform: 'scaleX(-1) rotate(90deg)', transformOrigin: 'center' }}
+                            >
+                                <path d="m20.666 20.666 10 10"></path>
+                                <path d="m24.0002 12.6668c0 6.2593-5.0741 11.3334-11.3334 11.3334-6.2592 0-11.3333-5.0741-11.3333-11.3334 0-6.2592 5.0741-11.3333 11.3333-11.3333 6.2593 0 11.3334 5.0741 11.3334 11.3333z" fill="none"></path>
                             </svg>
                         </button>
                     </div>
@@ -292,103 +332,116 @@ export function StayFilter({ isScrolledDown }) {
                         <span className="mini-search-secondary">{fixedSearchDate} · {fixedSearchGuests}</span>
                     </div>
                     <div className="mini-search-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M10.5 3a7.5 7.5 0 1 1 0 15c-1.83 0-3.51-.64-4.82-1.71l-3.49 3.49a1 1 0 1 1-1.41-1.41l3.49-3.49A7.46 7.46 0 0 1 3 10.5 7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11Z" />
+                        <svg
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            role="presentation"
+                            focusable="false"
+                            style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentColor', strokeWidth: 4, overflow: 'visible', transform: 'scaleX(-1) rotate(90deg)', transformOrigin: 'center' }}
+                        >
+                            <path d="m20.666 20.666 10 10"></path>
+                            <path d="m24.0002 12.6668c0 6.2593-5.0741 11.3334-11.3334 11.3334-6.2592 0-11.3333-5.0741-11.3333-11.3334 0-6.2592 5.0741-11.3333 11.3333-11.3333 6.2593 0 11.3334 5.0741 11.3334 11.3333z" fill="none"></path>
                         </svg>
                     </div>
                 </div>
             )}
 
-            {(activeMenu || isFixedMenuOpen) && (
-                <div className={`search-dropdown-overlay ${isScrolledDown ? 'fixed-overlay' : ''} ${activeMenu}-overlay`}>
-
-                    {isScrolledDown && isFixedMenuOpen && (
-                        <div className="fixed-menu-header">
-                            <button className="close-btn" onClick={closeFixedMenu}>X</button>
-                        </div>
-                    )}
-                    {activeMenu === 'where' && (
-                        <div className="where-menu">
-
-                            <div className="recent-searchs">
-                                <h4 className="menu-header">Recent searches</h4>
-                                <button
-                                    className="recent-item"
-                                    onClick={() => onLocationSelecet(recentSearch)}>
-                                    <div className="item-icon">
-                                        <img src={recentSearch.imgUrl} alt={`${recentSearch.title} icon`} className='location-icon' />
-                                    </div>
-                                    <div className="item-details">
-                                        <p className="item-title">{recentSearch.title}</p>
-                                        <span className="item-subtitle">{recentSearch.subtitle}</span>
-                                    </div>
-                                </button>
+            {(activeMenu || isFixedMenuOpen) &&
+                createPortal(
+                    <div
+                        className={`search-dropdown-overlay ${isScrolledDown ? 'fixed-overlay' : ''} ${activeMenu}-overlay`}
+                        style={{ position: 'fixed', top: overlayPos.top, left: overlayPos.left, transform: 'none' }}
+                    >
+                        {isScrolledDown && isFixedMenuOpen && (
+                            <div className="fixed-menu-header">
+                                <button className="close-btn" onClick={closeFixedMenu}>X</button>
                             </div>
+                        )}
 
-                            <div className="suggested-destinations">
-                                <h4 className="menu-header">Suggested destinations</h4>
-
-                                {suggestedDestinations.map(item => (
+                        {activeMenu === 'where' && (
+                            <div className="where-menu">
+                                <div className="recent-searchs">
+                                    <h4 className="menu-header">Recent searches</h4>
                                     <button
-                                        className="suggestion-item"
-                                        key={item.title}
-                                        onClick={() => onLocationSelecet(item)}
-                                    >
+                                        className="recent-item"
+                                        onClick={() => onLocationSelecet(recentSearch)}>
                                         <div className="item-icon">
-                                            <img
-                                                src={item.imgUrl}
-                                                alt={`${item.title} icon`}
-                                                className='location-icon'
-                                            />
+                                            <img src={recentSearch.imgUrl} alt={`${recentSearch.title} icon`} className='location-icon' />
                                         </div>
                                         <div className="item-details">
-                                            <p className="item-title">{item.title}</p>
-                                            <span className="item-subtitle">{item.subtitle}</span>
+                                            <p className="item-title">{recentSearch.title}</p>
+                                            <span className="item-subtitle">{recentSearch.subtitle}</span>
                                         </div>
                                     </button>
-                                ))}
-                            </div>
-                        </div>
-                    )}
+                                </div>
 
-                    {activeMenu === 'who' && (
-                        <div className="who-menu" onClick={onChildClick}>
-                            <GuestCounter
-                                title="Adults"
-                                subtitle="Ages 13 or above"
-                                count={draft.adults}
-                                onIncrease={() => handleGuestChange('adults', 1)}
-                                onDecrease={() => handleGuestChange('adults', -1)}
-                                min={1}
-                            />
-                            <GuestCounter
-                                title="Children"
-                                subtitle="Ages 2–12"
-                                count={draft.children}
-                                onIncrease={() => handleGuestChange('children', 1)}
-                                onDecrease={() => handleGuestChange('children', -1)}
-                                min={0}
-                            />
-                            <GuestCounter
-                                title="Infants"
-                                subtitle="Under 2"
-                                count={draft.infants}
-                                onIncrease={() => handleGuestChange('infants', 1)}
-                                onDecrease={() => handleGuestChange('infants', -1)}
-                                min={1}
-                            />
-                            <GuestCounter
-                                title="Pets"
-                                subtitle="Bringing a service animal?"
-                                count={draft.pets}
-                                onIncrease={() => handleGuestChange('pets', 1)}
-                                onDecrease={() => handleGuestChange('pets', -1)}
-                                min={1}
-                            />
-                        </div>
-                    )}
-                </div>
-            )}
+                                <div className="suggested-destinations">
+                                    <h4 className="menu-header">Suggested destinations</h4>
+
+                                    {suggestedDestinations.map(item => (
+                                        <button
+                                            className="suggestion-item"
+                                            key={item.title}
+                                            onClick={() => onLocationSelecet(item)}
+                                        >
+                                            <div className="item-icon">
+                                                <img
+                                                    src={item.imgUrl}
+                                                    alt={`${item.title} icon`}
+                                                    className='location-icon'
+                                                />
+                                            </div>
+                                            <div className="item-details">
+                                                <p className="item-title">{item.title}</p>
+                                                <span className="item-subtitle">{item.subtitle}</span>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {activeMenu === 'who' && (
+                            <div className="who-menu" onClick={onChildClick}>
+                                <GuestCounter
+                                    title="Adults"
+                                    subtitle="Ages 13 or above"
+                                    count={draft.adults}
+                                    onIncrease={() => handleGuestChange('adults', 1)}
+                                    onDecrease={() => handleGuestChange('adults', -1)}
+                                    min={1}
+                                />
+                                <GuestCounter
+                                    title="Children"
+                                    subtitle="Ages 2–12"
+                                    count={draft.children}
+                                    onIncrease={() => handleGuestChange('children', 1)}
+                                    onDecrease={() => handleGuestChange('children', -1)}
+                                    min={0}
+                                />
+                                <GuestCounter
+                                    title="Infants"
+                                    subtitle="Under 2"
+                                    count={draft.infants}
+                                    onIncrease={() => handleGuestChange('infants', 1)}
+                                    onDecrease={() => handleGuestChange('infants', -1)}
+                                    min={1}
+                                />
+                                <GuestCounter
+                                    title="Pets"
+                                    subtitle="Bringing a service animal?"
+                                    count={draft.pets}
+                                    onIncrease={() => handleGuestChange('pets', 1)}
+                                    onDecrease={() => handleGuestChange('pets', -1)}
+                                    min={1}
+                                />
+                            </div>
+                        )}
+                    </div>,
+                    document.body
+                )
+            }
         </div>
     )
 }
