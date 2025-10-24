@@ -8,8 +8,15 @@ export function BookingCard({
     checkIn, setCheckIn, checkOut, setCheckOut,
     reservedDates, setReservedDates
 }) {
-    const [guests, setGuests] = useState(1)
+    const [guests, setGuests] = useState({
+        adults: 1,
+        children: 0,
+        infants: 0,
+        pets: 0
+    })
     const [confirmationMsg, setConfirmationMsg] = useState('')
+    // for guests box
+    const [showGuests, setShowGuests] = useState(false)
 
     // load reservations for this stay
     useEffect(() => {
@@ -34,6 +41,15 @@ export function BookingCard({
         } catch (err) {
             console.error('Failed to load reservations', err)
         }
+    }
+
+    function updateGuests(type, diff) {
+        setGuests(prev => {
+            const key = type.toLowerCase()
+            const min = key === 'adults' ? 1 : 0   // adults can't go below 1
+            const newVal = Math.max(min, prev[key] + diff)
+            return { ...prev, [key]: newVal }
+        })
     }
 
     function calcTotalPrice() {
@@ -81,12 +97,30 @@ export function BookingCard({
             setTimeout(() => setConfirmationMsg(""), 2000)
             setCheckIn(null)
             setCheckOut(null)
-            setGuests(1)
+            setGuests({
+                adults: 1,
+                children: 0,
+                infants: 0,
+                pets: 0
+            })
             loadReservations()
         } catch (err) {
             setConfirmationMsg("Failed to book stay")
             setTimeout(() => setConfirmationMsg(""), 2000)
         }
+    }
+
+    function handleMouseMove(e) {
+        const rect = e.currentTarget.getBoundingClientRect()
+        const x = ((e.clientX - rect.left) / rect.width) * 100
+        const y = ((e.clientY - rect.top) / rect.height) * 100
+        e.currentTarget.style.setProperty('--x', `${x}%`)
+        e.currentTarget.style.setProperty('--y', `${y}%`)
+    }
+
+    function handleMouseLeave(e) {
+        e.currentTarget.style.removeProperty('--x')
+        e.currentTarget.style.removeProperty('--y')
     }
 
     return (
@@ -143,23 +177,77 @@ export function BookingCard({
                         </div>
 
                         {/* Guests */}
-                        <div className="guests-box">
-                            <label>GUESTS</label>
-                            <select value={guests} onChange={(e) => setGuests(+e.target.value)}>
-                                {Array.from({ length: maxGuests }, (_, i) => (
-                                    <option key={i + 1} value={i + 1}>
-                                        {i + 1} guest{i > 0 ? 's' : ''}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    </div>
+                        <div className="guest-dropdown">
+                            <div className="guest-summary" onClick={() => setShowGuests(!showGuests)}>
+                                <div className="guest-left">
+                                    <label>GUESTS</label>
+                                    <p>
+                                        {guests.adults + guests.children > 0
+                                            ? `${guests.adults + guests.children} guest${guests.adults + guests.children > 1 ? 's' : ''}`
+                                            : '1 guest'}
+                                    </p>
+                                </div>
+                                {/* Airbnb chevron SVG */}
+                                <svg
+                                    className={`guest-chevron ${showGuests ? 'open' : ''}`}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 32 32"
+                                    aria-hidden="true"
+                                    role="presentation"
+                                    focusable="false"
+                                >
+                                    <path
+                                        fill="none"
+                                        d="M28 12 16.7 23.3a1 1 0 0 1-1.4 0L4 12"
+                                    ></path>
+                                </svg>
+                            </div>
 
-                    {/* Reserve */}
-                    <button className="reserve-btn" onClick={onBook}>
-                        Reserve
-                    </button>
-                    <p className="charge-note">You won't be charged yet</p>
+                            {showGuests && (
+                                <div className="guest-menu">
+                                    {['Adults', 'Children', 'Infants', 'Pets'].map((type, idx) => {
+                                        const key = type.toLowerCase()
+                                        const value = guests[key]
+
+                                        return (
+                                            <div key={idx} className="guest-row">
+                                                <div className="guest-label">
+                                                    <p>{type}</p>
+                                                    {type === 'Adults' && <span>Age 13+</span>}
+                                                    {type === 'Children' && <span>Ages 2–12</span>}
+                                                    {type === 'Infants' && <span>Under 2</span>}
+                                                    {type === 'Pets' && <span>Bringing a service animal?</span>}
+                                                </div>
+                                                <div className="guest-counter">
+                                                    <button
+                                                        onClick={() => updateGuests(type, -1)}
+                                                        disabled={key === 'adults' ? value === 1 : value === 0}
+                                                    >
+                                                        −
+                                                    </button>
+                                                    <span>{value}</span>
+                                                    <button onClick={() => updateGuests(type, 1)}>+</button>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Reserve */}
+                        <button
+                            className="reserve-btn"
+                            onClick={onBook}
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            Reserve
+                        </button>
+
+                        <p className="charge-note">You won't be charged yet</p>
+                    </div>
                 </div>
 
             </aside>

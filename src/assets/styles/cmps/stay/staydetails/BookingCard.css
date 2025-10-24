@@ -53,8 +53,9 @@
 }
 
 .date-box label {
-    font-size: 10px;
-    font-weight: bold;
+    font-size: 11px;
+    color: #222;
+    font-weight: 500;
     margin-bottom: 2px;
 }
 
@@ -71,46 +72,179 @@
     width: 100%;
 }
 
-.guests-box {
+/* guests dropdown */
+.guest-dropdown {
     border: 1px solid grey;
     border-top: none;
+    /* attaches to checkout box */
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    padding: 6px 10px;
+    position: relative;
     margin-bottom: 12px;
+}
+
+/* The closed guest selector box */
+.guest-summary {
+    padding: 10px 12px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    cursor: pointer;
+    position: relative;
+    border-top: none;
+    /* ensures it connects seamlessly */
 }
 
-.guests-box label {
-    font-size: 10px;
-    font-weight: bold;
-    margin-bottom: 2px;
+/* Stack label + guest count on the left */
+.guest-summary label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #222;
+    text-transform: uppercase;
+    line-height: 1.2;
 }
 
-.guests-box select {
-    border: none;
-    outline: none;
+.guest-summary p {
+    margin: 4px 0 0 0;
     font-size: 14px;
-    padding: 4px 0;
+    color: #222;
 }
 
+.guest-chevron {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 4;
+    color: #222;
+    margin-top: 10px;
+    /* aligns with “1 guest” */
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
+
+/* Rotate upward when dropdown is open */
+.guest-chevron.open {
+    transform: rotate(180deg);
+}
+
+.guest-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    margin-top: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    z-index: 10;
+    padding: 8px 0;
+}
+
+.guest-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+.guest-label p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.guest-label span {
+    font-size: 16px;
+}
+
+.guest-counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.guest-counter button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #717171;
+    color: #717171;
+    background: #fff;
+    font-size: 20px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+    line-height: 1;
+    /* ensures the + and - are perfectly vertically centered */
+    padding: 0;
+}
+
+.guest-counter button:disabled {
+    opacity: 0.1;
+    cursor: default;
+}
+
+.guest-counter span {
+    width: 16px;
+    border-color: #fafafa;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* reserve button */
 .reserve-btn {
-    background: #FF385C;
+    position: relative;
+    overflow: hidden;
+    background: #DA1249;
     color: #fff;
     border: none;
-    border-radius: 8px;
-    padding: 14px;
+    border-radius: 24px;
+    padding: 16px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    width: 100%;
-    margin-top: 8px;
-    transition: background .2s ease;
+    width: calc(100% - 10px);
+    margin-top: 12px;
+    margin-right: 10px;
+    transition: transform 0.2s ease;
+    isolation: isolate;
+    /* ensures ::before stays behind text */
+}
+
+.reserve-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    /* invisible default */
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%),
+            rgb(255, 56, 92) 0%,
+            rgb(237, 63, 103) 27.5%,
+            rgb(235, 31, 99) 40%,
+            rgb(239, 4, 113) 57.5%,
+            #DA1249 75%,
+            #DA1249 100%);
+    background-size: 200% 200%;
+    z-index: -1;
+    /* ensures it's behind the text */
+    transition: background-position 0.2s ease, opacity 0.3s ease;
+}
+
+.reserve-btn:hover::before {
+    opacity: 1;
 }
 
 .reserve-btn:hover {
-    background: #E31C5F;
+    transform: translateY(-1px);
+}
+
+.reserve-btn:active {
+    transform: translateY(0);
 }
 
 .charge-note {
