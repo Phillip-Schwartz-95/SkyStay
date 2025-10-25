@@ -273,7 +273,7 @@ const GLOBAL_POP_CSS = `
 #map-pop-root .map-pop__dates{font-size:13px;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
 `
 
-export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey = '', defaultColors = true, onMapDragEnd, activeId = null }) {
+export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey = '', defaultColors = true, onMapDragEnd, onViewportChange, activeId = null }) {
     const hostRef = useRef(null)
     const mapRef = useRef(null)
     const initRanRef = useRef(false)
@@ -282,6 +282,8 @@ export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey 
     const pendingFitRef = useRef(null)
     const markerRefs = useRef(new Map())
     const backdropRef = useRef(null)
+    const viewportCbRef = useRef(onViewportChange)
+    useEffect(() => { viewportCbRef.current = onViewportChange }, [onViewportChange])
 
     function applyFit(points) {
         const map = mapRef.current
@@ -366,8 +368,35 @@ export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey 
                 mapRef.current = map
                 gmaps.event.addListener(map, 'dragend', () => setDirty(true))
                 gmaps.event.addListener(map, 'zoom_changed', () => setDirty(true))
+                let ticking = false
+                const emitViewport = () => {
+                    ticking = false
+                    const cb = viewportCbRef.current
+                    if (!cb) return
+                    const b = map.getBounds()
+                    if (!b) return
+                    cb({
+                        bounds: {
+                            north: b.getNorthEast().lat(),
+                            east: b.getNorthEast().lng(),
+                            south: b.getSouthWest().lat(),
+                            west: b.getSouthWest().lng()
+                        },
+                        center: { lat: map.getCenter().lat(), lng: map.getCenter().lng() },
+                        zoom: map.getZoom(),
+                        source: 'live'
+                    })
+                }
+                const scheduleEmit = () => {
+                    if (!ticking) {
+                        ticking = true
+                        requestAnimationFrame(emitViewport)
+                    }
+                }
+                gmaps.event.addListener(map, 'bounds_changed', scheduleEmit)
                 gmaps.event.addListenerOnce(map, 'idle', () => {
                     readyRef.current = true
+                    scheduleEmit()
                     if (pendingFitRef.current && pendingFitRef.current.points && pendingFitRef.current.key === fitKey) {
                         applyFit(pendingFitRef.current.points)
                         pendingFitRef.current = null

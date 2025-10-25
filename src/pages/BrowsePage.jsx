@@ -31,12 +31,22 @@ function primaryImg(s) {
     return imgs[0] || ''
 }
 
+function isInBounds(lat, lng, b) {
+    if (!b) return true
+    if (typeof lat !== 'number' || typeof lng !== 'number') return false
+    const withinLat = lat <= b.north && lat >= b.south
+    const crossesIDL = b.east < b.west
+    const withinLng = crossesIDL ? (lng >= b.west || lng <= b.east) : (lng <= b.east && lng >= b.west)
+    return withinLat && withinLng
+}
+
 export default function BrowsePage() {
     const [params] = useSearchParams()
     const type = params.get('type') || 'city'
     const label = params.get('label') || ''
     const [page, setPage] = useState(1)
     const [hoveredStayId, setHoveredStayId] = useState(null)
+    const [visibleCount, setVisibleCount] = useState(0)
     const resultsPaneRef = useRef(null)
 
     const filterBy = useSelector(s => s.stayModule.filterBy) || stayService.getDefaultFilter()
@@ -89,8 +99,11 @@ export default function BrowsePage() {
 
     const fitKey = `${type}:${label}:${fitTo.length}:${safePage}`
 
-    function handleMapDragEnd(payload) {
-        console.log('Map drag end:', payload)
+    function handleViewportChange(payload) {
+        const b = payload && payload.bounds
+        if (!b) return
+        const count = mapMarkersAll.reduce((acc, m) => acc + (isInBounds(m.lat, m.lng, b) ? 1 : 0), 0)
+        setVisibleCount(count)
     }
 
     function onHoverFactory(id) {
@@ -109,8 +122,7 @@ export default function BrowsePage() {
             <div className="browse-grid">
                 <div className="results-pane" ref={resultsPaneRef}>
                     <header className="results-header">
-                        <h1>Homes in {label}</h1>
-                        <div className="results-meta">{allMatches.length} stays</div>
+                        <h1>{visibleCount} homes within map area</h1>
                     </header>
 
                     <ul className="results-grid">
@@ -141,7 +153,7 @@ export default function BrowsePage() {
                         fitTo={fitTo}
                         fitKey={fitKey}
                         activeId={hoveredStayId}
-                        onMapDragEnd={handleMapDragEnd}
+                        onViewportChange={handleViewportChange}
                     />
                 </div>
             </div>
