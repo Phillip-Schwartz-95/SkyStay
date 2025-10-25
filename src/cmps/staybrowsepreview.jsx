@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { StayPreviewImage } from './StayPreviewImage'
 
-export function StayBrowsePreview({ stay }) {
+export function StayBrowsePreview({ stay, onHover }) {
     var rating = 4.85
     if (stay && stay.host && typeof stay.host.rating === 'number') rating = stay.host.rating
     else if (stay && typeof stay.rating === 'number') rating = stay.rating
@@ -64,12 +64,20 @@ export function StayBrowsePreview({ stay }) {
     var showLeft = showControls && imgIdx > 0
     var showRight = showControls && imgIdx < images.length - 1
 
+    function handleEnter() {
+        setHover(true)
+        if (typeof onHover === 'function') onHover(true)
+    }
+    function handleLeave() {
+        setHover(false)
+        if (typeof onHover === 'function') onHover(false)
+    }
+
     return (
-        <article className="stay-card" onMouseEnter={function () { setHover(true) }} onMouseLeave={function () { setHover(false) }}>
+        <article className="stay-card" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
             <Link className="stay-link" to={'/stay/' + (stay && stay._id ? stay._id : '')} aria-label={stay && stay.title ? stay.title : 'Stay'}>
                 <div className="stay-img-wrap stay-browse-wrap" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
                     <StayPreviewImage stay={stay} alt={stay && stay.title ? stay.title : 'Stay'} currentIndex={imgIdx} />
-
                     {images.length > 1 && (
                         <>
                             <div className={'sbp-dots' + (hover ? ' visible' : '')}>
@@ -84,7 +92,6 @@ export function StayBrowsePreview({ stay }) {
                         </>
                     )}
                 </div>
-
                 <div className="stay-info">
                     <h3 className="stay-title">{stay && stay.title ? stay.title : ''}</h3>
                     <p className="stay-dates">{stay && stay.dateRange ? stay.dateRange : 'Flexible dates'}</p>
