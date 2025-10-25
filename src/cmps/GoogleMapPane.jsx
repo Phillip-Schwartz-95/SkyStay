@@ -52,13 +52,20 @@ function pillEl({ id, href, images = [], title, desc, price, currency, rating, d
     closeBtn.type = 'button'
     closeBtn.className = 'map-pop__close'
     closeBtn.setAttribute('aria-label', 'Close')
-    closeBtn.textContent = '×'
+    closeBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display:block;fill:none;height:14px;width:14px;overflow:visible;">
+            <path d="m6 6 20 20M26 6 6 26" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"></path>
+        </svg>
+    `
 
     const imgWrap = document.createElement('div')
     imgWrap.className = 'map-pop__imgwrap'
+
     const img = document.createElement('img')
     img.className = 'map-pop__img'
     img.alt = title || 'Stay'
+    img.loading = 'lazy'
+    img.decoding = 'async'
     img.src = images[0] || ''
     imgWrap.appendChild(img)
 
@@ -66,16 +73,24 @@ function pillEl({ id, href, images = [], title, desc, price, currency, rating, d
     prevBtn.className = 'sbp-btn left'
     prevBtn.type = 'button'
     prevBtn.setAttribute('aria-label', 'Previous image')
-    prevBtn.textContent = '‹'
+    prevBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display:block;fill:none;height:14px;width:14px;overflow:visible;transform:scaleX(-1);">
+            <path d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"></path>
+        </svg>
+    `
 
     const nextBtn = document.createElement('button')
     nextBtn.className = 'sbp-btn right'
     nextBtn.type = 'button'
     nextBtn.setAttribute('aria-label', 'Next image')
-    nextBtn.textContent = '›'
+    nextBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display:block;fill:none;height:14px;width:14px;overflow:visible;">
+            <path d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"></path>
+        </svg>
+    `
 
     const dots = document.createElement('div')
-    dots.className = 'sbp-dots visible'
+    dots.className = 'sbp-dots'
 
     let idx = 0
     function renderDots() {
@@ -83,18 +98,42 @@ function pillEl({ id, href, images = [], title, desc, price, currency, rating, d
         for (let i = 0; i < images.length; i++) {
             const d = document.createElement('span')
             d.className = 'sbp-dot' + (i === idx ? ' active' : '')
+            d.dataset.index = String(i)
             dots.appendChild(d)
         }
     }
-    function go(n) {
+    function updateNav() {
+        if (images.length <= 1) {
+            prevBtn.style.display = 'none'
+            nextBtn.style.display = 'none'
+            dots.style.display = 'none'
+            return
+        }
+        prevBtn.style.display = idx > 0 ? 'flex' : 'none'
+        nextBtn.style.display = idx < images.length - 1 ? 'flex' : 'none'
+        dots.style.display = 'flex'
+    }
+    function setIdx(newIdx) {
         if (!images.length) return
-        idx = (n + images.length) % images.length
+        if (newIdx < 0 || newIdx > images.length - 1) return
+        idx = newIdx
         img.src = images[idx]
         renderDots()
+        updateNav()
     }
-    prevBtn.onclick = e => { e.preventDefault(); e.stopPropagation(); if (images.length > 1) go(idx - 1) }
-    nextBtn.onclick = e => { e.preventDefault(); e.stopPropagation(); if (images.length > 1) go(idx + 1) }
+    dots.addEventListener('click', e => {
+        const t = e.target
+        if (!(t instanceof HTMLElement)) return
+        if (!t.classList.contains('sbp-dot')) return
+        const i = Number(t.dataset.index || -1)
+        if (!Number.isNaN(i)) setIdx(i)
+        e.stopPropagation()
+        e.preventDefault()
+    })
+    prevBtn.onclick = e => { e.preventDefault(); e.stopPropagation(); setIdx(idx - 1) }
+    nextBtn.onclick = e => { e.preventDefault(); e.stopPropagation(); setIdx(idx + 1) }
     renderDots()
+    updateNav()
 
     const info = document.createElement('div')
     info.className = 'map-pop__info'
@@ -155,11 +194,11 @@ function pillEl({ id, href, images = [], title, desc, price, currency, rating, d
 
     const media = document.createElement('div')
     media.className = 'map-pop__media'
+    imgWrap.appendChild(dots)
     media.appendChild(imgWrap)
     if (images.length > 1) {
         media.appendChild(prevBtn)
         media.appendChild(nextBtn)
-        media.appendChild(dots)
     }
 
     card.appendChild(closeBtn)
@@ -174,29 +213,31 @@ function pillEl({ id, href, images = [], title, desc, price, currency, rating, d
 const PILL_CSS = `
 :host{all:initial}
 :host, :host *{box-sizing:border-box}
-:root{--palette-hof:#222222;--palette-white:#ffffff;--marker-radius:28px;--marker-height:28px}
+:root{--palette-hof:#222222;--palette-white:#ffffff}
 .map-backdrop{position:absolute;inset:0;z-index:2147483646;background:transparent;display:none}
 .map-backdrop.is-open{display:block}
-.map-marker{background-color:var(--palette-white);color:#222;border-radius:var(--marker-radius);height:var(--marker-height);padding:0 12px;position:relative;transform:scale(1);transform-origin:50% 50%;box-shadow:0 8px 28px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.10),0 0 0 1px rgba(0,0,0,.06);transition:background-color 200ms cubic-bezier(.2,.8,.2,1),color 200ms cubic-bezier(.2,.8,.2,1),transform 200ms cubic-bezier(.2,.8,.2,1),box-shadow 200ms cubic-bezier(.2,.8,.2,1);display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;cursor:pointer;z-index:2147483647}
+.map-marker{background-color:var(--palette-white);color:#222;border-radius:28px;height:28px;padding:0 12px;position:relative;transform:scale(1);transform-origin:50% 50%;box-shadow:0 8px 28px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.10),0 0 0 1px rgba(0,0,0,.06);transition:background-color 200ms cubic-bezier(.2,.8,.2,1),color 200ms cubic-bezier(.2,.8,.2,1),transform 200ms cubic-bezier(.2,.8,.2,1),box-shadow 200ms cubic-bezier(.2,.8,.2,1);display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;cursor:pointer;z-index:2147483647}
 .map-marker__inner{display:flex;align-items:center;justify-content:center;height:100%}
 .map-marker__text{font-weight:800;font-size:13px;line-height:1}
 .map-marker.is-hover,.map-marker:hover{transform:scale(1.08)}
 .map-marker.is-active{background-color:var(--palette-hof);color:#fff;box-shadow:0 10px 32px rgba(0,0,0,.22),0 2px 4px rgba(0,0,0,.16),0 0 0 1px rgba(0,0,0,.08)}
-.map-marker--fallback{background:var(--palette-white);color:#222;padding:6px 12px;border-radius:var(--marker-radius);box-shadow:0 8px 28px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.10),0 0 0 1px rgba(0,0,0,.06);cursor:pointer}
 .map-pop{position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%) scale(.98);opacity:0;pointer-events:none;transition:opacity .15s ease,transform .15s ease;z-index:2147483647}
 .map-marker.is-open .map-pop{opacity:1;transform:translateX(-50%) scale(1);pointer-events:auto}
-.map-pop__card{position:relative;display:grid;grid-template-rows:auto 1fr;gap:12px;min-width:420px;max-width:520px;background:#fff;border-radius:16px;padding:12px;box-shadow:0 24px 64px rgba(0,0,0,.28),0 8px 16px rgba(0,0,0,.22),0 0 0 1px rgba(0,0,0,.08);text-decoration:none;color:#111}
-.map-pop__close{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:16px;border:1px solid rgba(0,0,0,.12);background:#fff;cursor:pointer;font-size:18px;line-height:1}
-.map-pop__media{position:relative}
-.map-pop__imgwrap{width:100%;height:260px;border-radius:12px;overflow:hidden;background:#f2f2f2}
-.map-pop__img{width:100%;height:100%;object-fit:cover;display:block}
-.sbp-btn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:18px;border:1px solid rgba(0,0,0,.12);background:#fff;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.map-pop__card{position:relative;display:grid;grid-template-rows:auto 1fr;gap:0;width:420px;min-width:420px;max-width:420px;background:#fff;border-radius:16px;padding:0;box-shadow:0 24px 64px rgba(0,0,0,.28),0 8px 16px rgba(0,0,0,.22),0 0 0 1px rgba(0,0,0,.08);text-decoration:none;color:#111}
+.map-pop__close{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:16px;border:1px solid rgba(0,0,0,.12);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;color:#111}
+.map-pop__close svg{width:14px;height:14px;display:block}
+.map-pop__media{position:relative;margin:0}
+.map-pop__imgwrap{position:relative;width:100%;height:260px;border-radius:16px 16px 0 0;overflow:hidden;background:#f2f2f2}
+.map-pop__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sbp-btn{position:absolute;top:52%;transform:translateY(-50%);width:36px;height:36px;border-radius:18px;border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.95);backdrop-filter:saturate(120%) blur(2px);cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.18);z-index:2;line-height:0;color:#111}
+.sbp-btn:hover{background:#fff}
+.sbp-btn svg{width:14px;height:14px;display:block}
 .sbp-btn.left{left:8px}
 .sbp-btn.right{right:8px}
-.sbp-dots{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:6px}
-.sbp-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.7)}
+.sbp-dots{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
+.sbp-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55)}
 .sbp-dot.active{background:#fff}
-.map-pop__info{min-width:0;display:grid;gap:6px}
+.map-pop__info{min-width:0;display:grid;gap:6px;padding:12px}
 .map-pop__header{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}
 .map-pop__title{font-size:16px;font-weight:800;line-height:1.25;margin:0;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .map-pop__rating{display:flex;gap:6px;align-items:center;font-size:13px;color:#222;flex:0 0 auto}
@@ -210,18 +251,23 @@ const PILL_CSS = `
 const GLOBAL_POP_CSS = `
 #map-pop-root{position:fixed;inset:0;z-index:2147483647;pointer-events:none}
 #map-pop-root .map-pop{position:absolute;transform:translate(-50%, calc(-100% - 12px));pointer-events:auto}
-#map-pop-root .map-pop__card{position:relative;display:grid;grid-template-rows:auto 1fr;gap:12px;min-width:360px;max-width:520px;background:#fff;border-radius:16px;padding:12px;box-shadow:0 24px 64px rgba(0,0,0,.28),0 8px 16px rgba(0,0,0,.22),0 0 0 1px rgba(0,0,0,.08);text-decoration:none;color:#111}
-#map-pop-root .map-pop__imgwrap{width:100%;height:240px;border-radius:12px;overflow:hidden;background:#f2f2f2}
-#map-pop-root .map-pop__img{width:100%;height:100%;object-fit:cover;display:block}
-#map-pop-root .sbp-btn{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:16px;border:1px solid rgba(0,0,0,.12);background:#fff;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+#map-pop-root .map-pop__card{position:relative;display:grid;grid-template-rows:auto 1fr;gap:0;width:420px;min-width:420px;max-width:420px;background:#fff;border-radius:16px;padding:0;box-shadow:0 24px 64px rgba(0,0,0,.28),0 8px 16px rgba(0,0,0,.22),0 0 0 1px rgba(0,0,0,.08);text-decoration:none;color:#111}
+#map-pop-root .map-pop__close{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:16px;border:1px solid rgba(0,0,0,.12);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;color:#111}
+#map-pop-root .map-pop__close svg{width:14px;height:14px;display:block}
+#map-pop-root .map-pop__media{position:relative;margin:0}
+#map-pop-root .map-pop__imgwrap{position:relative;width:100%;height:240px;border-radius:16px 16px 0 0;overflow:hidden;background:#f2f2f2}
+#map-pop-root .map-pop__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+#map-pop-root .sbp-btn{position:absolute;top:52%;transform:translateY(-50%);width:36px;height:36px;border-radius:18px;border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.95);backdrop-filter:saturate(120%) blur(2px);cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.18);z-index:2;line-height:0;color:#111}
+#map-pop-root .sbp-btn:hover{background:#fff}
+#map-pop-root .sbp-btn svg{width:14px;height:14px;display:block}
 #map-pop-root .sbp-btn.left{left:8px}
 #map-pop-root .sbp-btn.right{right:8px}
-#map-pop-root .sbp-dots{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:6px}
-#map-pop-root .sbp-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.7)}
+#map-pop-root .sbp-dots{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
+#map-pop-root .sbp-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55)}
 #map-pop-root .sbp-dot.active{background:#fff}
+#map-pop-root .map-pop__info{min-width:0;display:grid;gap:6px;padding:12px}
 #map-pop-root .map-pop__title{font-size:16px;font-weight:800;line-height:1.25;margin:0}
 #map-pop-root .map-pop__desc{font-size:13px;line-height:1.4;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#map-pop-root .map-pop__close{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:16px;border:1px solid rgba(0,0,0,.12);background:#fff;cursor:pointer;font-size:18px;line-height:1}
 #map-pop-root .map-pop__footer{display:flex;align-items:center;justify-content:space-between;gap:12px}
 #map-pop-root .map-pop__price{font-size:14px;font-weight:800;color:#111}
 #map-pop-root .map-pop__dates{font-size:13px;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
@@ -421,8 +467,10 @@ export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey 
                 ref.pos = pos
                 if (ref.gm && ref.gm.setPosition) ref.gm.setPosition(pos)
                 ref.el.onclick = e => { e.preventDefault(); e.stopPropagation(); toggleOpen(id) }
-                const x = ref._popEl && ref._popEl.querySelector('.map-pop__close')
-                if (x) x.onclick = e => { e.preventDefault(); e.stopPropagation(); closeAll() }
+                if (ref._popEl) {
+                    const x = ref._popEl.querySelector('.map-pop__close')
+                    if (x) x.onclick = e => { e.preventDefault(); e.stopPropagation(); closeAll() }
+                }
                 if (ref.isOpen) positionPopAtPill(ref)
                 return
             }
@@ -448,6 +496,8 @@ export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey 
             if (popEl) {
                 popEl.style.display = 'none'
                 popEl.addEventListener('click', e => { e.stopPropagation() })
+                const x = popEl.querySelector('.map-pop__close')
+                if (x) x.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); closeAll() })
                 document.getElementById('map-pop-root').appendChild(popEl)
             }
 
