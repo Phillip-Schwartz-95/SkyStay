@@ -23,7 +23,6 @@
     overflow: hidden;
     padding: 0 var(--pad-r) 0 var(--pad-l);
     background: #fff;
-
     --pad-l: 48px;
     --pad-r: 48px;
     --gap: 24px;
@@ -181,7 +180,6 @@
     -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
-/* ≤1240px: switch to 2 columns, reduce stays→map gap to 32px */
 @media (max-width: 1240px) {
     .results-pane {
         --cols: 2;
@@ -190,7 +188,6 @@
     }
 }
 
-/* ≤980px: stack layout; map inline; adjust paddings */
 @media (max-width: 980px) {
     .browse-grid {
         grid-template-columns: 1fr;
@@ -219,7 +216,6 @@
     }
 }
 
-/* ≤640px: one column */
 @media (max-width: 640px) {
     .results-pane {
         --cols: 1;
@@ -265,14 +261,8 @@
     position: relative;
     transform: scale(1);
     transform-origin: 50% 50%;
-    box-shadow:
-        0 8px 28px rgba(0, 0, 0, 0.12),
-        0 2px 4px rgba(0, 0, 0, 0.10),
-        0 0 0 1px rgba(0, 0, 0, 0.06);
-    transition: background-color 200ms cubic-bezier(.2, .8, .2, 1),
-        color 200ms cubic-bezier(.2, .8, .2, 1),
-        transform 200ms cubic-bezier(.2, .8, .2, 1),
-        box-shadow 200ms cubic-bezier(.2, .8, .2, 1);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.10), 0 0 0 1px rgba(0, 0, 0, 0.06);
+    transition: background-color 200ms cubic-bezier(.2, .8, .2, 1), color 200ms cubic-bezier(.2, .8, .2, 1), transform 200ms cubic-bezier(.2, .8, .2, 1), box-shadow 200ms cubic-bezier(.2, .8, .2, 1);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -300,10 +290,7 @@
 .map-marker.is-active {
     background-color: var(--palette-hof);
     color: var(--palette-white);
-    box-shadow:
-        0 10px 32px rgba(0, 0, 0, 0.22),
-        0 2px 4px rgba(0, 0, 0, 0.16),
-        0 0 0 1px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22), 0 2px 4px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .map-marker--fallback {
@@ -311,8 +298,28 @@
     color: #222;
     padding: 6px 10px;
     border-radius: var(--marker-radius);
-    box-shadow:
-        0 8px 28px rgba(0, 0, 0, 0.12),
-        0 2px 4px rgba(0, 0, 0, 0.10),
-        0 0 0 1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.10), 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+.browse-page {
+    overflow-x: clip;
+}
+
+.browse-grid,
+.results-pane,
+.results-grid {
+    overflow-x: hidden;
+}
+
+.results-grid {
+    overflow-y: auto;
+}
+
+.map-pane {
+    overscroll-behavior: contain;
 }

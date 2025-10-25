@@ -38,13 +38,29 @@ export default function BrowsePage() {
     const startIdx = (page - 1) * PER_PAGE
     const pageItems = allMatches.slice(startIdx, startIdx + PER_PAGE)
 
-    const mapMarkers = useMemo(() => pageItems.map(s => ({
-        lat: s?.loc?.lat,
-        lng: s?.loc?.lng,
-        title: s?.title || (s?.loc?.city ? `Home in ${s.loc.city}` : 'Home'),
-        price: typeof s?.price === 'number' ? s.price : undefined,
-        currency: s?.currency || '₪'
-    })), [pageItems])
+    const mapMarkersAll = useMemo(
+        () =>
+            (Array.isArray(staysRaw) ? staysRaw : []).map(s => ({
+                lat: s?.loc?.lat,
+                lng: s?.loc?.lng,
+                title: s?.title || (s?.loc?.city ? `Home in ${s.loc.city}` : 'Home'),
+                price: typeof s?.price === 'number' ? s.price : undefined,
+                currency: s?.currency || '₪'
+            })),
+        [staysRaw]
+    )
+
+    const fitTo = useMemo(() => {
+        return (Array.isArray(allMatches) ? allMatches : [])
+            .map(s => ({ lat: s?.loc?.lat, lng: s?.loc?.lng }))
+            .filter(p => typeof p.lat === 'number' && typeof p.lng === 'number')
+    }, [allMatches])
+
+    const fitKey = `${type}:${label}:${fitTo.length}`
+
+    function handleMapDragEnd(payload) {
+        console.log('Map drag end:', payload)
+    }
 
     return (
         <section className="browse-page">
@@ -77,7 +93,13 @@ export default function BrowsePage() {
                 </div>
 
                 <div className="map-pane">
-                    <GoogleMapPane label={label} markers={mapMarkers} />
+                    <GoogleMapPane
+                        label={label}
+                        markers={mapMarkersAll}
+                        fitTo={fitTo}
+                        fitKey={fitKey}
+                        onMapDragEnd={handleMapDragEnd}
+                    />
                 </div>
             </div>
         </section>
