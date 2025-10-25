@@ -6,7 +6,6 @@ import { logout } from '../store/actions/user.actions'
 import { StayFilter } from './StayFilter'
 import '../assets/styles/cmps/AppHeader.css'
 
-
 export function AppHeader({ isMini = false }) {
 	const user = useSelector(s => s.userModule.user)
 
@@ -14,12 +13,15 @@ export function AppHeader({ isMini = false }) {
 	const [isHostingView, setIsHostingView] = useState(false)
 	const [isScrolledDown, setIsScrolledDown] = useState(false)
 	const [isHostHover, setIsHostHover] = useState(false)
+	const [menuPos, setMenuPos] = useState({ top: 0, left: 0 })
 
 	const navigate = useNavigate()
 	const location = useLocation()
 	const isBrowse = location.pathname.startsWith('/browse')
-	const isStayDetails = /^\/stay\/[^/]+$/.test(location.pathname) // detect stay details page
+	const isStayDetails = /^\/stay\/[^/]+$/.test(location.pathname)
+
 	const menuRef = useRef(null)
+	const btnRef = useRef(null)
 
 	useEffect(() => {
 		const onScroll = () => setIsScrolledDown(window.scrollY > 1)
@@ -27,27 +29,41 @@ export function AppHeader({ isMini = false }) {
 		return () => window.removeEventListener('scroll', onScroll)
 	}, [])
 
-	const headerClasses =
-		isMini || isScrolledDown ? 'app-header mini' : 'app-header'
+	useEffect(() => {
+		if (!isMenuOpen) return
+		const place = () => {
+			const btn = btnRef.current
+			if (!btn) return
+			const r = btn.getBoundingClientRect()
+			setMenuPos({ top: r.bottom + 8, left: r.right })
+		}
+		place()
+		const onKey = e => { if (e.key === 'Escape') setIsMenuOpen(false) }
+		const onClickAway = e => {
+			if (!menuRef.current && !btnRef.current) return
+			if (menuRef.current && menuRef.current.contains(e.target)) return
+			if (btnRef.current && btnRef.current.contains(e.target)) return
+			setIsMenuOpen(false)
+		}
+		window.addEventListener('resize', place)
+		window.addEventListener('scroll', place, true)
+		document.addEventListener('keydown', onKey)
+		document.addEventListener('mousedown', onClickAway, true)
+		return () => {
+			window.removeEventListener('resize', place)
+			window.removeEventListener('scroll', place, true)
+			document.removeEventListener('keydown', onKey)
+			document.removeEventListener('mousedown', onClickAway, true)
+		}
+	}, [isMenuOpen])
+
+	const headerClasses = isMini || isScrolledDown ? 'app-header mini' : 'app-header'
 	const headerBrowseClass = isBrowse ? ' app-header--browse' : ''
 
-	// headerStyle logic
 	const headerStyle = isBrowse
-		? {
-			position: 'sticky',
-			top: 0,
-			zIndex: 1000,
-			background: '#fff',
-			borderBottom: '1px solid rgba(0,0,0,.06)',
-		}
+		? { position: 'sticky', top: 0, zIndex: 1000, background: '#fff', borderBottom: '1px solid rgba(0,0,0,.06)' }
 		: isStayDetails
-			? {
-				position: 'relative',
-				background: '#fff',
-				borderBottom: 'none',
-				height: '80px',
-				zIndex: 2,
-			}
+			? { position: 'relative', background: '#fff', borderBottom: 'none', height: '80px', zIndex: 2 }
 			: undefined
 
 	function goToHostStart() {
@@ -160,8 +176,9 @@ export function AppHeader({ isMini = false }) {
 						</svg>
 					</button>
 
-					<div className="profile-menu" ref={menuRef}>
+					<div className="profile-menu" style={{ position: 'relative' }}>
 						<button
+							ref={btnRef}
 							className="profile-btn"
 							onClick={() => setIsMenuOpen(p => !p)}
 							aria-label="Menu"
@@ -173,101 +190,6 @@ export function AppHeader({ isMini = false }) {
 								</g>
 							</svg>
 						</button>
-
-						{isMenuOpen && (
-							<div className="menu-dropdown" style={{ textDecoration: 'none' }}>
-								{!user ? (
-									<>
-										<span
-											role="button"
-											tabIndex={0}
-											style={{
-												display: 'block',
-												fontWeight: 600,
-												padding: '8px 12px',
-												borderRadius: '24px',
-												border: '1px solid rgba(0,0,0,.08)',
-												cursor: 'pointer',
-												userSelect: 'none',
-												textDecoration: 'none',
-												marginBottom: '6px'
-											}}
-											onClick={goToHostStart}
-											onKeyDown={(e) => {
-												if (e.key === 'Enter' || e.key === ' ') {
-													e.preventDefault()
-													goToHostStart()
-												}
-											}}
-										>
-											Become a host
-										</span>
-
-										<Link
-											to="/auth/login"
-											onClick={() => setIsMenuOpen(false)}
-											style={{ display: 'block', padding: '8px 12px', textDecoration: 'none' }}
-										>
-											Log in or sign up
-										</Link>
-									</>
-								) : (
-									<>
-										<span
-											role="button"
-											tabIndex={0}
-											style={{
-												display: 'block',
-												fontWeight: 600,
-												padding: '8px 12px',
-												borderRadius: '24px',
-												border: '1px solid rgba(0,0,0,.08)',
-												cursor: 'pointer',
-												userSelect: 'none',
-												textDecoration: 'none',
-												marginBottom: '6px'
-											}}
-											onClick={() => {
-												setIsMenuOpen(false)
-												goToHostStart()
-											}}
-											onKeyDown={(e) => {
-												if (e.key === 'Enter' || e.key === ' ') {
-													e.preventDefault()
-													setIsMenuOpen(false)
-													goToHostStart()
-												}
-											}}
-										>
-											Become a host
-										</span>
-
-										<Link
-											to={`/user/${user._id}`}
-											onClick={() => setIsMenuOpen(false)}
-											style={{ display: 'block', padding: '8px 12px', textDecoration: 'none' }}
-										>
-											Profile
-										</Link>
-
-										<button
-											onClick={onLogout}
-											style={{
-												display: 'block',
-												width: '100%',
-												textAlign: 'left',
-												padding: '8px 12px',
-												background: 'transparent',
-												border: 'none',
-												cursor: 'pointer'
-											}}
-										>
-											Logout
-										</button>
-									</>
-								)}
-							</div>
-						)}
 					</div>
 				</div>
 
@@ -284,6 +206,136 @@ export function AppHeader({ isMini = false }) {
 					</div>
 				)}
 			</nav>
+
+			{isMenuOpen && (
+				<div
+					ref={menuRef}
+					className="menu-dropdown"
+					style={{
+						position: 'fixed',
+						top: menuPos.top,
+						left: menuPos.left,
+						transform: 'translateX(-100%)',
+						minWidth: 240,
+						background: '#fff',
+						borderRadius: 12,
+						boxShadow: '0 24px 64px rgba(0,0,0,.28), 0 8px 16px rgba(0,0,0,.22), 0 0 0 1px rgba(0,0,0,.08)',
+						padding: 8,
+						zIndex: 2147483647
+					}}
+				>
+					{!user ? (
+						<>
+							<span
+								role="button"
+								tabIndex={0}
+								style={{
+									display: 'block',
+									fontWeight: 600,
+									padding: '8px 12px',
+									borderRadius: '24px',
+									border: '1px solid rgba(0,0,0,.08)',
+									cursor: 'pointer',
+									userSelect: 'none',
+									textDecoration: 'none',
+									marginBottom: '6px'
+								}}
+								onClick={() => {
+									setIsMenuOpen(false)
+									goToHostStart()
+								}}
+								onKeyDown={(e) => {
+									if (e.key === 'Enter' || e.key === ' ') {
+										e.preventDefault()
+										setIsMenuOpen(false)
+										goToHostStart()
+									}
+								}}
+							>
+								Become a host
+							</span>
+
+							<Link
+								to="/auth/login"
+								onClick={() => setIsMenuOpen(false)}
+								style={{ display: 'block', padding: '8px 12px', textDecoration: 'none' }}
+							>
+								Log in or sign up
+							</Link>
+						</>
+					) : (
+						<>
+							<Link
+								to="/trips"
+								onClick={() => setIsMenuOpen(false)}
+								style={{ display: 'block', padding: '8px 12px', textDecoration: 'none' }}
+							>
+								My trips
+							</Link>
+
+							<Link
+								to="/wishlist"
+								onClick={() => setIsMenuOpen(false)}
+								style={{ display: 'block', padding: '8px 12px', textDecoration: 'none' }}
+							>
+								My wishlist
+							</Link>
+
+							<span
+								role="button"
+								tabIndex={0}
+								style={{
+									display: 'block',
+									fontWeight: 600,
+									padding: '8px 12px',
+									borderRadius: '24px',
+									border: '1px solid rgba(0,0,0,.08)',
+									cursor: 'pointer',
+									userSelect: 'none',
+									textDecoration: 'none',
+									marginBottom: '6px'
+								}}
+								onClick={() => {
+									setIsMenuOpen(false)
+									goToHostStart()
+								}}
+								onKeyDown={(e) => {
+									if (e.key === 'Enter' || e.key === ' ') {
+										e.preventDefault()
+										setIsMenuOpen(false)
+										goToHostStart()
+									}
+								}}
+							>
+								Become a host
+							</span>
+
+							<Link
+								to={`/user/${user._id}`}
+								onClick={() => setIsMenuOpen(false)}
+								style={{ display: 'block', padding: '8px 12px', textDecoration: 'none' }}
+							>
+								Profile
+							</Link>
+
+							<button
+								onClick={onLogout}
+								style={{
+									display: 'block',
+									width: '100%',
+									textAlign: 'left',
+									padding: '8px 12px',
+									background: 'transparent',
+									border: 'none',
+									cursor: 'pointer'
+								}}
+							>
+								Logout
+							</button>
+						</>
+					)}
+				</div>
+			)}
 		</header>
 	)
 }
