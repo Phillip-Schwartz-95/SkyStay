@@ -1,3 +1,4 @@
+import { SvgIcon } from "./SvgIcon"
 
 export function GuestCounter({ title, subtitle, count, onIncrease, onDecrease, min = 0 }) {
     return (
@@ -13,7 +14,9 @@ export function GuestCounter({ title, subtitle, count, onIncrease, onDecrease, m
                     onClick={onDecrease}
                     disabled={count <= min}
                 >
-                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'currentcolor', strokeWidth: 3 }}><path d="m2 16h28"></path></svg>
+                    <span>
+                        <SvgIcon iconName={'decrease'} className="guest-counter-btn-icon" />
+                    </span>
                 </button>
 
                 <span className="count">{count}</span>
@@ -23,7 +26,9 @@ export function GuestCounter({ title, subtitle, count, onIncrease, onDecrease, m
                     type="button"
                     onClick={onIncrease}
                 >
-                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'currentcolor', strokeWidth: 3 }}><path d="m2 16h28m-14-14v28"></path></svg>
+                    <span>
+                        <SvgIcon iconName={'increase'} className="guest-counter-btn-icon" />
+                    </span>
                 </button>
             </div>
         </div>
