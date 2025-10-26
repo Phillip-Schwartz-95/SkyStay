@@ -5,6 +5,8 @@ import { getRandomIntInclusive, makeId } from '../util.service'
 import { stayService as local } from './stay.service.local'
 import { stayService as remote } from './stay.service.remote'
 
+console.log('stayService mode check → VITE_LOCAL =', VITE_LOCAL)
+
 function getEmptyStay() {
     return {
         _id: '',

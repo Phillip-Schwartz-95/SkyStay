@@ -1,3 +1,6 @@
+console.log('VITE_LOCAL:', import.meta.env.VITE_LOCAL)
+console.log('VITE_API_URL:', import.meta.env.VITE_API_URL)
+
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router'
 import { StayIndex } from './pages/StayIndex.jsx'
