@@ -6,6 +6,8 @@ import { stayService as local } from './stay.service.local'
 import { stayService as remote } from './stay.service.remote'
 
 console.log('stayService mode check → VITE_LOCAL =', VITE_LOCAL)
+console.log('VITE_LOCAL:', import.meta.env.VITE_LOCAL)
+console.log('VITE_API_URL:', import.meta.env.VITE_API_URL)
 
 function getEmptyStay() {
     return {

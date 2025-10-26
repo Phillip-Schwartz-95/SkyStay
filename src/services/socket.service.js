@@ -22,7 +22,8 @@ export const socketService = (VITE_LOCAL === 'true')? createDummySocketService()
 // for debugging from console
 if (DEV) window.socketService = socketService
 
-socketService.setup()
+//not relevant right now
+//socketService.setup()
 
 
 function createSocketService() {
