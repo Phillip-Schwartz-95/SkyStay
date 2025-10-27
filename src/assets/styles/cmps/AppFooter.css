@@ -1,12 +1,51 @@
 .app-footer {
+    width: 100%;
+    background: #f7f7f7;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    display: block;
+    padding: 20px 0;
+}
+
+.app-footer .footer-inner {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding-left: 48px;
+    padding-right: 24px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    min-height: 3.5rem;
-    padding: .8rem 1rem;
-    background: transparent;
+    gap: 12px;
 }
 
-.app-footer p {
+.app-footer .footer-inner--flush {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.app-footer .footer-left p {
     margin: 0;
+    color: #212121;
+    font-size: 0.9375rem;
+    line-height: 1;
+}
+
+.app-footer .footer-right {
+    margin-left: auto;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.app-footer a {
+    color: #212121;
+    text-decoration: none;
+    font-size: 0.9375rem;
+}
+
+.app-footer[style] {
+    position: relative !important;
 }

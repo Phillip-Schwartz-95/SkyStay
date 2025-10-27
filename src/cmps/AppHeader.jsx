@@ -23,14 +23,63 @@ export function AppHeader({ isMini = false }) {
 
 	const menuRef = useRef(null)
 	const btnRef = useRef(null)
+	const scrollElRef = useRef(null)
 
 	useEffect(() => {
-		const onScroll = () => setIsScrolledDown(window.scrollY > 1)
-		window.addEventListener('scroll', onScroll)
-		return () => window.removeEventListener('scroll', onScroll)
+		function getCandidate() {
+			const candidates = [
+				document.querySelector('.main-container'),
+				document.querySelector('.main-app'),
+				document.querySelector('#root'),
+				document.body,
+				document.scrollingElement
+			]
+			for (const el of candidates) {
+				if (!el) continue
+				try {
+					if (el === document.scrollingElement || el === window) return window
+					if (el.scrollHeight > (el.clientHeight || 0)) return el
+				} catch (e) { }
+			}
+			return window
+		}
+		function onScroll() {
+			const el = scrollElRef.current
+			const top = el === window ? (window.scrollY || document.documentElement.scrollTop || 0) : (el && el.scrollTop ? el.scrollTop : 0)
+			setIsScrolledDown(top > 1)
+		}
+		function bind() {
+			const candidate = getCandidate()
+			if (candidate === scrollElRef.current) return
+			unbind()
+			scrollElRef.current = candidate
+			if (candidate === window) window.addEventListener('scroll', onScroll, { passive: true })
+			else candidate.addEventListener('scroll', onScroll, { passive: true })
+			onScroll()
+		}
+		function unbind() {
+			const cur = scrollElRef.current
+			if (!cur) return
+			if (cur === window) window.removeEventListener('scroll', onScroll)
+			else cur.removeEventListener('scroll', onScroll)
+			scrollElRef.current = null
+		}
+		bind()
+		const mo = new MutationObserver(() => bind())
+		mo.observe(document.body, { childList: true, subtree: true })
+		window.addEventListener('resize', bind)
+		const touchListener = () => onScroll()
+		window.addEventListener('wheel', touchListener, { passive: true })
+		window.addEventListener('touchmove', touchListener, { passive: true })
+		return () => {
+			unbind()
+			mo.disconnect()
+			window.removeEventListener('resize', bind)
+			window.removeEventListener('wheel', touchListener)
+			window.removeEventListener('touchmove', touchListener)
+		}
 	}, [])
 
-	// Scope a body class to the MyTrips page so CSS overrides can be clean if needed
 	useEffect(() => {
 		if (!isTrips) return
 		document.body.classList.add('mytrips-page')
@@ -68,7 +117,6 @@ export function AppHeader({ isMini = false }) {
 	const headerClasses = isMini || isScrolledDown ? 'app-header mini' : 'app-header'
 	const headerBrowseClass = isBrowse ? ' app-header--browse' : ''
 
-	// Force a solid white header on /trips (and keep existing behaviors elsewhere)
 	const headerStyle = isBrowse
 		? { position: 'sticky', top: 0, zIndex: 1000, background: '#fff', borderBottom: '1px solid rgba(0,0,0,.06)' }
 		: isStayDetails
@@ -77,7 +125,6 @@ export function AppHeader({ isMini = false }) {
 				? { position: 'sticky', top: 0, zIndex: 1000, background: '#fff', borderBottom: '1px solid rgba(0,0,0,.06)' }
 				: undefined
 
-	// Kill the right-side translate on /trips so nothing visually shifts and causes banding
 	const rightStyle = (isBrowse || isTrips)
 		? { marginLeft: 'auto', paddingRight: '24px', display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'flex-end' }
 		: { marginLeft: 'auto', paddingRight: '16px', display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'flex-end', transform: 'translateX(20px)' }

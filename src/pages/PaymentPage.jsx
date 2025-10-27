@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { reservationService } from '../services/reservations/reservation.service.local'
 import '../assets/styles/cmps/stay/payment.css'
 
 export default function PaymentPage() {
+    useEffect(() => {
+        document.body.classList.add('payment-page')
+        return () => {
+            document.body.classList.remove('payment-page')
+        }
+    }, [])
+
     const navigate = useNavigate()
     const { state } = useLocation() || {}
     const loggedInUser = useSelector(store => store.userModule?.user || store.userModule?.loggedinUser || null)

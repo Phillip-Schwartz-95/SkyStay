@@ -1,3 +1,6 @@
+console.log('VITE_LOCAL:', import.meta.env.VITE_LOCAL)
+console.log('VITE_API_URL:', import.meta.env.VITE_API_URL)
+
 import React, { Suspense, lazy } from 'react'
 import { Routes, Route, useLocation } from 'react-router'
 import { StayIndex } from './pages/StayIndex.jsx'
@@ -27,7 +30,7 @@ export function RootCmp() {
     const location = useLocation()
     const path = location.pathname
     const isStayDetails = /^\/stay\/[^/]+$/.test(path)
-    const isMiniHeader =
+    const isMini =
         isStayDetails ||
         path.startsWith('/browse') ||
         path.startsWith('/trips') ||
@@ -37,7 +40,7 @@ export function RootCmp() {
 
     return (
         <div className="main-app">
-            {!hideHeader && <AppHeader isMini={isMiniHeader} />}
+            {!hideHeader && <AppHeader isMini={isMini} />}
 
             <main className="main-container">
                 <Suspense fallback={null}>
@@ -60,6 +63,9 @@ export function RootCmp() {
                     </Routes>
                 </Suspense>
             </main>
+
+            <UserMsg />
+            <AppFooter />
         </div>
     )
 }
