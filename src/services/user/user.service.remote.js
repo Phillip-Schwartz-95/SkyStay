@@ -8,6 +8,7 @@ export const userService = {
 	signup,
 	getUsers,
 	getById,
+	getByFullname,
 	remove,
 	update,
     getLoggedinUser,
@@ -21,6 +22,11 @@ function getUsers() {
 async function getById(userId) {
 	const user = await httpService.get(`user/${userId}`)
 	return user
+}
+
+async function getByFullname(fullname) {
+  const list = await httpService.get('user', { txt: fullname })
+  return list.find(u => u.fullname === fullname) || null
 }
 
 function remove(userId) {

@@ -17,7 +17,7 @@ const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
 const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
 
-export const socketService = (VITE_LOCAL === 'true')? createDummySocketService() : createSocketService()
+export const socketService = (VITE_LOCAL === 'true') ? createDummySocketService() : createSocketService()
 
 // for debugging from console
 if (DEV) window.socketService = socketService
@@ -45,10 +45,18 @@ function createSocketService() {
     emit(eventName, data) {
       socket.emit(eventName, data)
     },
-    login(userId) {
+     login(userId) {
+      if (!socket) {
+        console.warn('socket not ready — skipping login emit')
+        return
+      }
       socket.emit(SOCKET_EMIT_LOGIN, userId)
     },
     logout() {
+      if (!socket) {
+        console.warn('socket not ready — skipping logout emit')
+        return
+      }
       socket.emit(SOCKET_EMIT_LOGOUT)
     },
     terminate() {
@@ -69,11 +77,13 @@ function createDummySocketService() {
     terminate() {
       this.setup()
     },
-    login() {
-      console.log('Dummy socket service here, login - got it')
+    login(userId) {
+      if (!socket) return
+      socket.emit(SOCKET_EMIT_LOGIN, userId)
     },
     logout() {
-      console.log('Dummy socket service here, logout - got it')
+      if (!socket) return
+      socket.emit(SOCKET_EMIT_LOGOUT)
     },
     on(eventName, cb) {
       listenersMap[eventName] = [...(listenersMap[eventName]) || [], cb]
