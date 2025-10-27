@@ -6,7 +6,7 @@ import { showErrorMsg } from '../services/event-bus.service'
 import { stayService } from '../services/stay'
 import { StayBrowsePreview } from '../cmps/staybrowsepreview'
 import GoogleMapPane from '../cmps/GoogleMapPane'
-import '../assets/styles/cmps/browse.css'
+import '../assets/styles/cmps/Browse.css'
 import '../assets/styles/cmps/stay/StayPreview.css'
 
 const PER_PAGE = 18
