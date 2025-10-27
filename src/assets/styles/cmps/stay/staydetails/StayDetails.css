@@ -1,4 +1,12 @@
 /* Container */
+
+.details-page .photo-gallery {
+    overflow: hidden;
+    width: 100%;
+    margin: 22px auto;
+    border-radius: 12px;
+}
+
 .stay-details-wrapper {
     width: 100%;
     max-width: 1120px;
@@ -96,7 +104,7 @@
     align-self: flex-start;
     justify-self: end;
     position: sticky;
-    top: 180px;
+    top: 120px;
     width: 100%;
     max-width: 400px;
     margin-left: auto;

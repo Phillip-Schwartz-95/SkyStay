@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
 
 import { setFilter } from '../store/actions/stay.actions'
-import { GuestCounter } from './GuestCounter'
+import { GuestCounter } from './staydetails/GuestCounter'
 
 export function StayFilter({ isScrolledDown }) {
 

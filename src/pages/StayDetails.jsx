@@ -77,21 +77,18 @@ export function StayDetails() {
   useEffect(() => {
     if (!photoSectionRef.current) return
 
+    const target = photoSectionRef.current
     const observer = new IntersectionObserver(
       ([entry]) => setShowSubHeader(!entry.isIntersecting),
-      { threshold: 0.1 }
+      {
+        threshold: 0.1,
+        rootMargin: '-120px 0px 0px 0px'
+      }
     )
 
-    // small delay ensures the gallery is fully rendered before observing
-    const timeout = setTimeout(() => {
-      observer.observe(photoSectionRef.current)
-    }, 100)
-
-    return () => {
-      clearTimeout(timeout)
-      observer.disconnect()
-    }
-  }, [])
+    observer.observe(target)
+    return () => observer.unobserve(target)
+  }, [photoSectionRef])
 
   async function loadReviews() {
     try {

@@ -1,7 +1,7 @@
 console.log('VITE_LOCAL:', import.meta.env.VITE_LOCAL)
 console.log('VITE_API_URL:', import.meta.env.VITE_API_URL)
 
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router'
 import { StayIndex } from './pages/StayIndex.jsx'
 import { StayDetails } from './pages/StayDetails.jsx'
@@ -30,6 +30,11 @@ export function RootCmp() {
     const isMiniHeader = isStayDetails || path.startsWith('/browse') || path.startsWith('/trips') || path.startsWith('/wishlist')
     const hideHeader = path.includes('/photos')
 
+    useEffect(() => {
+        if (isStayDetails) document.body.classList.add('details-page')
+        else document.body.classList.remove('details-page')
+    }, [isStayDetails])
+
     return (
         <div className="main-app">
             {!hideHeader && <AppHeader isMini={isMiniHeader} />}
@@ -38,7 +43,14 @@ export function RootCmp() {
                 <Suspense fallback={null}>
                     <Routes>
                         <Route path="/" element={<StayIndex />} />
-                        <Route path="stay/:stayId" element={<StayDetails />} />
+                        <Route
+                            path="stay/:stayId"
+                            element={
+                                <section className="main-container stay-details-container">
+                                    <StayDetails />
+                                </section>
+                            }
+                        />
                         <Route path="stay/:stayId/photos" element={<ImagePage />} />
                         <Route path="user/:id" element={<UserProfile />} />
                         <Route path="auth" element={<LoginSignup />}>
