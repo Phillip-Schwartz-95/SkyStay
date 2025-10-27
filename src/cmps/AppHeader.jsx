@@ -19,6 +19,7 @@ export function AppHeader({ isMini = false }) {
 	const location = useLocation()
 	const isBrowse = location.pathname.startsWith('/browse')
 	const isStayDetails = /^\/stay\/[^/]+$/.test(location.pathname)
+	const isTrips = location.pathname.startsWith('/trips')
 
 	const menuRef = useRef(null)
 	const btnRef = useRef(null)
@@ -28,6 +29,13 @@ export function AppHeader({ isMini = false }) {
 		window.addEventListener('scroll', onScroll)
 		return () => window.removeEventListener('scroll', onScroll)
 	}, [])
+
+	// Scope a body class to the MyTrips page so CSS overrides can be clean if needed
+	useEffect(() => {
+		if (!isTrips) return
+		document.body.classList.add('mytrips-page')
+		return () => document.body.classList.remove('mytrips-page')
+	}, [isTrips])
 
 	useEffect(() => {
 		if (!isMenuOpen) return
@@ -60,11 +68,36 @@ export function AppHeader({ isMini = false }) {
 	const headerClasses = isMini || isScrolledDown ? 'app-header mini' : 'app-header'
 	const headerBrowseClass = isBrowse ? ' app-header--browse' : ''
 
+	// Force a solid white header on /trips (and keep existing behaviors elsewhere)
 	const headerStyle = isBrowse
 		? { position: 'sticky', top: 0, zIndex: 1000, background: '#fff', borderBottom: '1px solid rgba(0,0,0,.06)' }
 		: isStayDetails
 			? { position: 'relative', background: '#fff', borderBottom: 'none', height: '80px', zIndex: 2 }
-			: undefined
+			: isTrips
+				? { position: 'sticky', top: 0, zIndex: 1000, background: '#fff', borderBottom: '1px solid rgba(0,0,0,.06)' }
+				: undefined
+
+	// Kill the right-side translate on /trips so nothing visually shifts and causes banding
+	const rightStyle = (isBrowse || isTrips)
+		? { marginLeft: 'auto', paddingRight: '24px', display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'flex-end' }
+		: { marginLeft: 'auto', paddingRight: '16px', display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'flex-end', transform: 'translateX(20px)' }
+
+	const hostSpanStyle = {
+		fontWeight: 600,
+		fontSize: '0.92rem',
+		padding: '7px 12px',
+		cursor: 'pointer',
+		userSelect: 'none',
+		textDecoration: 'none',
+		border: '1px solid rgba(0,0,0,.08)',
+		borderRadius: '24px',
+		opacity: isHostHover ? 0.8 : 1,
+		transition: 'opacity .15s ease',
+		...(isBrowse || isTrips ? {} : { transform: 'translate(15px, 2px)' })
+	}
+
+	const langBtnStyle = { color: 'black', padding: 8, ...(isBrowse || isTrips ? {} : { transform: 'translate(10px, 2.5px)' }) }
+	const profileBtnStyle = { color: 'black', padding: 8, ...(isBrowse || isTrips ? {} : { transform: 'translate(-1px, 2.5px)' }) }
 
 	function goToHostStart() {
 		if (!user) {
@@ -84,30 +117,9 @@ export function AppHeader({ isMini = false }) {
 		}
 	}
 
-	const rightStyle = isBrowse
-		? { marginLeft: 'auto', paddingRight: '24px', display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'flex-end' }
-		: { marginLeft: 'auto', paddingRight: '16px', display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'flex-end', transform: 'translateX(20px)' }
-
-	const hostSpanStyle = {
-		fontWeight: 600,
-		fontSize: '0.92rem',
-		padding: '7px 12px',
-		cursor: 'pointer',
-		userSelect: 'none',
-		textDecoration: 'none',
-		border: '1px solid rgba(0,0,0,.08)',
-		borderRadius: '24px',
-		opacity: isHostHover ? 0.8 : 1,
-		transition: 'opacity .15s ease',
-		...(isBrowse ? {} : { transform: 'translate(15px, 2px)' })
-	}
-
-	const langBtnStyle = { color: 'black', padding: 8, ...(isBrowse ? {} : { transform: 'translate(10px, 2.5px)' }) }
-	const profileBtnStyle = { color: 'black', padding: 8, ...(isBrowse ? {} : { transform: 'translate(-1px, 2.5px)' }) }
-
 	return (
 		<header className={headerClasses + headerBrowseClass} style={headerStyle}>
-			<nav className="header-nav container" style={isBrowse ? { minHeight: 64 } : undefined}>
+			<nav className="header-nav container" style={isBrowse ? { minHeight: 64 } : (isTrips ? { background: '#fff' } : undefined)}>
 				<div className="header-left">
 					<Link to="/" className="logo" style={{ textDecoration: 'none' }}>
 						<img className="brand-icon" src="https://www.vectorlogo.zone/logos/airbnb/airbnb-icon.svg" alt="icon" />
