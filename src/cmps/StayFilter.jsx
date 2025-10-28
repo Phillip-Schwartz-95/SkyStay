@@ -46,12 +46,12 @@ export function StayFilter({ isScrolledDown }) {
     }, [filterBy])
 
     useEffect(() => {
-        if (activeMenu && inputRefs.current[activeMenu]) {
-            setTimeout(() => {
-                inputRefs.current[activeMenu].focus()
-            }, 0)
-        }
+        if (!activeMenu) return
+        const el = inputRefs.current[activeMenu]
+        if (!el) return
+        setTimeout(() => el?.focus?.(), 0)
     }, [activeMenu])
+
 
     useEffect(() => {
         if (!activeMenu) return

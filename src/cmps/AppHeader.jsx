@@ -6,10 +6,12 @@ import { logout } from '../store/actions/user.actions'
 import { setFilter } from '../store/actions/stay.actions'
 import { stayService } from '../services/stay'
 import { StayFilter } from './StayFilter'
+import { setFilter } from '../store/actions/stay.actions'
 import '../assets/styles/cmps/AppHeader.css'
 
 export function AppHeader({ isMini = false }) {
 	const user = useSelector(s => s.userModule.user)
+	const dispatch = useDispatch()
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const [isHostingView, setIsHostingView] = useState(false)
@@ -27,6 +29,10 @@ export function AppHeader({ isMini = false }) {
 	const menuRef = useRef(null)
 	const btnRef = useRef(null)
 	const scrollElRef = useRef(null)
+
+	function resetFilters() {
+		dispatch(setFilter({}))
+	}
 
 	useEffect(() => {
 		function getCandidate() {
@@ -51,6 +57,7 @@ export function AppHeader({ isMini = false }) {
 			const top = el === window ? (window.scrollY || document.documentElement.scrollTop || 0) : (el && el.scrollTop ? el.scrollTop : 0)
 			setIsScrolledDown(top > 1)
 		}
+
 		function bind() {
 			const candidate = getCandidate()
 			if (candidate === scrollElRef.current) return
@@ -175,7 +182,7 @@ export function AppHeader({ isMini = false }) {
 		<header className={headerClasses + headerBrowseClass} style={headerStyle}>
 			<nav className="header-nav container" style={isBrowse ? { minHeight: 64 } : (isTrips ? { background: '#fff' } : undefined)}>
 				<div className="header-left">
-					<Link to="/" className="logo" style={{ textDecoration: 'none' }} onClick={handleResetAndHome}>
+					<Link to="/" className="logo" onClick={resetFilters} style={{ textDecoration: 'none' }}>
 						<img className="brand-icon" src="https://www.vectorlogo.zone/logos/airbnb/airbnb-icon.svg" alt="icon" />
 						<span className="logo-text">SkyStay</span>
 					</Link>
