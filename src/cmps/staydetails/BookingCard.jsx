@@ -6,7 +6,8 @@ import { reservationService } from '../../services/reservations/reservation.serv
 export function BookingCard({
     stayId, userId, pricePerNight, maxGuests,
     checkIn, setCheckIn, checkOut, setCheckOut,
-    reservedDates, setReservedDates
+    reservedDates, setReservedDates,
+    onReserve
 }) {
     const [guests, setGuests] = useState({
         adults: 1,
@@ -15,10 +16,8 @@ export function BookingCard({
         pets: 0
     })
     const [confirmationMsg, setConfirmationMsg] = useState('')
-    // for guests box
     const [showGuests, setShowGuests] = useState(false)
 
-    // load reservations for this stay
     useEffect(() => {
         loadReservations()
     }, [stayId])
@@ -31,13 +30,12 @@ export function BookingCard({
                 let current = new Date(r.checkIn)
                 const end = new Date(r.checkOut)
                 while (current <= end) {
-                    const formatted = current.toISOString().split("T")[0]  // store as string
+                    const formatted = current.toISOString().split("T")[0]
                     dates.push(formatted)
                     current.setDate(current.getDate() + 1)
                 }
             })
             setReservedDates(dates)
-            console.log("Reserved dates:", dates)
         } catch (err) {
             console.error('Failed to load reservations', err)
         }
@@ -46,41 +44,60 @@ export function BookingCard({
     function updateGuests(type, diff) {
         setGuests(prev => {
             const key = type.toLowerCase()
-            const min = key === 'adults' ? 1 : 0   // adults can't go below 1
+            const min = key === 'adults' ? 1 : 0
             const newVal = Math.max(min, prev[key] + diff)
             return { ...prev, [key]: newVal }
         })
     }
 
-    function calcTotalPrice() {
+    function nightsCount() {
         if (!checkIn || !checkOut) return 0
         const start = new Date(checkIn)
         const end = new Date(checkOut)
-        const nights = Math.ceil((end - start) / (1000 * 60 * 60 * 24))
-        return nights * pricePerNight
+        return Math.max(0, Math.ceil((end - start) / (1000 * 60 * 60 * 24)))
     }
 
-    async function onBook() {
+    function calcTotalPrice() {
+        return nightsCount() * (Number(pricePerNight) || 0)
+    }
+
+    function buildSelectedRange() {
+        if (!checkIn || !checkOut) return []
+        const range = []
+        let current = new Date(checkIn)
+        const end = new Date(checkOut)
+        while (current <= end) {
+            range.push(current.toISOString().split('T')[0])
+            current.setDate(current.getDate() + 1)
+        }
+        return range
+    }
+
+    function hasOverlap() {
+        const range = buildSelectedRange()
+        return range.some(date => reservedDates.includes(date))
+    }
+
+    async function handleReserveClick() {
         if (!checkIn || !checkOut) {
             setConfirmationMsg("Please select dates")
             setTimeout(() => setConfirmationMsg(""), 2000)
             return
         }
-
-        // Build selected range
-        const selectedRange = []
-        let current = new Date(checkIn)
-        const end = new Date(checkOut)
-        while (current <= end) {
-            selectedRange.push(current.toISOString().split('T')[0])
-            current.setDate(current.getDate() + 1)
-        }
-
-        // Check overlap
-        const overlap = selectedRange.some(date => reservedDates.includes(date))
-        if (overlap) {
+        if (hasOverlap()) {
             setConfirmationMsg("These dates have been booked")
             setTimeout(() => setConfirmationMsg(""), 2000)
+            return
+        }
+
+        const totalGuests = guests.adults + guests.children
+
+        if (onReserve) {
+            onReserve({
+                checkIn,
+                checkOut,
+                guests: totalGuests
+            })
             return
         }
 
@@ -130,7 +147,7 @@ export function BookingCard({
                     {checkIn && checkOut ? (
                         <>
                             <span className="price">${calcTotalPrice()}</span>
-                            <span className="nights"> for {Math.ceil((new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24))} nights</span>
+                            <span className="nights"> for {nightsCount()} nights</span>
                         </>
                     ) : (
                         <>
@@ -140,7 +157,6 @@ export function BookingCard({
                 </div>
 
                 <div className="booking-form">
-                    {/* Dates */}
                     <div className="input-group">
                         <div className='date-inputs'>
                             <div className="date-box">
@@ -171,12 +187,10 @@ export function BookingCard({
                                     endDate={checkOut}
                                     placeholderText="Add date"
                                     calendarClassName="airbnb-calendar"
-
                                 />
                             </div>
                         </div>
 
-                        {/* Guests */}
                         <div className="guest-dropdown">
                             <div className="guest-summary" onClick={() => setShowGuests(!showGuests)}>
                                 <div className="guest-left">
@@ -187,7 +201,6 @@ export function BookingCard({
                                             : '1 guest'}
                                     </p>
                                 </div>
-                                {/* Airbnb chevron SVG */}
                                 <svg
                                     className={`guest-chevron ${showGuests ? 'open' : ''}`}
                                     xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +221,6 @@ export function BookingCard({
                                     {['Adults', 'Children', 'Infants', 'Pets'].map((type, idx) => {
                                         const key = type.toLowerCase()
                                         const value = guests[key]
-
                                         return (
                                             <div key={idx} className="guest-row">
                                                 <div className="guest-label">
@@ -231,15 +243,13 @@ export function BookingCard({
                                             </div>
                                         )
                                     })}
-
                                 </div>
                             )}
                         </div>
 
-                        {/* Reserve */}
                         <button
                             className="reserve-btn"
-                            onClick={onBook}
+                            onClick={handleReserveClick}
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}
                         >
@@ -249,10 +259,8 @@ export function BookingCard({
                         <p className="charge-note">You won't be charged yet</p>
                     </div>
                 </div>
-
             </aside>
 
-            {/* Confirmation modal */}
             {confirmationMsg && (
                 <>
                     <div className="modal-backdrop show"></div>

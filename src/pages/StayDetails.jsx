@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useJsApiLoader } from '@react-google-maps/api'
 
@@ -8,12 +8,10 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { reviewService } from '../services/review'
 import { userService } from '../services/user'
 
-//shared components
 import { ReviewBreakdown } from '../cmps/ReviewBreakdown'
 import { ReviewsList } from '../cmps/ReviewList'
 import { StayCalendar } from '../cmps/StayCalendar'
 
-// Subcomponents
 import { PhotoGallery } from '../cmps/staydetails/PhotoGallery'
 import { HostInfo } from '../cmps/staydetails/HostInfo'
 import { HighlightsList } from '../cmps/staydetails/HighlightsList'
@@ -32,11 +30,14 @@ const libraries = ['places']
 export function StayDetails() {
   const { stayId } = useParams()
   const stay = useSelector(storeState => storeState.stayModule.stay)
+  const loggedInUser = useSelector(storeState => storeState.userModule?.user || storeState.userModule?.loggedinUser || null)
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [reviews, setReviews] = useState([])
   const [checkIn, setCheckIn] = useState(null)
   const [checkOut, setCheckOut] = useState(null)
+  const [guests, setGuests] = useState(1)
   const [reservedDates, setReservedDates] = useState([])
   const [hostUser, setHostUser] = useState(null)
   const mapRef = useRef(null)
@@ -58,13 +59,11 @@ export function StayDetails() {
     return () => document.body.classList.remove('details-page')
   }, [])
 
-  // Load stay and reviews
   useEffect(() => {
     loadStay(stayId)
     loadReviews()
   }, [stayId])
 
-  // Load host info
   useEffect(() => {
     if (stay?.host?.fullname) {
       userService.getByFullname(stay.host.fullname)
@@ -73,10 +72,8 @@ export function StayDetails() {
     }
   }, [stay?.host?.fullname])
 
-  // Show sub-header after photos out of view
   useEffect(() => {
     if (!photoSectionRef.current) return
-
     const target = photoSectionRef.current
     const observer = new IntersectionObserver(
       ([entry]) => setShowSubHeader(!entry.isIntersecting),
@@ -85,6 +82,14 @@ export function StayDetails() {
         rootMargin: '-120px 0px 0px 0px'
       }
     )
+    const timeout = setTimeout(() => {
+      observer.observe(photoSectionRef.current)
+    }, 100)
+    return () => {
+      clearTimeout(timeout)
+      observer.disconnect()
+    }
+  }, [])
 
     observer.observe(target)
     return () => observer.unobserve(target)
@@ -107,10 +112,8 @@ export function StayDetails() {
 
   if (!stay) return <div>Loading...</div>
 
-  // Handle “Show all photos”
   const onOpenAllPhotos = () => navigate(`/stay/${stay._id}/photos`)
 
-  // Handle date changes in calendar
   const onChangeDates = (start, end) => {
     setCheckIn(start)
     setCheckOut(end)
@@ -119,16 +122,11 @@ export function StayDetails() {
   function normalizeAmenities(stay) {
     const amenities = stay.amenities ? [...stay.amenities] : []
     const safety = stay.safety || []
-
     const allText = [...amenities, ...safety].map(a => a.toLowerCase())
-
     const hasSmoke = allText.some(a => a.includes('smoke alarm') || a.includes('smoke detector'))
     const hasCO = allText.some(a => a.includes('carbon monoxide') || a.includes('co alarm'))
-
-    // Only add if not present
     if (!hasSmoke) amenities.push('Smoke Alarm (missing)')
     if (!hasCO) amenities.push('Carbon Monoxide Alarm (missing)')
-
     return amenities
   }
 
@@ -139,8 +137,41 @@ export function StayDetails() {
       reviews: reviewsRef,
       location: locationRef
     }
-
     refs[section]?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  function onReserve({ checkIn: ci, checkOut: co, guests: g } = {}) {
+    const _checkIn = ci || checkIn
+    const _checkOut = co || checkOut
+    const _guests = g || guests
+    if (!_checkIn || !_checkOut || !_guests) return
+
+    if (!loggedInUser) {
+      navigate('/auth/login', { state: { from: location.pathname } })
+      return
+    }
+
+    const nights = Math.max(1, Math.ceil((new Date(_checkOut) - new Date(_checkIn)) / (1000 * 60 * 60 * 24)))
+    const nightlyPrice = Number(stay.price) || 0
+    const serviceFee = Math.round(nightlyPrice * nights * 0.05)
+
+    const payload = {
+      stay: {
+        id: stay._id || stay.id,
+        name: stay.name || stay.title,
+        imgUrl: (stay.imgUrl || stay.coverImg || (stay.imgs && stay.imgs[0])) || '',
+        type: stay.roomType || stay.type || 'Private room',
+        hostFullname: stay.host?.fullname || stay.host?.name || ''
+      },
+      checkIn: _checkIn,
+      checkOut: _checkOut,
+      guests: _guests,
+      currency: 'USD',
+      nightlyPrice,
+      nights,
+      serviceFee
+    }
+    navigate('/payment', { state: payload })
   }
 
   return (
@@ -154,13 +185,10 @@ export function StayDetails() {
 
       <section className="stay-details-wrapper">
         <section className="stay-details">
-
-          {/* Header */}
           <header className="stay-header">
             <h1 className="stay-title">{stay.title}</h1>
           </header>
 
-          {/* Photo Gallery */}
           <PhotoGallery
             photoRef={photoSectionRef}
             imgs={stay.imgs}
@@ -169,11 +197,8 @@ export function StayDetails() {
             className="full"
           />
 
-          {/* Main layout */}
           <div className="details-layout">
             <div className="details-left">
-
-              {/* Stay basic info */}
               <div className="stay-block">
                 <p className="stay-location">{stay.title}</p>
                 <div className="basic-details">
@@ -187,23 +212,18 @@ export function StayDetails() {
                 </p>
               </div>
 
-              {/* Host Info */}
               <HostInfo host={stay.host} hostUser={hostUser} />
 
-              {/* Highlights */}
               <HighlightsList highlights={stay.highlights} />
 
-              {/* Description */}
               <section className="room-description">
                 <p>{stay.summary}</p>
               </section>
 
-              {/* Amenities */}
               <section ref={amenitiesRef}>
                 <AmenitiesList amenities={normalizeAmenities(stay)} />
               </section>
 
-              {/* Calendar */}
               <StayCalendar
                 stay={stay}
                 reservedDates={reservedDates}
@@ -212,14 +232,12 @@ export function StayDetails() {
                 checkOut={checkOut}
                 setCheckOut={setCheckOut}
               />
-
             </div>
 
-            {/* Booking Card */}
             <div className="details-right">
               <BookingCard
                 stayId={stay._id}
-                userId={'u101'}
+                userId={loggedInUser?._id}
                 pricePerNight={stay.price}
                 maxGuests={stay.maxGuests}
                 checkIn={checkIn}
@@ -228,11 +246,11 @@ export function StayDetails() {
                 setCheckOut={setCheckOut}
                 reservedDates={reservedDates}
                 setReservedDates={setReservedDates}
+                onReserve={onReserve}
               />
             </div>
           </div>
 
-          {/* Reviews */}
           <section className="stay-reviews" ref={reviewsRef}>
             <h2 className="reviews-header">
               <span className="star">★</span>
@@ -248,10 +266,8 @@ export function StayDetails() {
             )}
 
             <ReviewsList reviews={reviews} />
-
           </section>
 
-          {/* Map */}
           <section ref={locationRef}>
             <MapSection
               isLoaded={isLoaded}
@@ -261,16 +277,13 @@ export function StayDetails() {
             />
           </section>
 
-          {/* Meet the Host */}
           <MeetYourHost stay={stay} />
 
-          {/* Things to Know */}
           <ThingsToKnow
             rules={stay.houseRules}
             safety={stay.safety}
             cancellation={stay.cancellationPolicy}
           />
-
         </section>
       </section>
     </>

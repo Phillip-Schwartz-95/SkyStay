@@ -16,7 +16,6 @@ export const reservationService = {
 async function query(filterBy = {}) {
   let reservations = await storageService.query(STORAGE_KEY)
 
-  // Seed if empty
   if (!reservations.length) {
     for (const res of reservationsJson) {
       await storageService.post(STORAGE_KEY, res)
@@ -24,9 +23,17 @@ async function query(filterBy = {}) {
     reservations = await storageService.query(STORAGE_KEY)
   }
 
-  // If filterBy.stayId, filter
   if (filterBy.stayId) {
     reservations = reservations.filter(res => res.stayId === filterBy.stayId)
+  }
+
+  if (filterBy.userId) {
+    reservations = reservations.filter(res => res.userId === filterBy.userId)
+  }
+
+  if (filterBy.status) {
+    const wanted = Array.isArray(filterBy.status) ? filterBy.status : [filterBy.status]
+    reservations = reservations.filter(res => wanted.includes(res.status))
   }
 
   return reservations
@@ -37,9 +44,12 @@ async function getById(resId) {
 }
 
 async function add(reservation) {
-  const newRes = { 
-    _id: 'r' + makeId(), 
-    ...reservation 
+  const now = Date.now()
+  const newRes = {
+    _id: 'r' + makeId(),
+    status: reservation.status || 'pending',
+    bookedOn: reservation.bookedOn || now,
+    ...reservation,
   }
   return await storageService.post(STORAGE_KEY, newRes)
 }
@@ -49,11 +59,11 @@ async function remove(resId) {
 }
 
 async function getByStayId(stayId) {
-  const reservations = await query()
-  return reservations.filter(res => res.stayId === stayId)
+  const reservations = await query({ stayId })
+  return reservations
 }
 
 async function getByUserId(userId) {
-  const reservations = await query()
-  return reservations.filter(res => res.userId === userId)
+  const reservations = await query({ userId })
+  return reservations
 }

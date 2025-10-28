@@ -22,12 +22,20 @@ const Wishlist = lazy(() =>
 const MyTrips = lazy(() =>
     import('./pages/MyTrips.jsx').then(m => ({ default: m.default || m.MyTrips }))
 )
+const PaymentPage = lazy(() =>
+    import('./pages/PaymentPage.jsx').then(m => ({ default: m.default || m.PaymentPage }))
+)
 
 export function RootCmp() {
     const location = useLocation()
     const path = location.pathname
     const isStayDetails = /^\/stay\/[^/]+$/.test(path)
-    const isMiniHeader = isStayDetails || path.startsWith('/browse') || path.startsWith('/trips') || path.startsWith('/wishlist')
+    const isMini =
+        isStayDetails ||
+        path.startsWith('/browse') ||
+        path.startsWith('/trips') ||
+        path.startsWith('/wishlist') ||
+        path.startsWith('/payment')
     const hideHeader = path.includes('/photos')
 
     useEffect(() => {
@@ -37,7 +45,7 @@ export function RootCmp() {
 
     return (
         <div className="main-app">
-            {!hideHeader && <AppHeader isMini={isMiniHeader} />}
+            {!hideHeader && <AppHeader isMini={isMini} />}
 
             <main className="main-container">
                 <Suspense fallback={null}>
@@ -63,9 +71,13 @@ export function RootCmp() {
                         <Route path="browse" element={<BrowsePage />} />
                         <Route path="wishlist" element={<Wishlist />} />
                         <Route path="trips" element={<MyTrips />} />
+                        <Route path="payment" element={<PaymentPage />} />
                     </Routes>
                 </Suspense>
             </main>
+
+            <UserMsg />
+            <AppFooter />
         </div>
     )
 }

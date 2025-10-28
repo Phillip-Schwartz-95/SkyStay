@@ -5,7 +5,6 @@ import { loadStays, addStay, updateStay, removeStay } from '../store/actions/sta
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { stayService } from '../services/stay'
 import { StayList } from '../cmps/StayList'
-import { AppFooter } from '../cmps/AppFooter'
 import '../assets/styles/cmps/stay/StayList.css'
 import '../assets/styles/cmps/stay/StayPreview.css'
 
@@ -156,7 +155,6 @@ export function StayIndex() {
                     </section>
                 ))}
             </div>
-            <AppFooter />
         </section>
     )
 }
