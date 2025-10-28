@@ -65,16 +65,41 @@ export function StayDetails() {
   }, [stayId])
 
   useEffect(() => {
-    if (stay?.host?.fullname) {
-      userService.getByFullname(stay.host.fullname)
-        .then(setHostUser)
-        .catch(() => setHostUser(null))
+    let canceled = false
+    async function fetchHost() {
+      if (!stay?.host) {
+        setHostUser(null)
+        return
+      }
+      try {
+        if (typeof userService.getByFullname === 'function' && stay.host.fullname) {
+          const hu = await userService.getByFullname(stay.host.fullname)
+          if (!canceled) setHostUser(hu || null)
+          return
+        }
+        if (typeof userService.getByUsername === 'function' && (stay.host.username || stay.host.fullname)) {
+          const hu = await userService.getByUsername(stay.host.username || stay.host.fullname)
+          if (!canceled) setHostUser(hu || null)
+          return
+        }
+        const id = stay.host._id || stay.host.id || ''
+        if (id && typeof userService.getById === 'function') {
+          const hu = await userService.getById(id)
+          if (!canceled) setHostUser(hu || null)
+          return
+        }
+        setHostUser(null)
+      } catch {
+        if (!canceled) setHostUser(null)
+      }
     }
-  }, [stay?.host?.fullname])
+    fetchHost()
+    return () => { canceled = true }
+  }, [stay?.host?.fullname, stay?.host?._id])
 
   useEffect(() => {
-    if (!photoSectionRef.current) return
     const target = photoSectionRef.current
+    if (!target) return
     const observer = new IntersectionObserver(
       ([entry]) => setShowSubHeader(!entry.isIntersecting),
       {
@@ -83,24 +108,21 @@ export function StayDetails() {
       }
     )
     const timeout = setTimeout(() => {
-      observer.observe(photoSectionRef.current)
+      observer.observe(target)
     }, 100)
     return () => {
       clearTimeout(timeout)
       observer.disconnect()
     }
-  }, [])
-
-    observer.observe(target)
-    return () => observer.unobserve(target)
-  }, [photoSectionRef])
+  }, [photoSectionRef.current])
 
   async function loadReviews() {
     try {
       const res = await reviewService.query({ aboutStayId: stayId })
-      setReviews(res)
+      setReviews(res || [])
     } catch (err) {
       console.error('Failed to load reviews', err)
+      setReviews([])
     }
   }
 
@@ -122,7 +144,7 @@ export function StayDetails() {
   function normalizeAmenities(stay) {
     const amenities = stay.amenities ? [...stay.amenities] : []
     const safety = stay.safety || []
-    const allText = [...amenities, ...safety].map(a => a.toLowerCase())
+    const allText = [...amenities, ...safety].map(a => String(a).toLowerCase())
     const hasSmoke = allText.some(a => a.includes('smoke alarm') || a.includes('smoke detector'))
     const hasCO = allText.some(a => a.includes('carbon monoxide') || a.includes('co alarm'))
     if (!hasSmoke) amenities.push('Smoke Alarm (missing)')
