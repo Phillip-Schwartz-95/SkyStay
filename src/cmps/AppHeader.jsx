@@ -6,7 +6,6 @@ import { logout } from '../store/actions/user.actions'
 import { setFilter } from '../store/actions/stay.actions'
 import { stayService } from '../services/stay'
 import { StayFilter } from './StayFilter'
-import { setFilter } from '../store/actions/stay.actions'
 import '../assets/styles/cmps/AppHeader.css'
 
 export function AppHeader({ isMini = false }) {
@@ -21,7 +20,6 @@ export function AppHeader({ isMini = false }) {
 
 	const navigate = useNavigate()
 	const location = useLocation()
-	const dispatch = useDispatch()
 	const isBrowse = location.pathname.startsWith('/browse')
 	const isStayDetails = /^\/stay\/[^/]+$/.test(location.pathname)
 	const isTrips = location.pathname.startsWith('/trips')
@@ -30,8 +28,9 @@ export function AppHeader({ isMini = false }) {
 	const btnRef = useRef(null)
 	const scrollElRef = useRef(null)
 
-	function resetFilters() {
-		dispatch(setFilter({}))
+	function handleResetAndHome() {
+		dispatch(setFilter(stayService.getDefaultFilter()))
+		navigate('/')
 	}
 
 	useEffect(() => {
@@ -54,10 +53,11 @@ export function AppHeader({ isMini = false }) {
 		}
 		function onScroll() {
 			const el = scrollElRef.current
-			const top = el === window ? (window.scrollY || document.documentElement.scrollTop || 0) : (el && el.scrollTop ? el.scrollTop : 0)
+			const top = el === window
+				? (window.scrollY || document.documentElement.scrollTop || 0)
+				: (el && el.scrollTop ? el.scrollTop : 0)
 			setIsScrolledDown(top > 1)
 		}
-
 		function bind() {
 			const candidate = getCandidate()
 			if (candidate === scrollElRef.current) return
@@ -162,11 +162,7 @@ export function AppHeader({ isMini = false }) {
 			navigate('/auth/login')
 			return
 		}
-		navigate('/host/start')
-	}
-
-	function handleResetAndHome() {
-		dispatch(setFilter(stayService.getDefaultFilter()))
+		navigate('/hosting')
 	}
 
 	async function onLogout() {
@@ -182,7 +178,7 @@ export function AppHeader({ isMini = false }) {
 		<header className={headerClasses + headerBrowseClass} style={headerStyle}>
 			<nav className="header-nav container" style={isBrowse ? { minHeight: 64 } : (isTrips ? { background: '#fff' } : undefined)}>
 				<div className="header-left">
-					<Link to="/" className="logo" onClick={resetFilters} style={{ textDecoration: 'none' }}>
+					<Link to="/" className="logo" onClick={handleResetAndHome} style={{ textDecoration: 'none' }}>
 						<img className="brand-icon" src="https://www.vectorlogo.zone/logos/airbnb/airbnb-icon.svg" alt="icon" />
 						<span className="logo-text">SkyStay</span>
 					</Link>
