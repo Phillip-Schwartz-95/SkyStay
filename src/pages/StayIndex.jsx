@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loadStays, addStay, updateStay, removeStay } from '../store/actions/stay.actions'
@@ -61,6 +62,8 @@ const keyOf = v => String(v || '').trim().toLowerCase()
 export function StayIndex() {
     const filterBy = useSelector(s => s.stayModule.filterBy) || stayService.getDefaultFilter()
     const staysRaw = useSelector(s => s.stayModule.stays) || []
+    const location = useLocation()
+    const isHomePage = location.pathname === '/'
 
     useEffect(() => {
         loadStays(filterBy).catch(() => showErrorMsg('Cannot load stays'))
@@ -117,6 +120,45 @@ export function StayIndex() {
 
     const phrasesCity = ['Popular homes in', 'Available in', 'Stay in', 'Explore']
     const phrasesCountry = ['Popular homes in', 'Available in', 'Stay in', 'Homes in']
+
+    const isFilterActive =
+        !isHomePage && (
+            (filterBy.txt && filterBy.txt.trim() !== '') ||
+            (filterBy.city && filterBy.city.trim() !== '') ||
+            (filterBy.loc?.city && filterBy.loc.city.trim() !== '') ||
+            (filterBy.loc?.country && filterBy.loc.country.trim() !== '') ||
+            (typeof filterBy.minPrice === 'number' && filterBy.minPrice > 0) ||
+            (typeof filterBy.capacity === 'number' && filterBy.capacity > 0)
+        )
+
+    if (isFilterActive) {
+        return (
+            <section className="stay-index">
+                <header className="row-header">
+                    <h2>Explore stays {filterBy.txt ? `in ${filterBy.txt}` : ''}</h2>
+                </header>
+
+                <StayList
+                    stays={staysSorted}
+                    layout="grid"
+                    onRemoveStay={async id => {
+                        try { await removeStay(id); showSuccessMsg('Stay removed') }
+                        catch { showErrorMsg('Cannot remove stay') }
+                    }}
+                    onUpdateStay={async st => {
+                        const price = +prompt('New price per night?', st.price) || st.price
+                        if (price === st.price) return
+                        try {
+                            const saved = await updateStay({ ...st, price })
+                            showSuccessMsg(`Stay updated, new price: ${saved.price}`)
+                        } catch {
+                            showErrorMsg('Cannot update stay')
+                        }
+                    }}
+                />
+            </section>
+        )
+    }
 
     return (
         <section className="stay-index">
