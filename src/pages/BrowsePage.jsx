@@ -47,22 +47,30 @@ export default function BrowsePage() {
     const [page, setPage] = useState(1)
     const [hoveredStayId, setHoveredStayId] = useState(null)
     const [visibleCount, setVisibleCount] = useState(0)
+    const [dockOffset, setDockOffset] = useState(0)
     const resultsPaneRef = useRef(null)
 
     const filterBy = useSelector(s => s.stayModule.filterBy) || stayService.getDefaultFilter()
     const staysRaw = useSelector(s => s.stayModule.stays) || []
 
     useEffect(() => {
-        loadStays(filterBy).catch(() => showErrorMsg('Cannot load stays'))
-    }, [filterBy])
+        if (!Array.isArray(staysRaw) || staysRaw.length === 0) {
+            loadStays(filterBy).catch(() => showErrorMsg('Cannot load stays'))
+        }
+    }, [staysRaw, filterBy])
 
     useEffect(() => { setPage(1) }, [type, label])
 
     const allMatches = useMemo(() => {
         if (!Array.isArray(staysRaw)) return []
-        if (type === 'country') return staysRaw.filter(s => (s?.loc?.country || '').trim().toLowerCase() === label.trim().toLowerCase())
-        return staysRaw.filter(s => (s?.loc?.city || '').trim().toLowerCase() === label.trim().toLowerCase())
+        if (!label.trim()) return staysRaw
+        if (type === 'country') return staysRaw.filter(s => (s?.loc?.country || s?.address?.country || '').trim().toLowerCase() === label.trim().toLowerCase())
+        return staysRaw.filter(s => (s?.loc?.city || s?.address?.city || '').trim().toLowerCase() === label.trim().toLowerCase())
     }, [staysRaw, type, label])
+
+    useEffect(() => {
+        setVisibleCount(allMatches.length)
+    }, [allMatches])
 
     const pageCount = Math.max(1, Math.ceil(allMatches.length / PER_PAGE))
     const safePage = Math.min(Math.max(page, 1), pageCount)
@@ -75,25 +83,29 @@ export default function BrowsePage() {
     const mapMarkersAll = useMemo(
         () =>
             (Array.isArray(staysRaw) ? staysRaw : [])
-                .map(s => ({
-                    id: s?._id || s?.id,
-                    lat: s?.loc?.lat,
-                    lng: s?.loc?.lng,
-                    title: s?.title || (s?.loc?.city ? `Home in ${s.loc.city}` : 'Home'),
-                    price: typeof s?.price === 'number' ? s.price : undefined,
-                    currency: s?.currency || '₪',
-                    img: primaryImg(s),
-                    images: collectImages(s),
-                    desc: s?.summary || s?.description || s?.desc || '',
-                    href: `/stay/${s?._id || s?.id || ''}`
-                }))
+                .map(s => {
+                    const lat = s?.loc?.lat ?? s?.address?.lat
+                    const lng = s?.loc?.lng ?? s?.address?.lng
+                    return {
+                        id: s?._id || s?.id,
+                        lat,
+                        lng,
+                        title: s?.title || (s?.loc?.city || s?.address?.city ? `Home in ${s?.loc?.city || s?.address?.city}` : 'Home'),
+                        price: typeof s?.price === 'number' ? s.price : undefined,
+                        currency: s?.currency || '₪',
+                        img: primaryImg(s),
+                        images: collectImages(s),
+                        desc: s?.summary || s?.description || s?.desc || '',
+                        href: `/stay/${s?._id || s?.id || ''}`
+                    }
+                })
                 .filter(m => typeof m.lat === 'number' && typeof m.lng === 'number'),
         [staysRaw]
     )
 
     const fitTo = useMemo(() => {
         return (Array.isArray(allMatches) ? allMatches : [])
-            .map(s => ({ lat: s?.loc?.lat, lng: s?.loc?.lng }))
+            .map(s => ({ lat: s?.loc?.lat ?? s?.address?.lat, lng: s?.loc?.lng ?? s?.address?.lng }))
             .filter(p => typeof p.lat === 'number' && typeof p.lng === 'number')
     }, [allMatches])
 
@@ -117,6 +129,32 @@ export default function BrowsePage() {
         if (resultsPaneRef.current) resultsPaneRef.current.scrollTop = 0
     }
 
+    useEffect(() => {
+        function updateDock() {
+            const isMobile = window.matchMedia('(max-width: 980px)').matches
+            if (isMobile) { setDockOffset(0); return }
+            const footer = document.querySelector('.app-footer')
+            if (!footer) { setDockOffset(0); return }
+            const rect = footer.getBoundingClientRect()
+            const vh = window.innerHeight || 0
+            const overlap = Math.max(0, vh - rect.top)
+            const footerH = footer.offsetHeight || 64
+            const clamped = Math.min(overlap, footerH)
+            setDockOffset(clamped)
+        }
+        updateDock()
+        window.addEventListener('scroll', updateDock, { passive: true })
+        window.addEventListener('resize', updateDock)
+        const mo = new MutationObserver(updateDock)
+        const footerEl = document.querySelector('.app-footer')
+        if (footerEl) mo.observe(footerEl, { attributes: true, childList: true, subtree: true })
+        return () => {
+            window.removeEventListener('scroll', updateDock)
+            window.removeEventListener('resize', updateDock)
+            mo.disconnect()
+        }
+    }, [])
+
     return (
         <section className="browse-page">
             <div className="browse-grid">
@@ -124,7 +162,6 @@ export default function BrowsePage() {
                     <header className="results-header">
                         <h1>{visibleCount} homes within map area</h1>
                     </header>
-
                     <ul className="results-grid">
                         {pageItems.map((s, i) => (
                             <li key={(s?._id || 's') + '-' + i} className="result-card">
@@ -132,7 +169,6 @@ export default function BrowsePage() {
                             </li>
                         ))}
                     </ul>
-
                     <nav className="pager">
                         <ul>
                             {Array.from({ length: pageCount }, (_, i) => i + 1).map(n => (
@@ -146,7 +182,7 @@ export default function BrowsePage() {
                     </nav>
                 </div>
 
-                <div className="map-pane">
+                <div className="map-pane" style={{ transform: `translateY(-${dockOffset}px)` }}>
                     <GoogleMapPane
                         label={label}
                         markers={mapMarkersAll}
@@ -154,6 +190,7 @@ export default function BrowsePage() {
                         fitKey={fitKey}
                         activeId={hoveredStayId}
                         onViewportChange={handleViewportChange}
+                        defaultColors
                     />
                 </div>
             </div>

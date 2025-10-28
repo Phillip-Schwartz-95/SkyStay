@@ -1,5 +1,5 @@
 .app-footer {
-    width: 100%;
+    width: 100vw;
     background: #f7f7f7;
     box-sizing: border-box;
     flex-shrink: 0;
@@ -7,10 +7,12 @@
     z-index: 1;
     display: block;
     padding: 20px 0;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
 }
 
 .app-footer .footer-inner {
-    max-width: 100%;
+    max-width: none;
     width: 100%;
     margin: 0;
     padding-left: 48px;
@@ -48,4 +50,27 @@
 
 .app-footer[style] {
     position: relative !important;
+}
+
+:root {
+    --footer-h: 64px;
+}
+
+body.mytrips-page .app-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f7f7f7;
+    z-index: 10;
+}
+
+body.mytrips-page .dashboard-listings {
+    padding-bottom: var(--footer-h);
+}
+
+body.mytrips-page .el-table,
+body.mytrips-page .page-title,
+body.mytrips-page .listing-title {
+    margin-bottom: 0;
 }

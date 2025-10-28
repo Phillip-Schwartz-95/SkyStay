@@ -152,6 +152,9 @@
     contain: paint;
     backface-visibility: hidden;
     transform: translateZ(0);
+    will-change: transform;
+    z-index: 4000;
+    pointer-events: auto;
 }
 
 .map-frame,
@@ -213,6 +216,8 @@
         clip-path: inset(0 round 16px);
         border-radius: 16px;
         margin: 8px 16px 0;
+        transform: none !important;
+        z-index: 1;
     }
 }
 
@@ -322,4 +327,14 @@ body {
 
 .map-pane {
     overscroll-behavior: contain;
+}
+
+.browse-page .map-pane {
+    z-index: 4000;
+}
+
+.google-map-pane,
+.google-map-container {
+    position: relative;
+    z-index: 4000;
 }

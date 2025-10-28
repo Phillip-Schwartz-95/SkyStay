@@ -135,7 +135,7 @@ section.payment-page .order-user .btn-square-color_btnSquareColor__vA\+xX:active
 
 section.payment-page .summary-card {
     position: sticky;
-    top: 96px;
+    top: 64px;
     align-self: start;
     color: #212121;
     font-family: cereal-regular;
@@ -153,25 +153,37 @@ section.payment-page .summary-card {
 }
 
 section.payment-page .stay-details {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: start;
     gap: 12px;
     padding-bottom: 12px;
     border-bottom: 1px solid rgba(0, 0, 0, .08);
 }
 
 section.payment-page .stay-img {
+    grid-column: 1;
     width: 120px;
     height: 96px;
     object-fit: cover;
     border-radius: 10px;
     background: #f3f3f3;
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06);
+    flex: 0 0 120px;
 }
 
 section.payment-page .stay-desc {
-    width: 100%;
-    align-items: start;
+    grid-column: 2;
     display: flex;
+    align-items: flex-start;
     justify-content: space-between;
+    gap: 8px;
+    min-width: 0;
+    width: 100%;
+}
+
+section.payment-page .stay-desc>div:first-child {
+    min-width: 0;
 }
 
 section.payment-page .stay-type {
@@ -184,6 +196,14 @@ section.payment-page .stay-name {
     margin: 0;
     font-size: 16px;
     font-weight: 700;
+    line-height: 1.25;
+    max-width: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
 }
 
 section.payment-page .rating-review {
@@ -243,6 +263,32 @@ section.payment-page .cost-total {
     section.payment-page {
         padding: 0 24px 48px;
     }
+
+    section.payment-page .stay-details {
+        grid-template-columns: 96px 1fr;
+        gap: 10px;
+    }
+
+    section.payment-page .stay-img {
+        width: 96px;
+        height: 76px;
+        flex-basis: 96px;
+    }
+
+    section.payment-page .stay-desc {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    section.payment-page .rating-review {
+        white-space: normal;
+    }
+
+    section.payment-page .stay-name {
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
 }
 
 section.payment-page .order-user .btn-square-color_btnSquareColor__vA\+xX {
@@ -259,20 +305,31 @@ section.payment-page .order-user .btn-square-color_btnSquareColor__vA\+xX {
     box-sizing: border-box !important;
 }
 
-.is-payment-page .main-app {
+body.payment-page .main-app {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-.is-payment-page .main-container {
+body.payment-page .main-container {
     flex: 1 1 auto;
 }
 
-.is-payment-page .app-footer {
+body.payment-page .app-footer {
     flex-shrink: 0;
-    position: relative !important;
-    bottom: auto !important;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+:root {
+    --footer-h: 64px;
+}
+
+body.payment-page section.payment-page {
+    padding-bottom: var(--footer-h);
 }
 
 section.payment-page {
@@ -290,5 +347,17 @@ section.payment-page .summary-card {
 
     section.payment-page .summary-card {
         top: 56px;
+    }
+}
+
+section.payment-page .stay-img {
+    object-position: 52% 52%;
+    transform: translate(5px, 5px);
+}
+
+@media (max-width: 980px) {
+    section.payment-page .stay-img {
+        object-position: 51% 51%;
+        transform: translate(5px, 5px);
     }
 }

@@ -77,7 +77,15 @@ export default function PaymentPage() {
     return (
         <section className="payment-page">
             <header className="payment-page__title">
-                <button type="button" className="arrow-btn" onClick={() => { navigate(-1); window.location.reload() }} aria-label="Back">
+                <button
+                    type="button"
+                    className="arrow-btn"
+                    onClick={() => {
+                        navigate(-1)
+                        window.location.reload()
+                    }}
+                    aria-label="Back"
+                >
                     <svg
                         className="arrow-img"
                         xmlns="http://www.w3.org/2000/svg"

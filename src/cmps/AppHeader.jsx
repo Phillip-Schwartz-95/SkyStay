@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
+import { setFilter } from '../store/actions/stay.actions'
+import { stayService } from '../services/stay'
 import { StayFilter } from './StayFilter'
 import '../assets/styles/cmps/AppHeader.css'
 
@@ -17,6 +19,7 @@ export function AppHeader({ isMini = false }) {
 
 	const navigate = useNavigate()
 	const location = useLocation()
+	const dispatch = useDispatch()
 	const isBrowse = location.pathname.startsWith('/browse')
 	const isStayDetails = /^\/stay\/[^/]+$/.test(location.pathname)
 	const isTrips = location.pathname.startsWith('/trips')
@@ -155,6 +158,10 @@ export function AppHeader({ isMini = false }) {
 		navigate('/host/start')
 	}
 
+	function handleResetAndHome() {
+		dispatch(setFilter(stayService.getDefaultFilter()))
+	}
+
 	async function onLogout() {
 		try {
 			await logout()
@@ -168,7 +175,7 @@ export function AppHeader({ isMini = false }) {
 		<header className={headerClasses + headerBrowseClass} style={headerStyle}>
 			<nav className="header-nav container" style={isBrowse ? { minHeight: 64 } : (isTrips ? { background: '#fff' } : undefined)}>
 				<div className="header-left">
-					<Link to="/" className="logo" style={{ textDecoration: 'none' }}>
+					<Link to="/" className="logo" style={{ textDecoration: 'none' }} onClick={handleResetAndHome}>
 						<img className="brand-icon" src="https://www.vectorlogo.zone/logos/airbnb/airbnb-icon.svg" alt="icon" />
 						<span className="logo-text">SkyStay</span>
 					</Link>
@@ -185,6 +192,7 @@ export function AppHeader({ isMini = false }) {
 							to="/"
 							className="nav-pill homes"
 							style={{ display: (isScrolledDown || isBrowse) ? 'none' : 'inline-flex', textDecoration: 'none' }}
+							onClick={handleResetAndHome}
 						>
 							<img
 								src="https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-search-bar-icons/original/4aae4ed7-5939-4e76-b100-e69440ebeae4.png?im_w=240"

@@ -1,7 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { loadStays, addStay, updateStay, removeStay } from '../store/actions/stay.actions'
+import { loadStays, updateStay, removeStay } from '../store/actions/stay.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { stayService } from '../services/stay'
 import { StayList } from '../cmps/StayList'
@@ -19,24 +18,39 @@ function calcRating(stay) {
     return 0
 }
 
+function norm(v) {
+    return String(v ?? '').trim().toLowerCase()
+}
+
 function applyFilter(items, f) {
-    if (!Array.isArray(items)) return []
+    if (!Array.isArray(items) || !items.length) return []
     if (!f) return items
+
+    const txt = norm(f.txt)
+    const country = norm(f?.loc?.country)
+    const city = norm(f?.loc?.city)
+    const minPrice = typeof f?.price?.min === 'number' ? f.price.min : null
+    const maxPrice = typeof f?.price?.max === 'number' ? f.price.max : null
+    const amen = Array.isArray(f?.amenities) ? f.amenities.filter(Boolean) : []
+
     return items.filter(s => {
-        let ok = true
-        if (f.txt && typeof f.txt === 'string') {
-            const t = f.txt.toLowerCase()
-            const inTitle = s?.title?.toLowerCase().includes(t)
-            const inCity = s?.loc?.city?.toLowerCase().includes(t)
-            const inCountry = s?.loc?.country?.toLowerCase().includes(t)
-            ok = ok && (inTitle || inCity || inCountry)
+        const sTitle = norm(s?.title)
+        const sCity = norm(s?.loc?.city)
+        const sCountry = norm(s?.loc?.country)
+        const sPrice = typeof s?.price === 'number' ? s.price : null
+
+        if (txt && !(sTitle.includes(txt) || sCity.includes(txt) || sCountry.includes(txt))) return false
+        if (country && sCountry !== country) return false
+        if (city && sCity !== city) return false
+        if (minPrice !== null && (sPrice === null || sPrice < minPrice)) return false
+        if (maxPrice !== null && (sPrice === null || sPrice > maxPrice)) return false
+
+        if (amen.length) {
+            const hasList = Array.isArray(s?.amenities) ? s.amenities.filter(Boolean) : []
+            for (const a of amen) if (!hasList.includes(a)) return false
         }
-        if (f.loc?.country) ok = ok && s?.loc?.country === f.loc.country
-        if (f.loc?.city) ok = ok && s?.loc?.city === f.loc.city
-        if (typeof f?.price?.min === 'number') ok = ok && typeof s.price === 'number' && s.price >= f.price.min
-        if (typeof f?.price?.max === 'number') ok = ok && typeof s.price === 'number' && s.price <= f.price.max
-        if (Array.isArray(f.amenities) && f.amenities.length) ok = ok && Array.isArray(s.amenities) && f.amenities.every(a => s.amenities.includes(a))
-        return ok
+
+        return true
     })
 }
 
@@ -57,6 +71,13 @@ function sortByCountryCityTitle(a, b) {
 }
 
 const keyOf = v => String(v || '').trim().toLowerCase()
+
+function hardNavigateToBrowse(type, label) {
+    const t = type || 'city'
+    const q = (label || '').trim()
+    const url = q ? `/browse?type=${encodeURIComponent(t)}&label=${encodeURIComponent(q)}` : `/browse`
+    window.location.href = url
+}
 
 export function StayIndex() {
     const filterBy = useSelector(s => s.stayModule.filterBy) || stayService.getDefaultFilter()
@@ -125,9 +146,10 @@ export function StayIndex() {
                     <section key={`${row.type}-${row.label}-${idx}`} className="recommendation-row">
                         <header className="row-header">
                             <h2 className="row-title">
-                                <Link
-                                    to={`/browse?type=${encodeURIComponent(row.type)}&label=${encodeURIComponent(row.label)}`}
+                                <a
+                                    href={`/browse?type=${encodeURIComponent(row.type)}&label=${encodeURIComponent(row.label)}`}
                                     className="row-title-link"
+                                    onClick={(e) => { e.preventDefault(); hardNavigateToBrowse(row.type, row.label) }}
                                 >
                                     {(row.type === 'city'
                                         ? phrasesCity[idx % phrasesCity.length]
@@ -136,7 +158,7 @@ export function StayIndex() {
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'currentColor', strokeWidth: 5.33333, overflow: 'visible', marginLeft: '4px', transform: 'translateY(2px)' }}>
                                         <path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path>
                                     </svg>
-                                </Link>
+                                </a>
                             </h2>
                         </header>
                         <StayList

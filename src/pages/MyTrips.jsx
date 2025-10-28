@@ -1,156 +1,160 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { reservationService } from '../services/reservations/reservation.service.local'
-import { showErrorMsg } from '../services/event-bus.service'
+import { AppFooter } from '../cmps/AppFooter'
 import '../assets/styles/cmps/stay/mytrips.css'
 
-function fmtDate(date) {
-    if (!date) return ''
-    try {
-        return new Date(date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
-    } catch {
-        return String(date)
-    }
+function fmtDate(d) {
+    if (!d) return ''
+    const dt = new Date(d)
+    if (Number.isNaN(dt.getTime())) return ''
+    return dt.toLocaleDateString(undefined, { year: 'numeric', month: '2-digit', day: '2-digit' })
+}
+
+function fmtMoney(n, currency = 'USD') {
+    return new Intl.NumberFormat(undefined, { style: 'currency', currency, maximumFractionDigits: 2 }).format(Number(n) || 0)
 }
 
 export function MyTrips() {
+    const user = useSelector(s => s.userModule?.user || s.userModule?.loggedinUser || null)
     const [trips, setTrips] = useState([])
-    const [loading, setLoading] = useState(true)
-    const navigate = useNavigate()
+    const currency = 'USD'
 
     useEffect(() => {
-        let mounted = true
-        setLoading(true)
-        reservationService.query()
-            .then(res => {
-                if (!mounted) return
-                setTrips(Array.isArray(res) ? res : [])
-            })
-            .catch(err => {
-                showErrorMsg('Cannot load trips')
-                console.error('MyTrips load error', err)
-            })
-            .finally(() => { if (mounted) setLoading(false) })
-        return () => { mounted = false }
-    }, [])
+        let ignore = false
+        async function load() {
+            try {
+                if (!user) { setTrips([]); return }
+                const res = await reservationService.query({ userId: user._id || user.id })
+                if (!ignore) setTrips(Array.isArray(res) ? res : [])
+            } catch {
+                if (!ignore) setTrips([])
+            }
+        }
+        load()
+        return () => { ignore = true }
+    }, [user])
 
-    function onCancel(reservationId) {
-        reservationService.updateStatus(reservationId, 'canceled')
-            .then(() => {
-                setTrips(prev => prev.map(t => t._id === reservationId ? { ...t, status: 'canceled' } : t))
-            })
-            .catch(() => showErrorMsg('Cannot cancel reservation'))
+    const rows = useMemo(() => {
+        return trips.map(r => {
+            const nights = Number(r.nights) || Math.max(1, Math.ceil((new Date(r.checkOut) - new Date(r.checkIn)) / (1000 * 60 * 60 * 24)))
+            const nightly = Number(r.nightlyPrice) || 0
+            const serviceFee = Number(r.serviceFee) || Math.round(nightly * nights * 0.05)
+            const total = Number(r.totalPrice) || nightly * nights + serviceFee
+            return {
+                id: r._id || `${r.userId}-${r.stayId}-${r.checkIn || ''}`,
+                imgUrl: r.imgUrl || r.stay?.imgUrl || '',
+                name: r.stayName || r.stay?.name || r.stay?.title || 'Stay',
+                host: r.hostFullname || r.stay?.hostFullname || '',
+                checkIn: r.checkIn,
+                checkOut: r.checkOut,
+                guests: r.guests || 1,
+                nightly,
+                nights,
+                total,
+                status: (r.status || 'pending').toLowerCase()
+            }
+        })
+    }, [trips])
+
+    async function onCancel(id) {
+        const getKey = r => r._id || `${r.userId}-${r.stayId}-${r.checkIn || ''}`
+        setTrips(prev => prev.filter(r => getKey(r) !== id))
+        try {
+            await reservationService.remove(id)
+        } catch {
+            try {
+                const res = await reservationService.query({})
+                setTrips(Array.isArray(res) ? res : [])
+            } catch {
+                setTrips([])
+            }
+        }
     }
 
     return (
-        <section className="dashboard-listings mytrips-page">
-            <div className="page-title">
-                <h1>Trips</h1>
-            </div>
-
-            <div className="listing-title">
-                {loading ? 'Loading trips...' : (trips.length ? `${trips.length} ${trips.length === 1 ? 'trip' : 'trips'}` : 'No trips yet')}
-            </div>
-
-            <div className="el-table el-table--fit">
-                <div className="el-table__header-wrapper">
-                    <table>
-                        <colgroup>
-                            <col width="35.466%" />
-                            <col width="15.127%" />
-                            <col width="10.085%" />
-                            <col width="10.085%" />
-                            <col width="10.085%" />
-                            <col width="11.102%" />
-                            <col width="8.051%" />
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th className="el-table__cell"><div className="cell">Listing</div></th>
-                                <th className="el-table__cell"><div className="cell">Host</div></th>
-                                <th className="el-table__cell"><div className="cell">Dates</div></th>
-                                <th className="el-table__cell"><div className="cell">Guests</div></th>
-                                <th className="el-table__cell"><div className="cell">Price</div></th>
-                                <th className="el-table__cell is-right"><div className="cell">Status</div></th>
-                                <th className="el-table__cell is-right"><div className="cell">Actions</div></th>
-                            </tr>
-                        </thead>
-                    </table>
+        <div style={{ minHeight: 'calc(100vh - 96px)', display: 'flex', flexDirection: 'column' }}>
+            <section className="dashboard-listings" style={{ flex: '1 0 auto', margin: 0, paddingBottom: 0 }}>
+                <div className="page-title" style={{ marginTop: 0, marginBottom: 0 }}>
+                    <h1 style={{ margin: 0 }}>Trips</h1>
                 </div>
 
-                <div className="el-table__body-wrapper">
-                    <table>
-                        <colgroup>
-                            <col width="35.466%" />
-                            <col width="15.127%" />
-                            <col width="10.085%" />
-                            <col width="10.085%" />
-                            <col width="10.085%" />
-                            <col width="11.102%" />
-                            <col width="8.051%" />
-                        </colgroup>
-                        <tbody>
-                            {trips.map((t) => (
-                                <tr key={t._id} className="el-table__row">
-                                    <td className="el-table__cell">
-                                        <div className="cell listing-preview">
-                                            <img src={t.imgUrl || t.stay?.imgUrl || '/assets/img/fallback.jpg'} alt={t.stay?.name || 'listing'} />
-                                            <div>
-                                                <div className="listing-name"><Link to={`/stay/${t.stayId || t.stay?.id || ''}`}>{t.stayName || t.stay?.name || 'Listing'}</Link></div>
-                                                <div className="listing-sub">{t.stay?.type || 'Private room'}</div>
-                                            </div>
-                                        </div>
-                                    </td>
+                <div className="listing-title" style={{ marginTop: 12, marginBottom: 0 }}>
+                    {rows.length ? `${rows.length} reservations` : 'No trips yet'}
+                </div>
 
-                                    <td className="el-table__cell">
-                                        <div className="cell">
-                                            <div style={{ fontWeight: 600 }}>{t.hostFullname || (t.stay && t.stay.hostFullname) || 'Host'}</div>
-                                            <div className="tiny muted">{t.hostEmail || ''}</div>
-                                        </div>
-                                    </td>
-
-                                    <td className="el-table__cell">
-                                        <div className="cell">
-                                            <div>{fmtDate(t.checkIn)} — {fmtDate(t.checkOut)}</div>
-                                            <div className="tiny muted">{Math.max(1, t.nights || 1)} nights</div>
-                                        </div>
-                                    </td>
-
-                                    <td className="el-table__cell">
-                                        <div className="cell">{t.guests || 1}</div>
-                                    </td>
-
-                                    <td className="el-table__cell">
-                                        <div className="cell">{t.currency || 'USD'} {Number(t.totalPrice || t.total || 0).toFixed(2)}</div>
-                                    </td>
-
-                                    <td className="el-table__cell">
-                                        <div className="cell is-right">
-                                            <span className={`status-badge ${t.status ? t.status.toLowerCase() : ''}`}>{t.status || 'pending'}</span>
-                                        </div>
-                                    </td>
-
-                                    <td className="el-table__cell">
-                                        <div className="cell is-right">
-                                            <button className="cancel-btn" onClick={() => onCancel(t._id)} disabled={t.status === 'canceled' || t.status === 'paid'}>Cancel</button>
-                                            <button className="view-btn" onClick={() => navigate(`/stay/${t.stayId || t.stay?._id}`)}>View</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-
-                            {!loading && trips.length === 0 && (
+                <div className="el-table el-table--fit" style={{ marginBottom: 0 }}>
+                    <div className="el-table__header-wrapper">
+                        <table className="el-table__header" cellPadding="0" cellSpacing="0" border="0">
+                            <colgroup>
+                                <col /><col /><col /><col /><col /><col /><col />
+                            </colgroup>
+                            <thead>
                                 <tr>
-                                    <td className="el-table__cell" colSpan="7">
-                                        <div className="cell">No trips found.</div>
-                                    </td>
+                                    <th className="el-table__cell"><div className="cell">Listing</div></th>
+                                    <th className="el-table__cell"><div className="cell">Dates</div></th>
+                                    <th className="el-table__cell"><div className="cell">Guests</div></th>
+                                    <th className="el-table__cell"><div className="cell">Nightly</div></th>
+                                    <th className="el-table__cell"><div className="cell">Nights</div></th>
+                                    <th className="el-table__cell"><div className="cell">Total</div></th>
+                                    <th className="el-table__cell is-right"><div className="cell">Actions</div></th>
                                 </tr>
-                            )}
-                        </tbody>
-                    </table>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div className="el-table__body-wrapper">
+                        <table className="el-table__body" cellPadding="0" cellSpacing="0" border="0">
+                            <colgroup>
+                                <col /><col /><col /><col /><col /><col /><col />
+                            </colgroup>
+                            <tbody>
+                                {rows.map(r => (
+                                    <tr className="el-table__row" key={r.id}>
+                                        <td className="el-table__cell">
+                                            <div className="cell">
+                                                <div className="listing-preview">
+                                                    <img src={r.imgUrl || 'https://via.placeholder.com/70'} alt="" />
+                                                    <p className="listing-name">{r.name}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="el-table__cell">
+                                            <div className="cell">{fmtDate(r.checkIn)} – {fmtDate(r.checkOut)}</div>
+                                        </td>
+                                        <td className="el-table__cell">
+                                            <div className="cell">{r.guests}</div>
+                                        </td>
+                                        <td className="el-table__cell">
+                                            <div className="cell">{fmtMoney(r.nightly, currency)}</div>
+                                        </td>
+                                        <td className="el-table__cell">
+                                            <div className="cell">{r.nights}</div>
+                                        </td>
+                                        <td className="el-table__cell is-right">
+                                            <div className="cell">{fmtMoney(r.total, currency)}</div>
+                                        </td>
+                                        <td className="el-table__cell is-right">
+                                            <div className="cell">
+                                                <span className={`status ${r.status}`} data-status={r.status}>
+                                                    {r.status}
+                                                </span>
+                                                <button
+                                                    className="cancel-btn"
+                                                    onClick={() => onCancel(r.id)}
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     )
 }
 
