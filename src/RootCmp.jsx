@@ -15,6 +15,7 @@ import BrowsePage from './pages/BrowsePage.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
+import { socketService } from './services/socket.service.js'
 
 const Wishlist = lazy(() =>
     import('./pages/Wishlist.jsx').then(m => ({ default: m.default || m.Wishlist }))
@@ -42,6 +43,11 @@ export function RootCmp() {
         if (isStayDetails) document.body.classList.add('details-page')
         else document.body.classList.remove('details-page')
     }, [isStayDetails])
+
+    useEffect(() => {
+        socketService.setup()
+        return () => socketService.terminate()
+    }, [])
 
     return (
         <div className="main-app">

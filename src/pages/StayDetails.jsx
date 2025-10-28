@@ -91,10 +91,6 @@ export function StayDetails() {
     }
   }, [])
 
-    observer.observe(target)
-    return () => observer.unobserve(target)
-  }, [photoSectionRef])
-
   async function loadReviews() {
     try {
       const res = await reviewService.query({ aboutStayId: stayId })
