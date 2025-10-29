@@ -367,8 +367,12 @@ export function StayFilter({ isScrolledDown }) {
             {isScrolledDown && !isFixedMenuOpen && (
                 <div className="mini-search-pill" onClick={() => onPillClick('where')}>
                     <div className="mini-search-content">
-                        <span className="mini-search-main">{fixedSearchText}</span>
-                        <span className="mini-search-secondary">{fixedSearchDate} · {fixedSearchGuests}</span>
+                        <img className="mini-home-img" src="https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-search-bar-icons/original/4aae4ed7-5939-4e76-b100-e69440ebeae4.png?im_w=240" alt="" />
+                        <span className="mini-search-where">{fixedSearchText}</span>
+                        <div className="pill-divider" />
+                        <span className="mini-search-when">{fixedSearchDate}</span>
+                        <div className="pill-divider" />
+                        <span className="mini-search-who">{fixedSearchGuests}</span>
                     </div>
                     <div className="mini-search-icon">
                         <svg

@@ -82,7 +82,7 @@
 .pill-divider {
     width: 1px;
     height: 32px;
-    background: rgba(0, 0, 0, .1);
+    background: #ddd;
     opacity: 0.5;
 }
 
@@ -177,7 +177,7 @@
     border-radius: 32px;
     padding: 7px 7px 7px 16px;
     height: 48px;
-    width: 320px;
+    width: 370px;
     box-shadow:
         0 1px 2px rgba(0, 0, 0, .08),
         0 4px 12px rgba(0, 0, 0, .05);
@@ -193,26 +193,49 @@
 
 .mini-search-content {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     line-height: 1.2;
     overflow: hidden;
     flex-grow: 1;
     padding-right: 10px;
 }
 
-.mini-search-main {
+.mini-search-content .pill-divider {
+    height: 24px;
+    width: 1px;
+}
+
+.mini-home-img {
+    width: 48px;
+    height: 48px;
+}
+
+.mini-search-where {
     font-weight: 600;
     font-size: 14px;
     color: #222;
 }
 
-.mini-search-secondary {
+.mini-search-when {
+    font-weight: 600;
+    font-size: 14px;
+    color: #222;
+}
+
+.mini-search-who {
+    font-weight: 600;
+    font-size: 14px;
+    color: #222;
+}
+
+/* .mini-search-secondary {
     font-weight: 400;
     font-size: 12px;
     color: #717171;
     margin-top: 2px;
     white-space: nowrap;
-}
+} */
 
 .mini-search-icon {
     width: 32px;
