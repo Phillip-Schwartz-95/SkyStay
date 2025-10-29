@@ -61,13 +61,33 @@ export function PhotoGallery({ imgs = [], stayId, onOpenAll, photoRef }) {
 
       <div className="side-photos">
         {imgs.slice(1, 5).map((img, idx) => (
-          <img
-            key={idx}
-            src={img}
-            alt={`Stay side ${idx + 1}`}
-            data-index={idx + 2}
-            ref={(el) => (slideRefs.current[idx + 1] = el)}
-          />
+          <div key={idx} className="photo-wrapper">
+            <img
+              src={img}
+              alt={`Stay side ${idx + 1}`}
+              data-index={idx + 2}
+              ref={(el) => (slideRefs.current[idx + 1] = el)}
+            />
+            {/* show button on the last photo only */}
+            {idx === Math.min(imgs.length - 2, 3) && (
+              <button className="show-all-btn" onClick={onOpenAll}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  role="presentation"
+                  focusable="false"
+                  className="show-all-icon"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3 11.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"
+                  />
+                </svg>
+                <span>Show all photos</span>
+              </button>
+            )}
+          </div>
         ))}
       </div>
 
