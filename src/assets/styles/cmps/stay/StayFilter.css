@@ -40,11 +40,23 @@
     height: 100%;
     border-radius: 32px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
+    font-family: var(--bnb-text);
+    font-weight: 100;
+    position: relative;
 }
 
 .pill-section:hover {
     background-color: #ebebeb;
+    z-index: 2;
+}
+
+.pill-section.where:hover {
+    box-shadow: -8px 0 0 0 #ebebeb;
+}
+
+.pill-section.who:hover {
+    box-shadow: 8px 0 0 0 #ebebeb;
 }
 
 .pill-section.who {
@@ -58,6 +70,7 @@
 
 .pill-section.who:hover:has(.search-btn:hover) {
     background-color: transparent;
+    box-shadow: none;
 }
 
 .pill-section input {
@@ -86,6 +99,8 @@
     font-size: 14px;
     padding: 0;
     line-height: 1.2;
+    font-family: var(--bnb-text);
+    font-weight: 100;
 }
 
 .placeholder-input::placeholder {
@@ -276,6 +291,7 @@
 
 .pill-section.active:hover {
     background-color: #fff;
+    box-shadow: none;
 }
 
 .search-pill.has-active-menu:hover,
@@ -513,4 +529,14 @@
 
 .guest-controls svg {
     color: #6A6A6A;
+}
+
+.search-pill:has(.pill-section.active) .pill-section:not(.active) {
+    opacity: 0.35;
+    filter: grayscale(0.7) brightness(0.9);
+}
+
+.search-pill:has(.pill-section.active) .pill-section:not(.active):hover {
+    background-color: transparent;
+    box-shadow: none;
 }

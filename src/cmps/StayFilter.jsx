@@ -24,6 +24,8 @@ export function StayFilter({ isScrolledDown }) {
 
     const inputRefs = useRef({})
     const pillRefs = useRef({})
+    const wrapperRef = useRef(null)
+    const overlayRef = useRef(null)
 
     useEffect(() => {
         if (!isScrolledDown) setIsFixedMenuOpen(false)
@@ -52,7 +54,6 @@ export function StayFilter({ isScrolledDown }) {
         setTimeout(() => el?.focus?.(), 0)
     }, [activeMenu])
 
-
     useEffect(() => {
         if (!activeMenu) return
         const handleReposition = () => {
@@ -69,6 +70,21 @@ export function StayFilter({ isScrolledDown }) {
             window.removeEventListener('scroll', handleReposition, true)
         }
     }, [activeMenu])
+
+    useEffect(() => {
+        if (!activeMenu && !isFixedMenuOpen) return
+        function onDocMouseDown(ev) {
+            const wrap = wrapperRef.current
+            const overlay = overlayRef.current
+            const insideWrapper = wrap && wrap.contains(ev.target)
+            const insideOverlay = overlay && overlay.contains(ev.target)
+            if (insideWrapper || insideOverlay) return
+            setActiveMenu(null)
+            setIsFixedMenuOpen(false)
+        }
+        document.addEventListener('mousedown', onDocMouseDown)
+        return () => document.removeEventListener('mousedown', onDocMouseDown)
+    }, [activeMenu, isFixedMenuOpen])
 
     function onChange(field, value) {
         const newValue = field === 'capacity' ? +value : value
@@ -238,7 +254,7 @@ export function StayFilter({ isScrolledDown }) {
     ]
 
     return (
-        <div className="filter-wrapper">
+        <div className="filter-wrapper" ref={wrapperRef}>
             {showFullSearch && (
                 <form onSubmit={onSearch} className={searchPillClasses}>
                     <div
@@ -373,6 +389,7 @@ export function StayFilter({ isScrolledDown }) {
             {(activeMenu || isFixedMenuOpen) &&
                 createPortal(
                     <div
+                        ref={overlayRef}
                         className={`search-dropdown-overlay ${isScrolledDown ? 'fixed-overlay' : ''} ${activeMenu}-overlay`}
                         style={{ position: 'fixed', top: overlayPos.top, left: overlayPos.left, transform: 'none' }}
                     >
