@@ -76,7 +76,9 @@ const keyOf = v => String(v || '').trim().toLowerCase()
 function hardNavigateToBrowse(type, label) {
     const t = type || 'city'
     const q = (label || '').trim()
-    const url = q ? `/browse?type=${encodeURIComponent(t)}&label=${encodeURIComponent(q)}` : `/browse`
+    const url = q
+        ? `#/browse?type=${encodeURIComponent(t)}&label=${encodeURIComponent(q)}`
+        : '#/browse'
     window.location.href = url
 }
 
