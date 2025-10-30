@@ -33,7 +33,7 @@ export function HostSetup() {
 
         await becomeHost(user, form)
         showSuccessMsg('You are now a host!')
-        navigate('/host/new')
+        navigate('/hosting')
     }
 
     return (
