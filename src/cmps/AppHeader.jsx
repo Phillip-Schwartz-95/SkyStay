@@ -23,6 +23,7 @@ export function AppHeader({ isMini = false }) {
 	const isBrowse = location.pathname.startsWith('/browse')
 	const isStayDetails = /^\/stay\/[^/]+$/.test(location.pathname)
 	const isTrips = location.pathname.startsWith('/trips')
+	const isHome = location.pathname === '/'
 
 	const menuRef = useRef(null)
 	const btnRef = useRef(null)
@@ -407,7 +408,7 @@ export function AppHeader({ isMini = false }) {
 				)}
 			</header>
 
-			{!isStayDetails && <div style={{ height: 80 }} />}
+			{!isStayDetails && <div style={{ height: isHome ? 220 : 160 }} />}
 		</>
 	)
 }
