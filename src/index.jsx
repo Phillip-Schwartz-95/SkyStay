@@ -1,7 +1,3 @@
-import { socketService } from './services/socket.service'
-
-socketService.setup()
-
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 

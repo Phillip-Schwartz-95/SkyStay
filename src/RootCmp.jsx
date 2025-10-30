@@ -13,7 +13,6 @@ import { HostingDashboard } from './pages/HostingDashboard.jsx'
 import { HostStayForm } from './pages/HostStayForm.jsx'
 import BrowsePage from './pages/BrowsePage.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'
-import { UserMsg } from './cmps/UserMsg.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
 import { socketService } from './services/socket.service.js'
 
@@ -82,7 +81,6 @@ export function RootCmp() {
                 </Suspense>
             </main>
 
-            <UserMsg />
             <AppFooter />
         </div>
     )
