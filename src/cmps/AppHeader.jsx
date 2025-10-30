@@ -210,7 +210,7 @@ export function AppHeader({ isMini = false }) {
 					</div>
 
 					<div className="header-right" style={rightStyle}>
-						{user && user.isHost ? (
+						{user ? (
 							<button
 								className="switch-mode-btn"
 								onClick={() => {
