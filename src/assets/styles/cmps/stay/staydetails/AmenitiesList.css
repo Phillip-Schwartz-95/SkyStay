@@ -35,6 +35,10 @@
     color: #222;
 }
 
+.amenity-label {
+    font-size: 17px;
+}
+
 .amenity-icon {
     font-size: 24px;
     color: #222;
