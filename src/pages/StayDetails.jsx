@@ -73,23 +73,26 @@ export function StayDetails() {
   }, [stay?.host?.fullname])
 
   useEffect(() => {
-    if (!photoSectionRef.current) return
-    const target = photoSectionRef.current
+    const el = photoSectionRef.current
+    if (!el) return
+
     const observer = new IntersectionObserver(
-      ([entry]) => setShowSubHeader(!entry.isIntersecting),
+      ([entry]) => {
+        setShowSubHeader(!entry.isIntersecting)
+      },
       {
         threshold: 0.1,
         rootMargin: '-120px 0px 0px 0px'
       }
     )
-    const timeout = setTimeout(() => {
-      observer.observe(photoSectionRef.current)
-    }, 100)
-    return () => {
-      clearTimeout(timeout)
-      observer.disconnect()
-    }
-  }, [])
+
+    observer.observe(el)
+
+    console.log('Observing:', el)
+    console.log('showSubHeader:', showSubHeader)
+
+    return () => observer.disconnect()
+  }, [stayId])
 
   async function loadReviews() {
     try {
