@@ -54,6 +54,17 @@ export default function BrowsePage() {
     const staysRaw = useSelector(s => s.stayModule.stays) || []
 
     useEffect(() => {
+        const key = 'browse:reloadCount'
+        const count = Number(sessionStorage.getItem(key) || '0')
+        if (count < 2) {
+            sessionStorage.setItem(key, String(count + 1))
+            window.location.reload()
+        } else {
+            sessionStorage.removeItem(key)
+        }
+    }, [])
+
+    useEffect(() => {
         if (!Array.isArray(staysRaw) || staysRaw.length === 0) {
             loadStays(filterBy).catch(() => showErrorMsg('Cannot load stays'))
         }

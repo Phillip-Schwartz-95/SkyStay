@@ -1,54 +1,68 @@
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import { stayService } from '../services/stay'
-import { Link } from 'react-router-dom'
+import { StayPreview } from '../cmps/StayPreview.jsx'
 
 export function HostingDashboard() {
     const user = useSelector(storeState => storeState.userModule.user)
     const [myStays, setMyStays] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(() => {
-        loadMyStays()
-    }, [])
+        if (!user) {
+            navigate('/auth/login')
+            return
+        }
+        loadMyStays(user._id)
+    }, [user, navigate])
 
-    async function loadMyStays() {
-        const allStays = await stayService.query()
-        const hostStays = allStays.filter(stay => stay.host?._id === user?._id)
-        setMyStays(hostStays)
+    async function loadMyStays(userId) {
+        try {
+            const stays = await stayService.query({ hostId: userId })
+            setMyStays(Array.isArray(stays) ? stays : [])
+        } finally {
+            setIsLoading(false)
+        }
     }
 
-    if (!user?.isHost) {
+    if (!user) return null
+
+    const isHostDerived = Boolean(user.isHost) || myStays.length > 0
+
+    if (!isHostDerived) {
         return (
-            <section className="hosting-dashboard">
-                <h2>You’re not a host yet!</h2>
-                <Link to="/host/start">Become a host</Link>
+            <section className="hosting-dashboard container">
+                <h2>You’re not a host yet</h2>
+                <Link to="/host/start" className="btn-primary">Become a host</Link>
             </section>
         )
     }
 
     return (
         <section className="hosting-dashboard container">
-            <h2>Here are your current listings {user.fullname}</h2>
+            <header className="hosting-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+                <h2 style={{ margin: 0 }}>Your listings</h2>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <span style={{ color: 'var(--gray2)' }}>{myStays.length} {myStays.length === 1 ? 'listing' : 'listings'}</span>
+                    <Link to="/host/new" className="btn-primary">Create new listing</Link>
+                </div>
+            </header>
 
-            {!myStays.length ? (
-                <div>
-                    <p>You haven’t added any stays yet.</p>
-                    <Link to="/host/new" className="btn-primary">Add your first stay</Link>
+            {isLoading ? (
+                <div>Loading…</div>
+            ) : myStays.length === 0 ? (
+                <div className="empty-state">
+                    <p>No listings yet.</p>
+                    <Link to="/host/new" className="btn-primary">Create your first listing</Link>
                 </div>
             ) : (
-                <ul className="my-stays-list">
+                <div className="results-grid">
                     {myStays.map(stay => (
-                        <li key={stay._id} className="my-stay-item">
-                            <img src={stay.imgs?.[0] || 'default-image.jpg'} alt={stay.title} />
-                            <div>
-                                <h4>{stay.title}</h4>
-                                <p>{stay.loc?.city || 'Unknown city'}, {stay.loc?.country || 'Unknown country'}</p>
-                                <p>${stay.price} / night</p>
-                                <Link to={`/stay/${stay._id}`}>View</Link>
-                            </div>
-                        </li>
+                        <StayPreview key={stay._id} stay={stay} />
                     ))}
-                </ul>
+                </div>
             )}
         </section>
     )
