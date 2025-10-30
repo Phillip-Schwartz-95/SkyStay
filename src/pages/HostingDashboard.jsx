@@ -13,7 +13,7 @@ export function HostingDashboard() {
 
     async function loadMyStays() {
         const allStays = await stayService.query()
-        const hostStays = allStays.filter(stay => stay.host.fullname === user.fullname)
+        const hostStays = allStays.filter(stay => stay.host?._id === user?._id)
         setMyStays(hostStays)
     }
 
@@ -39,10 +39,10 @@ export function HostingDashboard() {
                 <ul className="my-stays-list">
                     {myStays.map(stay => (
                         <li key={stay._id} className="my-stay-item">
-                            <img src={stay.imgs[0]} alt={stay.title} />
+                            <img src={stay.imgs?.[0] || 'default-image.jpg'} alt={stay.title} />
                             <div>
                                 <h4>{stay.title}</h4>
-                                <p>{stay.loc.city}, {stay.loc.country}</p>
+                                <p>{stay.loc?.city || 'Unknown city'}, {stay.loc?.country || 'Unknown country'}</p>
                                 <p>${stay.price} / night</p>
                                 <Link to={`/stay/${stay._id}`}>View</Link>
                             </div>

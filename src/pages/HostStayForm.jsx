@@ -8,7 +8,14 @@ export function HostStayForm() {
     const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
 
-    const [stay, setStay] = useState(stayService.getEmptyStay())
+    const [stay, setStay] = useState({
+        title: '',
+        city: '',
+        country: '',
+        price: '',
+        maxGuests: '',
+        imgUrl: '',
+    })
 
     function handleChange({ target }) {
         const { name, value } = target
