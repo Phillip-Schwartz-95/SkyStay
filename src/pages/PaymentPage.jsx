@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { reservationService } from '../services/reservations/reservation.service.local'
+import { reservationService } from '../services/reservations/reservation.service.remote'
 import '../assets/styles/cmps/stay/payment.css'
 
 export default function PaymentPage() {
@@ -42,35 +42,40 @@ export default function PaymentPage() {
         return isNaN(dt) ? '' : dt.toISOString().split('T')[0]
     }
 
+    function getHostId(s) {
+        if (!s) return ''
+        if (s.hostId) return String(s.hostId)
+        if (s.host && (s.host._id || s.host.id)) return String(s.host._id || s.host.id)
+        return ''
+    }
+
     async function handleConfirm() {
         if (!loggedInUser) {
             navigate('/auth/login')
             return
         }
+        const payload = {
+            userId: String(loggedInUser._id || loggedInUser.id || ''),
+            hostId: getHostId(stay),
+            stayId: String(stay._id || stay.id || ''),
+            stayName: stay.name || stay.title || 'Stay',
+            imgUrl: stay.imgUrl || stay.coverImg || (Array.isArray(stay.imgs) && stay.imgs[0]) || '',
+            checkIn: toIso(checkIn),
+            checkOut: toIso(checkOut),
+            guests: Number(guests) || 1,
+            currency,
+            nightlyPrice: Number(nightlyPrice) || 0,
+            nights: safeNights,
+            serviceFee,
+            totalPrice: total,
+            status: 'pending',
+            bookedOn: Date.now()
+        }
         try {
-            await reservationService.add({
-                userId: loggedInUser._id || loggedInUser.id,
-                stayId: stay.id || stay._id || '',
-                stayName: stay.name || stay.title || 'Stay',
-                imgUrl: stay.imgUrl || stay.coverImg || (stay.imgs && stay.imgs[0]) || '',
-                hostFullname: stay.hostFullname || (stay.host && (stay.host.fullname || stay.host.name)) || '',
-                checkIn: toIso(checkIn),
-                checkOut: toIso(checkOut),
-                guests,
-                currency,
-                nightlyPrice: Number(nightlyPrice) || 0,
-                nights: safeNights,
-                serviceFee,
-                totalPrice: total,
-                status: 'pending',
-                bookedOn: Date.now(),
-                stay: stay,
-            })
+            await reservationService.add(payload)
             navigate('/trips', { replace: true })
-            window.location.reload()
         } catch {
             navigate('/trips', { replace: true })
-            window.location.reload()
         }
     }
 
@@ -82,7 +87,6 @@ export default function PaymentPage() {
                     className="arrow-btn"
                     onClick={() => {
                         navigate(-1)
-                        window.location.reload()
                     }}
                     aria-label="Back"
                 >
@@ -124,7 +128,7 @@ export default function PaymentPage() {
 
                 <section className="summary-card">
                     <div className="stay-details flex border-buttom">
-                        <img className="stay-img" src={stay.imgUrl} alt="staypreview" />
+                        <img className="stay-img" src={stay.imgUrl || (Array.isArray(stay.imgs) && stay.imgs[0]) || ''} alt="staypreview" />
                         <div className="stay-desc">
                             <div>
                                 <h4 className="stay-type">{stay.type || 'Private room'}</h4>

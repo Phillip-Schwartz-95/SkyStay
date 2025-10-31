@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { reservationService } from '../services/reservations/reservation.service.local'
+import { reservationService } from '../services/reservations/reservation.service.remote'
 import { AppFooter } from '../cmps/AppFooter'
 import '../assets/styles/cmps/stay/mytrips.css'
 

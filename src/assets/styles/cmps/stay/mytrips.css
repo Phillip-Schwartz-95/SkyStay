@@ -298,6 +298,7 @@
     padding-bottom: 10px !important;
 }
 
+/* Pending color on MyTrips right-aligned cells (existing behavior) */
 .dashboard-listings td.is-right .status.pending,
 .dashboard-listings td.is-right .status-badge.pending,
 .dashboard-listings td.is-right .status--pending,
@@ -362,4 +363,34 @@
 .dashboard-listings .el-scrollbar__view,
 .dashboard-listings .el-table__inner-wrapper {
     overflow: visible !important;
+}
+
+/* ===== Host Pending page scoped status colors (works regardless of column) ===== */
+.host-pending .status.pending,
+.host-pending .status-badge.pending,
+.host-pending .status--pending,
+.host-pending .badge.pending,
+.host-pending [data-status="pending" i] {
+    color: goldenrod !important;
+    font-weight: 700 !important;
+}
+
+.host-pending .status.approved,
+.host-pending .status-badge.approved,
+.host-pending .status--approved,
+.host-pending .badge.approved,
+.host-pending [data-status="approved" i] {
+    color: #008a05 !important;
+    /* Airbnb-y green */
+    font-weight: 700 !important;
+}
+
+.host-pending .status.declined,
+.host-pending .status-badge.declined,
+.host-pending .status--declined,
+.host-pending .badge.declined,
+.host-pending [data-status="declined" i] {
+    color: #d93025 !important;
+    /* Google-ish red */
+    font-weight: 700 !important;
 }
