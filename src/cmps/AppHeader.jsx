@@ -30,6 +30,7 @@ export function AppHeader({ isMini = false }) {
 	const scrollElRef = useRef(null)
 
 	function handleResetAndHome() {
+		setIsHostingView(false)
 		dispatch(setFilter(stayService.getDefaultFilter()))
 		navigate('/')
 	}
@@ -161,6 +162,7 @@ export function AppHeader({ isMini = false }) {
 			navigate('/auth/login')
 			return
 		}
+		setIsHostingView(true)
 		navigate('/hosting')
 	}
 
@@ -184,12 +186,18 @@ export function AppHeader({ isMini = false }) {
 						</Link>
 					</div>
 
-					<div className="header-top-center">
+					<div className="header-top-center" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
 						{isHostingView ? (
-							<Link to="/hosting" className="nav-pill hosting" style={{ textDecoration: 'none' }}>
-								<img src="https://cdn-icons-png.flaticon.com/512/4715/4715693.png" alt="" width="22" height="22" />
-								<span>My Listings</span>
-							</Link>
+							<>
+								<Link to="/hosting" className="nav-pill hosting" style={{ textDecoration: 'none' }}>
+									<img src="https://cdn-icons-png.flaticon.com/512/4715/4715693.png" alt="" width="22" height="22" />
+									<span>My Listings</span>
+								</Link>
+								<Link to="/hosting/pending" className="nav-pill hosting" style={{ textDecoration: 'none' }}>
+									<img src="https://cdn-icons-png.flaticon.com/512/2097/2097300.png" alt="" width="22" height="22" />
+									<span>Pending</span>
+								</Link>
+							</>
 						) : (
 							<Link
 								to="/"

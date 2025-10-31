@@ -25,6 +25,9 @@ const MyTrips = lazy(() =>
 const PaymentPage = lazy(() =>
     import('./pages/PaymentPage.jsx').then(m => ({ default: m.default || m.PaymentPage }))
 )
+const HostPending = lazy(() =>
+    import('./pages/HostPending.jsx').then(m => ({ default: m.default || m.HostPending }))
+)
 
 export function RootCmp() {
     const location = useLocation()
@@ -70,9 +73,12 @@ export function RootCmp() {
                             <Route path="login" element={<Login />} />
                             <Route path="signup" element={<Signup />} />
                         </Route>
+
                         <Route path="host/start" element={<HostSetup />} />
                         <Route path="hosting" element={<HostingDashboard />} />
+                        <Route path="hosting/pending" element={<HostPending />} />
                         <Route path="host/new" element={<HostStayForm />} />
+
                         <Route path="browse" element={<BrowsePage />} />
                         <Route path="wishlist" element={<Wishlist />} />
                         <Route path="trips" element={<MyTrips />} />
