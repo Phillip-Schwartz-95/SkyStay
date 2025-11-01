@@ -13,9 +13,11 @@ export function AmenitiesList({ amenities = [] }) {
         'wifi': 'wifi',
         'internet': 'wifi',
         'ethernet connection': 'wifi',
+        'high speed wifi': 'wifi',
 
         // Comfort & Essentials
         'air conditioning': 'airconditioning',
+        'ac': 'airconditioning',
         'heating': 'airconditioning',
         'essentials': 'cleanliness',
         'shampoo': 'cleanliness',
@@ -23,10 +25,15 @@ export function AmenitiesList({ amenities = [] }) {
         'iron': 'cleanliness',
         'hangers': 'cleanliness',
         'hot water': 'cleanliness',
+        'bed linens': 'cleanliness',
+        'extra pillows and blankets': 'cleanliness',
+        'towels': 'cleanliness',
+        'body soap': 'cleanliness',
 
         // Laundry
         'washer': 'cleanliness',
         'dryer': 'cleanliness',
+        'laundry': 'cleanliness',
 
         // Kitchen & Dining
         'kitchen': 'kitchen',
@@ -34,15 +41,21 @@ export function AmenitiesList({ amenities = [] }) {
         'microwave': 'kitchen',
         'coffee maker': 'kitchen',
         'refrigerator': 'refrigerator',
+        'fridge': 'refrigerator',
         'dishes and silverware': 'kitchen',
         'cooking basics': 'kitchen',
         'oven': 'kitchen',
         'stove': 'kitchen',
+        'kitchenette': 'kitchen',
+        'toaster': 'kitchen',
+        'freezer': 'refrigerator',
 
         // Entertainment
         'tv': 'music',
         'cable tv': 'music',
         'smart tv': 'music',
+        'netflix': 'music',
+        'sound system': 'music',
 
         // Parking & Accessibility
         'free parking on premises': 'parking',
@@ -50,6 +63,7 @@ export function AmenitiesList({ amenities = [] }) {
         'paid parking off premises': 'parking',
         'free street parking': 'parking',
         'garage': 'parking',
+        'parking': 'parking',
         'elevator': 'schedule',
         'wheelchair accessible': 'schedule',
         'step-free access': 'schedule',
@@ -61,9 +75,13 @@ export function AmenitiesList({ amenities = [] }) {
 
         // Safety
         'smoke detector': 'smokeAlarm',
+        'smoke alarm': 'smokeAlarm',
         'smoke alarm installed': 'smokeAlarm',
+        'smoke detector installed': 'smokeAlarm',
         'carbon monoxide detector': 'coAlarm',
+        'carbon monoxide alarm': 'coAlarm',
         'co alarm installed': 'coAlarm',
+        'co detector installed': 'coAlarm',
         'fire extinguisher': 'schedule',
         'first aid kit': 'schedule',
         'safety card': 'schedule',
@@ -71,6 +89,7 @@ export function AmenitiesList({ amenities = [] }) {
         // Outdoor & Scenic
         'balcony': 'balcony',
         'patio or balcony': 'balcony',
+        'patio': 'balcony',
         'terrace': 'balcony',
         'pool': 'pool',
         'waterfront': 'mapmarker',
@@ -78,17 +97,20 @@ export function AmenitiesList({ amenities = [] }) {
         'lake view': 'cityview',
         'city view': 'cityview',
         'garden view': 'nature',
+        'mountain view': 'nature',
 
         // Family & Stays
         'family/kid friendly': 'briefcase',
         'crib': 'briefcase',
         'luggage dropoff allowed': 'briefcase',
         'long term stays allowed': 'briefcase',
+        'long-term stays allowed': 'briefcase',
 
         // Workspace
         'workspace': 'workspace',
         'desk': 'workspace',
         'laptop friendly workspace': 'workspace',
+        'dedicated workspace': 'workspace',
 
         // Check-in & Access
         '24-hour check-in': 'key',
@@ -97,14 +119,12 @@ export function AmenitiesList({ amenities = [] }) {
         'private entrance': 'mapmarker',
         'doorman': 'key',
         'host greets you': 'lively',
+        'smart lock': 'key',
 
         // Misc comfort
         'gym': 'lively',
         'hot tub': 'teacup',
-        'heating': 'airconditioning',
-        'kitchenette': 'kitchen',
-        'bed linens': 'cleanliness',
-        'extra pillows and blankets': 'cleanliness',
+        'sauna': 'teacup',
 
         // Missing alarms
         'no smoke alarm': 'noSmoke',
@@ -115,20 +135,16 @@ export function AmenitiesList({ amenities = [] }) {
         'translation missing: en.hosting_amenity_50': 'showall',
     }
 
-
-    // --- all to lowercase ---
     const normalized = amenities.map(a => a.toLowerCase().trim())
 
-    // --- Detect if real alarms exist ---
     const hasSmoke = normalized.some(a =>
         a.includes('smoke alarm') || a.includes('smoke detector')
     )
 
     const hasCO = normalized.some(a =>
-        a.includes('carbon monoxide detector') || a.includes('co alarm')
+        a.includes('carbon monoxide detector') || a.includes('carbon monoxide alarm') || a.includes('co alarm') || a.includes('co detector')
     )
 
-    // --- Filter out “no smoke/no co” if real ones exist ---
     const filtered = normalized.filter(a => {
         if (hasSmoke && a.includes('no smoke alarm')) return false
         if (hasCO && a.includes('no carbon monoxide alarm')) return false
@@ -137,7 +153,6 @@ export function AmenitiesList({ amenities = [] }) {
 
     const unique = [...new Set(filtered)]
 
-    // Only show the first 8 in preview
     const previewAmenities = unique.slice(0, 8)
     const hasExtra = unique.length > 8
 
@@ -148,7 +163,7 @@ export function AmenitiesList({ amenities = [] }) {
         const iconName = AMENITY_ICON_MAP[normalized] || 'showall'
         return (
             <li key={idx} className="amenity-item">
-                <SvgIcon iconName={iconName} className="amenity-icon" />
+                <SvgIcon iconName={iconName} className="amenity-icon" size={22} />
                 <span className="amenity-label">{amenity}</span>
             </li>
         )
@@ -170,7 +185,7 @@ export function AmenitiesList({ amenities = [] }) {
 
             {isModalOpen && (
                 <AmenitiesModal
-                    amenities={unique}
+                    amenities={[...unique]}
                     onClose={() => setIsModalOpen(false)}
                     AMENITY_ICON_MAP={AMENITY_ICON_MAP}
                 />
@@ -179,3 +194,5 @@ export function AmenitiesList({ amenities = [] }) {
 
     )
 }
+
+export default AmenitiesList

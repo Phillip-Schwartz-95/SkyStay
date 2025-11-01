@@ -1,0 +1,37 @@
+.hostloc-search {
+    width: 100%;
+    height: 48px;
+    border: 1px solid rgba(0, 0, 0, .12);
+    border-radius: 12px;
+    padding: 0 14px;
+    font-size: 16px;
+    color: #000;
+    background: #fff;
+}
+
+.hostloc-map {
+    width: 100%;
+    height: 420px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, .12);
+    background: #f5f5f5;
+}
+
+.hostloc-meta {
+    display: grid;
+    gap: 6px;
+    color: #000;
+    font-size: 14px;
+}
+
+.hostloc-line b {
+    font-weight: 700;
+}
+
+.hostloc-loading,
+.hostloc-error {
+    text-align: center;
+    color: #000;
+    padding: 8px 0;
+}

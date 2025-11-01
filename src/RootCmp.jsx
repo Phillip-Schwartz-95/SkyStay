@@ -11,6 +11,11 @@ import { ImagePage } from './pages/ImagePage.jsx'
 import { HostSetup } from './pages/HostSetup.jsx'
 import { HostingDashboard } from './pages/HostingDashboard.jsx'
 import { HostStayForm } from './pages/HostStayForm.jsx'
+import { HostStayLocation } from './pages/HostStayLocation.jsx'
+import { HostStayAvailability } from './pages/HostStayAvailability.jsx'
+import { HostStayAmenities } from './pages/HostStayAmenities.jsx'
+import { HostStayCapacityRules } from './pages/HostStayCapacityRules.jsx'
+import { HostStayPricingMedia } from './pages/HostStayPricingMedia.jsx'
 import BrowsePage from './pages/BrowsePage.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
@@ -40,6 +45,7 @@ export function RootCmp() {
         path.startsWith('/wishlist') ||
         path.startsWith('/payment')
     const hideHeader = path.includes('/photos')
+    const hideFooter = path.startsWith('/host/new')
 
     useEffect(() => {
         if (isStayDetails) document.body.classList.add('details-page')
@@ -78,6 +84,11 @@ export function RootCmp() {
                         <Route path="hosting" element={<HostingDashboard />} />
                         <Route path="hosting/pending" element={<HostPending />} />
                         <Route path="host/new" element={<HostStayForm />} />
+                        <Route path="host/new/step-2" element={<HostStayLocation />} />
+                        <Route path="host/new/step-3" element={<HostStayAvailability />} />
+                        <Route path="host/new/step-4" element={<HostStayAmenities />} />
+                        <Route path="host/new/step-5" element={<HostStayCapacityRules />} />
+                        <Route path="host/new/step-6" element={<HostStayPricingMedia />} />
 
                         <Route path="browse" element={<BrowsePage />} />
                         <Route path="wishlist" element={<Wishlist />} />
@@ -87,7 +98,7 @@ export function RootCmp() {
                 </Suspense>
             </main>
 
-            <AppFooter />
+            {!hideFooter && <AppFooter />}
         </div>
     )
 }

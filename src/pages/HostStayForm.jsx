@@ -1,79 +1,102 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { stayService } from '../services/stay'
-import { showSuccessMsg } from '../services/event-bus.service'
+import PlaceTypeIcon, { PLACE_TYPE_OPTIONS } from '../cmps/PlaceTypeIcons'
+import '../assets/styles/cmps/hostnew.css'
 
 export function HostStayForm() {
-    const user = useSelector(storeState => storeState.userModule.user)
+    const user = useSelector(s => s.userModule.user)
     const navigate = useNavigate()
 
-    const [stay, setStay] = useState({
-        title: '',
-        city: '',
-        country: '',
-        price: '',
-        maxGuests: '',
-        imgUrl: '',
-    })
+    const [placeType, setPlaceType] = useState('')
 
-    function handleChange({ target }) {
-        const { name, value } = target
-        setStay(prev => ({ ...prev, [name]: value }))
+    useEffect(() => {
+        if (!user) navigate('/auth/login')
+    }, [user, navigate])
+
+    function onBack() {
+        navigate(-1)
     }
 
-    async function onSaveStay(ev) {
-        ev.preventDefault()
-        const stayToSave = {
-            ...stay,
-            price: +stay.price,
-            host: user,
-            loc: { city: stay.city, country: stay.country },
-            imgs: [stay.imgUrl],
-        }
-
-        await stayService.save(stayToSave)
-        showSuccessMsg('Stay listed successfully!')
-        navigate('/hosting')
+    function onNext() {
+        if (!placeType) return
+        navigate('/host/new/step-2', { state: { draft: { placeType } } })
     }
 
     return (
-        <section className="stay-host-form container">
-            <h2>Add a New Stay</h2>
+        <div className="hostnew-root" style={{ minHeight: '100vh' }}>
+            <main className="hostnew-main" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '48px 24px' }}>
+                <div className="hostnew-stage" style={{ width: '100%', maxWidth: 960 }}>
+                    <h1 style={{ marginBottom: 28, color: '#000', textAlign: 'center', fontSize: '2rem' }}>
+                        Which of these best describes your place?
+                    </h1>
 
-            <form onSubmit={onSaveStay}>
-                <label>
-                    Title:
-                    <input name="title" value={stay.title} onChange={handleChange} required />
-                </label>
+                    <div
+                        className="place-grid"
+                        style={{
+                            margin: '0 auto',
+                            width: '100%',
+                            maxWidth: 900,
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(3, 1fr)',
+                            gap: 16,
+                            alignItems: 'stretch',
+                            justifyItems: 'center'
+                        }}
+                    >
+                        {PLACE_TYPE_OPTIONS.map(opt => {
+                            const selected = placeType === opt.id
+                            return (
+                                <button
+                                    key={opt.id}
+                                    type="button"
+                                    onClick={() => setPlaceType(opt.id)}
+                                    aria-pressed={selected}
+                                    className={`place-card${selected ? ' is-selected' : ''}`}
+                                    style={{
+                                        width: '100%',
+                                        maxWidth: 280,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        gap: 14,
+                                        padding: '24px 18px',
+                                        borderRadius: 16,
+                                        border: selected ? '2px solid #222' : '1px solid rgba(0,0,0,.12)',
+                                        background: '#fff',
+                                        cursor: 'pointer',
+                                        outline: 'none',
+                                        color: '#000',
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    <div style={{ width: 84, height: 84, display: 'grid', placeItems: 'center' }}>
+                                        <PlaceTypeIcon name={opt.icon} size={72} />
+                                    </div>
+                                    <div style={{ fontWeight: 700, fontSize: '1rem' }}>{opt.label}</div>
+                                </button>
+                            )
+                        })}
+                    </div>
+                </div>
+            </main>
 
-                <label>
-                    City:
-                    <input name="city" value={stay.city || ''} onChange={handleChange} required />
-                </label>
-
-                <label>
-                    Country:
-                    <input name="country" value={stay.country || ''} onChange={handleChange} required />
-                </label>
-
-                <label>
-                    Price per night:
-                    <input name="price" type="number" min="1" value={stay.price || ''} onChange={handleChange} required />
-                </label>
-
-                <label>
-                    Max Guests:
-                    <input name="maxGuests" type="number" min="1" max="16" value={stay.maxGuests || ''} onChange={handleChange} />
-                </label>
-
-                <label>
-                    Image URL:
-                    <input name="imgUrl" value={stay.imgUrl || ''} onChange={handleChange} />
-                </label>
-
-                <button className="btn-primary">Save Stay</button>
-            </form>
-        </section>
+            <div className="hostnew-bottombar">
+                <div className="hostnew-progress"></div>
+                <div className="hostnew-actions">
+                    <button className="hostnew-btn hostnew-btn-ghost" onClick={onBack}>Back</button>
+                    <button
+                        className="hostnew-btn hostnew-btn-primary"
+                        onClick={onNext}
+                        disabled={!placeType}
+                        aria-disabled={!placeType}
+                    >
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
     )
 }
+
+export default HostStayForm
