@@ -9,6 +9,7 @@ export function BookingCard({
     reservedDates, setReservedDates,
     onReserve
 }) {
+
     const [guests, setGuests] = useState({
         adults: 1,
         children: 0,
@@ -79,6 +80,12 @@ export function BookingCard({
     }
 
     async function handleReserveClick() {
+
+        if (!userId) {
+            window.dispatchEvent(new Event('open-login-modal'))
+            return
+        }
+
         if (!checkIn || !checkOut) {
             setConfirmationMsg("Please select dates")
             setTimeout(() => setConfirmationMsg(""), 2000)

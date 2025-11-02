@@ -169,7 +169,7 @@ export function AppHeader({ isMini = false, onLoginClick }) {
 	function goToHostStart() {
 		if (!user) {
 			showErrorMsg('Please log in first!')
-			navigate('/auth/login')
+			window.dispatchEvent(new Event('open-login-modal'))
 			return
 		}
 		setIsHostingView(true)

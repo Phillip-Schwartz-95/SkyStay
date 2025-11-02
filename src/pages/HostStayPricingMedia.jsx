@@ -50,7 +50,7 @@ export function HostStayPricingMedia() {
         try {
             if (!user) {
                 showErrorMsg('Please log in to publish a listing')
-                navigate('/auth/login')
+                if (!user) window.dispatchEvent(new Event('open-login-modal'))
                 return
             }
             const placeType = draft.placeType || 'Apartment'

@@ -38,6 +38,7 @@ export function RootCmp() {
     const location = useLocation()
     const path = location.pathname
     const [showAuthModal, setShowAuthModal] = useState(false)
+
     const isStayDetails = /^\/stay\/[^/]+$/.test(path)
     const isMini =
         isStayDetails ||
@@ -56,6 +57,12 @@ export function RootCmp() {
     useEffect(() => {
         socketService.setup()
         return () => socketService.terminate()
+    }, [])
+
+    useEffect(() => {
+        const handler = () => setShowAuthModal(true)
+        window.addEventListener('open-login-modal', handler)
+        return () => window.removeEventListener('open-login-modal', handler)
     }, [])
 
     return (

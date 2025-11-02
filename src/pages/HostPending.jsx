@@ -40,7 +40,12 @@ export function HostPending() {
         let ignore = false
         async function load() {
             try {
-                if (!user) { setReservations([]); return }
+                if (!user) {
+                    window.dispatchEvent(new Event('open-login-modal'))
+                    setReservations([]);
+                    return
+                }
+
                 const hostId = user._id || user.id
                 const res = await reservationService.query({ hostId })
                 if (!ignore) setReservations(Array.isArray(res) ? res : [])

@@ -146,7 +146,7 @@ export function StayDetails() {
     if (!_checkIn || !_checkOut || !_guests) return
 
     if (!loggedInUser) {
-      navigate('/auth/login', { state: { from: location.pathname } })
+      window.dispatchEvent(new Event('open-login-modal'))
       return
     }
 

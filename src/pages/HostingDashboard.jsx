@@ -12,7 +12,7 @@ export function HostingDashboard() {
 
     useEffect(() => {
         if (!user) {
-            navigate('/auth/login')
+            window.dispatchEvent(new Event('open-login-modal'))
             return
         }
         loadMyStays(user._id)

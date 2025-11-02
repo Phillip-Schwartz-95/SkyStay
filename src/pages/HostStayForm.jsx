@@ -11,7 +11,7 @@ export function HostStayForm() {
     const [placeType, setPlaceType] = useState('')
 
     useEffect(() => {
-        if (!user) navigate('/auth/login')
+        window.dispatchEvent(new Event('open-login-modal'))
     }, [user, navigate])
 
     function onBack() {

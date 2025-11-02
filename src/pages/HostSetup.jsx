@@ -18,7 +18,7 @@ export function HostSetup() {
     useEffect(() => {
         if (!user) {
             showErrorMsg('Please log in to become a host')
-            navigate('/auth/login')
+             window.dispatchEvent(new Event('open-login-modal'))
         }
     }, [user, navigate])
 
