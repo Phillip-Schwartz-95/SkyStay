@@ -20,7 +20,7 @@
     align-items: center;
     row-gap: 12px;
     min-height: 150px;
-    background: rgb(251, 251, 251);
+    background: transparent;
     transition: min-height 0.3s ease-out;
     max-height: 200px;
     overflow: hidden;
@@ -294,6 +294,10 @@
     transform-origin: center;
 }
 
+.app-header.mini {
+    background-color: #fff;
+}
+
 .app-header.mini .header-nav {
     grid-template-columns: 1fr auto 1fr;
     grid-template-areas: "left center right";
@@ -301,7 +305,7 @@
     row-gap: 0;
     grid-template-rows: 90px;
     min-height: 90px;
-    background-color: #fff;
+    background: transparent;
 }
 
 .app-header.mini .header-center {
@@ -321,6 +325,10 @@
     margin-left: 20px;
 }
 
+.app-header--browse {
+    background: #fff;
+}
+
 .app-header--browse .container {
     max-width: none;
     width: 100%;
@@ -335,7 +343,7 @@
     grid-template-rows: 96px;
     row-gap: 0;
     min-height: 96px;
-    background: #fff;
+    background: transparent;
     overflow: visible;
 }
 
@@ -468,4 +476,3 @@ body.details-page .app-header.mini {
     border-bottom: 1px solid rgba(0, 0, 0, .08) !important;
     box-shadow: none !important;
 }
-

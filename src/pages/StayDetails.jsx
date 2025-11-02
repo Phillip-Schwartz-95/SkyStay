@@ -1,17 +1,13 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useMemo } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useJsApiLoader } from '@react-google-maps/api'
-
 import { loadStay } from '../store/actions/stay.actions'
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { reviewService } from '../services/review'
 import { userService } from '../services/user'
-
 import { ReviewBreakdown } from '../cmps/ReviewBreakdown'
 import { ReviewsList } from '../cmps/ReviewList'
 import { StayCalendar } from '../cmps/StayCalendar'
-
 import { PhotoGallery } from '../cmps/staydetails/PhotoGallery'
 import { HostInfo } from '../cmps/staydetails/HostInfo'
 import { HighlightsList } from '../cmps/staydetails/HighlightsList'
@@ -21,16 +17,14 @@ import { ThingsToKnow } from '../cmps/staydetails/ThingsToKnow'
 import { BookingCard } from '../cmps/staydetails/BookingCard'
 import { MeetYourHost } from '../cmps/staydetails/MeetYourHost'
 import { StaySubHeader } from '../cmps/staydetails/StaySubHeader'
-
-import stayphotos from '../data/stayphotos.json'
 import '../assets/styles/cmps/stay/StayCalendar.css'
 
 const libraries = ['places']
 
 export function StayDetails() {
   const { stayId } = useParams()
-  const stay = useSelector(storeState => storeState.stayModule.stay)
-  const loggedInUser = useSelector(storeState => storeState.userModule?.user || storeState.userModule?.loggedinUser || null)
+  const stay = useSelector(s => s.stayModule.stay)
+  const loggedInUser = useSelector(s => s.userModule?.user || s.userModule?.loggedinUser || null)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -40,6 +34,7 @@ export function StayDetails() {
   const [guests, setGuests] = useState(1)
   const [reservedDates, setReservedDates] = useState([])
   const [hostUser, setHostUser] = useState(null)
+
   const mapRef = useRef(null)
   const searchBoxRef = useRef(null)
 
@@ -65,32 +60,38 @@ export function StayDetails() {
   }, [stayId])
 
   useEffect(() => {
-    if (stay?.host?.fullname) {
-      userService.getByFullname(stay.host.fullname)
-        .then(setHostUser)
-        .catch(() => setHostUser(null))
+    async function fetchHost() {
+      if (!stay?.host) {
+        setHostUser(null)
+        return
+      }
+      try {
+        if (stay.host._id) {
+          const u = await userService.getById(stay.host._id)
+          setHostUser(u || null)
+          return
+        }
+        if (stay.host.fullname) {
+          const u = await userService.getByFullname(stay.host.fullname)
+          setHostUser(u || null)
+          return
+        }
+        setHostUser(null)
+      } catch {
+        setHostUser(null)
+      }
     }
-  }, [stay?.host?.fullname])
+    fetchHost()
+  }, [stay?.host?._id, stay?.host?.fullname])
 
   useEffect(() => {
     const el = photoSectionRef.current
     if (!el) return
-
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setShowSubHeader(!entry.isIntersecting)
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '-120px 0px 0px 0px'
-      }
+      ([entry]) => setShowSubHeader(!entry.isIntersecting),
+      { threshold: 0.1, rootMargin: '-120px 0px 0px 0px' }
     )
-
     observer.observe(el)
-
-    console.log('Observing:', el)
-    console.log('showSubHeader:', showSubHeader)
-
     return () => observer.disconnect()
   }, [stayId])
 
@@ -98,9 +99,7 @@ export function StayDetails() {
     try {
       const res = await reviewService.query({ aboutStayId: stayId })
       setReviews(res)
-    } catch (err) {
-      console.error('Failed to load reviews', err)
-    }
+    } catch { }
   }
 
   const starCounts = reviews.reduce((acc, review) => {
@@ -108,6 +107,30 @@ export function StayDetails() {
     acc[stars] = (acc[stars] || 0) + 1
     return acc
   }, {})
+
+  const hostInfo = useMemo(() => {
+    const h = stay?.host || {}
+    const u = hostUser || {}
+    const n = v => (Number.isFinite(Number(v)) ? Number(v) : null)
+    const monthsFromSignup = n(u.timeAsUser ? Math.round(u.timeAsUser / 30) : null) || 1
+    return {
+      _id: h._id || u._id || null,
+      fullname: h.fullname || u.fullname || u.username || 'Host',
+      imgUrl: h.imgUrl || u.pictureUrl || u.imgUrl || '',
+      isSuperhost: !!(h.isSuperhost ?? u.isSuperhost ?? false),
+      monthsHosting: n(h.monthsHosting) ?? n(u.monthsHosting) ?? monthsFromSignup,
+      rating: n(h.rating) ?? n(u.rating) ?? n(stay?.ratings?.overall),
+      reviews: n(h.reviews) ?? n(u.reviews) ?? 0,
+      responseRate: n(h.responseRate) ?? n(u.responseRate) ?? 95,
+      responseTime: h.responseTime || u.responseTime || 'within an hour',
+      role: h.role || u.role || 'Host',
+      favoritesong: h.favoritesong || u.favoritesong || '',
+      bio: h.bio || u.bio || ''
+    }
+  }, [stay?.host, hostUser, stay?.ratings?.overall])
+
+  const safeHostRating = hostInfo.rating != null ? hostInfo.rating : null
+  const mergedStayForMeet = useMemo(() => ({ ...stay, host: hostInfo }), [stay, hostInfo])
 
   if (!stay) return <div>Loading...</div>
 
@@ -118,10 +141,10 @@ export function StayDetails() {
     setCheckOut(end)
   }
 
-  function normalizeAmenities(stay) {
-    const amenities = stay.amenities ? [...stay.amenities] : []
-    const safety = stay.safety || []
-    const allText = [...amenities, ...safety].map(a => a.toLowerCase())
+  function normalizeAmenities(s) {
+    const amenities = s.amenities ? [...s.amenities] : []
+    const safety = s.safety || []
+    const allText = [...amenities, ...safety].map(a => String(a || '').toLowerCase())
     const hasSmoke = allText.some(a => a.includes('smoke alarm') || a.includes('smoke detector'))
     const hasCO = allText.some(a => a.includes('carbon monoxide') || a.includes('co alarm'))
     if (!hasSmoke) amenities.push('Smoke Alarm (missing)')
@@ -130,12 +153,7 @@ export function StayDetails() {
   }
 
   function handleScrollTo(section) {
-    const refs = {
-      photos: photoSectionRef,
-      amenities: amenitiesRef,
-      reviews: reviewsRef,
-      location: locationRef
-    }
+    const refs = { photos: photoSectionRef, amenities: amenitiesRef, reviews: reviewsRef, location: locationRef }
     refs[section]?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
@@ -144,16 +162,13 @@ export function StayDetails() {
     const _checkOut = co || checkOut
     const _guests = g || guests
     if (!_checkIn || !_checkOut || !_guests) return
-
     if (!loggedInUser) {
       window.dispatchEvent(new Event('open-login-modal'))
       return
     }
-
     const nights = Math.max(1, Math.ceil((new Date(_checkOut) - new Date(_checkIn)) / (1000 * 60 * 60 * 24)))
     const nightlyPrice = Number(stay.price) || 0
     const serviceFee = Math.round(nightlyPrice * nights * 0.05)
-
     const payload = {
       stay: {
         id: stay._id || stay.id,
@@ -205,13 +220,13 @@ export function StayDetails() {
                 </div>
                 <p className="rating-row">
                   <span className="star">★</span>
-                  <span className="rating">{Number(stay.host?.rating).toFixed(2)}</span>
+                  <span className="rating">{safeHostRating != null ? Number(safeHostRating).toFixed(2) : 'New'}</span>
                   <span> · </span>
-                  <span className="reviews-link">{stay.host?.reviews} reviews</span>
+                  <span className="reviews-link">{hostInfo.reviews || 0} reviews</span>
                 </p>
               </div>
 
-              <HostInfo host={stay.host} hostUser={hostUser} />
+              <HostInfo host={hostInfo} hostUser={hostUser} />
 
               <HighlightsList highlights={stay.highlights} />
 
@@ -253,7 +268,7 @@ export function StayDetails() {
           <section className="stay-reviews" ref={reviewsRef}>
             <h2 className="reviews-header">
               <span className="star">★</span>
-              {stay.host?.rating?.toFixed(1)} · {reviews.length} reviews
+              {safeHostRating != null ? Number(safeHostRating).toFixed(1) : 'New'} · {reviews.length} reviews
             </h2>
 
             {stay.ratings && (
@@ -276,7 +291,7 @@ export function StayDetails() {
             />
           </section>
 
-          <MeetYourHost stay={stay} />
+          <MeetYourHost stay={mergedStayForMeet} />
 
           <ThingsToKnow
             rules={stay.houseRules}
@@ -288,3 +303,5 @@ export function StayDetails() {
     </>
   )
 }
+
+export default StayDetails
