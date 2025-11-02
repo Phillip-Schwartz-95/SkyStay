@@ -16,11 +16,13 @@ export function HostSetup() {
     const isValid = form.placeType && form.location && form.guests >= 1 && form.agree
 
     useEffect(() => {
+        if (user === undefined) return // wait for Redux/userService
+
         if (!user) {
             showErrorMsg('Please log in to become a host')
-             window.dispatchEvent(new Event('open-login-modal'))
+            window.dispatchEvent(new Event('open-login-modal'))
         }
-    }, [user, navigate])
+    }, [user])
 
     function handleChange(ev) {
         const { name, value, type, checked } = ev.target
