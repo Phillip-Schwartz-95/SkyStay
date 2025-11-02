@@ -153,7 +153,7 @@
     backface-visibility: hidden;
     transform: translateZ(0);
     will-change: transform;
-    z-index: 4000;
+    z-index: 10;
     pointer-events: auto;
 }
 
@@ -330,11 +330,11 @@ body {
 }
 
 .browse-page .map-pane {
-    z-index: 4000;
+    z-index: 10;
 }
 
 .google-map-pane,
 .google-map-container {
     position: relative;
-    z-index: 4000;
+    z-index: 10;
 }
