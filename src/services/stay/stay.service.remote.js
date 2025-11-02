@@ -5,7 +5,8 @@ export const stayService = {
     getById,
     save,
     remove,
-    addStayMsg
+    addStayMsg,
+    getDefaultFilter
 }
 
 async function query(filterBy = { txt: '', minPrice: 0 }) {
@@ -33,4 +34,15 @@ async function save(stay) {
 async function addStayMsg(stayId, txt) {
     const savedMsg = await httpService.post(`stay/${stayId}/msg`, { txt })
     return savedMsg
+}
+
+function getDefaultFilter() {
+  return {
+    txt: '',
+    minPrice: 0,
+    type: '',
+    city: '',
+    label: '',
+    guests: 1,
+  }
 }

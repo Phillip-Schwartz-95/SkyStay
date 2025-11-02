@@ -8,7 +8,7 @@ import { stayService } from '../services/stay'
 import { StayFilter } from './StayFilter'
 import '../assets/styles/cmps/AppHeader.css'
 
-export function AppHeader({ isMini = false }) {
+export function AppHeader({ isMini = false, onLoginClick }) {
 	const user = useSelector(s => s.userModule.user)
 	const dispatch = useDispatch()
 
@@ -340,7 +340,14 @@ export function AppHeader({ isMini = false }) {
 						{!user ? (
 							<>
 								<MenuPill onClick={() => { setIsMenuOpen(false); goToHostStart() }}>Become a host</MenuPill>
-								<MenuLink to="/auth/login" onClick={() => setIsMenuOpen(false)}>Log in or sign up</MenuLink>
+								<MenuBtn
+									onClick={() => {
+										setIsMenuOpen(false)
+										if (typeof onLoginClick === 'function') onLoginClick()
+									}}
+								>
+									Log in or sign up
+								</MenuBtn>
 							</>
 						) : (
 							<>

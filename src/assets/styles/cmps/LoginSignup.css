@@ -1,50 +1,193 @@
-.login-form,
-.signup-form {
-	display: grid;
-	width: min(80%, 300px);
-	margin: auto;
-
-	padding: 1em;
-	background-color: var(--clr4);
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.25s ease-out;
 }
 
-.signup-form {
-	>input {
-		width: 100%;
-		margin: 0.4em 0;
-	}
-
-	.admin-toggle {
-		display: flex;
-		align-items: center;
-		justify-self: start;
-
-		>span {
-			font-size: .8em;
-		}
-	}
+.auth-content {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  width: 568px;
+  max-height: 564px;
+  padding: 40px 32px 32px;
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.25),
+    0 8px 12px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.25s ease-out;
+  text-align: center;
+  overflow: visible;
 }
 
-.login-page nav {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 2em;
+.auth-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #555;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 50%;
+  transition: transform 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
 
-	margin-block: 100px 0.5em;
+.auth-close:hover {
+  color: #000;
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
+}
 
+.auth-close svg {
+  pointer-events: none;
+  display: block;
+}
 
-	> a {
-		font-size: 0.8em;
-		color: var(--clr4);
+.auth-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  font-weight: 600;
+  color: #222;
+}
 
-		&:hover {
-			color: var(--clr1);
-		}
+.auth-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
 
-		&.active {
-			text-decoration: underline;
-			color: var(--clr2);
-		}
-	}
+.auth-tabs button {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 24px;
+  padding: 8px 18px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.auth-tabs button.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.auth-form label {
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.auth-form input,
+.auth-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #b0b0b0; 
+  color: #222;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.auth-form select option {
+  color: #222;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+  border-color: #000;
+}
+
+.btn-primary.full {
+  width: 100%;
+  background: #ff385c;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: 1rem;
+}
+
+.btn-primary.full:hover {
+  background: #e31c5f;
+}
+
+.auth-divider {
+  position: relative;
+  text-align: center;
+  margin: 18px 0 10px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.auth-divider span {
+  background: #fff;
+  padding: 0 8px;
+  z-index: 2;
+  position: relative;
+}
+
+.auth-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.auth-social {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 500;
+  color: #222;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.auth-social:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

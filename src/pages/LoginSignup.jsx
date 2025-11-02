@@ -1,93 +1,96 @@
-import { Outlet, useNavigate } from 'react-router'
-import { NavLink } from 'react-router-dom'
+// src/pages/LoginSignup.jsx
 import { useState, useEffect } from 'react'
 import { userService } from '../services/user'
 import { login, signup } from '../store/actions/user.actions'
 import { ImgUploader } from '../cmps/ImgUploader'
 
-export function LoginSignup() {
+export function LoginSignup({ onClose }) {
+    const [tab, setTab] = useState('login')
+
     return (
-        <div className="login-page">
-            <nav>
-                <NavLink to="login">Login</NavLink>
-                <NavLink to="signup">Signup</NavLink>
-            </nav>
-            <Outlet />
+        <div className="auth-modal">
+            <div className="auth-content" role="dialog" aria-modal="true">
+                <button className="auth-close" onClick={onClose} aria-label="Close">✕</button>
+                <h2>Welcome to SkyStay</h2>
+
+                <nav className="auth-tabs">
+                    <button
+                        type="button"
+                        className={tab === 'login' ? 'active' : ''}
+                        onClick={() => setTab('login')}
+                    >
+                        Log in
+                    </button>
+                    <button
+                        type="button"
+                        className={tab === 'signup' ? 'active' : ''}
+                        onClick={() => setTab('signup')}
+                    >
+                        Sign up
+                    </button>
+                </nav>
+
+                {tab === 'login' ? <LoginForm onDone={onClose} /> : <SignupForm onDone={onClose} />}
+            </div>
         </div>
     )
 }
 
-export function Login() {
+function LoginForm({ onDone }) {
     const [users, setUsers] = useState([])
-    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
-    const navigate = useNavigate()
+    const [credentials, setCredentials] = useState({ username: '', password: '' })
 
-    useEffect(() => { loadUsers() }, [])
-
-    async function loadUsers() {
-        try {
-            const users = await userService.getUsers()
-            setUsers(users)
-        } catch (err) {
-            console.error('Failed to load users:', err)
-            setUsers([])
-        }
-    }
+    useEffect(() => { userService.getUsers().then(setUsers).catch(() => setUsers([])) }, [])
 
     async function onLogin(ev) {
-        ev?.preventDefault()
+        ev.preventDefault()
         if (!credentials.username) return
-        try {
-            await login(credentials)
-            navigate('/')
-        } catch (err) {
-            console.error('Cannot login:', err)
-        }
+        await login(credentials)
+        onDone?.()
     }
 
     function handleChange(ev) {
-        const field = ev.target.name
-        const value = ev.target.value
-        setCredentials(prev => ({ ...prev, [field]: value }))
+        const { name, value } = ev.target
+        setCredentials(prev => ({ ...prev, [name]: value }))
     }
 
     return (
-        <form className="login-form" onSubmit={onLogin}>
-            <select name="username" value={credentials.username} onChange={handleChange}>
-                <option value="">Select User</option>
-                {users.map(user => (
-                    <option key={user._id} value={user.username}>{user.fullname}</option>
-                ))}
-            </select>
-            <button>Login</button>
+        <form className="auth-form" onSubmit={onLogin}>
+            <label>
+                Username
+                <select name="username" value={credentials.username} onChange={handleChange}>
+                    <option value="">Select User</option>
+                    {users.map(u => (
+                        <option key={u._id} value={u.username}>
+                            {u.fullname || u.username}
+                        </option>
+                    ))}
+                </select>
+            </label>
+
+            <button type="submit" className="btn-primary full">Continue</button>
+
+            <div className="auth-divider"><span>or</span></div>
+            <button type="button" className="auth-social google" disabled>Continue with Google</button>
+            <button type="button" className="auth-social apple" disabled>Continue with Apple</button>
+            <button type="button" className="auth-social email" disabled>Continue with Email</button>
         </form>
     )
 }
 
-export function Signup() {
+function SignupForm({ onDone }) {
     const [credentials, setCredentials] = useState(userService.getEmptyUser())
-    const navigate = useNavigate()
-
-    function clearState() {
-        setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
-    }
 
     function handleChange(ev) {
-        const field = ev.target.name
-        const value = ev.target.value
-        setCredentials(prev => ({ ...prev, [field]: value }))
+        const { name, value } = ev.target
+        setCredentials(prev => ({ ...prev, [name]: value }))
     }
 
     async function onSignup(ev) {
-        ev?.preventDefault()
+        ev.preventDefault()
         if (!credentials.username || !credentials.password || !credentials.fullname) return
-        try {
-            await signup(credentials)
-            clearState()
-            navigate('/')
-        } catch (err) {
-            console.error('Cannot signup:', err)
-        }
+        await signup(credentials)
+        onDone?.()
     }
 
     function onUploaded(imgUrl) {
@@ -95,12 +98,12 @@ export function Signup() {
     }
 
     return (
-        <form className="signup-form" onSubmit={onSignup}>
-            <input type="text" name="fullname" value={credentials.fullname} placeholder="Fullname" onChange={handleChange} required />
+        <form className="auth-form" onSubmit={onSignup}>
+            <input type="text" name="fullname" value={credentials.fullname} placeholder="Full name" onChange={handleChange} required />
             <input type="text" name="username" value={credentials.username} placeholder="Username" onChange={handleChange} required />
             <input type="password" name="password" value={credentials.password} placeholder="Password" onChange={handleChange} required />
             <ImgUploader onUploaded={onUploaded} />
-            <button>Signup</button>
+            <button className="btn-primary full">Sign up</button>
         </form>
     )
 }

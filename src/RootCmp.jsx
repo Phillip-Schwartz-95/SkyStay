@@ -1,12 +1,12 @@
 console.log('VITE_LOCAL:', import.meta.env.VITE_LOCAL)
 console.log('VITE_API_URL:', import.meta.env.VITE_API_URL)
 
-import React, { Suspense, lazy, useEffect } from 'react'
+import React, { Suspense, lazy, useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router'
 import { StayIndex } from './pages/StayIndex.jsx'
 import { StayDetails } from './pages/StayDetails.jsx'
 import { UserProfile } from './pages/UserProfile.jsx'
-import { LoginSignup, Login, Signup } from './pages/LoginSignup.jsx'
+import { LoginSignup } from './pages/LoginSignup.jsx'
 import { ImagePage } from './pages/ImagePage.jsx'
 import { HostSetup } from './pages/HostSetup.jsx'
 import { HostingDashboard } from './pages/HostingDashboard.jsx'
@@ -37,6 +37,7 @@ const HostPending = lazy(() =>
 export function RootCmp() {
     const location = useLocation()
     const path = location.pathname
+    const [showAuthModal, setShowAuthModal] = useState(false)
     const isStayDetails = /^\/stay\/[^/]+$/.test(path)
     const isMini =
         isStayDetails ||
@@ -59,7 +60,7 @@ export function RootCmp() {
 
     return (
         <div className="main-app">
-            {!hideHeader && <AppHeader isMini={isMini} />}
+            {!hideHeader && <AppHeader isMini={isMini} onLoginClick={() => setShowAuthModal(true)} />}
 
             <main className="main-container">
                 <Suspense fallback={null}>
@@ -75,10 +76,6 @@ export function RootCmp() {
                         />
                         <Route path="stay/:stayId/photos" element={<ImagePage />} />
                         <Route path="user/:id" element={<UserProfile />} />
-                        <Route path="auth" element={<LoginSignup />}>
-                            <Route path="login" element={<Login />} />
-                            <Route path="signup" element={<Signup />} />
-                        </Route>
 
                         <Route path="host/start" element={<HostSetup />} />
                         <Route path="hosting" element={<HostingDashboard />} />
@@ -96,6 +93,8 @@ export function RootCmp() {
                         <Route path="payment" element={<PaymentPage />} />
                     </Routes>
                 </Suspense>
+
+                {showAuthModal && <LoginSignup onClose={() => setShowAuthModal(false)} />}
             </main>
 
             {!hideFooter && <AppFooter />}
