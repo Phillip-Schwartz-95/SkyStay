@@ -273,7 +273,7 @@ const GLOBAL_POP_CSS = `
 #map-pop-root .map-pop__dates{font-size:13px;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
 `
 
-export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey = '', defaultColors = true, onMapDragEnd, onViewportChange, activeId = null }) {
+export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey = '', defaultColors = true, onMapDragEnd, onViewportChange, activeId = null, onNavigate }) {
     const hostRef = useRef(null)
     const mapRef = useRef(null)
     const initRanRef = useRef(false)
@@ -485,6 +485,14 @@ export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey 
             window.__mapPopStickyHandlers2 = true
         }
 
+        function goToStay(to) {
+            closeAll()
+            const dest = typeof to === 'string' ? to : `/stay/${to?.id || ''}`
+            if (typeof onNavigate === 'function') onNavigate(dest)
+            else if (dest.startsWith('/')) window.location.hash = `#${dest}`
+            else window.location.href = dest
+        }
+
         markers.forEach(m => {
             const id = m.id || `${m.lat},${m.lng}`
             const pos = (m && typeof m.lat === 'number' && typeof m.lng === 'number') ? { lat: m.lat, lng: m.lng } : null
@@ -499,6 +507,8 @@ export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey 
                 if (ref._popEl) {
                     const x = ref._popEl.querySelector('.map-pop__close')
                     if (x) x.onclick = e => { e.preventDefault(); e.stopPropagation(); closeAll() }
+                    const card = ref._popEl.querySelector('.map-pop__card')
+                    if (card) card.onclick = e => { e.preventDefault(); e.stopPropagation(); goToStay(m.href || `/stay/${m.id || ''}`) }
                 }
                 if (ref.isOpen) positionPopAtPill(ref)
                 return
@@ -527,6 +537,8 @@ export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey 
                 popEl.addEventListener('click', e => { e.stopPropagation() })
                 const x = popEl.querySelector('.map-pop__close')
                 if (x) x.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); closeAll() })
+                const card = popEl.querySelector('.map-pop__card')
+                if (card) card.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); goToStay(m.href || `/stay/${m.id || ''}`) })
                 document.getElementById('map-pop-root').appendChild(popEl)
             }
 
@@ -553,7 +565,7 @@ export default function GoogleMapPane({ label, markers = [], fitTo = [], fitKey 
                 markerRefs.current.set(id, { el, gm, pos, _popEl: popEl, isOpen: false })
             }
         })
-    }, [markers, label, defaultColors])
+    }, [markers, label, defaultColors, onNavigate])
 
     useEffect(() => {
         const points = Array.isArray(fitTo) ? fitTo : []

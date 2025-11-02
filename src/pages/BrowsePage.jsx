@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 import { loadStays } from '../store/actions/stay.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 import { stayService } from '../services/stay'
@@ -42,6 +42,7 @@ function isInBounds(lat, lng, b) {
 
 export default function BrowsePage() {
     const [params] = useSearchParams()
+    const navigate = useNavigate()
     const type = params.get('type') || 'city'
     const label = params.get('label') || ''
     const [page, setPage] = useState(1)
@@ -202,6 +203,7 @@ export default function BrowsePage() {
                         activeId={hoveredStayId}
                         onViewportChange={handleViewportChange}
                         defaultColors
+                        onNavigate={(to) => navigate(to)}
                     />
                 </div>
             </div>
