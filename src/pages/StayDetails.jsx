@@ -111,23 +111,38 @@ export function StayDetails() {
   const hostInfo = useMemo(() => {
     const h = stay?.host || {}
     const u = hostUser || {}
-    const n = v => (Number.isFinite(Number(v)) ? Number(v) : null)
-    const monthsFromSignup = n(u.timeAsUser ? Math.round(u.timeAsUser / 30) : null) || 1
+    const n = v => {
+      const num = Number(v)
+      return Number.isFinite(num) ? num : null
+    }
+    const defaults = {
+      fullname: 'Host',
+      imgUrl: '',
+      isSuperhost: false,
+      monthsHosting: 8,
+      rating: 4.8,
+      reviews: 0,
+      responseRate: 95,
+      responseTime: 'within an hour',
+      role: 'Photographer and host',
+      favoritesong: 'Canon in D',
+      bio: "Traveling is my passion, and I love capturing moments through my lens. When I'm not behind the camera, you can find me exploring new cultures and cuisines."
+    }
     return {
       _id: h._id || u._id || null,
-      fullname: h.fullname || u.fullname || u.username || 'Host',
-      imgUrl: h.imgUrl || u.pictureUrl || u.imgUrl || '',
-      isSuperhost: !!(h.isSuperhost ?? u.isSuperhost ?? false),
-      monthsHosting: n(h.monthsHosting) ?? n(u.monthsHosting) ?? monthsFromSignup,
-      rating: n(h.rating) ?? n(u.rating) ?? n(stay?.ratings?.overall),
-      reviews: n(h.reviews) ?? n(u.reviews) ?? 0,
-      responseRate: n(h.responseRate) ?? n(u.responseRate) ?? 95,
-      responseTime: h.responseTime || u.responseTime || 'within an hour',
-      role: h.role || u.role || 'Host',
-      favoritesong: h.favoritesong || u.favoritesong || '',
-      bio: h.bio || u.bio || ''
+      fullname: h.fullname || u.fullname || u.username || defaults.fullname,
+      imgUrl: h.imgUrl || u.pictureUrl || u.imgUrl || defaults.imgUrl,
+      isSuperhost: (h.isSuperhost ?? u.isSuperhost ?? defaults.isSuperhost) ? true : false,
+      monthsHosting: n(h.monthsHosting) ?? n(u.monthsHosting) ?? defaults.monthsHosting,
+      rating: n(h.rating) ?? n(u.rating) ?? defaults.rating,
+      reviews: n(h.reviews) ?? n(u.reviews) ?? defaults.reviews,
+      responseRate: n(h.responseRate) ?? n(u.responseRate) ?? defaults.responseRate,
+      responseTime: h.responseTime || u.responseTime || defaults.responseTime,
+      role: h.role || u.role || defaults.role,
+      favoritesong: h.favoritesong || u.favoritesong || defaults.favoritesong,
+      bio: h.bio || u.bio || defaults.bio
     }
-  }, [stay?.host, hostUser, stay?.ratings?.overall])
+  }, [stay?.host, hostUser])
 
   const safeHostRating = hostInfo.rating != null ? hostInfo.rating : null
   const mergedStayForMeet = useMemo(() => ({ ...stay, host: hostInfo }), [stay, hostInfo])
